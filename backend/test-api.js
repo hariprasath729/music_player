@@ -5,7 +5,7 @@
 
 import fetch from 'node-fetch';
 
-const BASE = 'http://localhost:5000';
+const BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const TOKEN = 'YOUR_JWT_TOKEN_HERE'; // Replace with real JWT after login
 
 async function test() {
