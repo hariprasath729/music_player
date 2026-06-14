@@ -5,7 +5,10 @@ import { useAuth } from '../../context/AuthContext';
 import { io, Socket } from 'socket.io-client';
 import { TRACKS } from '../../data/musicCatalog';
 
-const SOCKET_URL = `http://${window.location.hostname}:5000`;
+// @ts-ignore
+const SOCKET_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const socket = io(SOCKET_URL);
+
 
 export const VisualizerView: React.FC = () => {
   const { currentTrack, isPlaying, goBack, canGoBack, setView, currentTime, seek, playTrack, togglePlay, setIsPlaybackLocked } = usePlayer();

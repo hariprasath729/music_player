@@ -37,8 +37,8 @@ const GRADIENTS = [
 ];
 const COLORS = ['#ff007a', '#dd5e89', '#00f2fe', '#8ec5fc', '#d4a373', '#30cfd0'];
 
-const AUTH_USER_KEY = 'spotify_clone_auth_user';
-const AUTH_TOKEN_KEY = 'spotify_clone_token';
+const AUTH_USER_KEY = 'music_player_auth_user';
+const AUTH_TOKEN_KEY = 'music_player_token';
 
 function getAuthToken(): string {
   try {
