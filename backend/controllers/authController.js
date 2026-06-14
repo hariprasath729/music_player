@@ -38,7 +38,7 @@ export const sendOtp = async (req, res) => {
     res.json({ success: true, message: 'OTP sent to email' });
   } catch (error) {
     console.error('❌ sendOtp Error:', error);
-    res.status(500).json({ success: false, error: 'Server Error' });
+    res.status(500).json({ success: false, error: error.message || 'Failed to send OTP' });
   }
 };
 
@@ -70,7 +70,7 @@ export const verifyOtpAndSignup = async (req, res) => {
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
     console.error('❌ verifyOtpAndSignup Error:', error);
-    res.status(500).json({ success: false, error: 'Server Error' });
+    res.status(500).json({ success: false, error: error.message || 'Signup failed' });
   }
 };
 
@@ -100,7 +100,7 @@ export const googleLogin = async (req, res) => {
     const token = generateToken(user._id, user.email);
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
-    res.status(500).json({ success: false, error: 'Server Error' });
+    res.status(500).json({ success: false, error: error.message || 'Login failed' });
   }
 };
 
@@ -120,7 +120,7 @@ export const login = async (req, res) => {
     const token = generateToken(user._id, user.email);
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
-    res.status(500).json({ success: false, error: 'Server Error' });
+    res.status(500).json({ success: false, error: error.message || 'Login failed' });
   }
 };
 
@@ -171,7 +171,7 @@ export const contactAdmin = async (req, res) => {
     res.json({ success: true, message: 'Message sent to admin successfully' });
   } catch (error) {
     console.error('❌ contactAdmin Error:', error);
-    res.status(500).json({ success: false, error: 'Server Error' });
+    res.status(500).json({ success: false, error: error.message || 'Failed to send message' });
   }
 };
 
