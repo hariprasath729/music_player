@@ -1,0 +1,49 @@
+### Music Streaming Backend — REST Client examples
+### (Use with the VS Code "REST Client" extension or as curl reference.)
+
+@base = http://localhost:4000
+
+### Health check
+GET {{base}}/health
+
+### List all songs
+GET {{base}}/songs
+
+### Search songs by title / artist / album
+GET {{base}}/songs?search=neon
+
+### Get a single song
+GET {{base}}/songs/1
+
+### Create a song (valid)
+POST {{base}}/songs
+Content-Type: application/json
+
+{
+  "title": "Dude Trailer Blast",
+  "artist": "Unknown",
+  "album": "Trailer Hits",
+  "duration": 180,
+  "file_url": "https://cdn.jsdelivr.net/gh/anars/blank-audio/3-minutes-of-silence.mp3",
+  "cover_url": "https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72/1f3b6.png"
+}
+
+### Create a song (invalid — bad file_url, empty title)
+POST {{base}}/songs
+Content-Type: application/json
+
+{
+  "title": "",
+  "file_url": "https://example.com/not-an-audio-file"
+}
+
+### Update a song
+PUT {{base}}/songs/1
+Content-Type: application/json
+
+{
+  "title": "Neon Sunset (Remix)"
+}
+
+### Delete a song
+DELETE {{base}}/songs/3

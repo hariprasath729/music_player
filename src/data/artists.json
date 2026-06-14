@@ -1,0 +1,37 @@
+[
+  {
+    "id": "a1",
+    "name": "Anirudh",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/anirudh.jpg"
+  },
+  {
+    "id": "a2",
+    "name": "A R Rahman",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/ar_rahman.jpg"
+  },
+  {
+    "id": "a3",
+    "name": "G V Prakash",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/gv_prakash.jpg"
+  },
+  {
+    "id": "a4",
+    "name": "Harris Jayaraj",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/harrish_jayaraj.jpg"
+  },
+  {
+    "id": "a5",
+    "name": "Hip Hop Tamizha",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/hip_hop_tamizha.jpg"
+  },
+  {
+    "id": "a6",
+    "name": "Sai Abhyankkar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/sai_abhyankar.jpg"
+  },
+  {
+    "id": "a7",
+    "name": "Vijay Antony",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/vijay_antony.jpg"
+  }
+]

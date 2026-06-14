@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Scrollbar — Desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Hide scrollbar completely on mobile */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  accent-color: #1db954;
+}
+
+/* Pulse animation for playing indicator */
+@keyframes sound-wave {
+  0% { height: 3px; }
+  50% { height: 14px; }
+  100% { height: 3px; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in-up 0.18s ease-out both; }
+
+.animate-wave-1 { animation: sound-wave 1.2s ease-in-out infinite; }
+.animate-wave-2 { animation: sound-wave 0.8s ease-in-out infinite 0.2s; }
+.animate-wave-3 { animation: sound-wave 1.4s ease-in-out infinite 0.4s; }
+.animate-wave-4 { animation: sound-wave 1.0s ease-in-out infinite 0.1s; }
+
+/* Line clamp for multi-line text */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
