@@ -8,9 +8,10 @@
 import type { Track } from './dataService';
 import { AuthUser } from '../context/AuthContext';
 
-const API_URL =
-  (import.meta as unknown as { env?: { VITE_API_URL?: string } }).env?.VITE_API_URL ||
-  'http://localhost:5000';
+// @ts-ignore
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+console.log("🛠️ Frontend is trying to connect to Backend at:", API_URL);
 
 export interface BackendSong {
   id?: number | string;
