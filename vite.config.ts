@@ -13,7 +13,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), viteSingleFile()],
   server: {
     host: true,
-    allowedHosts: [ "pushpin-unplanted-container.ngrok-free.dev"]
+    allowedHosts: [ "pushpin-unplanted-container.ngrok-free.dev"],
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+      "Cross-Origin-Embedder-Policy": "unsafe-none"
+    }
   },
   resolve: {
     alias: {
