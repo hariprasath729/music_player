@@ -9,7 +9,7 @@ import type { Track } from './dataService';
 import { AuthUser } from '../context/AuthContext';
 
 // @ts-ignore
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
 
 console.log("🛠️ Frontend is trying to connect to Backend at:", API_URL);
 

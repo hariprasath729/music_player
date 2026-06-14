@@ -13,9 +13,12 @@ connectDB();
 
 const app = express();
 const httpServer = createServer(app);
+
+const allowedOrigin = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.replace(/\/$/, '') : true;
+
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.FRONTEND_URL || true,
+    origin: allowedOrigin,
     methods: ['GET', 'POST'],
     credentials: true
   }
@@ -25,7 +28,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 app.use(cors({ 
-  origin: process.env.FRONTEND_URL || true, 
+  origin: allowedOrigin, 
   credentials: true 
 }));
 
