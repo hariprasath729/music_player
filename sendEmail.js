@@ -1,5 +1,9 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import dns from 'dns';
+
+// Force IPv4 DNS resolution because some cloud providers (like Render) do not support outbound IPv6
+dns.setDefaultResultOrder('ipv4first');
 
 dotenv.config();
 
