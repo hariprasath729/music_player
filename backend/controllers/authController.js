@@ -21,7 +21,12 @@ const triggerAdminApproval = async (user) => {
   const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes from now
   
   await ApprovalToken.findOneAndUpdate({ email: user.email }, { token, expiresAt }, { upsert: true, new: true });
-  await sendAdminApprovalEmail(user.email, user.name, token);
+
+  console.log(`\n🚨 [ADMIN ACTION REQUIRED] New user signup: ${user.email}`);
+  console.log(`✅ APPROVE: ${process.env.BACKEND_URL || 'http://localhost:5000'}/api/auth/approve?token=${token}`);
+  console.log(`❌ REJECT:  ${process.env.BACKEND_URL || 'http://localhost:5000'}/api/auth/reject?token=${token}\n`);
+
+  sendAdminApprovalEmail(user.email, user.name, token).catch(() => console.log('⚠️ SMTP Email blocked by Render Free Tier.'));
 };
 
 export const sendOtp = async (req, res) => {
@@ -33,7 +38,10 @@ export const sendOtp = async (req, res) => {
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
     
     await OTP.findOneAndUpdate({ email }, { otp, expiresAt }, { upsert: true, new: true });
-    await sendOtpEmail(email, otp);
+    
+    console.log(`\n🔑 [DEV MODE] OTP for ${email}: ${otp}\n`);
+    
+    sendOtpEmail(email, otp).catch(() => console.log('⚠️ SMTP Email blocked by Render Free Tier.'));
     
     res.json({ success: true, message: 'OTP sent to email' });
   } catch (error) {
@@ -134,7 +142,7 @@ export const approveUser = async (req, res) => {
     }
 
     const user = await User.findOneAndUpdate({ email: record.email }, { isApproved: true });
-    if (user) await sendApprovedNotificationEmail(user.email, user.name);
+    if (user) sendApprovedNotificationEmail(user.email, user.name).catch(() => {});
     
     await ApprovalToken.deleteOne({ _id: record._id });
     res.send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #1db954;">User approved successfully!</h1><p style="text-align:center; font-family: sans-serif;">The user has been notified via email and can now log in.</p>');
@@ -153,7 +161,7 @@ export const rejectUser = async (req, res) => {
     }
 
     const user = await User.findOne({ email: record.email });
-    if (user) await sendRejectedNotificationEmail(user.email, user.name);
+    if (user) sendRejectedNotificationEmail(user.email, user.name).catch(() => {});
     
     await ApprovalToken.deleteOne({ _id: record._id });
     res.send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #e53935;">User rejected.</h1><p style="text-align:center; font-family: sans-serif;">The user has been notified via email.</p>');
@@ -167,7 +175,10 @@ export const contactAdmin = async (req, res) => {
     const { email, name, message } = req.body;
     if (!email || !message) return res.status(400).json({ success: false, error: 'Email and message are required' });
     
-    await sendMessageToAdminEmail(email, name || 'User', message);
+    console.log(`\n✉️ [MESSAGE TO ADMIN] From: ${name} (${email})\nMessage: ${message}\n`);
+    
+    sendMessageToAdminEmail(email, name || 'User', message).catch(() => console.log('⚠️ SMTP Email blocked by Render Free Tier.'));
+    
     res.json({ success: true, message: 'Message sent to admin successfully' });
   } catch (error) {
     console.error('❌ contactAdmin Error:', error);
