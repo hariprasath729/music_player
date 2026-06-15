@@ -313,7 +313,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
 
         {showContactModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
-            <div className="w-full max-w-[420px] max-h-[95vh] overflow-y-auto rounded-[24px] bg-[#181818] p-6 sm:p-7 border border-[#3e3e3e] shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex flex-col gap-3 sm:gap-4">
+            <div className="w-full max-w-[400px] max-h-[95vh] overflow-y-auto rounded-[24px] bg-[#181818] p-6 sm:p-7 border border-[#3e3e3e] shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5">
               
               <div className="flex justify-center mb-1">
                 <MusicPlayerMark size={50} />
@@ -355,7 +355,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
                   value={contactMessage}
                   onChange={(e) => setContactMessage(e.target.value)}
                   placeholder="Type your message here..."
-                  className="w-full h-[100px] sm:h-[130px] resize-none bg-[#242424] border border-[#444] rounded-[12px] p-3 text-white text-[15px] outline-none focus:border-[#ff0000] transition-colors"
+                  className="w-full h-[130px] sm:h-[160px] resize-none bg-[#242424] border border-[#444] rounded-[12px] p-3 text-white text-[15px] outline-none focus:border-[#ff0000] transition-colors"
                 />
               </div>
               
