@@ -312,49 +312,69 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
         </footer>
 
         {showContactModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-0 sm:p-4 backdrop-blur-sm">
-            <div className="w-full h-full sm:h-auto max-w-md sm:max-h-[90vh] overflow-y-auto rounded-none sm:rounded-xl bg-[#181818] p-6 sm:p-6 border-0 sm:border border-[#3e3e3e] shadow-2xl flex flex-col">
-              <h2 className="text-2xl sm:text-xl font-bold text-white mb-2 pt-4 sm:pt-0">Contact Admin</h2>
-              <p className="text-[14.5px] sm:text-sm text-[#b3b3b3] mb-6 sm:mb-5">Please provide details about your request. An admin will review it.</p>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-[420px] max-h-[95vh] overflow-y-auto rounded-[24px] bg-[#181818] p-6 sm:p-7 border border-[#3e3e3e] shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex flex-col gap-3 sm:gap-4">
               
-              <label className="block text-[13px] font-bold text-white mb-2">Name (Optional)</label>
-              <input
-                type="text"
-                value={contactName}
-                onChange={(e) => setContactName(e.target.value)}
-                placeholder="Your Name"
-                className="w-full p-3.5 sm:p-3 bg-[#242424] text-[15px] sm:text-base text-white rounded-md border border-[#3e3e3e] focus:border-[#1db954] outline-none mb-4"
-              />
+              <div className="flex justify-center mb-1">
+                <MusicPlayerMark size={50} />
+              </div>
               
-              <label className="block text-[13px] font-bold text-white mb-2">Email Address</label>
-              <input
-                type="email"
-                value={contactEmail}
-                onChange={(e) => setContactEmail(e.target.value)}
-                placeholder="name@domain.com"
-                className="w-full p-3.5 sm:p-3 bg-[#242424] text-[15px] sm:text-base text-white rounded-md border border-[#3e3e3e] focus:border-[#1db954] outline-none mb-4"
-              />
+              <h1 className="text-center text-[28px] font-bold text-white m-0 leading-tight">
+                Contact Admin
+              </h1>
               
-              <label className="block text-[13px] font-bold text-white mb-2">Message</label>
-              <textarea
-                value={contactMessage}
-                onChange={(e) => setContactMessage(e.target.value)}
-                placeholder="Type your message here..."
-                className="w-full flex-1 sm:flex-none sm:h-32 min-h-[150px] p-3.5 sm:p-3 bg-[#242424] text-[15px] sm:text-base text-white rounded-md border border-[#3e3e3e] focus:border-[#1db954] outline-none resize-none mb-6 sm:mb-5"
-              />
+              <div className="text-center text-[#aaa] text-[14px] leading-[1.5] mb-2">
+                Please provide details about your request.<br/>An admin will review it.
+              </div>
               
-              <div className="flex flex-col sm:flex-row justify-end gap-3 mt-auto sm:mt-2 pb-4 sm:pb-0">
-                <button onClick={() => setShowContactModal(false)} className="w-full sm:w-auto px-4 py-3.5 sm:py-2 rounded-full font-bold text-white hover:bg-white/10 transition order-2 sm:order-1 text-[15px] sm:text-base border border-[#3e3e3e] sm:border-none">
-                  Cancel
-                </button>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[14px] text-white font-semibold">Name (Optional)</label>
+                <input
+                  type="text"
+                  value={contactName}
+                  onChange={(e) => setContactName(e.target.value)}
+                  placeholder="Your Name"
+                  className="w-full bg-[#242424] border border-[#444] rounded-[12px] p-3 text-white text-[15px] outline-none focus:border-[#ff0000] transition-colors"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[14px] text-white font-semibold">Email Address</label>
+                <input
+                  type="email"
+                  value={contactEmail}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  placeholder="name@domain.com"
+                  className="w-full bg-[#242424] border border-[#444] rounded-[12px] p-3 text-white text-[15px] outline-none focus:border-[#ff0000] transition-colors"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[14px] text-white font-semibold">Message</label>
+                <textarea
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
+                  placeholder="Type your message here..."
+                  className="w-full h-[100px] sm:h-[130px] resize-none bg-[#242424] border border-[#444] rounded-[12px] p-3 text-white text-[15px] outline-none focus:border-[#ff0000] transition-colors"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-3 mt-2">
                 <button
                   onClick={handleSendMessage}
                   disabled={loading || !contactMessage.trim() || !contactEmail.trim()}
-                  className="w-full sm:w-auto px-4 py-3.5 sm:py-2 rounded-full font-bold bg-[#1db954] text-black hover:bg-[#1ed760] transition disabled:opacity-50 order-1 sm:order-2 text-[15px] sm:text-base"
+                  className="w-full p-[14px] rounded-[14px] text-[16px] font-bold bg-[#ff0000] text-white hover:bg-[#ff3333] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Sending...' : 'Send Message'}
                 </button>
+                <button
+                  onClick={() => setShowContactModal(false)}
+                  className="w-full p-[14px] rounded-[14px] text-[16px] font-bold bg-transparent border border-[#555] text-white hover:bg-white/10 transition-colors"
+                >
+                  Cancel
+                </button>
               </div>
+
             </div>
           </div>
         )}
