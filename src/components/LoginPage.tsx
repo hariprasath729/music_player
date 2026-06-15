@@ -313,7 +313,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
 
         {showContactModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
-            <div className="w-full max-w-[400px] max-h-[95vh] overflow-y-auto rounded-[24px] bg-[#181818] p-6 sm:p-7 border border-[#3e3e3e] shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5">
+            <div className="w-full max-w-[360px] max-h-[95vh] overflow-y-auto rounded-[24px] bg-[#181818] p-6 sm:p-7 border border-[#3e3e3e] shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5">
               
               <div className="flex justify-center mb-1">
                 <MusicPlayerMark size={50} />
