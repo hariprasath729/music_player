@@ -1,10 +1,27 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const SENDER_EMAIL = 'Music Player <onboarding@resend.dev>';
+const transporter = nodemailer.createTransport({
+  host: process.env.BREVO_HOST,
+  port: process.env.BREVO_PORT,
+  secure: false, // true for 465, false for other ports (uses STARTTLS)
+  auth: {
+    user: process.env.BREVO_EMAIL,
+    pass: process.env.BREVO_SMTP_KEY
+  }
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('📧 ❌ Brevo Transporter Error:', error.message);
+  } else {
+    console.log('📧 ✅ Nodemailer is securely connected to Brevo and ready to send emails!');
+  }
+});
+
+const SENDER_EMAIL = `${process.env.MAIL_FROM_NAME} <${process.env.MAIL_FROM_EMAIL}>`;
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
@@ -52,14 +69,13 @@ style="background:#1c1c1c;border-radius:12px;padding:30px;color:white;">
 </html>
   `;
   try {
-    const { data, error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: SENDER_EMAIL,
       to,
       subject: 'Your Verification Code',
       html
     });
-    if (error) console.error('❌ Resend API Error (OTP):', error);
-    else console.log('📧 ✅ OTP Email sent successfully:', data?.id);
+    console.log('📧 ✅ OTP Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending OTP email:', err);
   }
@@ -131,14 +147,13 @@ Reject
 </html>
   `;
   try {
-    const { data, error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: SENDER_EMAIL,
       to: ADMIN_EMAIL,
       subject: 'Action Required: New User Approval',
       html
     });
-    if (error) console.error('❌ Resend API Error (Approval):', error);
-    else console.log('📧 ✅ Admin Approval Email sent successfully:', data?.id);
+    console.log('📧 ✅ Admin Approval Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending Admin Approval email:', err);
   }
@@ -187,14 +202,13 @@ Go to App </a>
 </html>
   `;
   try {
-    const { data, error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: SENDER_EMAIL,
       to,
       subject: 'Your Account is Approved',
       html
     });
-    if (error) console.error('❌ Resend API Error (Approved Notification):', error);
-    else console.log('📧 ✅ Approved Notification Email sent successfully:', data?.id);
+    console.log('📧 ✅ Approved Notification Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending Approved Notification email:', err);
   }
@@ -246,14 +260,13 @@ Contact Admin </a>
 </html>
   `;
   try {
-    const { data, error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: SENDER_EMAIL,
       to,
       subject: 'Update on Your Access Request',
       html
     });
-    if (error) console.error('❌ Resend API Error (Rejected Notification):', error);
-    else console.log('📧 ✅ Rejected Notification Email sent successfully:', data?.id);
+    console.log('📧 ✅ Rejected Notification Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending Rejected Notification email:', err);
   }
@@ -299,14 +312,13 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
 </html>
   `;
   try {
-    const { data, error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: SENDER_EMAIL,
       to: ADMIN_EMAIL,
       subject: `Message from ${userName}`,
       html
     });
-    if (error) console.error('❌ Resend API Error (Admin Message):', error);
-    else console.log('📧 ✅ Admin Message Email sent successfully:', data?.id);
+    console.log('📧 ✅ Admin Message Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending Admin Message email:', err);
   }
