@@ -1,12 +1,10 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+import dotenv from 'dotenv';
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+dotenv.config();
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const SENDER_EMAIL = 'Music Player <onboarding@resend.dev>';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
@@ -53,11 +51,22 @@ style="background:#1c1c1c;border-radius:12px;padding:30px;color:white;">
 </body>
 </html>
   `;
-  await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject: 'Your Verification Code', html });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to,
+      subject: 'Your Verification Code',
+      html
+    });
+    if (error) console.error('❌ Resend API Error (OTP):', error);
+    else console.log('📧 ✅ OTP Email sent successfully:', data?.id);
+  } catch (err) {
+    console.error('❌ Exception sending OTP email:', err);
+  }
 };
 
 export const sendAdminApprovalEmail = async (userEmail, userName, token) => {
-  const baseUrl = process.env.BACKEND_URL || 'http://localhost:5000';
+  const baseUrl = process.env.APP_URL || 'https://music-player-z1db.onrender.com';
   const approveLink = `${baseUrl}/api/auth/approve?token=${token}`;
   const rejectLink = `${baseUrl}/api/auth/reject?token=${token}`;
   const html = `
@@ -121,11 +130,22 @@ Reject
 </body>
 </html>
   `;
-  await transporter.sendMail({ from: process.env.EMAIL_USER, to: ADMIN_EMAIL, subject: 'Action Required: New User Approval', html });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: 'Action Required: New User Approval',
+      html
+    });
+    if (error) console.error('❌ Resend API Error (Approval):', error);
+    else console.log('📧 ✅ Admin Approval Email sent successfully:', data?.id);
+  } catch (err) {
+    console.error('❌ Exception sending Admin Approval email:', err);
+  }
 };
 
 export const sendApprovedNotificationEmail = async (to, name) => {
-  const appUrl = 'http://localhost:5173';
+  const appUrl = process.env.APP_URL || 'https://music-player-z1db.onrender.com';
   const html = `
 <!DOCTYPE html>
 <html>
@@ -166,11 +186,22 @@ Go to App </a>
 </body>
 </html>
   `;
-  await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject: 'Your Account is Approved', html });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to,
+      subject: 'Your Account is Approved',
+      html
+    });
+    if (error) console.error('❌ Resend API Error (Approved Notification):', error);
+    else console.log('📧 ✅ Approved Notification Email sent successfully:', data?.id);
+  } catch (err) {
+    console.error('❌ Exception sending Approved Notification email:', err);
+  }
 };
 
 export const sendRejectedNotificationEmail = async (to, name) => {
-  const appUrl = 'http://localhost:5173';
+  const appUrl = process.env.APP_URL || 'https://music-player-z1db.onrender.com';
   const contactLink = `${appUrl}/?contact=true&email=${encodeURIComponent(to)}&name=${encodeURIComponent(name)}`;
   const html = `
 <!DOCTYPE html>
@@ -214,7 +245,18 @@ Contact Admin </a>
 </body>
 </html>
   `;
-  await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject: 'Update on Your Access Request', html });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to,
+      subject: 'Update on Your Access Request',
+      html
+    });
+    if (error) console.error('❌ Resend API Error (Rejected Notification):', error);
+    else console.log('📧 ✅ Rejected Notification Email sent successfully:', data?.id);
+  } catch (err) {
+    console.error('❌ Exception sending Rejected Notification email:', err);
+  }
 };
 
 export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
@@ -256,5 +298,16 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
 </body>
 </html>
   `;
-  await transporter.sendMail({ from: process.env.EMAIL_USER, to: ADMIN_EMAIL, subject: `Message from ${userName}`, html });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `Message from ${userName}`,
+      html
+    });
+    if (error) console.error('❌ Resend API Error (Admin Message):', error);
+    else console.log('📧 ✅ Admin Message Email sent successfully:', data?.id);
+  } catch (err) {
+    console.error('❌ Exception sending Admin Message email:', err);
+  }
 };
