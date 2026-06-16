@@ -7,14 +7,13 @@ import { TRACKS } from '../../data/musicCatalog';
 
 // @ts-ignore
 const SOCKET_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
-const socket = io(SOCKET_URL);
-
 
 export const VisualizerView: React.FC = () => {
-  const { currentTrack, isPlaying, goBack, canGoBack, setView, currentTime, seek, playTrack, togglePlay, setIsPlaybackLocked } = usePlayer();
+  const { currentTrack, isPlaying, goBack, canGoBack, setView, currentTime, seek, playTrack, togglePlay, setIsPlaybackLocked, currentView } = usePlayer();
   const { user } = useAuth();
   
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [shouldConnect, setShouldConnect] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string>('');
   const [inputRoomId, setInputRoomId] = useState<string>('');
   const [isHost, setIsHost] = useState<boolean>(false);
@@ -50,12 +49,20 @@ export const VisualizerView: React.FC = () => {
     return () => setIsPlaybackLocked(false);
   }, [inRoom, isHost, setIsPlaybackLocked]);
 
+  useEffect(() => {
+    if (currentView === 'visualizer') {
+      setShouldConnect(true);
+    }
+  }, [currentView]);
+
   const handleClose = () => {
     if (canGoBack) goBack();
     else setView('home');
   };
 
   useEffect(() => {
+    if (!shouldConnect) return;
+
     // Reset room state when user identity changes (e.g. Logging out)
     setInRoom(false);
     setIsHost(false);
@@ -82,7 +89,7 @@ export const VisualizerView: React.FC = () => {
       }
     });
 
-    newSocket.on('sync_state', ({ songId, currentTime: syncTime, isPlaying: syncIsPlaying, updatedAt }) => {
+    newSocket.on('sync_state', ({ songId, currentTime: syncTime, isPlaying: syncIsPlaying }) => {
       if (stateRef.current.isHost) return; // Host dictates, doesn't listen to sync
       isSyncing.current = true;
       
@@ -128,7 +135,7 @@ export const VisualizerView: React.FC = () => {
     return () => {
       newSocket.disconnect();
     };
-  }, [userId]); // Removed context player functions from dependencies!
+  }, [userId, shouldConnect]); // Removed context player functions from dependencies!
 
   // Host sends sync events
   useEffect(() => {

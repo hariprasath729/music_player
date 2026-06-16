@@ -218,6 +218,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => { setIsLoggedIn(!!user); }, [user]);
 
+  useEffect(() => {
+    if (!token) return;
+    try {
+      const parts = token.split('.');
+      if (parts.length !== 3) return;
+      const payload = JSON.parse(atob(parts[1]));
+      if (payload.exp) {
+        const timeRemaining = payload.exp * 1000 - Date.now();
+        if (timeRemaining <= 0) {
+          alert('The session expires relogin to continue , now logging out');
+          logout();
+        } else if (timeRemaining <= 2147483647) {
+          // Only set the timeout if it falls within the 32-bit integer limit (~24.8 days)
+          // otherwise setTimeout overflows and fires immediately.
+          const timer = setTimeout(() => {
+            alert('The session expires relogin to continue , now logging out');
+            logout();
+          }, timeRemaining);
+          return () => clearTimeout(timer);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to parse token for expiration', err);
+    }
+  }, [token, logout]);
+
   return (
     <AuthContext.Provider value={{ user, isLoggedIn, isLoading, error, login, loginWithEmail, sendOtp, signup, contactAdmin, logout, clearError, isPendingApproval, setIsPendingApproval }}>
       {children}

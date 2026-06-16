@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, AuthUser } from '../context/AuthContext';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import { authApi } from '../services/apiClient';
+import { useBackButton } from '../hooks/useBackButton';
 
 const GOOGLE_CLIENT_ID =
   (import.meta as unknown as { env?: { VITE_GOOGLE_CLIENT_ID?: string } }).env?.VITE_GOOGLE_CLIENT_ID ||
@@ -77,6 +78,10 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
   const [contactEmail, setContactEmail] = useState('');
   const [contactName, setContactName] = useState('');
   const [contactMessage, setContactMessage] = useState('');
+
+  // Device Back Button Support
+  useBackButton(showContactModal, () => setShowContactModal(false), 'contact-modal');
+  useBackButton(isPendingApproval, () => setIsPendingApproval(false), 'pending-approval');
 
   useEffect(() => {
     // Check URL parameters when coming from a rejection email

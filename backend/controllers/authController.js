@@ -6,7 +6,7 @@ import ApprovalToken from '../models/ApprovalToken.js';
 import { sendOtpEmail, sendAdminApprovalEmail, sendApprovedNotificationEmail, sendRejectedNotificationEmail, sendMessageToAdminEmail } from '../utils/sendEmail.js';
 
 const generateToken = (id, email) => {
-  return jwt.sign({ id, email }, process.env.JWT_SECRET || 'your_secret_here', { expiresIn: '7d' });
+  return jwt.sign({ id, email }, process.env.JWT_SECRET || 'dev_jwt_secret_change_me', { expiresIn: '30d' });
 };
 
 // Private helper: Checks if token is active, otherwise generates a new 10 min token and emails admin

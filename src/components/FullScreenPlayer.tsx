@@ -25,6 +25,7 @@ import { usePlayer } from '../context/PlayerContext';
 import { PLAYLISTS } from '../data/musicCatalog';
 import { TRACKS } from '../data/musicCatalog';
 import artistsData from '../data/artists.json';
+import { useBackButton } from '../hooks/useBackButton';
 
 export const FullScreenPlayer: React.FC = () => {
   const {
@@ -61,6 +62,10 @@ export const FullScreenPlayer: React.FC = () => {
   } = usePlayer();
 
   const [showMenu, setShowMenu] = useState(false);
+
+  // Device Back Button Support
+  useBackButton(isFullScreen, toggleFullScreen, 'fullscreen-player');
+  useBackButton(showMenu, () => setShowMenu(false), 'player-menu');
 
   if (!isFullScreen) return null;
 
@@ -260,18 +265,18 @@ export const FullScreenPlayer: React.FC = () => {
         <div className="flex items-center justify-between pt-1 text-white/60">
           <button
             onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}?track=${currentTrack.id}`); showToast('Link copied to clipboard', 'link'); }}
-            className="rounded-full p-2 transition hover:bg-white/10 hover:text-white"
+            className="shrink-0 rounded-full p-2 transition hover:bg-white/10 hover:text-white"
             title="Share"
           >
             <Share2 className="h-5 w-5" />
           </button>
 
-          {/* Volume (desktop-only) */}
-          <div className="hidden items-center gap-2 sm:flex">
-            <button onClick={() => toggleMute()} className="rounded-full p-1 transition hover:bg-white/10 hover:text-white">
+          {/* Volume Control */}
+          <div className="flex w-full max-w-[200px] items-center justify-center gap-2 px-2">
+            <button onClick={() => toggleMute()} className="shrink-0 rounded-full p-1 transition hover:bg-white/10 hover:text-white">
               <VolumeIcon className="h-5 w-5" />
             </button>
-            <div className="group/vol relative flex h-3 w-24 cursor-pointer items-center">
+            <div className="group/vol relative flex h-3 w-full cursor-pointer items-center">
               <input
                 type="range"
                 min={0}
@@ -292,7 +297,7 @@ export const FullScreenPlayer: React.FC = () => {
               toggleFullScreen();
               toggleQueue();
             }}
-            className="rounded-full p-2 transition hover:bg-white/10 hover:text-white"
+            className="shrink-0 rounded-full p-2 transition hover:bg-white/10 hover:text-white"
             title="View queue"
           >
             <ListMusic className="h-5 w-5" />

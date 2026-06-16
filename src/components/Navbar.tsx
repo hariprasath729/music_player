@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, Search, Bell, User, Settings, X, Radio,
 } from 'lucide-react';
@@ -7,12 +7,36 @@ import { useAuth } from '../context/AuthContext'; // Replace with real toast in 
 export const Navbar: React.FC = () => {
   const {
     currentView, setView, searchQuery, setSearchQuery,
-    canGoBack, canGoForward, goBack, goForward,
-    showToast,
+    canGoBack, canGoForward, goBack, goForward, showToast,
+    
   } = usePlayer();
   const { user, logout } = useAuth();
 
   const [showProfile, setShowProfile] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) {
+      showToast("App installation is not supported by your browser or it's already installed. Try using Chrome or check your browser menu for 'Add to Home Screen'.");
+      return;
+    }
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    // We've used the prompt, and can't use it again, throw it away
+    if (outcome === 'accepted') setDeferredPrompt(null);
+  };
 
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between bg-transparent px-4 py-2 select-none sm:bg-[#121212]/90 sm:px-6 sm:backdrop-blur-md md:h-16">
@@ -66,9 +90,31 @@ export const Navbar: React.FC = () => {
               <button onClick={() => alert('Notifications coming soon!')}>
                 <Bell className="h-5 w-5 text-white" />
               </button>
-              <button onClick={() => alert('Settings coming soon!')}>
-                <Settings className="h-5 w-5 text-white" />
-              </button>
+              <div className="relative flex items-center">
+                <button onClick={() => setShowSettings(s => !s)}>
+                  <Settings className="h-5 w-5 text-white" />
+                </button>
+                {showSettings && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setShowSettings(false)} />
+                    <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-md bg-[#282828] shadow-2xl">
+                      
+                      <button
+                        onClick={() => { handleInstallClick(); setShowSettings(false); }}
+                        className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]"
+                      >
+                        Install App
+                      </button>
+                      <button
+                        onClick={() => { alert('More settings coming soon!'); setShowSettings(false); }}
+                        className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+                      >
+                        General Settings
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </>
         )}
@@ -126,8 +172,8 @@ export const Navbar: React.FC = () => {
         {/* Right side */}
         <div className="flex items-center gap-3 text-sm font-bold">
           <button
-            onClick={() => showToast('App is being built...')}
-            className="flex items-center gap-1 rounded-full bg-black/60 px-3 py-1.5 text-xs text-white transition-transform hover:scale-[1.04]"
+            onClick={handleInstallClick}
+            className="flex items-center gap-1 rounded-full bg-[#1db954] px-4 py-1.5 text-xs text-black transition-transform hover:scale-[1.04]"
           >
             <span>Install App</span>
           </button>
@@ -165,7 +211,7 @@ export const Navbar: React.FC = () => {
               </div>
             )}
             {[
-              { label: 'Account', view: 'profile' },
+              
               { label: 'Profile', view: 'profile' },
               { label: 'Synk Session', view: 'visualizer' },
               { label: 'Log out', view: 'logout' },

@@ -27,7 +27,7 @@ export const ProfileView: React.FC = () => {
         if (res.ok) {
           const json = await res.json();
           if (json.success) {
-            setProfile(json.data);
+            setProfile(json.user || json.data);
           } else if (json.user || json.email) {
             setProfile(json.user || json);
           }
