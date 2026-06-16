@@ -1,4 +1,4 @@
-const CACHE_NAME = "music-player-v7.01.01.03";
+const CACHE_NAME = "music-player-v8.0";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -11,8 +11,16 @@ const ASSETS_TO_CACHE = [
 // Install → cache core files
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      // Bypass HTTP cache during install to guarantee we get the latest assets
+      for (const asset of ASSETS_TO_CACHE) {
+        try {
+          const response = await fetch(asset, { cache: "reload" });
+          if (response.ok) await cache.put(asset, response);
+        } catch (err) {
+          console.warn("Failed to cache:", asset, err);
+        }
+      }
     })
   );
 });
@@ -43,14 +51,28 @@ self.addEventListener("message", (event) => {
 // Fetch strategy
 self.addEventListener("fetch", (event) => {
   const { request } = event;
+  const url = new URL(request.url);
 
-  // HTML pages → network first (ensures we get the latest asset hashes from Vite)
+  // 1. Bypass Service Worker for external CDNs and media files
+  // This prevents CORS errors and avoids caching large audio files
+  if (
+    url.hostname.includes("cdn.jsdelivr.net") ||
+    url.hostname.includes("raw.githubusercontent.com") ||
+    url.pathname.endsWith(".mp3") ||
+    url.pathname.endsWith(".wav")
+  ) {
+    return; // Let the browser handle the request directly
+  }
+
+  // 2. HTML pages → network first (ensures we get the latest asset hashes from Vite)
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request)
+      // Force bypass HTTP cache to ensure we get the absolute latest HTML
+      fetch(request.url, { cache: "reload" })
         .then((res) => {
+          const responseToCache = res.clone();
           return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, res.clone());
+            cache.put(request, responseToCache);
             return res;
           });
         })
@@ -59,28 +81,40 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // API calls → network first
-  if (request.url.includes("/api/")) {
+  // 3. API calls → network first
+  if (url.pathname.startsWith("/api/")) {
     event.respondWith(
       fetch(request)
-        .then((res) => res)
-        .catch(() => caches.match(request))
+        .catch((err) => {
+          console.warn("API fetch failed, attempting cache fallback:", err);
+          return caches.match(request);
+        })
     );
     return;
   }
 
-  // Static files → cache first
+  // 4. Local Static files → cache first
   event.respondWith(
     caches.match(request).then((cached) => {
-      return (
-        cached ||
-        fetch(request).then((res) => {
+      if (cached) return cached;
+      
+      return fetch(request)
+        .then((res) => {
+          // Only cache valid, local responses (prevents caching opaque CORS errors)
+          if (!res || res.status !== 200 || res.type !== "basic") {
+            return res;
+          }
+          const responseToCache = res.clone();
           return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, res.clone());
+            cache.put(request, responseToCache);
             return res;
           });
         })
-      );
+        .catch((err) => {
+          console.warn("Fetch failed for static asset:", request.url, err);
+          // Graceful fallback for offline situations
+          return new Response("Offline", { status: 503, statusText: "Service Unavailable" });
+        });
     })
   );
 });

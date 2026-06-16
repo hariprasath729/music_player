@@ -8,7 +8,8 @@ if ('serviceWorker' in navigator) {
     let appVersion = 'unknown';
 
     try {
-      const res = await fetch('/manifest.json', { cache: 'no-store' });
+      // Append timestamp to completely bypass Service Worker and HTTP caches
+      const res = await fetch(`/manifest.json?t=${Date.now()}`);
       if (res.ok) {
         const manifest = await res.json();
         if (manifest?.version) appVersion = String(manifest.version);
