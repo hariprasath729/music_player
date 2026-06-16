@@ -25,8 +25,7 @@ interface AuthContextType {
   setIsPendingApproval: (val: boolean) => void;
 }
 
-// @ts-ignore
-const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api` : 'http://localhost:5000/api';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '') + '/api';
 const AUTH_USER_KEY = 'music_player_auth_user';
 const AUTH_TOKEN_KEY = 'music_player_token';
 
