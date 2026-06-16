@@ -1,4 +1,4 @@
-const CACHE_NAME = "music-player-v7.01.01.02";
+const CACHE_NAME = "music-player-v7.01.01.03";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
