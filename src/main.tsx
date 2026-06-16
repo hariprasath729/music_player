@@ -4,7 +4,19 @@ import "./index.css";
 import App from "./App";
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
+  window.addEventListener('load', async () => {
+    let appVersion = 'unknown';
+
+    try {
+      const res = await fetch('/manifest.json', { cache: 'no-store' });
+      if (res.ok) {
+        const manifest = await res.json();
+        if (manifest?.version) appVersion = String(manifest.version);
+      }
+    } catch (e) {
+      console.warn('Failed to read manifest version', e);
+    }
+
     navigator.serviceWorker.register('/sw.js').then((registration) => {
       console.log('Service Worker Registered');
       registration.addEventListener('updatefound', () => {
@@ -12,7 +24,9 @@ if ('serviceWorker' in navigator) {
         if (newWorker) {
           newWorker.addEventListener('statechange', () => {
             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              window.dispatchEvent(new CustomEvent('pwa-update-available', { detail: newWorker }));
+              window.dispatchEvent(
+                new CustomEvent('pwa-update-available', { detail: { worker: newWorker, version: appVersion } })
+              );
             }
           });
         }
@@ -22,6 +36,9 @@ if ('serviceWorker' in navigator) {
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (!refreshing) {
+        sessionStorage.setItem('pwa-updated', 'true');
+        sessionStorage.setItem('pwa-updated-version', appVersion);
+        sessionStorage.setItem('pwa-suppress-update-ui', 'true');
         window.location.reload();
         refreshing = true;
       }

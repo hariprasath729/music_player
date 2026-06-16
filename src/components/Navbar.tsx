@@ -4,23 +4,45 @@ import {
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { useAuth } from '../context/AuthContext'; // Replace with real toast in production
+
+/* Filter pills shown on mobile home/library */
+const MobileFilterPills: React.FC = () => {
+  const { setView } = usePlayer();
+  const pills = [
+    { label: 'All', view: 'library' },
+    { label: 'Albums', view: 'all-songs' },
+    { label: 'Artists', view: 'artists' },
+  ];
+  return (
+    <div className="flex gap-2">
+      {pills.map(({ label, view }) => (
+        <button
+          key={label}
+          onClick={() => setView(view as any)}
+          className="rounded-full bg-[#2a2a2a] px-3 py-1 text-[12px] font-bold text-white transition-colors hover:bg-[#3d3d3d]"
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 export const Navbar: React.FC = () => {
   const {
     currentView, setView, searchQuery, setSearchQuery,
     canGoBack, canGoForward, goBack, goForward, showToast,
     
   } = usePlayer();
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth(); // Replace with real toast in production
 
-  const [showProfile, setShowProfile] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<'profile' | 'notifications' | 'settings' | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
+  const [updateVersion, setUpdateVersion] = useState<string>('unknown');
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
       // Stash the event so it can be triggered later.
       setDeferredPrompt(e);
     };
@@ -30,7 +52,26 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleUpdate = (e: Event) => {
-      setUpdateWorker((e as CustomEvent).detail);
+      // After we reload following an update, suppress showing the update UI again.
+      if (sessionStorage.getItem('pwa-suppress-update-ui') === 'true') {
+        sessionStorage.removeItem('pwa-suppress-update-ui');
+        setUpdateWorker(null);
+        setUpdateVersion('unknown');
+        return;
+      }
+
+      const detail = (e as CustomEvent).detail;
+
+      // Backward compatible: if detail is the ServiceWorker itself
+      if (detail && typeof (detail as any).postMessage === 'function') {
+        setUpdateWorker(detail as ServiceWorker);
+        setUpdateVersion('unknown');
+        return;
+      }
+
+      const payload = detail as { worker?: ServiceWorker; version?: string } | null | undefined;
+      setUpdateWorker(payload?.worker ?? null);
+      setUpdateVersion(payload?.version ? String(payload.version) : 'unknown');
     };
     window.addEventListener('pwa-update-available', handleUpdate);
     return () => window.removeEventListener('pwa-update-available', handleUpdate);
@@ -55,24 +96,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between bg-transparent px-4 py-2 select-none sm:bg-[#121212]/90 sm:px-6 sm:backdrop-blur-md md:h-16">
-
-      {/* PWA Update Banner */}
-      {updateWorker && (
-        <div className="fixed bottom-20 left-1/2 z-[9999] flex w-[90%] max-w-sm -translate-x-1/2 items-center justify-between rounded-lg border border-white/10 bg-[#1db954] px-4 py-3 shadow-2xl sm:bottom-6">
-          <span className="text-sm font-bold text-black">New version available</span>
-          <div className="flex items-center gap-3">
-            <button onClick={() => setUpdateWorker(null)} className="text-xs font-bold text-black/70 transition-colors hover:text-black">
-              Dismiss
-            </button>
-            <button
-              onClick={applyUpdate}
-              className="rounded-full bg-black px-4 py-1.5 text-xs font-bold text-white transition hover:scale-105"
-            >
-              Update
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* ─── MOBILE HEADER ─── */}
       <div className="flex w-full items-center justify-between md:hidden">
@@ -108,7 +131,7 @@ export const Navbar: React.FC = () => {
             <div className="flex items-center gap-3">
               <div
                 className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#535353] text-white"
-                onClick={() => setShowProfile(p => !p)}
+                onClick={() => setActiveDropdown(d => d === 'profile' ? null : 'profile')}
               >
                 <User className="h-4 w-4" />
               </div>
@@ -120,33 +143,14 @@ export const Navbar: React.FC = () => {
             <button onClick={() => setView('visualizer')} title="Synk Session">
               <Radio className="h-5 w-5 text-white" />
             </button>
-              <button onClick={() => alert('Notifications coming soon!')}>
+              <button onClick={() => setActiveDropdown(d => d === 'notifications' ? null : 'notifications')} className="relative">
                 <Bell className="h-5 w-5 text-white" />
+                {updateWorker && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500 border border-black"></div>}
               </button>
               <div className="relative flex items-center">
-                <button onClick={() => setShowSettings(s => !s)}>
+                <button onClick={() => setActiveDropdown(d => d === 'settings' ? null : 'settings')}>
                   <Settings className="h-5 w-5 text-white" />
                 </button>
-                {showSettings && (
-                  <>
-                    <div className="fixed inset-0 z-40" onClick={() => setShowSettings(false)} />
-                    <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-md bg-[#282828] shadow-2xl">
-                      
-                      <button
-                        onClick={() => { handleInstallClick(); setShowSettings(false); }}
-                        className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]"
-                      >
-                        Install App
-                      </button>
-                      <button
-                        onClick={() => { alert('More settings coming soon!'); setShowSettings(false); }}
-                        className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
-                      >
-                        General Settings
-                      </button>
-                    </div>
-                  </>
-                )}
               </div>
             </div>
           </>
@@ -218,12 +222,15 @@ export const Navbar: React.FC = () => {
             <Radio className="h-4 w-4" />
           </button>
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-[#a7a7a7] transition-colors hover:text-white"
+            onClick={() => setActiveDropdown(d => d === 'notifications' ? null : 'notifications')}
+            className="relative flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-[#a7a7a7] transition-colors hover:text-white"
+            title="Notifications"
           >
             <Bell className="h-4 w-4" />
+            {updateWorker && <div className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500 border-2 border-black/60"></div>}
           </button>
           <div
-            onClick={() => setShowProfile(p => !p)}
+          onClick={() => setActiveDropdown(d => d === 'profile' ? null : 'profile')}
             className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-[#333] bg-[#282828] text-white transition-transform hover:scale-105"
             title="Account"
           >
@@ -232,62 +239,89 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Profile dropdown */}
-      {showProfile && (
+      {/* Dropdowns */}
+      {activeDropdown && (
         <>
-          <div className="fixed inset-0 z-40" onClick={() => setShowProfile(false)} />
-          <div className="absolute left-4 top-14 z-50 w-52 overflow-hidden rounded-md bg-[#282828] shadow-2xl md:left-auto md:right-6">
-            {user && (
-              <div className="border-b border-white/10 px-4 py-3">
-                <p className="truncate text-sm font-bold text-white">{user.name}</p>
-                <p className="truncate text-xs text-[#b3b3b3]">{user.email}</p>
+          <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)} />
+          {activeDropdown === 'profile' && (
+            <div className="absolute left-4 top-14 z-50 w-52 overflow-hidden rounded-md bg-[#282828] shadow-2xl md:left-auto md:right-6">
+              {user && (
+                <div className="border-b border-white/10 px-4 py-3">
+                  <p className="truncate text-sm font-bold text-white">{user.name}</p>
+                  <p className="truncate text-xs text-[#b3b3b3]">{user.email}</p>
+                </div>
+              )}
+              {[
+                { label: 'Profile', view: 'profile' },
+                { label: 'Synk Session', view: 'visualizer' },
+                { label: 'Log out', view: 'logout' },
+              ].map(({ label, view }) => (
+                <button
+                  key={label}
+                  onClick={() => {
+                    setActiveDropdown(null);
+                    if (view === 'profile') setView('profile');
+                    else if (view === 'visualizer') setView('visualizer');
+                    else if (view === 'logout') logout();
+                  }}
+                  className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+          {activeDropdown === 'notifications' && (
+            <div className="absolute right-4 top-14 z-50 w-80 max-w-[90vw] overflow-hidden rounded-lg bg-[#282828] shadow-2xl">
+              <div className="p-4 border-b border-white/10">
+                <h3 className="font-bold text-white">Notifications</h3>
               </div>
-            )}
-            {[
-              
-              { label: 'Profile', view: 'profile' },
-              { label: 'Synk Session', view: 'visualizer' },
-              { label: 'Log out', view: 'logout' },
-            ].map(({ label, view }) => (
-              <button
-                key={label}
-                onClick={() => {
-                  setShowProfile(false);
-                  if (view === 'profile') setView('profile');
-                  else if (view === 'visualizer') setView('visualizer');
-                  else if (view === 'logout') logout();
-                }}
-                className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
-              >
-                {label}
+              <div className="flex flex-col p-2">
+                {updateWorker ? (
+                  <div className="p-3 rounded-md bg-white/5">
+                    <div className="flex justify-between items-center">
+                      <p className="text-sm font-bold text-white">New version {updateVersion} is available</p>
+                      <button
+                        onClick={() => {
+                          setUpdateWorker(null);
+                          setUpdateVersion('unknown');
+                        }}
+                        className="text-xs text-[#b3b3b3] hover:text-white"
+                      >
+                        Dismiss
+                      </button>
+                    </div>
+                    <p className="text-xs text-[#b3b3b3] mt-1 mb-3">
+                      Update to the latest version for new features and improvements.
+                    </p>
+                    <button
+                      onClick={() => {
+                        applyUpdate();
+                        setActiveDropdown(null);
+                      }}
+                      className="w-full rounded-md bg-[#1db954] py-2 text-sm font-bold text-black transition hover:scale-105"
+                    >
+                      Update Now
+                    </button>
+                  </div>
+                ) : (
+                  <p className="py-8 text-center text-sm text-[#b3b3b3]">No new notifications</p>
+                )}
+              </div>
+            </div>
+          )}
+          {activeDropdown === 'settings' && (
+            <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-md bg-[#282828] shadow-2xl">
+              <button onClick={() => { handleInstallClick(); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]">
+                Install App
               </button>
-            ))}
-          </div>
+              <button onClick={() => { alert('More settings coming soon!'); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white">
+                General Settings
+              </button>
+            </div>
+          )}
         </>
       )}
     </header>
-  );
-};
-
-/* Filter pills shown on mobile home/library */
-const MobileFilterPills: React.FC = () => {
-  const { setView } = usePlayer();
-  const pills = [
-    { label: 'All', view: 'library' },
-    { label: 'Albums', view: 'all-songs' },
-    { label: 'Artists', view: 'artists' },
-  ];
-  return (
-    <div className="flex gap-2">
-      {pills.map(({ label, view }) => (
-        <button
-          key={label}
-          onClick={() => setView(view as any)}
-          className="rounded-full bg-[#2a2a2a] px-3 py-1 text-[12px] font-bold text-white transition-colors hover:bg-[#3d3d3d]"
-        >
-          {label}
-        </button>
-      ))}
-    </div>
   );
 };

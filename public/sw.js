@@ -1,4 +1,4 @@
-const CACHE_NAME = "music-player-v2";
+const CACHE_NAME = "music-player-v55";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -15,7 +15,6 @@ self.addEventListener("install", (event) => {
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
-  self.skipWaiting();
 });
 
 // Activate → clean old caches

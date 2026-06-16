@@ -182,6 +182,18 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
   }, []);
 
+  // Check for PWA update flag on load
+  useEffect(() => {
+    if (sessionStorage.getItem('pwa-updated') === 'true') {
+      const v = sessionStorage.getItem('pwa-updated-version');
+      showToast(
+        v ? `Version ${v} updated successfully` : 'Version updated successfully',
+        'check'
+      );
+      sessionStorage.removeItem('pwa-updated');
+      sessionStorage.removeItem('pwa-updated-version');
+    }
+  }, []);
   useEffect(() => {
     if (addToPlaylistTrack && lastClickPos.current) {
       const { x, y } = lastClickPos.current;
