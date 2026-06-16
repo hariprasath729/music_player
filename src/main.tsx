@@ -5,9 +5,9 @@ import App from "./App";
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((error) => {
-      console.log('ServiceWorker registration failed: ', error);
-    });
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service Worker Registered'))
+      .catch(err => console.log('ServiceWorker registration failed:', err));
   });
 }
 
