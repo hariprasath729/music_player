@@ -1,4 +1,4 @@
-const CACHE_NAME = "music-player-v55";
+const CACHE_NAME = "music-player-v6";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -43,6 +43,21 @@ self.addEventListener("message", (event) => {
 // Fetch strategy
 self.addEventListener("fetch", (event) => {
   const { request } = event;
+
+  // HTML pages → network first (ensures we get the latest asset hashes from Vite)
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          return caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, res.clone());
+            return res;
+          });
+        })
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/index.html')))
+    );
+    return;
+  }
 
   // API calls → network first
   if (request.url.includes("/api/")) {
