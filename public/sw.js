@@ -1,4 +1,4 @@
-const CACHE_NAME = "music-player-v1";
+const CACHE_NAME = "music-player-v2";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -32,6 +32,13 @@ self.addEventListener("activate", (event) => {
     )
   );
   self.clients.claim();
+});
+
+// Listen for update triggers from the UI
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 // Fetch strategy

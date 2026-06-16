@@ -15,6 +15,7 @@ export const Navbar: React.FC = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -25,6 +26,14 @@ export const Navbar: React.FC = () => {
     };
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
+
+  useEffect(() => {
+    const handleUpdate = (e: Event) => {
+      setUpdateWorker((e as CustomEvent).detail);
+    };
+    window.addEventListener('pwa-update-available', handleUpdate);
+    return () => window.removeEventListener('pwa-update-available', handleUpdate);
   }, []);
 
   const handleInstallClick = async () => {
@@ -38,8 +47,32 @@ export const Navbar: React.FC = () => {
     if (outcome === 'accepted') setDeferredPrompt(null);
   };
 
+  const applyUpdate = () => {
+    if (updateWorker) {
+      updateWorker.postMessage({ type: 'SKIP_WAITING' });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between bg-transparent px-4 py-2 select-none sm:bg-[#121212]/90 sm:px-6 sm:backdrop-blur-md md:h-16">
+
+      {/* PWA Update Banner */}
+      {updateWorker && (
+        <div className="fixed bottom-20 left-1/2 z-[9999] flex w-[90%] max-w-sm -translate-x-1/2 items-center justify-between rounded-lg border border-white/10 bg-[#1db954] px-4 py-3 shadow-2xl sm:bottom-6">
+          <span className="text-sm font-bold text-black">New version available</span>
+          <div className="flex items-center gap-3">
+            <button onClick={() => setUpdateWorker(null)} className="text-xs font-bold text-black/70 transition-colors hover:text-black">
+              Dismiss
+            </button>
+            <button
+              onClick={applyUpdate}
+              className="rounded-full bg-black px-4 py-1.5 text-xs font-bold text-white transition hover:scale-105"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ─── MOBILE HEADER ─── */}
       <div className="flex w-full items-center justify-between md:hidden">
