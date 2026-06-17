@@ -18,6 +18,7 @@ export const SearchView: React.FC = () => {
       return !(
         text.includes('bgm') ||
         text.includes('original score') ||
+        text.includes('original background score') ||
         text.includes('background score') ||
         text.includes('side a') ||
         text.includes('side b') ||

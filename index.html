@@ -23,72 +23,53 @@
       }, true);
     </script>
     <style>
-      /* Splash Screen Container */
-      #splash-screen {
+      /* Full-screen splash (covers everything immediately) */
+      #splash {
         position: fixed;
         inset: 0;
-        background-color: #0d0d0d;
-        z-index: 9999;
+        width: 100vw;
+        height: 100vh;
+        background: #000000;
+        z-index: 999999;
         display: flex;
-        justify-content: center;
         align-items: center;
-        /* Begins fading out cleanly at the 2 second mark */
-        animation: hideSplash 0.5s ease 2s forwards;
+        justify-content: center;
+        opacity: 1;
+        pointer-events: all;
       }
-      .splash-logo {
-        width: 140px;
-        height: 140px;
-        padding: 10px;
-        overflow: visible; /* Prevents shadow clipping */
-      }
-      /* 1. Circle Grow Animation */
-      .splash-circle {
-        fill: #ff0000;
-        transform-origin: center;
-        transform: scale(0);
-        animation: circleGrow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-      /* Base style for all lines */
-      .splash-line {
-        fill: none;
-        stroke: #ffffff;
-        stroke-linecap: round;
-        stroke-dasharray: 120;
-        stroke-dashoffset: 120;
-        opacity: 0;
-      }
-      /* 3. Sequential Curved Lines Reveal */
-      .splash-line-top { stroke-width: 5.5; animation: drawLine 0.4s ease-out 0.85s forwards; }
-      .splash-line-mid { stroke-width: 6.5; animation: drawLine 0.4s ease-out 1.05s forwards; }
-      .splash-line-bot { stroke-width: 8;   animation: drawLine 0.4s ease-out 1.25s forwards; }
 
-      @keyframes circleGrow {
-        0%   { transform: scale(0);   filter: drop-shadow(0 0 0px rgba(255,0,0,0)); }
-        75%  { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(255,0,0,0.6)); } /* Overshoot */
-        100% { transform: scale(1);   filter: drop-shadow(0 0 15px rgba(255,0,0,0.4)); } /* Subtle glow */
+      #splash.fade-out {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
       }
-      @keyframes drawLine {
-        0%   { stroke-dashoffset: 120; opacity: 0; }
-        10%  { opacity: 1; } /* Slight fade-in */
-        100% { stroke-dashoffset: 0;   opacity: 1; }
-      }
-      @keyframes hideSplash {
-        0%   { opacity: 1; }
-        100% { opacity: 0; pointer-events: none; visibility: hidden; }
+
+      /* Responsive logo sizing */
+      #splash img {
+        display: block;
+        width: clamp(150px, 22vw, 200px);
+        height: auto;
       }
     </style>
   </head>
   <body class="bg-[#121212] text-white antialiased">
-    <div id="splash-screen">
-      <svg class="splash-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle class="splash-circle" cx="50" cy="50" r="48" />
-        <!-- Curved sound waves with mathematically precise symmetry -->
-        <path class="splash-line splash-line-top" d="M 34 38 Q 50 31 66 38" />
-        <path class="splash-line splash-line-mid" d="M 26 54 Q 50 43 74 54" />
-        <path class="splash-line splash-line-bot" d="M 18 72 Q 50 58 82 72" />
-      </svg>
+    <div id="splash" aria-hidden="true">
+      <img src="/logo_maskable.png" alt="" />
     </div>
     <div id="root"></div>
+    <script>
+      // Hide splash AFTER the app finishes loading (smooth fade out)
+      window.addEventListener('load', function () {
+        var splash = document.getElementById('splash');
+        if (!splash) return;
+        splash.classList.add('fade-out');
+
+        // Remove from layout after fade-out completes
+        window.setTimeout(function () {
+          splash.style.display = 'none';
+        }, 400);
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -36,18 +36,47 @@ export const ArtistDetailsView: React.FC = () => {
   });
   
   // Find all tracks by this artist (handling comma-separated artists)
-  const artistTracks = TRACKS.filter(t => t.artist.split(',').map(a => a.trim().toLowerCase()).includes(artistName.toLowerCase()));
-  
-  if (artistTracks.length === 0) return null;
+  const artistTracks = TRACKS.filter(t =>
+    t.artist
+      .split(',')
+      .map(a => a.trim().toLowerCase())
+      .includes(artistName.toLowerCase())
+  );
 
-  const isThisPlaying = isPlaying && artistTracks.some((t) => t.id === currentTrack.id);
+  const albumScoreSuffix = '(original background score)';
+  const normalizeForFilter = (s?: string) => (s ?? '').toLowerCase();
+
+  // Exclude "Original Background Score" / "Side A" / "Side B" tracks from artist page
+  const filteredArtistTracks = artistTracks.filter((t) => {
+    const title = normalizeForFilter(t.title);
+    const album = normalizeForFilter((t as any).album ?? (t as any).albumName ?? '');
+
+    const combined = `${title} ${album}`;
+
+    // Always hide Original Background Score variants
+    if (combined.includes(albumScoreSuffix)) return false;
+
+    // Also hide side A / side B BGM variants (common examples given by user)
+    if ((combined.includes('side a') || combined.includes('side b')) && combined.includes('bgm')) {
+      return false;
+    }
+
+    // Hide songs that contain "theme" in title/album
+    if (combined.includes('theme')) return false;
+
+    return true;
+  });
+
+  if (filteredArtistTracks.length === 0) return null;
+
+  const isThisPlaying = isPlaying && filteredArtistTracks.some((t) => t.id === currentTrack.id);
 
   const handleMasterPlay = () => {
     if (isThisPlaying) togglePlay();
-    else if (artistTracks.length > 0) {
-      const inList = artistTracks.find((t) => t.id === currentTrack.id);
+    else if (filteredArtistTracks.length > 0) {
+      const inList = filteredArtistTracks.find((t) => t.id === currentTrack.id);
       if (inList) togglePlay();
-      else playTrack(artistTracks[0], artistTracks);
+      else playTrack(filteredArtistTracks[0], filteredArtistTracks);
     }
   };
 
@@ -58,11 +87,11 @@ export const ArtistDetailsView: React.FC = () => {
       {/* ── HEADER ── */}
       <div
         className="flex flex-col items-center px-4 pt-4 pb-5 sm:flex-row sm:items-end sm:gap-6 sm:px-6 sm:pt-12 sm:pb-6"
-        style={{ background: `linear-gradient(180deg, ${artistTracks[0]?.color || '#282828'}aa 0%, ${artistTracks[0]?.color || '#282828'}33 60%, #121212 100%)` }}
+        style={{ background: `linear-gradient(180deg, ${filteredArtistTracks[0]?.color || '#282828'}aa 0%, ${filteredArtistTracks[0]?.color || '#282828'}33 60%, #121212 100%)` }}
       >
         <div
           className="h-48 w-48 shrink-0 rounded-full shadow-2xl sm:h-56 sm:w-56"
-          style={{ background: artistInfo?.image ? `url("${artistInfo.image}") center / cover no-repeat` : artistTracks[0]?.gradient }}
+          style={{ background: artistInfo?.image ? `url("${artistInfo.image}") center / cover no-repeat` : filteredArtistTracks[0]?.gradient }}
         />
         <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left">
           <div className="flex items-center gap-2 mb-2">
@@ -75,7 +104,7 @@ export const ArtistDetailsView: React.FC = () => {
             {artistName}
           </h1>
           <p className="mt-2 text-[13px] text-white/70 sm:text-sm">
-            {(artistTracks.length * 12345).toLocaleString()} monthly listeners
+            {(filteredArtistTracks.length * 12345).toLocaleString()} monthly listeners
           </p>
         </div>
       </div>
@@ -105,7 +134,7 @@ export const ArtistDetailsView: React.FC = () => {
       {/* ── TRACK LIST ── */}
       <div className="flex flex-col px-2 sm:px-6">
         <h2 className="px-2 pb-4 text-xl font-bold text-white sm:px-0 mt-4">Popular</h2>
-        {artistTracks.map((track) => {
+        {filteredArtistTracks.map((track) => {
           const isCurrent = currentTrack.id === track.id;
           const isLiked = likedTracks.includes(track.id);
           const isMenuOpen = contextMenu?.track.id === track.id;
@@ -115,7 +144,7 @@ export const ArtistDetailsView: React.FC = () => {
             <div
               key={track.id}
               className={`group relative flex cursor-pointer items-center gap-3 rounded-md px-2 py-2.5 transition-colors sm:px-3 ${isCurrent ? 'bg-white/5' : 'hover:bg-white/5'}`}
-              onClick={() => playTrack(track, artistTracks)}
+              onClick={() => playTrack(track, filteredArtistTracks)}
             >
               <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded shadow sm:h-10 sm:w-10" style={{ background: track.gradient }}>
                 {isCurrent ? (

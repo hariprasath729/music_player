@@ -289,7 +289,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
                 />
               </div>
 
-              <a href="#" onClick={(e) => { e.preventDefault(); handleQuickLogin(); }} className="forgot-link">Forgot your password?</a>
+              <a href="#" onClick={() => showToast('Forgot password will be added in future updates')} className="forgot-link">Forgot your password?</a>
               <button className="btn-login" type="submit" disabled={loading}>
                 {loading ? 'Logging In…' : 'Log In'}
               </button>

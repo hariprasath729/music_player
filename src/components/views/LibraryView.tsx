@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Plus, Search, ArrowDownUp, X, Trash2, Pencil } from 'lucide-react';
-import { usePlayer } from '../../context/PlayerContext';
+import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS } from '../../data/musicCatalog';
 import artistsData from '../../data/artists.json';
 
@@ -57,6 +57,7 @@ export const LibraryView: React.FC = () => {
   const artists = useMemo(() => {
     const grouped = new Map<string, (typeof TRACKS)[number][]>();
     TRACKS.forEach((t) => {
+      if (isBgmOrScore(t)) return;
       t.artist.split(',').map(a => a.trim()).forEach((artistName) => {
         if (!grouped.has(artistName)) grouped.set(artistName, []);
         grouped.get(artistName)!.push(t);

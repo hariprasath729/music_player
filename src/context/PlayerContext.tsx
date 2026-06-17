@@ -15,6 +15,18 @@ export interface ToastMessage {
   icon?: string;
 }
 
+export const isBgmOrScore = (track: Track): boolean => {
+  if (!track.album) return false;
+  const albumName = track.album.toLowerCase();
+  return (
+    albumName.includes('(original background score)') ||
+    albumName.includes('bgm') ||
+    albumName.includes('side a') ||
+    albumName.includes('side b') ||
+    albumName.includes('instrumental')
+  );
+};
+
 export interface CustomPlaylist {
   id: string;
   title: string;
@@ -462,18 +474,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }
     } else {
       // Autoplay fallback: play a random song avoiding BGMs when the queue ends
-      const validTracks = TRACKS.filter(t => {
-        const text = `${t.title} ${t.album}`.toLowerCase();
-        return !(
-          text.includes('bgm') ||
-          text.includes('original score') ||
-          text.includes('background score') ||
-          text.includes('side a') ||
-          text.includes('side b') ||
-          text.includes('instrumental') ||
-          text.includes('theme')
-        );
-      });
+      const validTracks = TRACKS.filter(t => !isBgmOrScore(t));
       if (validTracks.length > 0) {
         const randomTrack = validTracks[Math.floor(Math.random() * validTracks.length)];
             playTrack(randomTrack, undefined, force);
