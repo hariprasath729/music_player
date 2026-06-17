@@ -1,4 +1,5 @@
-const CACHE_NAME = "music-player-v9.1.3.2";
+// Hardcode the version here. Update this string to trigger a new app update!
+const CACHE_NAME = "music-player-v9.0.2.12";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -25,26 +26,31 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Activate → clean old caches
+// Activate → clean old caches (delete all versioned caches from this app)
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
+    (async () => {
+      // Clean old caches
+      const keys = await caches.keys();
+      await Promise.all(
+        keys.map(key => {
+          if ((key.startsWith("music-player-") || key === "music-player") && key !== CACHE_NAME) {
             return caches.delete(key);
           }
         })
-      )
-    )
+      );
+      // Take control of all clients
+      await self.clients.claim();
+    })()
   );
-  self.clients.claim();
 });
 
 // Listen for update triggers from the UI
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
+  } else if (event.data && event.data.type === "GET_VERSION") {
+    event.ports[0].postMessage({ version: CACHE_NAME });
   }
 });
 

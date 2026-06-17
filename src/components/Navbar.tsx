@@ -50,17 +50,46 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
   }, []);
 
+  // If we've already updated, make sure the bell notification UI is hidden on mount.
+  useEffect(() => {
+    if (sessionStorage.getItem('pwa-updated') === 'true') {
+      setUpdateWorker(null);
+      setUpdateVersion('unknown');
+    }
+  }, []);
+
   useEffect(() => {
     const handleUpdate = (e: Event) => {
-      // After we reload following an update, suppress showing the update UI again.
-      if (sessionStorage.getItem('pwa-suppress-update-ui') === 'true') {
-        sessionStorage.removeItem('pwa-suppress-update-ui');
-        setUpdateWorker(null);
-        setUpdateVersion('unknown');
+      // This is a first-time install if there's no active controller AND no app settings in storage.
+      // In that case, we don't need to show an "update available" prompt.
+      const isFirstInstall =
+        !navigator.serviceWorker.controller &&
+        !localStorage.getItem('music_player_settings');
+
+      if (isFirstInstall) return;
+
+      const detail = (e as CustomEvent).detail;
+      const payload = detail as { worker?: ServiceWorker; version?: string } | null | undefined;
+
+      const incomingVersion =
+        payload?.version !== undefined && payload?.version !== null
+          ? String(payload.version)
+          : undefined;
+
+      const alreadyUpdated = sessionStorage.getItem('pwa-updated') === 'true';
+      const updatedVersion = sessionStorage.getItem('pwa-updated-version');
+
+      // If we've already applied this exact version, never reopen the UI.
+      if (alreadyUpdated && updatedVersion && incomingVersion && updatedVersion === incomingVersion) {
         return;
       }
 
-      const detail = (e as CustomEvent).detail;
+      // Suppression prevents "update available" UI from reappearing after Update Now.
+      // Do NOT clear the flag here; PlayerContext will clear it after the "updated" toast,
+      // otherwise the UI can immediately re-open on the next update event during reload.
+      if (sessionStorage.getItem('pwa-suppress-update-ui') === 'true') {
+        return;
+      }
 
       // Backward compatible: if detail is the ServiceWorker itself
       if (detail && typeof (detail as any).postMessage === 'function') {
@@ -69,9 +98,8 @@ export const Navbar: React.FC = () => {
         return;
       }
 
-      const payload = detail as { worker?: ServiceWorker; version?: string } | null | undefined;
       setUpdateWorker(payload?.worker ?? null);
-      setUpdateVersion(payload?.version ? String(payload.version) : 'unknown');
+      setUpdateVersion(incomingVersion ?? 'unknown');
     };
     window.addEventListener('pwa-update-available', handleUpdate);
     return () => window.removeEventListener('pwa-update-available', handleUpdate);
@@ -296,7 +324,15 @@ export const Navbar: React.FC = () => {
                     </p>
                     <button
                       onClick={() => {
+                        // Suppress update-available UI from reappearing after the update is requested.
+                        sessionStorage.setItem('pwa-suppress-update-ui', 'true');
+
+                        // Tell the new worker to activate immediately.
                         applyUpdate();
+
+                        // Immediately hide the notification UI.
+                        setUpdateWorker(null);
+                        setUpdateVersion('unknown');
                         setActiveDropdown(null);
                       }}
                       className="w-full rounded-md bg-[#1db954] py-2 text-sm font-bold text-black transition hover:scale-105"

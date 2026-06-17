@@ -198,12 +198,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     if (sessionStorage.getItem('pwa-updated') === 'true') {
       const v = sessionStorage.getItem('pwa-updated-version');
+
       showToast(
         v ? `Version ${v} updated successfully` : 'Version updated successfully',
         'check'
       );
+
       sessionStorage.removeItem('pwa-updated');
-      sessionStorage.removeItem('pwa-updated-version');
+      // Keep `pwa-updated-version` so we don't re-show the same
+      // “update available” notification after a manual refresh.
+
+      // Clear suppression AFTER the update UI has had time to settle.
+      // If we clear it synchronously, the app can re-render and re-open
+      // the "update available" UI during the same refresh cycle.
+      window.setTimeout(() => {
+        sessionStorage.removeItem('pwa-suppress-update-ui');
+      }, 1000);
     }
   }, []);
   useEffect(() => {
