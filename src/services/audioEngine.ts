@@ -14,6 +14,7 @@ class AudioEngine {
   private pausedTime: number = 0;
   private currentTrackDuration: number = 200;
   private mediaEnded: boolean = false;
+  private playbackRate: number = 1;
 
   // Pattern loop timers
   private loopInterval: number | null = null;
@@ -80,6 +81,7 @@ class AudioEngine {
       this.media = new Audio(fileUrl);
       this.media.crossOrigin = 'anonymous';
       this.media.preload = 'auto';
+      this.media.playbackRate = this.playbackRate;
       this.media.onloadedmetadata = () => {
         if (this.media && Number.isFinite(this.media.duration)) {
           this.currentTrackDuration = this.media.duration;
@@ -101,6 +103,7 @@ class AudioEngine {
       // Some CDNs may not allow seeking before metadata is ready.
     }
 
+    this.media.playbackRate = this.playbackRate;
     this.media.volume = this.masterGain?.gain.value ?? 0.7;
     void this.media.play().catch((err) => {
       console.warn('[audioEngine] Media playback failed:', err);
@@ -171,6 +174,13 @@ class AudioEngine {
       // Clamp between 0 and 1
       const v = Math.max(0, Math.min(1, volume));
       this.masterGain.gain.setValueAtTime(v, this.ctx.currentTime);
+    }
+  }
+
+  public setPlaybackRate(rate: number) {
+    this.playbackRate = rate;
+    if (this.media) {
+      this.media.playbackRate = rate;
     }
   }
 

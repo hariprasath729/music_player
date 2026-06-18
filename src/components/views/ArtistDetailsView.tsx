@@ -57,7 +57,7 @@ export const ArtistDetailsView: React.FC = () => {
     if (combined.includes(albumScoreSuffix)) return false;
 
     // Also hide side A / side B BGM variants (common examples given by user)
-    if ((combined.includes('side a') || combined.includes('side b')) && combined.includes('bgm')) {
+    if ((combined.includes('side a') || combined.includes('side b')) || combined.includes('bgm')) {
       return false;
     }
 

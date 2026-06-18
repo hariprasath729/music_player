@@ -27,7 +27,7 @@ const loadCatalog = async () => {
 loadCatalog();
 
 const getFullSong = (songId) => {
-  return songsCatalog.find((s) => String(s.id) === String(songId));
+  return songsCatalog.find((s) => String(s.id) === String(songId) || String(s._id) === String(songId));
 };
 
 export const getLibrary = async (req, res) => {

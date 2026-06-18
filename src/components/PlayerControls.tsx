@@ -18,45 +18,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
-
-const MarqueeText: React.FC<{ children: React.ReactNode; className?: string; onClick?: (e: React.MouseEvent) => void }> = ({ children, className, onClick }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-
-  useEffect(() => {
-    const checkOverflow = () => {
-      if (containerRef.current && textRef.current) {
-        setIsOverflowing(textRef.current.clientWidth > containerRef.current.clientWidth);
-      }
-    };
-    checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => window.removeEventListener('resize', checkOverflow);
-  }, [children]);
-
-  return (
-    <div 
-      ref={containerRef} 
-      className="overflow-hidden whitespace-nowrap w-full"
-      style={{
-        maskImage: isOverflowing ? 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' : 'none',
-        WebkitMaskImage: isOverflowing ? 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' : 'none'
-      }}
-    >
-      <div className={`flex w-max ${isOverflowing ? 'animate-marquee hover:[animation-play-state:paused]' : ''}`}>
-        <div onClick={onClick} className={`shrink-0 ${className}`} style={{ paddingRight: isOverflowing ? '3rem' : '0' }}>
-          <span ref={textRef}>{children}</span>
-        </div>
-        {isOverflowing && (
-          <div onClick={onClick} className={`shrink-0 ${className}`} style={{ paddingRight: '3rem' }}>
-            <span>{children}</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+import { MarqueeText } from './MarqueeText';
 
 export const PlayerControls: React.FC = () => {
   const {
@@ -100,16 +62,6 @@ export const PlayerControls: React.FC = () => {
 
   return (
     <footer className="hidden h-[90px] items-center justify-between border-t border-[#282828] bg-black px-4 select-none md:flex">
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 12s linear infinite;
-        }
-      `}</style>
-
       {/* LEFT — now playing */}
       <div className="flex w-[30%] min-w-[180px] items-center gap-3.5 overflow-hidden pr-2">
         <div

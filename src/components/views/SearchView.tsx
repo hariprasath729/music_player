@@ -1,6 +1,6 @@
 import React from 'react';
 import { Play } from 'lucide-react';
-import { usePlayer } from '../../context/PlayerContext';
+import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS, CATEGORIES, Track } from '../../data/musicCatalog';
 import { searchTracks, searchPlaylists } from '../../utils/search';
 
@@ -13,19 +13,7 @@ export const SearchView: React.FC = () => {
   const topResult = filteredTracks[0];
 
   const handleSearchPlay = (track: Track) => {
-    const validTracks = TRACKS.filter(t => {
-      const text = `${t.title} ${t.album}`.toLowerCase();
-      return !(
-        text.includes('bgm') ||
-        text.includes('original score') ||
-        text.includes('original background score') ||
-        text.includes('background score') ||
-        text.includes('side a') ||
-        text.includes('side b') ||
-        text.includes('instrumental') ||
-        text.includes('theme')
-      );
-    });
+    const validTracks = TRACKS.filter(t => !isBgmOrScore(t));
     const upcoming = [...validTracks].sort(() => 0.5 - Math.random()).slice(0, 50);
     playTrack(track, [track, ...upcoming.filter(t => t.id !== track.id)]);
   };

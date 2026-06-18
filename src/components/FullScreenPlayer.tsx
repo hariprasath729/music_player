@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   ChevronDown,
   MoreHorizontal,
@@ -20,12 +20,15 @@ import {
   Download,
   CheckCircle2,
   Album,
+  Zap,
+  Moon,
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { PLAYLISTS } from '../data/musicCatalog';
 import { TRACKS } from '../data/musicCatalog';
 import artistsData from '../data/artists.json';
 import { useBackButton } from '../hooks/useBackButton';
+import { MarqueeText } from './MarqueeText';
 
 export const FullScreenPlayer: React.FC = () => {
   const {
@@ -50,6 +53,7 @@ export const FullScreenPlayer: React.FC = () => {
     setAddToPlaylistTrack,
     toggleFullScreen,
     toggleQueue,
+    isQueueOpen,
     showToast,
     customPlaylists,
     addSongToPlaylist,
@@ -59,13 +63,42 @@ export const FullScreenPlayer: React.FC = () => {
     toggleSaveAlbum,
     downloadedTracks,
     toggleDownload,
+    playbackRate,
+    setPlaybackRate,
+    sleepTimerRemaining,
+    setSleepTimer,
   } = usePlayer();
 
   const [showMenu, setShowMenu] = useState(false);
+  const isClosingMenuRef = useRef(false);
+  const isClosingQueueRef = useRef(false);
+
+  useEffect(() => {
+    if (!isQueueOpen) {
+      isClosingQueueRef.current = true;
+      const timer = setTimeout(() => {
+        isClosingQueueRef.current = false;
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [isQueueOpen]);
+
+  const closeMenuSafe = () => {
+    isClosingMenuRef.current = true;
+    setShowMenu(false);
+    setTimeout(() => {
+      isClosingMenuRef.current = false;
+    }, 200);
+  };
+
+  const handleToggleFullScreen = () => {
+    if (showMenu || isClosingMenuRef.current || isQueueOpen || isClosingQueueRef.current) return;
+    toggleFullScreen();
+  };
 
   // Device Back Button Support
-  useBackButton(isFullScreen, toggleFullScreen, 'fullscreen-player');
-  useBackButton(showMenu, () => setShowMenu(false), 'player-menu');
+  useBackButton(isFullScreen, handleToggleFullScreen, 'fullscreen-player');
+  useBackButton(showMenu, closeMenuSafe, 'player-menu');
 
   if (!isFullScreen) return null;
 
@@ -137,7 +170,7 @@ export const FullScreenPlayer: React.FC = () => {
           </span>
         </div>
         <button 
-          onClick={() => setShowMenu(m => !m)}
+          onClick={() => showMenu ? closeMenuSafe() : setShowMenu(true)}
           className="rounded-full p-1 text-white active:scale-90 hover:bg-white/10"
         >
           <MoreHorizontal className="h-6 w-6" />
@@ -155,12 +188,12 @@ export const FullScreenPlayer: React.FC = () => {
       {/* ─── BOTTOM CONTROLS ─── */}
       <div className="relative z-10 flex flex-col gap-4 px-6 pb-[env(safe-area-inset-bottom,24px)] sm:px-12 sm:pb-10">
         {/* Title row */}
-        <div className="flex items-center justify-between">
-          <div className="flex min-w-0 flex-col">
-            <span className="truncate text-xl font-extrabold text-white sm:text-2xl">
+        <div className="flex items-center justify-between overflow-hidden">
+          <div className="flex min-w-0 flex-1 flex-col overflow-hidden pr-4">
+            <MarqueeText className="text-xl font-extrabold text-white sm:text-2xl">
               {currentTrack.title}
-            </span>
-            <span className="truncate text-sm font-medium text-white/60 sm:text-base">
+            </MarqueeText>
+            <MarqueeText className="mt-1 text-sm font-medium text-white/60 sm:text-base">
               {currentTrack.artist.split(',').map((a, i) => (
                 <React.Fragment key={i}>
                   {i > 0 && ', '}
@@ -177,9 +210,9 @@ export const FullScreenPlayer: React.FC = () => {
                   </span>
                 </React.Fragment>
               ))}
-            </span>
+            </MarqueeText>
           </div>
-          <div className="flex items-center gap-4 pl-4">
+          <div className="flex shrink-0 items-center gap-4 pl-4">
             <button
               onClick={() => toggleDownload(currentTrack)}
               className={`shrink-0 transition-transform hover:scale-110 ${isDownloaded ? 'text-[#1db954]' : 'text-white/60'}`}
@@ -293,10 +326,7 @@ export const FullScreenPlayer: React.FC = () => {
           </div>
 
           <button
-            onClick={() => {
-              toggleFullScreen();
-              toggleQueue();
-            }}
+            onClick={toggleQueue}
             className="shrink-0 rounded-full p-2 transition hover:bg-white/10 hover:text-white"
             title="View queue"
           >
@@ -308,19 +338,77 @@ export const FullScreenPlayer: React.FC = () => {
       {/* ── 3-DOT DROPDOWN: fixed, always above every layer ── */}
       {showMenu && (
         <>
-          <div className="fixed inset-0 z-[9998]" onClick={() => setShowMenu(false)} />
-          <div className="fixed right-4 top-16 z-[9999] w-60 overflow-hidden rounded-xl border border-white/10 bg-[#1e1e1e] shadow-2xl sm:right-6">
+          <div className="fixed inset-0 z-[9998]" onClick={closeMenuSafe} />
+          <div className="fixed right-4 top-16 z-[9999] w-60 max-h-[calc(100vh-100px)] overflow-y-auto rounded-xl border border-white/10 bg-[#1e1e1e] shadow-2xl sm:right-6 scrollbar-none pb-2">
             <button
               onClick={() => {
                 navigator.clipboard?.writeText(`${window.location.origin}?track=${currentTrack.id}`);
                 showToast('Link copied to clipboard', 'link');
-                setShowMenu(false);
+                closeMenuSafe();
               }}
               className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
             >
               <Share2 className="h-4 w-4 shrink-0 text-white/70" />
               <span>Share</span>
             </button>
+            <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
+              <div className="flex items-center gap-3">
+                <Zap className="h-4 w-4 shrink-0 text-white/70" />
+                <span className="truncate">Song Speed</span>
+              </div>
+              <select 
+                value={playbackRate}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setPlaybackRate(Number(e.target.value));
+                  closeMenuSafe();
+                }}
+                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer"
+              >
+                <option value={0.5}>0.5x</option>
+                <option value={0.75}>0.75x</option>
+                <option value={1}>Normal</option>
+                <option value={1.25}>1.25x</option>
+                <option value={1.5}>1.5x</option>
+                <option value={2}>2x</option>
+              </select>
+            </div>
+            <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
+              <div className="flex items-center gap-3">
+                <Moon className="h-4 w-4 shrink-0 text-white/70" />
+                <span className="truncate">
+                  Sleep Timer {sleepTimerRemaining ? `(${sleepTimerRemaining}m)` : ''}
+                </span>
+              </div>
+              <select 
+                value={sleepTimerRemaining ? "active" : "off"}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  const val = e.target.value;
+                  if (val === 'custom') {
+                    const input = window.prompt('Enter sleep timer in minutes (e.g. 45):', '30');
+                    const parsed = parseInt(input || '', 10);
+                    if (!isNaN(parsed) && parsed > 0) {
+                      setSleepTimer(parsed);
+                    }
+                  } else {
+                    setSleepTimer(val === "off" ? null : Number(val));
+                  }
+                  closeMenuSafe();
+                }}
+                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer"
+              >
+                <option value="off">Off</option>
+                <option value={5}>5 mins</option>
+                <option value={15}>15 mins</option>
+                <option value={30}>30 mins</option>
+                <option value={60}>1 hour</option>
+                <option value="custom">Custom...</option>
+                {sleepTimerRemaining && <option value="active" hidden>{sleepTimerRemaining}m left</option>}
+              </select>
+            </div>
             {currentTrack.artist.split(',').map((a) => {
               const artistName = a.trim();
               const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -336,7 +424,7 @@ export const FullScreenPlayer: React.FC = () => {
                     setSearchQuery(artistName);
                     setView('artist');
                     toggleFullScreen();
-                    setShowMenu(false);
+                    closeMenuSafe();
                   }}
                   className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
                 >
@@ -368,7 +456,7 @@ export const FullScreenPlayer: React.FC = () => {
                     } as any);
                   }
                   toggleFullScreen();
-                  setShowMenu(false);
+                  closeMenuSafe();
                 }}
                 className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
@@ -380,12 +468,12 @@ export const FullScreenPlayer: React.FC = () => {
               onClick={() => {
                 if (!currentTrack.album) {
                   showToast('No album info', 'minus');
-                  setShowMenu(false);
+                  closeMenuSafe();
                   return;
                 }
                 toggleSaveAlbum(currentTrack.album);
                 showToast(savedAlbums.includes(currentTrack.album) ? 'Removed Album' : 'Saved Album', 'check');
-                setShowMenu(false);
+                closeMenuSafe();
               }}
               className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
             >
@@ -403,7 +491,7 @@ export const FullScreenPlayer: React.FC = () => {
                     onClick={() => {
                       addSongToPlaylist(playlist.id, currentTrack.id);
                       showToast(`Added to "${playlist.title}"`, 'plus');
-                      setShowMenu(false);
+                      closeMenuSafe();
                     }}
                     className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
                   >

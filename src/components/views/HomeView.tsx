@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Play, Heart, User, Loader2 } from 'lucide-react';
-import { usePlayer } from '../../context/PlayerContext';
+import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS, Track, Playlist } from '../../data/musicCatalog';
 import { useAuth } from '../../context/AuthContext';
 import { homeApi, mapSongToTrack } from '../../services/apiClient';
@@ -169,7 +169,9 @@ export const HomeView: React.FC = () => {
   }
 
   const recentlyPlayed = homeData?.recentlyPlayed?.length > 0 ? homeData.recentlyPlayed : null;
-  const madeForYou = homeData?.madeForYou?.length > 0 ? homeData.madeForYou : TRACKS.slice(6, 12);
+  const madeForYou = homeData?.madeForYou?.length > 0 
+    ? homeData.madeForYou.filter((t: Track) => !isBgmOrScore(t)) 
+    : TRACKS.filter(t => !isBgmOrScore(t)).slice(6, 12);
   const trending = homeData?.trending?.length > 0 ? homeData.trending : TRACKS.slice(0, 6);
   const topArtists = homeData?.topArtists?.length > 0 ? homeData.topArtists : [];
   const playlists = homeData?.playlists?.length > 0 ? homeData.playlists : PLAYLISTS.slice(0, 4);

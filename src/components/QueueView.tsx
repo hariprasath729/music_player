@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Play, Trash2, GripVertical } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { Track } from '../data/musicCatalog';
+import { useBackButton } from '../hooks/useBackButton';
 
 export const QueueView: React.FC = () => {
   const {
@@ -15,9 +16,14 @@ export const QueueView: React.FC = () => {
     reorderQueue,
     setView,
     setSearchQuery,
+    isFullScreen,
+    toggleFullScreen,
   } = usePlayer();
 
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  // Device Back Button Support
+  useBackButton(isQueueOpen, toggleQueue, 'queue-view');
 
   if (!isQueueOpen) return null;
 
@@ -70,10 +76,10 @@ export const QueueView: React.FC = () => {
   };
 
   return (
-    <aside className="fixed inset-y-0 right-0 z-40 flex w-80 flex-col border-l border-[#282828] bg-[#121212] text-white select-none md:relative">
-      {/* Backdrop for mobile */}
+    <aside className={`fixed inset-y-0 right-0 flex w-80 flex-col border-l border-[#282828] bg-[#121212] text-white select-none ${isFullScreen ? 'z-[60]' : 'z-40 md:relative'}`}>
+      {/* Backdrop for mobile (and desktop when in fullscreen) */}
       <div 
-        className="fixed inset-0 bg-black/50 md:hidden"
+        className={`fixed inset-0 bg-black/50 ${isFullScreen ? '' : 'md:hidden'}`}
         onClick={toggleQueue}
       />
       
@@ -115,6 +121,7 @@ export const QueueView: React.FC = () => {
                         setSearchQuery(a.trim());
                         setView('artist');
                         toggleQueue();
+                        if (isFullScreen) toggleFullScreen();
                       }}
                       className="cursor-pointer hover:underline hover:text-white"
                     >
@@ -195,6 +202,7 @@ export const QueueView: React.FC = () => {
                               setSearchQuery(a.trim());
                               setView('artist');
                               toggleQueue();
+                              if (isFullScreen) toggleFullScreen();
                             }}
                             className="cursor-pointer hover:underline hover:text-white"
                           >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Pause, SkipForward } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
+import { MarqueeText } from './MarqueeText';
 
 export const MiniPlayer: React.FC = () => {
   const {
@@ -34,11 +35,11 @@ export const MiniPlayer: React.FC = () => {
           />
 
           {/* Title/artist → tap opens fullscreen */}
-          <div className="flex min-w-0 flex-1 cursor-pointer flex-col" onClick={toggleFullScreen}>
-            <span className="truncate text-[14px] font-bold text-white leading-tight">
+          <div className="flex min-w-0 flex-1 cursor-pointer flex-col overflow-hidden" onClick={toggleFullScreen}>
+            <MarqueeText className="text-[14px] font-bold text-white leading-tight">
               {currentTrack.title}
-            </span>
-            <span className="truncate text-[12px] text-white/60 leading-tight">
+            </MarqueeText>
+            <MarqueeText className="text-[12px] text-white/60 leading-tight">
               {currentTrack.artist.split(',').map((a, i) => (
                 <React.Fragment key={i}>
                   {i > 0 && ', '}
@@ -54,7 +55,7 @@ export const MiniPlayer: React.FC = () => {
                   </span>
                 </React.Fragment>
               ))}
-            </span>
+            </MarqueeText>
           </div>
 
           {/* Play / Pause */}

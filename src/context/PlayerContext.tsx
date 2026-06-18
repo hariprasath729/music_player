@@ -16,14 +16,16 @@ export interface ToastMessage {
 }
 
 export const isBgmOrScore = (track: Track): boolean => {
-  if (!track.album) return false;
-  const albumName = track.album.toLowerCase();
+  const albumName = (track.album || '').toLowerCase();
+  const titleName = (track.title || '').toLowerCase();
   return (
     albumName.includes('(original background score)') ||
     albumName.includes('bgm') ||
     albumName.includes('side a') ||
     albumName.includes('side b') ||
-    albumName.includes('instrumental')
+    albumName.includes('instrumental') ||
+    albumName.includes('theme') ||
+    titleName.includes('theme')
   );
 };
 
@@ -58,6 +60,11 @@ interface PlayerContextType {
   activeFilter: string;
   customPlaylists: CustomPlaylist[];
   isPlaybackLocked: boolean;
+
+  playbackRate: number;
+  setPlaybackRate: (rate: number) => void;
+  sleepTimerRemaining: number | null;
+  setSleepTimer: (minutes: number | null) => void;
 
   setIsPlaybackLocked: (locked: boolean) => void;
   playTrack: (track: Track, contextTracks?: Track[], force?: boolean) => void;
@@ -146,6 +153,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [customPlaylists, setCustomPlaylists] = useState<CustomPlaylist[]>([]);
   const [isPlaybackLocked, setIsPlaybackLocked] = useState<boolean>(false);
+  const [playbackRate, setPlaybackRateState] = useState<number>(1);
+  const [sleepTimerEnd, setSleepTimerEnd] = useState<number | null>(null);
+  const [sleepTimerRemaining, setSleepTimerRemaining] = useState<number | null>(null);
   const [addToPlaylistTrack, setAddToPlaylistTrack] = useState<Track | null>(null);
   const [newPlTitle, setNewPlTitle] = useState('');
   const [downloadedTracks, setDownloadedTracks] = useState<string[]>([]);
@@ -249,10 +259,14 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       const storedSettings = localStorage.getItem(PLAYER_SETTINGS_KEY);
       if (storedSettings) {
-        const parsed = JSON.parse(storedSettings) as { volume?: number; isShuffle?: boolean; repeatMode?: RepeatMode };
+        const parsed = JSON.parse(storedSettings) as { volume?: number; isShuffle?: boolean; repeatMode?: RepeatMode; playbackRate?: number };
         if (typeof parsed.volume === 'number') setVolumeState(parsed.volume);
         if (typeof parsed.isShuffle === 'boolean') setIsShuffle(parsed.isShuffle);
         if (parsed.repeatMode) setRepeatMode(parsed.repeatMode);
+        if (typeof parsed.playbackRate === 'number') {
+          setPlaybackRateState(parsed.playbackRate);
+          if (typeof (audioEngine as any).setPlaybackRate === 'function') (audioEngine as any).setPlaybackRate(parsed.playbackRate);
+        }
       }
     } catch (err) {
       console.warn('[PlayerContext] Failed to load localStorage state', err);
@@ -265,12 +279,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (isLoggedIn) {
       libraryApi.getLibrary().then((res) => {
         if (res.success && res.data) {
-          setLikedTracks(res.data.likedSongs?.map((s: any) => String(s.id)) || []);
+          setLikedTracks(res.data.likedSongs?.map((s: any) => String(s._id || s.id)) || []);
           setCustomPlaylists(res.data.playlists?.map((p: any) => ({
             id: p._id,
             title: p.name,
             description: 'Custom playlist',
-            songIds: p.songs?.map((s: any) => String(s.id)) || [],
+            songIds: p.songs?.map((s: any) => String(s._id || s.id)) || [],
             createdAt: p.createdAt,
           })));
           setHistory(res.data.recentlyPlayed?.map((s: any) => ({ ...mapSongToTrack(s), playedAt: s.playedAt })) || []);
@@ -319,8 +333,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [currentTrack, currentTime]);
 
   useEffect(() => {
-    localStorage.setItem(PLAYER_SETTINGS_KEY, JSON.stringify({ volume, isShuffle, repeatMode }));
-  }, [volume, isShuffle, repeatMode]);
+    localStorage.setItem(PLAYER_SETTINGS_KEY, JSON.stringify({ volume, isShuffle, repeatMode, playbackRate }));
+  }, [volume, isShuffle, repeatMode, playbackRate]);
 
   // Sync playback time
   useEffect(() => {
@@ -449,6 +463,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     audioEngine.play(track.genre, track.duration, 0, track.fileUrl);
     audioEngine.setVolume(isMuted ? 0 : volume);
+    if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+      (audioEngine as any).setPlaybackRate(playbackRate);
+    }
   };
 
   const togglePlay = (force: boolean = false, forceState?: boolean) => {
@@ -463,6 +480,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     } else {
       audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
       audioEngine.setVolume(isMuted ? 0 : volume);
+      if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+        (audioEngine as any).setPlaybackRate(playbackRate);
+      }
       setIsPlaying(true);
     }
   };
@@ -474,7 +494,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setQueue((prev) => prev.slice(1));
           playTrack(next, undefined, force);
     } else if (repeatMode === 'all') {
-      const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS;
+      const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS.filter(t => !isBgmOrScore(t));
       if (sourceList.length > 0) {
         let nextList = [...sourceList];
         if (isShuffle) nextList = nextList.sort(() => 0.5 - Math.random());
@@ -578,11 +598,21 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       } else {
         await likeApi.like(trackId);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to sync like:', err);
-      // Revert on failure
-      setLikedTracks((prev) => (!isLiked ? prev.filter((id) => id !== trackId) : [...prev, trackId]));
-      showToast('Action failed', 'error');
+      const errMsg = err?.message || '';
+
+      if (!isLiked && errMsg.toLowerCase().includes('already liked')) {
+        // We wanted to like it, backend says it's already liked.
+        // Our optimistic update was correct, don't revert.
+      } else if (isLiked && errMsg.toLowerCase().includes('not found')) {
+        // We wanted to unlike it, backend says it's not found (already unliked).
+        // Our optimistic update was correct, don't revert.
+      } else {
+        // Revert on real failure
+        setLikedTracks((prev) => (!isLiked ? prev.filter((id) => id !== trackId) : [...prev, trackId]));
+        showToast('Action failed', 'error');
+      }
     }
   };
 
@@ -619,6 +649,42 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const id = ++toastIdRef.current;
     setToasts((prev) => [...prev.slice(-2), { id, text, icon }]);
     setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== id)), 2500);
+  };
+
+  // Sleep Timer countdown logic
+  useEffect(() => {
+    if (sleepTimerEnd) {
+      const updateRemaining = () => {
+        const remaining = sleepTimerEnd - Date.now();
+        if (remaining <= 0) {
+          setSleepTimerEnd(null);
+          setSleepTimerRemaining(null);
+          audioEngine.pause();
+          setIsPlaying(false);
+          showToast('Sleep timer ended', 'moon');
+        } else {
+          setSleepTimerRemaining(Math.ceil(remaining / 60000));
+        }
+      };
+      updateRemaining();
+      const interval = window.setInterval(updateRemaining, 1000);
+      return () => window.clearInterval(interval);
+    } else {
+      setSleepTimerRemaining(null);
+    }
+  }, [sleepTimerEnd]);
+
+  const setSleepTimer = (minutes: number | null) => {
+    setSleepTimerEnd(minutes === null ? null : Date.now() + minutes * 60000);
+    showToast(minutes === null ? 'Sleep timer canceled' : `Sleep timer set for ${minutes} minutes`, 'clock');
+  };
+
+  const setPlaybackRate = (rate: number) => {
+    setPlaybackRateState(rate);
+    if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+      (audioEngine as any).setPlaybackRate(rate);
+    }
+    showToast(`Speed set to ${rate}x`, 'zap');
   };
 
   const toggleFullScreen = () => setIsFullScreen((prev) => !prev);
@@ -823,6 +889,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       goForward,
       activeFilter,
       setActiveFilter,
+      playbackRate,
+      setPlaybackRate,
+      sleepTimerRemaining,
+      setSleepTimer,
       customPlaylists,
       createPlaylist,
       addSongToPlaylist,
@@ -861,6 +931,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       viewStackIndex,
       viewStack.length,
       activeFilter,
+      playbackRate,
+      sleepTimerRemaining,
       customPlaylists,
       isPlaybackLocked,
       downloadedTracks,
