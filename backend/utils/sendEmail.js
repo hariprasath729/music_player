@@ -319,3 +319,83 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
     console.error('❌ Exception sending Admin Message email:', err);
   }
 };
+
+export const sendPasswordAccessEmail = async (to, name, magicLink, resetLink) => {
+  // HTML template for Forgot Password + Magic Login
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { margin: 0; padding: 0; background-color: #0f0f0f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  table { border-collapse: collapse; }
+  img { border: 0; line-height: 100%; outline: none; text-decoration: none; }
+  .container { width: 100% !important; max-width: 420px; margin: 0 auto; }
+  @media screen and (max-width: 480px) {
+    .container { max-width: 100% !important; }
+    .content-pad { padding: 20px !important; }
+    .btn-container { display: block !important; width: 100% !important; padding: 0 0 10px 0 !important; }
+    .btn { display: block !important; width: 100% !important; box-sizing: border-box !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#0f0f0f;">
+<table width="100%" bgcolor="#0f0f0f" cellpadding="0" cellspacing="0" border="0" style="width: 100%; background-color: #0f0f0f;">
+<tr>
+<td align="center" style="padding:40px 20px;">
+  <table class="container" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:420px; background:#1c1c1c; border-radius:12px; margin:0 auto;">
+  <tr>
+  <td class="content-pad" align="center" style="padding:30px; color:white;">
+    <img src="https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/logo.png" width="60" alt="Music Player" style="display:block; margin:0 auto;"/>
+    <h2 style="margin:15px 0 5px 0; font-size: 24px;">Music Player</h2>
+    <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px;">Reset your password or login instantly</p>
+
+    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height:1.5;">Hi <b>${name}</b>,</p>
+    <p style="color:#bbb; margin:0 0 25px 0; font-size: 16px; line-height:1.5;">
+      Use the links below. They are valid for 15 minutes and can be used only once.
+    </p>
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 10px;">
+      <tr>
+        <td class="btn-container" align="center" style="padding: 0 5px 10px 0;">
+          <a href="${magicLink}" class="btn" style="display:block; padding:14px 20px; background:#1db954; color:#0b0b0b; text-decoration:none; border-radius:6px; font-weight:bold; font-size: 16px; text-align:center;">
+            Login instantly
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="btn-container" align="center" style="padding: 0 5px 0 0;">
+          <a href="${resetLink}" class="btn" style="display:block; padding:14px 20px; background:#ff0000; color:white; text-decoration:none; border-radius:6px; font-weight:bold; font-size: 16px; text-align:center;">
+            Reset password
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <p style="color:#888; font-size:13px; margin:20px 0 0 0;">
+      If you didn’t request this, you can ignore this email.
+    </p>
+  </td>
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: SENDER_EMAIL,
+      to,
+      subject: 'Reset your password or login instantly',
+      html
+    });
+    console.log('📧 ✅ Password Access Email sent successfully:', info.messageId);
+  } catch (err) {
+    console.error('❌ Exception sending Password Access email:', err);
+  }
+};

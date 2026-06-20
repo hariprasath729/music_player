@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useRef, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Track, Playlist, TRACKS } from '../data/musicCatalog';
 import { audioEngine } from '../services/audioEngine';
 import { playlistApi, likeApi, recentlyPlayedApi, playCountApi, libraryApi, mapSongToTrack } from '../services/apiClient';
@@ -326,11 +326,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     localStorage.setItem('music_player_saved_albums', JSON.stringify(savedAlbums));
   }, [savedAlbums]);
 
+  // Persist the last track for resume
   useEffect(() => {
     if (currentTrack.id !== '') {
       localStorage.setItem(LAST_TRACK_KEY, JSON.stringify({ track: currentTrack, time: currentTime }));
     }
   }, [currentTrack, currentTime]);
+
+  
+// Media Session useEffect will be defined after control functions
 
   useEffect(() => {
     localStorage.setItem(PLAYER_SETTINGS_KEY, JSON.stringify({ volume, isShuffle, repeatMode, playbackRate }));
@@ -468,7 +472,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   };
 
-  const togglePlay = (force: boolean = false, forceState?: boolean) => {
+  const togglePlay = useCallback((force: boolean = false, forceState?: boolean) => {
     if (isPlaybackLocked && !force) return;
     if (currentTrack.id === '') return;
     
@@ -485,9 +489,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }
       setIsPlaying(true);
     }
-  };
+  }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime]);
 
-  const nextTrack = (force: boolean = false) => {
+  const nextTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
     if (queue.length > 0) {
       const next = queue[0];
@@ -514,9 +518,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         setCurrentTime(0);
       }
     }
-  };
+  }, [isPlaybackLocked, queue, repeatMode, isShuffle, activePlaylist, currentTrack.id, currentTime, playbackRate]);
 
-  const prevTrack = (force: boolean = false) => {
+  const prevTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
     if (currentTrack.id === '') return;
     if (currentTime > 3) {
@@ -529,7 +533,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     } else {
           seek(0, force);
     }
-  };
+  }, [isPlaybackLocked, currentTrack.id, currentTime, history]);
 
   const seek = (time: number, force: boolean = false) => {
     if (isPlaybackLocked && !force) return;

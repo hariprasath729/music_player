@@ -4,7 +4,8 @@ const DOWNLOADED_PLAYLISTS_KEY = 'music_player_downloaded_playlists';
 
 export const downloadService = {
   init: () => {
-    if ('serviceWorker' in navigator) {
+    // Register Service Worker only in production builds to avoid dev reload loops
+    if (import.meta.env && import.meta.env.PROD && 'serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         // Clear out any stuck, broken service workers
         navigator.serviceWorker.getRegistrations().then((registrations) => {

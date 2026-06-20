@@ -18,6 +18,13 @@ interface AuthContextType {
   loginWithEmail: (email: string, password: string) => Promise<void>;
   sendOtp: (email: string) => Promise<void>;
   signup: (data: { email: string; password: string; name: string; otp?: string }) => Promise<void>;
+
+  // Forgot password / reset / magic login
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (token: string, newPassword: string) => Promise<void>;
+  verifyToken: (token: string) => Promise<{ valid: boolean }>;
+  magicLogin: (token: string) => Promise<void>;
+
   contactAdmin: (email: string, name: string, message: string) => Promise<void>;
   logout: () => void;
   clearError: () => void;
@@ -38,6 +45,12 @@ const AuthContext = createContext<AuthContextType>({
   loginWithEmail: async () => {},
   sendOtp: async () => {},
   signup: async () => {},
+
+  // Forgot password / reset / magic login
+  forgotPassword: async () => {},
+  resetPassword: async () => {},
+  verifyToken: async () => ({ valid: false }),
+  magicLogin: async () => {},
   contactAdmin: async () => {},
   logout: () => {},
   clearError: () => {},
@@ -181,6 +194,96 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
+  const forgotPassword = useCallback(async (email: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_URL}/auth/forgot-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok && !json.success) throw new Error(json.error || json.message || 'Failed to request reset link');
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const resetPassword = useCallback(async (token: string, newPassword: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_URL}/auth/reset-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, newPassword }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok && !json.success) throw new Error(json.error || json.message || 'Failed to reset password');
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const verifyToken = useCallback(async (token: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_URL}/auth/verify-token?token=${encodeURIComponent(token)}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json?.error || json?.message || 'Failed to verify token');
+      return { valid: !!json.valid };
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const magicLogin = useCallback(async (token: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_URL}/auth/magic-login?token=${encodeURIComponent(token)}`, {
+        method: 'GET',
+      });
+
+      // Backend may redirect; if so, browser will handle. If it returns JSON, we parse.
+      let json: any = null;
+      try { json = await res.json(); } catch {}
+
+      // If backend returns token/user JSON:
+      const responseToken = json?.data?.token || json?.token;
+      const responseUser = json?.data?.user || json?.user;
+
+      if (res.ok && responseToken && responseUser) {
+        storeSession(responseToken, responseUser);
+        return;
+      }
+
+      // Otherwise just ensure status is OK
+      if (!res.ok) {
+        throw new Error(json?.error || json?.message || 'Magic login failed');
+      }
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   const contactAdmin = useCallback(async (email: string, name: string, message: string) => {
     setIsLoading(true);
     setError(null);
@@ -244,7 +347,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [token, logout]);
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, isLoading, error, login, loginWithEmail, sendOtp, signup, contactAdmin, logout, clearError, isPendingApproval, setIsPendingApproval }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoggedIn,
+        isLoading,
+        error,
+        login,
+        loginWithEmail,
+        sendOtp,
+        signup,
+        forgotPassword,
+        resetPassword,
+        verifyToken,
+        magicLogin,
+        contactAdmin,
+        logout,
+        clearError,
+        isPendingApproval,
+        setIsPendingApproval,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

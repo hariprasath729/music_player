@@ -12,8 +12,14 @@ import { FullScreenPlayer } from './components/FullScreenPlayer';
 import { MobileNav } from './components/MobileNav';
 import { MiniPlayer } from './components/MiniPlayer';
 import { Toast } from './components/Toast';
+import { useBackHandler } from './hooks/useBackHandler';
+
+import { ForgotPasswordPage } from './components/auth/ForgotPasswordPage';
+import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
+import { MagicLoginPage } from './components/auth/MagicLoginPage';
 
 const PlayerShell: React.FC = () => (
+  // No changes needed here
   <PlayerProvider>
     <div className="flex h-[100dvh] w-screen flex-col overflow-hidden bg-black font-sans antialiased select-none">
       <div className="relative flex flex-1 overflow-hidden">
@@ -35,23 +41,133 @@ const PlayerShell: React.FC = () => (
   </PlayerProvider>
 );
 
-const AppGate: React.FC = () => {
+const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen }) => {
   const { isLoggedIn } = useAuth();
+
+  // Route handling for auth-only flows (no react-router in this codebase)
   const [view, setView] = React.useState<'login' | 'signup'>('login');
+
+  // Push screen identifier whenever view changes
+  React.useEffect(() => {
+    pushScreen(`view:${view}`);
+  }, [view]);
 
   if (isLoggedIn) return <PlayerShell />;
 
+  const pathname = window.location.pathname;
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+
+  if (pathname.endsWith('/forgot-password')) {
+    return (
+      <ForgotPasswordPage
+        onBackToLogin={() => {
+          window.location.pathname = '/';
+          setView('login');
+        }}
+      />
+    );
+  }
+
+  if (pathname.endsWith('/reset-password')) {
+    const token = params.get('token') || '';
+    return (
+      <ResetPasswordPage
+        token={token}
+        onBackToLogin={() => {
+          window.location.pathname = '/';
+          setView('login');
+        }}
+      />
+    );
+  }
+
+  if (pathname.endsWith('/magic-login')) {
+    const token = params.get('token') || '';
+    return (
+      <MagicLoginPage
+        token={token}
+        onBackToLogin={() => {
+          window.location.pathname = '/';
+          setView('login');
+        }}
+      />
+    );
+  }
+
   return view === 'login' ? (
-    <LoginPage onSwitchToSignup={() => setView('signup')} />
+    <LoginPage
+      onSwitchToSignup={() => setView('signup')}
+    />
   ) : (
     <SignupPage onSwitchToLogin={() => setView('login')} />
   );
 };
 
-export const App: React.FC = () => (
-  <AuthProvider>
-    <AppGate />
-  </AuthProvider>
-);
+export const App: React.FC = () => {
+  const pathname = window.location.pathname;
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+
+  // Initialize back handler with custom logic
+  const { pushScreen } = useBackHandler({
+    customBackHandler: (stack) => {
+      // If no more app history, signal exit (native wrapper can handle)
+      if (stack.length === 0) {
+        return 'EXIT_APP';
+      }
+      // Otherwise, UI state updates are handled elsewhere
+    },
+  });
+
+  // Render auth-subpages without the logged-in/player shell,
+  // but keep AuthProvider so useAuth() functions exist.
+  if (pathname.endsWith('/forgot-password')) {
+    return (
+      <AuthProvider>
+        <ForgotPasswordPage
+          onBackToLogin={() => {
+            window.location.pathname = '/';
+          }}
+        />
+      </AuthProvider>
+    );
+  }
+
+  if (pathname.endsWith('/reset-password')) {
+    const token = params.get('token') || '';
+    return (
+      <AuthProvider>
+        <ResetPasswordPage
+          token={token}
+          onBackToLogin={() => {
+            window.location.pathname = '/';
+          }}
+        />
+      </AuthProvider>
+    );
+  }
+
+  if (pathname.endsWith('/magic-login')) {
+    const token = params.get('token') || '';
+    return (
+      <AuthProvider>
+        <MagicLoginPage
+          token={token}
+          onBackToLogin={() => {
+            window.location.pathname = '/';
+          }}
+        />
+      </AuthProvider>
+    );
+  }
+
+  return (
+    <AuthProvider>
+      {/* Pass pushScreen to AppGate for navigation tracking */}
+      <AppGate pushScreen={pushScreen} />
+    </AuthProvider>
+  );
+};
 
 export default App;

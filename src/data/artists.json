@@ -33,5 +33,260 @@
     "id": "a7",
     "name": "Vijay Antony",
     "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/vijay_antony.jpg"
+  },
+  {
+    "id": "a8",
+    "name": "Adithya RK",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Adithya_RK.jpg"
+  },
+  {
+    "id": "a9",
+    "name": "Aditi Shankar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Aditi_Shankar.jpg"
+  },
+  {
+    "id": "a1 0",
+    "name": "Ananya Bhat",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Ananya_Bhat.jpg"
+  },
+  {
+    "id": "a11",
+    "name": "Anthony Daasan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Anthony_Daasan.jpg"
+  },
+  {
+    "id": "a12",
+    "name": "Arivu",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Arivu.jpg"
+  },
+  {
+    "id": "a13",
+    "name": "AR Ameen",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/AR_Ameen.jpg"
+  },
+  {
+    "id": "a14",
+    "name": "Asal Kolaar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Asal_Kolaar.jpg"
+  },
+  {
+    "id": "a15",
+    "name": "Benny Dayal",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Benn_Dayal.jpg"
+  },
+  {
+    "id": "a16",
+    "name": "Chinmayi",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/chinmayi.jpg"
+  },
+  {
+    "id": "a17",
+    "name": "Deepthi Suresh",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Deepthi_Suresh.jpg"
+  },
+  {
+    "id": "a18",
+    "name": "Dhanush",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Dhanush.jpg"
+  },
+  {
+    "id": "a19",
+    "name": "Dhee",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Dhee.jpg"
+  },
+  {
+    "id": "a20",
+    "name": "Dhibu Ninan Thomas",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Dhibu_Ninan_Thomas.jpg"
+  },
+  {
+    "id": "a21",
+    "name": "Gangai Amaran",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Gangai_Amaran.jpg"
+  },
+  {
+    "id": "a22",
+    "name": "Ghibran",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Ghibran.jpg"
+  },
+  {
+    "id": "a23",
+    "name": "Hesham Abdul Wahab",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Hesham_Abdul_Wahab.jpg"
+  },
+  {
+    "id": "a24",
+    "name": "Justin Prabhakaran",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Justin_prabhakaran.jpg"
+  },
+  {
+    "id": "a25",
+    "name": "Kapil Kapilan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Kapil_Kapilan.jpg"
+  },
+  {
+    "id": "a26",
+    "name": "KS Harisankar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/kS_Harisankar.jpg"
+  },
+  {
+    "id": "a27",
+    "name": "Logo",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/logo.png"
+  },
+  {
+    "id": "a28",
+    "name": "Madhan Karky",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Madhan_Karky.jpg"
+  },
+  {
+    "id": "a29",
+    "name": "Naresh Iyer",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Naresh_Iyer.jpg"
+  },
+  {
+    "id": "a30",
+    "name": "Nivas K Prasanna",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Nivas_K_Prasanna.jpg"
+  },
+  {
+    "id": "a31",
+    "name": "Pradeep Kumar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Pradeep_Kumar.jpg"
+  },
+  {
+    "id": "a32",
+    "name": "Pragathi Guruprasad",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Pragathi_Guruprasad.jpg"
+  },
+  {
+    "id": "a33",
+    "name": "Priyanka NK",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Priyanka_NK.jpg"
+  },
+  {
+    "id": "a34",
+    "name": "Rakshita Suresh",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Rakshita_Suresh.jpg"
+  },
+  {
+    "id": "a35",
+    "name": "Ravi Basrur",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Ravi_basrur.jpg"
+  },
+  {
+    "id": "a36",
+    "name": "Saindhavi",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Saindhavi.jpg"
+  },
+  {
+    "id": "a37",
+    "name": "Sam CS",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sam_CS.jpg"
+  },
+  {
+    "id": "a38",
+    "name": "Santhosh Narayanan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Santhosh_Narayanan.jpg"
+  },
+  {
+    "id": "a39",
+    "name": "Sathyaprakash D",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sathyaprakash_D.jpg"
+  },
+  {
+    "id": "a40",
+    "name": "Sean Roldan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sean_Roldan.jpg"
+  },
+  {
+    "id": "a41",
+    "name": "Shakthisree Gopalan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Shakthisree_Gopalan.jpg"
+  },
+  {
+    "id": "a42",
+    "name": "Shibbi Srinivasan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Shibbi_Srinivasan.jpg"
+  },
+  {
+    "id": "a43",
+    "name": "Shreya Ghoshal",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Shreya_Goshal.jpg"
+  },
+  {
+    "id": "a44",
+    "name": "Shruthi Haasan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Shruthi_Haasan.jpg"
+  },
+  {
+    "id": "a45",
+    "name": "Shweta Mohan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Shweta_Mohan.jpg"
+  },
+  {
+    "id": "a46",
+    "name": "Siddhu Kumar",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Siddhu_kumar.jpg"
+  },
+  {
+    "id": "a47",
+    "name": "Sid Sriram",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sid_Sriram.jpg"
+  },
+  {
+    "id": "a48",
+    "name": "Silambarasan Tr",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Silambarasan_Tr.jpg"
+  },
+  {
+    "id": "a49",
+    "name": "Sivakarthikeyan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sivakarthikeyan.jpg"
+  },
+  {
+    "id": "a50",
+    "name": "SP Charan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/SP_Charan.jpg"
+  },
+  {
+    "id": "a51",
+    "name": "Srinisha Jayaseelan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Srinisha_Jayaseelan.jpg"
+  },
+  {
+    "id": "a52",
+    "name": "Sublahshini",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Sublashini.jpg"
+  },
+  {
+    "id": "a53",
+    "name": "Thaman S",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Thaman_S.jpg"
+  },
+  {
+    "id": "a54",
+    "name": "Vairamuthu",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Vairamuthu.jpg"
+  },
+  {
+    "id": "a55",
+    "name": "Vaisagh",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Vaisagh.jpg"
+  },
+  {
+    "id": "a56",
+    "name": "Velmurugan",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Velmurugan.jpg"
+  },
+  {
+    "id": "a57",
+    "name": "Vishnu Vijay",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Vishnu_Vijay.jpg"
+  },
+  {
+    "id": "a58",
+    "name": "Yuvan Shankar Raja",
+    "image": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/Yuvan_Sharnkar_Raja.jpg"
   }
 ]

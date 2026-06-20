@@ -65,7 +65,7 @@ const GoogleLoginButton: React.FC<{ onSuccess: (credential?: string) => void }> 
 };
 
 export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitchToSignup }) => {
-  const { login, loginWithEmail, contactAdmin, clearError, isPendingApproval, setIsPendingApproval } = useAuth();
+  const { login, loginWithEmail, contactAdmin, clearError, error, isPendingApproval, setIsPendingApproval } = useAuth();
   const [emailInput, setEmailInput] = useState('');
   const [passInput, setPassInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -248,9 +248,9 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
             <div className="card-logo"><MusicPlayerMark size={42} /></div>
             <h1>Log in to Music Player</h1>
 
-            {errorMsg && (
+            {(errorMsg || error) && (
               <div className="mb-4 rounded-lg bg-red-500/10 border border-red-500/30 px-3 py-2 text-center text-xs font-semibold text-red-400">
-                {errorMsg}
+                {errorMsg || error}
               </div>
             )}
 
@@ -289,7 +289,16 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
                 />
               </div>
 
-              <a href="#" onClick={() => showToast('Forgot password will be added in future updates')} className="forgot-link">Forgot your password?</a>
+              <a
+                href="#"
+                className="forgot-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.pathname = '/forgot-password';
+                }}
+              >
+                Forgot your password?
+              </a>
               <button className="btn-login" type="submit" disabled={loading}>
                 {loading ? 'Logging In…' : 'Log In'}
               </button>
@@ -304,7 +313,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
           </div>
         </main>
         )}
-
+      {/*
         <footer className="music-player-login-footer">
           <p>© 2026 Music Player HP</p>
           <div className="footer-links">
@@ -314,7 +323,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
             <a href="#">About Ads</a>
             <a href="#">Accessibility</a>
           </div>
-        </footer>
+        </footer> */}
 
         {showContactModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">

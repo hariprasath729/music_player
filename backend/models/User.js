@@ -7,7 +7,12 @@ const userSchema = new mongoose.Schema({
   profilePic: { type: String },
   isVerified: { type: Boolean, default: false },
   isApproved: { type: Boolean, default: false },
-  authType: { type: String, enum: ['email', 'google'], default: 'email' }
+  authType: { type: String, enum: ['email', 'google'], default: 'email' },
+
+  // Password reset + magic-login token (one-time use)
+  // Note: Token may be stored hashed; keep expiry to enforce 15-minute validity.
+  resetToken: { type: String, default: null },
+  resetTokenExpiry: { type: Date, default: null },
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

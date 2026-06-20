@@ -1,4 +1,4 @@
-﻿﻿﻿﻿import express from 'express';
+﻿import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { createServer } from 'http';
@@ -8,60 +8,60 @@ import authRoutes from './routes/auth.js';
 import featureRoutes from './routes/index.js';
 import synkHandler from './sockets/synkHandler.js';
 
-dotenv.config();
-connectDB();
+(async () => {
+  dotenv.config();
 
-const app = express();
-const httpServer = createServer(app);
+  const app = express();
+  const httpServer = createServer(app);
 
-const io = new Server(httpServer, {
-  cors: {
+  const io = new Server(httpServer, {
+    cors: {
+      origin: true,
+      methods: ['GET', 'POST'],
+      credentials: true
+    }
+  });
+
+  const PORT = process.env.PORT || 5000;
+
+  // CORS configuration
+  app.use(cors({
     origin: true,
-    methods: ['GET', 'POST'],
     credentials: true
-  }
-});
+  }));
 
-const PORT = process.env.PORT || 5000;
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
-// CORS configuration
-app.use(cors({ 
-  origin: true, 
-  credentials: true 
-}));
+  // Simple root health check
+  app.get('/', (req, res) =>
+    res.send('Alive'));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  // Routes
+  app.use('/api/auth', authRoutes);
+  app.use('/api', featureRoutes);
 
-// Simple root health check
-app.get('/', (req, res) => {
-  res.send('Alive');
-});
+  // Health check
+  app.get('/api/health', (req, res) =>
+    res.json({ status: 'OK', message: 'Server is running', timestamp: new Date().toISOString() }));
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api', featureRoutes);
+  // Socket.io Handler
+  synkHandler(io);
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running', timestamp: new Date().toISOString() });
-});
+  // 404
+  app.use((req, res) =>
+    res.status(404).json({ success: false, error: 'Route not found', path: req.originalUrl }));
 
-// Socket.io Handler
-synkHandler(io);
+  // Error handler
+  app.use((err, req, res, _next) => {
+    console.error('[server] Error:', err);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  });
 
-// 404
-app.use((req, res) => {
-  res.status(404).json({ success: false, error: 'Route not found', path: req.originalUrl });
-});
-
-// Error handler
-app.use((err, req, res, _next) => {
-  console.error('[server] Error:', err);
-  res.status(500).json({ success: false, error: 'Internal Server Error' });
-});
-
-httpServer.listen(PORT, () => {
-  console.log(`🎵 Backend API running → http://localhost:${PORT}`);
-  console.log(`   Health check → http://localhost:${PORT}/api/health`);
-});
+  // Connect to DB then start server
+  await connectDB();
+  httpServer.listen(PORT, () => {
+    console.log(`🎵 Backend API running → http://localhost:${PORT}`);
+    console.log(`   Health check → http://localhost:${PORT}/api/health`);
+  });
+})();

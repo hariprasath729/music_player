@@ -59,7 +59,7 @@ JWT_SECRET=super_secret_key_change_this_in_production_12345
 
 # Server
 PORT=5000
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
 ```
 
 ### 5️⃣ Get Google OAuth Credentials
@@ -84,7 +84,7 @@ FRONTEND_URL=http://localhost:3000
 
 5. **Add Authorized Redirect URIs**
    ```
-   http://localhost:3000
+   http://localhost:5173
    http://localhost:5000
    postmessage
    ```

@@ -8,6 +8,7 @@ if ('serviceWorker' in navigator) {
   // The 'pwa-update-available' event will set this, and the 'controllerchange'
   // event will read it to know which version was just activated.
   let newWorkerVersion: string | undefined;
+
   window.addEventListener('pwa-update-available', (e) => {
     newWorkerVersion = (e as CustomEvent).detail?.version;
   });
@@ -28,7 +29,7 @@ if ('serviceWorker' in navigator) {
           const updatedVersion = sessionStorage.getItem('pwa-updated-version');
           const pwaUpdated = sessionStorage.getItem('pwa-updated') === 'true';
 
-          // If we've already updated and the SW reports the same version, suppress UI.
+          // If we've already updated to this version, suppress UI.
           if (updatedVersion && updatedVersion === version) return;
 
           // If the app has already been marked as updated, but updatedVersion wasn't
@@ -75,7 +76,7 @@ if ('serviceWorker' in navigator) {
           const channel = new MessageChannel();
           channel.port1.onmessage = (event) => {
             const version = event.data?.version;
-            if (version) sessionStorage.setItem('pwa-updated-version', version);
+            if (version) sessionStorage.setItem('pwa-updated-version', String(version));
 
             // Reload into the new controlled client once
             window.location.reload();

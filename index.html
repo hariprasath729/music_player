@@ -7,23 +7,25 @@
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="manifest" href="/manifest.json" />
     <script>
-      // PWA Auto-Recovery: If JS/CSS fails to load (404), unregister the Service Worker and hard reload.
-      window.addEventListener('error', function(e) {
-        var target = e.target || e.srcElement;
-        var isScriptOrLink = target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK');
-        if (isScriptOrLink && navigator.serviceWorker) {
-          console.warn('Asset load failed. Attempting PWA auto-recovery...');
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for (var i = 0; i < registrations.length; i++) {
-              registrations[i].unregister();
-            }
-            window.location.reload(true);
-          });
-        }
-      }, true);
+      // PWA Auto-Recovery: Disabled during development to prevent infinite reload loops.
+      if (location.port !== '5173') {
+        window.addEventListener('error', function(e) {
+          var target = e.target || e.srcElement;
+          var isScriptOrLink = target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK');
+          if (isScriptOrLink && navigator.serviceWorker) {
+            console.warn('Asset load failed. Attempting PWA auto-recovery...');
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+              for (var i = 0; i < registrations.length; i++) {
+                registrations[i].unregister();
+              }
+              window.location.reload(true);
+            });
+          }
+        }, true);
+      }
     </script>
     <style>
-      /* Full-screen splash (covers everything immediately) */
+ /* Full-screen splash (covers everything immediately) */
       #splash {
         position: fixed;
         inset: 0;
@@ -34,13 +36,11 @@
         opacity: 1;
         pointer-events: all;
       }
-
       #splash.fade-out {
         opacity: 0;
         transition: opacity 0.4s ease;
         pointer-events: none;
       }
-
       #splash svg, #splash img {
         position: absolute;
         inset: 0;
@@ -49,12 +49,10 @@
         width: clamp(150px, 22vw, 200px);
         height: auto;
       }
-
       /* SVG Logo Animation Styles */
       #splash svg {
         overflow: visible;
       }
-
       .splash-circle {
         transform-origin: center;
         transform: scale(0);
@@ -62,7 +60,6 @@
         animation: circleReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
         filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
       }
-
       .splash-line {
         fill: none;
         stroke: #ffffff;
@@ -72,23 +69,19 @@
         opacity: 0;
         animation: drawLine 0.35s ease-out forwards;
       }
-
       #line1 { animation-delay: 0.8s; stroke-width: 5; }
       #line2 { animation-delay: 0.95s; stroke-width: 6.5; }
       #line3 { animation-delay: 1.1s; stroke-width: 8; }
-
       @keyframes circleReveal {
         0% { transform: scale(0); opacity: 0; }
         70% { transform: scale(1.1); opacity: 1; }
         100% { transform: scale(1); opacity: 1; }
       }
-
       @keyframes drawLine {
         0% { stroke-dashoffset: 100; opacity: 0; }
         20% { opacity: 1; }
         100% { stroke-dashoffset: 0; opacity: 1; }
       }
-
       /* Static Logo Fade-out */
       #splash img {
         opacity: 1;
@@ -112,12 +105,27 @@
       </svg>
       <img src="/logo_maskable.png" alt="Music Player" />
     </div>
+    </style>
+  </head>
+  <body class="bg-[#121212] text-white antialiased">
+
     <div id="root"></div>
     <script>
       var splashStartTime = Date.now();
 
       // Expose a global function so React can hide the splash screen when data is fully ready
       window.hideSplashScreen = function () {
+        var splash = document.getElementById('splash');
+        if (!splash || splash.style.display === 'none') return;
+
+        // Hide immediately on password-related pages
+        var path = window.location.pathname;
+        if (path.includes('forgot-password') || path.includes('reset-password') || window.location.search.includes('token=')) {
+          splash.classList.add('fade-out');
+          splash.style.display = 'none';
+          return;
+        }
+
         var elapsed = Date.now() - splashStartTime;
         var MIN_SPLASH_TIME = 1500; // Perfect sync with the final line drawing (1.45s)
         if (elapsed < MIN_SPLASH_TIME) {
@@ -125,10 +133,7 @@
           return;
         }
 
-        var splash = document.getElementById('splash');
-        if (!splash || splash.style.display === 'none') return;
         splash.classList.add('fade-out');
-
         // Remove from layout after fade-out completes
         window.setTimeout(function () {
           splash.style.display = 'none';
