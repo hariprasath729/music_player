@@ -34037,9 +34037,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3814,
-    "title": "A Reason To Live so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "A Reason To Live",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 78,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/A-Reason-To-Live-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/A-Reason-To-Live-MassTamilan.so.jpg"
@@ -34091,18 +34091,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3820,
-    "title": "Aagoozhilae so",
-    "artist": "Yuvan Shankar Raja, Harini Ivaturi so",
-    "album": "Radhe Shyam so",
+    "title": "Aagoozhilae",
+    "artist": "Yuvan Shankar Raja, Harini Ivaturi",
+    "album": "Radhe Shyam",
     "duration": 233,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Aagoozhilae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Aagoozhilae-MassTamilan.so.jpg"
   },
   {
     "id": 3821,
-    "title": "Aalambana Enga so",
-    "artist": "Hiphop Tamizha, Kaushik Krish so",
-    "album": "Aalambana so",
+    "title": "Aalambana Enga",
+    "artist": "Hiphop Tamizha, Kaushik Krish",
+    "album": "Aalambana",
     "duration": 76,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Aalambana-Enga-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Aalambana-Enga-MassTamilan.so.jpg"
@@ -34127,9 +34127,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3824,
-    "title": "Aararo so",
-    "artist": "Nakkhul so",
-    "album": "Visithiran so",
+    "title": "Aararo",
+    "artist": "Nakkhul",
+    "album": "Visithiran",
     "duration": 433,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Aararo-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Aararo-MassTamilan.so.jpg"
@@ -34289,18 +34289,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3842,
-    "title": "Agilam Nee so",
-    "artist": "Ananya Bhat so",
-    "album": "KGF Chapter 2 so",
+    "title": "Agilam Nee",
+    "artist": "Ananya Bhat",
+    "album": "KGF Chapter 2",
     "duration": 171,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Agilam-Nee-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Agilam-Nee-MassTamilan.so.jpg"
   },
   {
     "id": 3843,
-    "title": "Aigiri Nandini so",
-    "artist": "Alap Desai, Madhan Karky so",
-    "album": "Prithviraj so",
+    "title": "Aigiri Nandini",
+    "artist": "Alap Desai, Madhan Karky",
+    "album": "Prithviraj",
     "duration": 174,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Aigiri-Nandini-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Aigiri-Nandini-MassTamilan.so.jpg"
@@ -34325,9 +34325,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3846,
-    "title": "Alai Alai so",
-    "artist": "G V Prakash Kumar, Deepthi Suresh so",
-    "album": "Koogle Kuttappa so",
+    "title": "Alai Alai",
+    "artist": "G V Prakash Kumar, Deepthi Suresh",
+    "album": "Koogle Kuttappa",
     "duration": 289,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Alai-Alai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Alai-Alai-MassTamilan.so.jpg"
@@ -34442,9 +34442,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3859,
-    "title": "Annana Thaalaattum so",
-    "artist": "Anurag Kulkarni so",
-    "album": "Maaran so",
+    "title": "Annana Thaalaattum",
+    "artist": "Anurag Kulkarni",
+    "album": "Maaran",
     "duration": 163,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Annana-Thaalaattum-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Annana-Thaalaattum-MassTamilan.so.jpg"
@@ -34478,9 +34478,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3863,
-    "title": "Arabic Kuthu Halamithi Habibo so",
-    "artist": "Anirudh Ravichander, Jonita Gandhi so",
-    "album": "Beast so",
+    "title": "Arabic Kuthu Halamithi Habibo",
+    "artist": "Anirudh Ravichander, Jonita Gandhi",
+    "album": "Beast",
     "duration": 279,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Arabic-Kuthu---Halamithi-Habibo-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Arabic-Kuthu---Halamithi-Habibo-MassTamilan.so.jpg"
@@ -34523,9 +34523,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3868,
-    "title": "Avan Avan so",
-    "artist": "Diwakar, Shankar Ehsaan Loy, Madhan Karky so",
-    "album": "Prithviraj so",
+    "title": "Avan Avan",
+    "artist": "Diwakar, Shankar Ehsaan Loy, Madhan Karky",
+    "album": "Prithviraj",
     "duration": 254,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Avan-Avan-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Avan-Avan-MassTamilan.so.jpg"
@@ -34559,9 +34559,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3872,
-    "title": "Azha Thonudhe so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Azha Thonudhe",
+    "artist": "Anirudh Ravichander",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 132,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Azha-Thonudhe-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Azha-Thonudhe-MassTamilan.so.jpg"
@@ -34595,9 +34595,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3876,
-    "title": "Azhaikiradhae so",
-    "artist": "Neeti Mohan, Shankar Ehsaan Loy, Madhan Karky so",
-    "album": "Prithviraj so",
+    "title": "Azhaikiradhae",
+    "artist": "Neeti Mohan, Shankar Ehsaan Loy, Madhan Karky",
+    "album": "Prithviraj",
     "duration": 242,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Azhaikiradhae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Azhaikiradhae-MassTamilan.so.jpg"
@@ -34640,9 +34640,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3881,
-    "title": "Baby Nee Sugar so",
-    "artist": "Osho Venkat, Amala Chebolu, Aditi Bhogarju so",
-    "album": "Baby Nee Sugar (Indie) so",
+    "title": "Baby Nee Sugar",
+    "artist": "Osho Venkat, Amala Chebolu, Aditi Bhogarju",
+    "album": "Baby Nee Sugar (Indie)",
     "duration": 234,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Baby-Nee-Sugar-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Baby-Nee-Sugar-MassTamilan.so.jpg"
@@ -34667,9 +34667,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3884,
-    "title": "Badass Bossman so",
-    "artist": "G V Prakash Kumar, Arivu so",
-    "album": "Selfie so",
+    "title": "Badass Bossman",
+    "artist": "G V Prakash Kumar, Arivu",
+    "album": "Selfie",
     "duration": 70,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Badass-Bossman-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Badass-Bossman-MassTamilan.so.jpg"
@@ -34685,18 +34685,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3886,
-    "title": "Beast Announcement Theme so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Beast so",
+    "title": "Beast Announcement Theme",
+    "artist": "Anirudh Ravichander",
+    "album": "Beast",
     "duration": 62,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Beast-Announcement-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Beast-Announcement-Theme-MassTamilan.so.jpg"
   },
   {
     "id": 3887,
-    "title": "Beast Mode so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Beast so",
+    "title": "Beast Mode",
+    "artist": "Anirudh Ravichander",
+    "album": "Beast",
     "duration": 220,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Beast-Mode-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Beast-Mode-MassTamilan.so.jpg"
@@ -34730,9 +34730,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3891,
-    "title": "Binaural Sound so",
-    "artist": "Maria 'Roe' Roshni Vincent so",
-    "album": "Yutha Satham so",
+    "title": "Binaural Sound",
+    "artist": "Maria 'Roe' Roshni Vincent",
+    "album": "Yutha Satham",
     "duration": 162,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Binaural-Sound-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Binaural-Sound-MassTamilan.so.jpg"
@@ -34748,18 +34748,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3893,
-    "title": "Bomma Bomma so",
-    "artist": "Arivu, K Sivaangi so",
-    "album": "Koogle Kuttappa so",
+    "title": "Bomma Bomma",
+    "artist": "Arivu, K Sivaangi",
+    "album": "Koogle Kuttappa",
     "duration": 204,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Bomma-Bomma-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Bomma-Bomma-MassTamilan.so.jpg"
   },
   {
     "id": 3894,
-    "title": "Boomba Boomba so",
-    "artist": "Hiphop Tamizha, Kapil Kapilan so",
-    "album": "Aalambana so",
+    "title": "Boomba Boomba",
+    "artist": "Hiphop Tamizha, Kapil Kapilan",
+    "album": "Aalambana",
     "duration": 202,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Boomba%C2%A0Boomba%C2%A0-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Boomba%C2%A0Boomba%C2%A0-MassTamilan.so.jpg"
@@ -34784,9 +34784,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3897,
-    "title": "Catch The Suspect so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Catch The Suspect",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 102,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Catch-The-Suspect-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Catch-The-Suspect-MassTamilan.so.jpg"
@@ -34883,18 +34883,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3908,
-    "title": "Chittu Kuruvi Instrumental so",
-    "artist": "G V Prakash Kumar so",
-    "album": "Maaran so",
+    "title": "Chittu Kuruvi Instrumental",
+    "artist": "G V Prakash Kumar",
+    "album": "Maaran",
     "duration": 191,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Chittu-Kuruvi-Instrumental-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Chittu-Kuruvi-Instrumental-MassTamilan.so.jpg"
   },
   {
     "id": 3909,
-    "title": "Chittu Kuruvi so",
-    "artist": "Dhanush so",
-    "album": "Maaran so",
+    "title": "Chittu Kuruvi",
+    "artist": "Dhanush",
+    "album": "Maaran",
     "duration": 238,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Chittu-Kuruvi-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Chittu-Kuruvi-MassTamilan.so.jpg"
@@ -34928,9 +34928,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3913,
-    "title": "Cop In Action so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Cop In Action",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 93,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Cop-In-Action-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Cop-In-Action-MassTamilan.so.jpg"
@@ -34964,9 +34964,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3917,
-    "title": "Dab Dabbankuththu so",
-    "artist": "Dharan Kumar, Sathosh Jayakaran, Pooja so",
-    "album": "Takku Mukku Tikku Thalam so",
+    "title": "Dab Dabbankuththu",
+    "artist": "Dharan Kumar, Sathosh Jayakaran, Pooja",
+    "album": "Takku Mukku Tikku Thalam",
     "duration": 274,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Dab-Dabbankuththu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Dab-Dabbankuththu-MassTamilan.so.jpg"
@@ -35036,9 +35036,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3925,
-    "title": "Detective so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Detective",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 60,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Detective-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Detective-MassTamilan.so.jpg"
@@ -35054,9 +35054,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3927,
-    "title": "Deva Emmai so",
-    "artist": "Yazin Nizar so",
-    "album": "Visithiran so",
+    "title": "Deva Emmai",
+    "artist": "Yazin Nizar",
+    "album": "Visithiran",
     "duration": 297,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Deva-Emmai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Deva-Emmai-MassTamilan.so.jpg"
@@ -35108,9 +35108,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3933,
-    "title": "Dippam Dappam so",
-    "artist": "Anirudh Ravichander, Anthony Daasan so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Dippam Dappam",
+    "artist": "Anirudh Ravichander, Anthony Daasan",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Dippam-Dappam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Dippam-Dappam-MassTamilan.so.jpg"
@@ -35270,9 +35270,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3951,
-    "title": "Encounter so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Encounter",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 139,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/songs/Encounter-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_23@main/covers/Encounter-MassTamilan.so.jpg"
@@ -35288,9 +35288,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3953,
-    "title": "Engirundho Vandhaan so",
-    "artist": "Nivas K Prasanna, Pradeep Kumar, Brindha Sivakumar so",
-    "album": "Oh My Dog so",
+    "title": "Engirundho Vandhaan",
+    "artist": "Nivas K Prasanna, Pradeep Kumar, Brindha Sivakumar",
+    "album": "Oh My Dog",
     "duration": 301,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Engirundho-Vandhaan-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Engirundho-Vandhaan-MassTamilan.so.jpg"
@@ -35324,9 +35324,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3957,
-    "title": "Enna Nadakudhu so",
-    "artist": "Ilaiyaraaja, Yuvan Shankar Raja, Muthu Sirpi so",
-    "album": "Maamanithan so",
+    "title": "Enna Nadakudhu",
+    "artist": "Ilaiyaraaja, Yuvan Shankar Raja, Muthu Sirpi",
+    "album": "Maamanithan",
     "duration": 170,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Enna-Nadakudhu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Enna-Nadakudhu-MassTamilan.so.jpg"
@@ -35396,9 +35396,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3966,
-    "title": "Eppa Paarthaalum so",
-    "artist": "Hiphop Tamizha, Armaan Malik so",
-    "album": "Aalambana so",
+    "title": "Eppa Paarthaalum",
+    "artist": "Hiphop Tamizha, Armaan Malik",
+    "album": "Aalambana",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Eppa-Paarthaalum-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Eppa-Paarthaalum-MassTamilan.so.jpg"
@@ -35630,9 +35630,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3992,
-    "title": "Hostel Gaana so",
-    "artist": "Thenisai Thendral Deva so",
-    "album": "Hostel so",
+    "title": "Hostel Gaana",
+    "artist": "Thenisai Thendral Deva",
+    "album": "Hostel",
     "duration": 222,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Hostel-Gaana-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Hostel-Gaana-MassTamilan.so.jpg"
@@ -35648,9 +35648,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3994,
-    "title": "I'm A Fighter so",
-    "artist": "Nivas K Prasanna, Yuvan Shankar Raja, M K Balaji so",
-    "album": "Oh My Dog so",
+    "title": "I'm A Fighter",
+    "artist": "Nivas K Prasanna, Yuvan Shankar Raja, M K Balaji",
+    "album": "Oh My Dog",
     "duration": 247,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/I'm-A-Fighter-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/I'm-A-Fighter-MassTamilan.so.jpg"
@@ -35675,9 +35675,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 3997,
-    "title": "Idhu Enna so",
-    "artist": "Dharan Kumar, Sathyaprakash D, Sanjana Kalmanje so",
-    "album": "Takku Mukku Tikku Thalam so",
+    "title": "Idhu Enna",
+    "artist": "Dharan Kumar, Sathyaprakash D, Sanjana Kalmanje",
+    "album": "Takku Mukku Tikku Thalam",
     "duration": 267,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Idhu-Enna-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Idhu-Enna-MassTamilan.so.jpg"
@@ -35702,9 +35702,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4000,
-    "title": "Imaikkariye so",
-    "artist": "G V Prakash Kumar, Manasvini Gopal so",
-    "album": "Selfie so",
+    "title": "Imaikkariye",
+    "artist": "G V Prakash Kumar, Manasvini Gopal",
+    "album": "Selfie",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Imaikkariye-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Imaikkariye-MassTamilan.so.jpg"
@@ -35720,9 +35720,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4002,
-    "title": "In The Pub so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "In The Pub",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 110,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/In-The-Pub-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/In-The-Pub-MassTamilan.so.jpg"
@@ -35765,18 +35765,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4007,
-    "title": "Inneram Indha Neram so",
-    "artist": "Vijai Bulganin, Adithya RK so",
-    "album": "Inneram Indha Neram (Indie) so",
+    "title": "Inneram Indha Neram",
+    "artist": "Vijai Bulganin, Adithya RK",
+    "album": "Inneram Indha Neram (Indie)",
     "duration": 325,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Inneram-Indha-Neram-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Inneram-Indha-Neram-MassTamilan.so.jpg"
   },
   {
     "id": 4008,
-    "title": "Investigation so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Investigation",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 55,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Investigation-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Investigation-MassTamilan.so.jpg"
@@ -35810,9 +35810,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4012,
-    "title": "It's my Kinda Day so",
-    "artist": "Nivas K Prasanna, Ajeesh Sivakumar so",
-    "album": "Oh My Dog so",
+    "title": "It's my Kinda Day",
+    "artist": "Nivas K Prasanna, Ajeesh Sivakumar",
+    "album": "Oh My Dog",
     "duration": 286,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/It's-my-Kinda-Day-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/It's-my-Kinda-Day-MassTamilan.so.jpg"
@@ -35864,9 +35864,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4018,
-    "title": "Jolly O Gymkhana so",
-    "artist": "Vijay, Anirudh Ravichander so",
-    "album": "Beast so",
+    "title": "Jolly O Gymkhana",
+    "artist": "Vijay, Anirudh Ravichander",
+    "album": "Beast",
     "duration": 208,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Jolly-O-Gymkhana-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Jolly-O-Gymkhana-MassTamilan.so.jpg"
@@ -35936,9 +35936,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4026,
-    "title": "Kaanaadha Deepam so",
-    "artist": "Arjun Muralidharan, Sindoori Vishal, Padmalatha so",
-    "album": "Visithiran so",
+    "title": "Kaanaadha Deepam",
+    "artist": "Arjun Muralidharan, Sindoori Vishal, Padmalatha",
+    "album": "Visithiran",
     "duration": 258,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kaanaadha-Deepam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kaanaadha-Deepam-MassTamilan.so.jpg"
@@ -35963,9 +35963,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4029,
-    "title": "Kaathu Vaakula Rendu so",
-    "artist": "Anirudh Ravichander, Santhosh Narayanan so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Kaathu Vaakula Rendu",
+    "artist": "Anirudh Ravichander, Santhosh Narayanan",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 235,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kaathu-Vaakula-Rendu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kaathu-Vaakula-Rendu-MassTamilan.so.jpg"
@@ -35990,9 +35990,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4032,
-    "title": "Kaatrile Yeri Vaa so",
-    "artist": "Rahul Nambiar so",
-    "album": "Clap so",
+    "title": "Kaatrile Yeri Vaa",
+    "artist": "Rahul Nambiar",
+    "album": "Clap",
     "duration": 212,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kaatrile-Yeri-Vaa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kaatrile-Yeri-Vaa-MassTamilan.so.jpg"
@@ -36053,9 +36053,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4039,
-    "title": "Kadhale so",
-    "artist": "Sathyaprakash D, Soobie so",
-    "album": "Ranga so",
+    "title": "Kadhale",
+    "artist": "Sathyaprakash D, Soobie",
+    "album": "Ranga",
     "duration": 264,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kadhale-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kadhale-MassTamilan.so.jpg"
@@ -36161,9 +36161,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4051,
-    "title": "Kannaatti so",
-    "artist": "Anand Aravindakshan so",
-    "album": "Nooru Kodi Vaanavil so",
+    "title": "Kannaatti",
+    "artist": "Anand Aravindakshan",
+    "album": "Nooru Kodi Vaanavil",
     "duration": 201,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kannaatti-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kannaatti-MassTamilan.so.jpg"
@@ -36188,18 +36188,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4054,
-    "title": "Kanne Kanmaniyae so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Kanne Kanmaniyae",
+    "artist": "Anirudh Ravichander",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 130,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kanne-Kanmaniyae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kanne-Kanmaniyae-MassTamilan.so.jpg"
   },
   {
     "id": 4055,
-    "title": "Kanne Kanne so",
-    "artist": "Roshan Sebastian so",
-    "album": "Visithiran so",
+    "title": "Kanne Kanne",
+    "artist": "Roshan Sebastian",
+    "album": "Visithiran",
     "duration": 345,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kanne-Kanne-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kanne-Kanne-MassTamilan.so.jpg"
@@ -36287,27 +36287,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4065,
-    "title": "Katheri Poovasam so",
-    "artist": "Dhibu Ninan Thomas, Sinduri Vishal, Deepthi Suresh, Soundarya Nandakumar, Bhargavi Sridhar, Aravind Srinivas, Saisharan, Shenbagaraj, Santosh Hariharan so",
-    "album": "Nadhi so",
+    "title": "Katheri Poovasam",
+    "artist": "Dhibu Ninan Thomas, Sinduri Vishal, Deepthi Suresh, Soundarya Nandakumar, Bhargavi Sridhar, Aravind Srinivas, Saisharan, Shenbagaraj, Santosh Hariharan",
+    "album": "Nadhi",
     "duration": 202,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Katheri-Poovasam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Katheri-Poovasam-MassTamilan.so.jpg"
   },
   {
     "id": 4066,
-    "title": "Kattikoda so",
-    "artist": "Shweta Mohan so",
-    "album": "Taanakkaran so",
+    "title": "Kattikoda",
+    "artist": "Shweta Mohan",
+    "album": "Taanakkaran",
     "duration": 197,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kattikoda-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kattikoda-MassTamilan.so.jpg"
   },
   {
     "id": 4067,
-    "title": "Keetraadum Vaaanam so",
-    "artist": "Prashant Pillai, Sreekanth Hariharan so",
-    "album": "Kathir so",
+    "title": "Keetraadum Vaaanam",
+    "artist": "Prashant Pillai, Sreekanth Hariharan",
+    "album": "Kathir",
     "duration": 247,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Keetraadum-Vaaanam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Keetraadum-Vaaanam-MassTamilan.so.jpg"
@@ -36359,27 +36359,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4073,
-    "title": "Koelae so",
-    "artist": "Vishal Mishra, Benny Dayal, Sahithi Chaganti, Harika Narayan so",
-    "album": "RRR so",
+    "title": "Koelae",
+    "artist": "Vishal Mishra, Benny Dayal, Sahithi Chaganti, Harika Narayan",
+    "album": "RRR",
     "duration": 256,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Koelae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Koelae-MassTamilan.so.jpg"
   },
   {
     "id": 4074,
-    "title": "Kombaa Un Kaadaa so",
-    "artist": "Prakruthi Reddy so",
-    "album": "RRR so",
+    "title": "Kombaa Un Kaadaa",
+    "artist": "Prakruthi Reddy",
+    "album": "RRR",
     "duration": 284,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Kombaa-Un-Kaadaa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Kombaa-Un-Kaadaa-MassTamilan.so.jpg"
   },
   {
     "id": 4075,
-    "title": "Komuram Beemano so",
-    "artist": "Kaala Bhairava so",
-    "album": "RRR so",
+    "title": "Komuram Beemano",
+    "artist": "Kaala Bhairava",
+    "album": "RRR",
     "duration": 254,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Komuram-Beemano-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Komuram-Beemano-MassTamilan.so.jpg"
@@ -36404,9 +36404,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4078,
-    "title": "Konjam Chellama so",
-    "artist": "Shaan so",
-    "album": "Clap so",
+    "title": "Konjam Chellama",
+    "artist": "Shaan",
+    "album": "Clap",
     "duration": 202,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Konjam-Chellama-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Konjam-Chellama-MassTamilan.so.jpg"
@@ -36431,9 +36431,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4081,
-    "title": "Krishna Krishna so",
-    "artist": "Sathya Yamini so",
-    "album": "Radhe Shyam so",
+    "title": "Krishna Krishna",
+    "artist": "Sathya Yamini",
+    "album": "Radhe Shyam",
     "duration": 107,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Krishna-Krishna-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Krishna-Krishna-MassTamilan.so.jpg"
@@ -36494,9 +36494,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4088,
-    "title": "Lady Love so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Lady Love",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 61,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Lady-Love-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Lady-Love-MassTamilan.so.jpg"
@@ -36575,27 +36575,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4097,
-    "title": "Maanguyelum Kizhiyum so",
-    "artist": "Ilaiyaraaja, Vibhavari, Aishwarya so",
-    "album": "Akka Kuruvi so",
+    "title": "Maanguyelum Kizhiyum",
+    "artist": "Ilaiyaraaja, Vibhavari, Aishwarya",
+    "album": "Akka Kuruvi",
     "duration": 248,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Maanguyelum-Kizhiyum-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Maanguyelum-Kizhiyum-MassTamilan.so.jpg"
   },
   {
     "id": 4098,
-    "title": "Maaraadhe Maaraadhe so",
-    "artist": "Ajesh so",
-    "album": "No Entry so",
+    "title": "Maaraadhe Maaraadhe",
+    "artist": "Ajesh",
+    "album": "No Entry",
     "duration": 248,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Maaraadhe-Maaraadhe-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Maaraadhe-Maaraadhe-MassTamilan.so.jpg"
   },
   {
     "id": 4099,
-    "title": "Maaran Theme so",
-    "artist": "G V Prakash Kumar so",
-    "album": "Maaran so",
+    "title": "Maaran Theme",
+    "artist": "G V Prakash Kumar",
+    "album": "Maaran",
     "duration": 88,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/songs/Maaran-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_24@main/covers/Maaran-Theme-MassTamilan.so.jpg"
@@ -36674,9 +36674,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4108,
-    "title": "Madichu Vecha Vethala so",
-    "artist": "Santhosh Narayanan, Anthakudi Ilayaraja so",
-    "album": "Buffoon so",
+    "title": "Madichu Vecha Vethala",
+    "artist": "Santhosh Narayanan, Anthakudi Ilayaraja",
+    "album": "Buffoon",
     "duration": 214,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Madichu-Vecha-Vethala-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Madichu-Vecha-Vethala-MassTamilan.so.jpg"
@@ -36737,9 +36737,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4116,
-    "title": "Manadhai En Moodinaai so",
-    "artist": "Ilaiyaraaja so",
-    "album": "Clap so",
+    "title": "Manadhai En Moodinaai",
+    "artist": "Ilaiyaraaja",
+    "album": "Clap",
     "duration": 299,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Manadhai-En-Moodinaai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Manadhai-En-Moodinaai-MassTamilan.so.jpg"
@@ -36827,9 +36827,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4126,
-    "title": "Mathapoo so",
-    "artist": "Mahalingam, Pooja Vaidyanath so",
-    "album": "Ranga so",
+    "title": "Mathapoo",
+    "artist": "Mahalingam, Pooja Vaidyanath",
+    "album": "Ranga",
     "duration": 265,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Mathapoo-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Mathapoo-MassTamilan.so.jpg"
@@ -36908,9 +36908,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4135,
-    "title": "Mehabooba so",
-    "artist": "Ananya Bhat so",
-    "album": "KGF Chapter 2 so",
+    "title": "Mehabooba",
+    "artist": "Ananya Bhat",
+    "album": "KGF Chapter 2",
     "duration": 212,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Mehabooba-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Mehabooba-MassTamilan.so.jpg"
@@ -36926,9 +36926,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4137,
-    "title": "Menmayaay so",
-    "artist": "Haricharan, Chinmayi Sripada, Shankar Ehsaan Loy, Madhan Karky so",
-    "album": "Prithviraj so",
+    "title": "Menmayaay",
+    "artist": "Haricharan, Chinmayi Sripada, Shankar Ehsaan Loy, Madhan Karky",
+    "album": "Prithviraj",
     "duration": 245,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Menmayaay-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Menmayaay-MassTamilan.so.jpg"
@@ -36953,9 +36953,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4140,
-    "title": "Mica Buddys so",
-    "artist": "Bobo Sasii so",
-    "album": "Hostel so",
+    "title": "Mica Buddys",
+    "artist": "Bobo Sasii",
+    "album": "Hostel",
     "duration": 234,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Mica-Buddys-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Mica-Buddys-MassTamilan.so.jpg"
@@ -37016,9 +37016,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4147,
-    "title": "Moopilla Thamizhe Thaaye so",
-    "artist": "A R Rahman so",
-    "album": "Moopilla Thamizhe Thaaye (Indie) so",
+    "title": "Moopilla Thamizhe Thaaye",
+    "artist": "A R Rahman",
+    "album": "Moopilla Thamizhe Thaaye (Indie)",
     "duration": 442,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Moopilla-Thamizhe-Thaaye-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Moopilla-Thamizhe-Thaaye-MassTamilan.so.jpg"
@@ -37061,9 +37061,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4152,
-    "title": "Munnae Po so",
-    "artist": "Anitha K, Dhivya S, Kavitha I, AS Namratha, C Sowmiya, Devu Treesa Mathew, Rasika V, Vaishnavi so",
-    "album": "Akka Kuruvi so",
+    "title": "Munnae Po",
+    "artist": "Anitha K, Dhivya S, Kavitha I, AS Namratha, C Sowmiya, Devu Treesa Mathew, Rasika V, Vaishnavi",
+    "album": "Akka Kuruvi",
     "duration": 229,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Munnae-Po-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Munnae-Po-MassTamilan.so.jpg"
@@ -37133,18 +37133,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4160,
-    "title": "Naan Pizhai so",
-    "artist": "Anirudh Ravichander, Ravi G, Shashaa Tirupati so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Naan Pizhai",
+    "artist": "Anirudh Ravichander, Ravi G, Shashaa Tirupati",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 243,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Naan-Pizhai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Naan-Pizhai-MassTamilan.so.jpg"
   },
   {
     "id": 4161,
-    "title": "Naan Pookalaalae Unnai so",
-    "artist": "Prashant Pillai, Preeti Pillai so",
-    "album": "Kathir so",
+    "title": "Naan Pookalaalae Unnai",
+    "artist": "Prashant Pillai, Preeti Pillai",
+    "album": "Kathir",
     "duration": 151,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Naan-Pookalaalae-Unnai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Naan-Pookalaalae-Unnai-MassTamilan.so.jpg"
@@ -37160,9 +37160,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4163,
-    "title": "Naandhaana Naan Needhaana so",
-    "artist": "Prashant Pillai, Gowtham Bharadwaj, Keerthana Vaidyanathan so",
-    "album": "Kathir so",
+    "title": "Naandhaana Naan Needhaana",
+    "artist": "Prashant Pillai, Gowtham Bharadwaj, Keerthana Vaidyanathan",
+    "album": "Kathir",
     "duration": 301,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Naandhaana-Naan-Needhaana-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Naandhaana-Naan-Needhaana-MassTamilan.so.jpg"
@@ -37178,18 +37178,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4165,
-    "title": "Naattu Koothu so",
-    "artist": "Rahul Sipligunj, Yazin Nizar so",
-    "album": "RRR so",
+    "title": "Naattu Koothu",
+    "artist": "Rahul Sipligunj, Yazin Nizar",
+    "album": "RRR",
     "duration": 214,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Naattu-Koothu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Naattu-Koothu-MassTamilan.so.jpg"
   },
   {
     "id": 4166,
-    "title": "Nada Podu Nanba so",
-    "artist": "Prashant Pillai, Gowtham Bharadwaj, Sreerag Saji so",
-    "album": "Kathir so",
+    "title": "Nada Podu Nanba",
+    "artist": "Prashant Pillai, Gowtham Bharadwaj, Sreerag Saji",
+    "album": "Kathir",
     "duration": 162,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Nada-Podu-Nanba-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Nada-Podu-Nanba-MassTamilan.so.jpg"
@@ -37232,9 +37232,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4171,
-    "title": "Natpu so",
-    "artist": "Anirudh Ravichander so",
-    "album": "RRR so",
+    "title": "Natpu",
+    "artist": "Anirudh Ravichander",
+    "album": "RRR",
     "duration": 340,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Natpu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Natpu-MassTamilan.so.jpg"
@@ -37394,9 +37394,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4189,
-    "title": "Nigazhe Sadhaa so",
-    "artist": "Prashant Pillai, Sreekanth Hariharan, Preeti Pillai so",
-    "album": "Kathir so",
+    "title": "Nigazhe Sadhaa",
+    "artist": "Prashant Pillai, Sreekanth Hariharan, Preeti Pillai",
+    "album": "Kathir",
     "duration": 251,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Nigazhe-Sadhaa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Nigazhe-Sadhaa-MassTamilan.so.jpg"
@@ -37466,27 +37466,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4197,
-    "title": "Oh Reba so",
-    "artist": "Ajesh, Benny Dayal, Jonita Gandhi so",
-    "album": "No Entry so",
+    "title": "Oh Reba",
+    "artist": "Ajesh, Benny Dayal, Jonita Gandhi",
+    "album": "No Entry",
     "duration": 216,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Oh-Reba-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Oh-Reba-MassTamilan.so.jpg"
   },
   {
     "id": 4198,
-    "title": "Once Upon a Time so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Vikram so",
+    "title": "Once Upon a Time",
+    "artist": "Anirudh Ravichander",
+    "album": "Vikram",
     "duration": 143,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Once-Upon-a-Time-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Once-Upon-a-Time-MassTamilan.so.jpg"
   },
   {
     "id": 4199,
-    "title": "Ooduthe Ovvovuru Naalum so",
-    "artist": "Harihara Sudhan so",
-    "album": "Visithiran so",
+    "title": "Ooduthe Ovvovuru Naalum",
+    "artist": "Harihara Sudhan",
+    "album": "Visithiran",
     "duration": 180,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Ooduthe-Ovvovuru-Naalum-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Ooduthe-Ovvovuru-Naalum-MassTamilan.so.jpg"
@@ -37511,9 +37511,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4202,
-    "title": "Oorkaran so",
-    "artist": "G V Prakash Kumar, Arivu so",
-    "album": "Selfie so",
+    "title": "Oorkaran",
+    "artist": "G V Prakash Kumar, Arivu",
+    "album": "Selfie",
     "duration": 212,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Oorkaran-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Oorkaran-MassTamilan.so.jpg"
@@ -37538,18 +37538,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4205,
-    "title": "Oorukulla Pudusa so",
-    "artist": "Hiphop Tamizha, Rising Rapper, Shabir so",
-    "album": "Aalambana so",
+    "title": "Oorukulla Pudusa",
+    "artist": "Hiphop Tamizha, Rising Rapper, Shabir",
+    "album": "Aalambana",
     "duration": 184,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Oorukulla-Pudusa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Oorukulla-Pudusa-MassTamilan.so.jpg"
   },
   {
     "id": 4206,
-    "title": "Opening Song Ithu so",
-    "artist": "Hiphop Tamizha, Ajay Krishnaa, Kabilan Vairamuthu so",
-    "album": "Aalambana so",
+    "title": "Opening Song Ithu",
+    "artist": "Hiphop Tamizha, Ajay Krishnaa, Kabilan Vairamuthu",
+    "album": "Aalambana",
     "duration": 235,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Opening-Song-Ithu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Opening-Song-Ithu-MassTamilan.so.jpg"
@@ -37646,9 +37646,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4217,
-    "title": "Pa Pa Pa so",
-    "artist": "Prashant Pillai, Pushpavanam Kuppusamy so",
-    "album": "Kathir so",
+    "title": "Pa Pa Pa",
+    "artist": "Prashant Pillai, Pushpavanam Kuppusamy",
+    "album": "Kathir",
     "duration": 295,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Pa-Pa-Pa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Pa-Pa-Pa-MassTamilan.so.jpg"
@@ -37727,9 +37727,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4226,
-    "title": "Padippu Thevaillai so",
-    "artist": "G V Prakash Kumar, Arunraja Kamaraj, Arivu, Robert Sargunam so",
-    "album": "Selfie so",
+    "title": "Padippu Thevaillai",
+    "artist": "G V Prakash Kumar, Arunraja Kamaraj, Arivu, Robert Sargunam",
+    "album": "Selfie",
     "duration": 151,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Padippu-Thevaillai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Padippu-Thevaillai-MassTamilan.so.jpg"
@@ -37772,9 +37772,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4231,
-    "title": "Pannapurathu so",
-    "artist": "Ilaiyaraaja, Yuvan Shankar Raja, Raja Bhavatharini, Sriram Parthasarathy so",
-    "album": "Maamanithan so",
+    "title": "Pannapurathu",
+    "artist": "Ilaiyaraaja, Yuvan Shankar Raja, Raja Bhavatharini, Sriram Parthasarathy",
+    "album": "Maamanithan",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Pannapurathu-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Pannapurathu-MassTamilan.so.jpg"
@@ -37799,9 +37799,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4234,
-    "title": "Parai so",
-    "artist": "Sean Roldan, Roja Adithya so",
-    "album": "Parai (Indie) so",
+    "title": "Parai",
+    "artist": "Sean Roldan, Roja Adithya",
+    "album": "Parai (Indie)",
     "duration": 216,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Parai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Parai-MassTamilan.so.jpg"
@@ -37835,18 +37835,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4238,
-    "title": "Pathala Pathala so",
-    "artist": "Anirudh Ravichander, Kamal Haasan so",
-    "album": "Vikram so",
+    "title": "Pathala Pathala",
+    "artist": "Anirudh Ravichander, Kamal Haasan",
+    "album": "Vikram",
     "duration": 211,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Pathala-Pathala-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Pathala-Pathala-MassTamilan.so.jpg"
   },
   {
     "id": 4239,
-    "title": "Pathu Rooba so",
-    "artist": "Srinisha Jayaseelan so",
-    "album": "Clap so",
+    "title": "Pathu Rooba",
+    "artist": "Srinisha Jayaseelan",
+    "album": "Clap",
     "duration": 237,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Pathu-Rooba-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Pathu-Rooba-MassTamilan.so.jpg"
@@ -37934,18 +37934,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4249,
-    "title": "Pogadhey so",
-    "artist": "Dhibu Ninan Thomas, Anila Rajeev so",
-    "album": "Nadhi so",
+    "title": "Pogadhey",
+    "artist": "Dhibu Ninan Thomas, Anila Rajeev",
+    "album": "Nadhi",
     "duration": 241,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Pogadhey-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Pogadhey-MassTamilan.so.jpg"
   },
   {
     "id": 4250,
-    "title": "Polladha Ulagam so",
-    "artist": "Dhanush, Arivu so",
-    "album": "Maaran so",
+    "title": "Polladha Ulagam",
+    "artist": "Dhanush, Arivu",
+    "album": "Maaran",
     "duration": 235,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/songs/Polladha-Ulagam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_25@main/covers/Polladha-Ulagam-MassTamilan.so.jpg"
@@ -37961,18 +37961,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4252,
-    "title": "Pooja Hegde Announcement Theme so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Beast so",
+    "title": "Pooja Hegde Announcement Theme",
+    "artist": "Anirudh Ravichander",
+    "album": "Beast",
     "duration": 56,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Pooja-Hegde-Announcement-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Pooja-Hegde-Announcement-Theme-MassTamilan.so.jpg"
   },
   {
     "id": 4253,
-    "title": "Poombarai Vazhbavane so",
-    "artist": "Mukesh, Mahalingam V M, Velmurugan, Sellanguppan MU Subramany, Anitha K, Chinnaponnu, Magizhini Manimaaran, A Dhanalakshmi so",
-    "album": "Akka Kuruvi so",
+    "title": "Poombarai Vazhbavane",
+    "artist": "Mukesh, Mahalingam V M, Velmurugan, Sellanguppan MU Subramany, Anitha K, Chinnaponnu, Magizhini Manimaaran, A Dhanalakshmi",
+    "album": "Akka Kuruvi",
     "duration": 257,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Poombarai-Vazhbavane-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Poombarai-Vazhbavane-MassTamilan.so.jpg"
@@ -38024,9 +38024,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4259,
-    "title": "Porkanda Singam so",
-    "artist": "Anirudh Ravichander, Ravi G so",
-    "album": "Vikram so",
+    "title": "Porkanda Singam",
+    "artist": "Anirudh Ravichander, Ravi G",
+    "album": "Vikram",
     "duration": 198,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Porkanda-Singam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Porkanda-Singam-MassTamilan.so.jpg"
@@ -38051,9 +38051,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4262,
-    "title": "Prithviraj Theme so",
-    "artist": "Sanchit Balhara, Ankit Balhara so",
-    "album": "Prithviraj so",
+    "title": "Prithviraj Theme",
+    "artist": "Sanchit Balhara, Ankit Balhara",
+    "album": "Prithviraj",
     "duration": 106,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Prithviraj-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Prithviraj-Theme-MassTamilan.so.jpg"
@@ -38105,9 +38105,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4268,
-    "title": "Raamam Raaghavam so",
-    "artist": "Vijay Prakash, Chandana Bala Kalyan, Charu Hariharan so",
-    "album": "RRR so",
+    "title": "Raamam Raaghavam",
+    "artist": "Vijay Prakash, Chandana Bala Kalyan, Charu Hariharan",
+    "album": "RRR",
     "duration": 231,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Raamam-Raaghavam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Raamam-Raaghavam-MassTamilan.so.jpg"
@@ -38132,9 +38132,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4271,
-    "title": "Raegaigal so",
-    "artist": "Sathyaprakash D so",
-    "album": "Radhe Shyam so",
+    "title": "Raegaigal",
+    "artist": "Sathyaprakash D",
+    "album": "Radhe Shyam",
     "duration": 268,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Raegaigal-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Raegaigal-MassTamilan.so.jpg"
@@ -38168,9 +38168,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4275,
-    "title": "Ranga Hand Theme so",
-    "artist": "Ramjeevan so",
-    "album": "Ranga so",
+    "title": "Ranga Hand Theme",
+    "artist": "Ramjeevan",
+    "album": "Ranga",
     "duration": 41,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Ranga---Hand-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Ranga---Hand-Theme-MassTamilan.so.jpg"
@@ -38231,9 +38231,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4282,
-    "title": "Rendu Kaadhal so",
-    "artist": "Anirudh Ravichander, Shakthisree Gopalan, Aishwarya Suresh Bindra so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Rendu Kaadhal",
+    "artist": "Anirudh Ravichander, Shakthisree Gopalan, Aishwarya Suresh Bindra",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 260,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Rendu-Kaadhal-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Rendu-Kaadhal-MassTamilan.so.jpg"
@@ -38267,9 +38267,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4286,
-    "title": "Rock N Roll Rasaathi so",
-    "artist": "Benny Dayal, Joewin Shamalina so",
-    "album": "Yutha Satham so",
+    "title": "Rock N Roll Rasaathi",
+    "artist": "Benny Dayal, Joewin Shamalina",
+    "album": "Yutha Satham",
     "duration": 241,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Rock-N-Roll-Rasaathi-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Rock-N-Roll-Rasaathi-MassTamilan.so.jpg"
@@ -38429,9 +38429,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4304,
-    "title": "Sanyogita’s Theme so",
-    "artist": "Sanchit Balhara, Ankit Balhara so",
-    "album": "Prithviraj so",
+    "title": "Sanyogita’s Theme",
+    "artist": "Sanchit Balhara, Ankit Balhara",
+    "album": "Prithviraj",
     "duration": 119,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Sanyogita%E2%80%99s-Theme-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Sanyogita%E2%80%99s-Theme-MassTamilan.so.jpg"
@@ -38465,9 +38465,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4308,
-    "title": "Sei Un Angelo so",
-    "artist": "Justin Prabhakaran so",
-    "album": "Radhe Shyam so",
+    "title": "Sei Un Angelo",
+    "artist": "Justin Prabhakaran",
+    "album": "Radhe Shyam",
     "duration": 54,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Sei-Un-Angelo-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Sei-Un-Angelo-MassTamilan.so.jpg"
@@ -38654,9 +38654,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4329,
-    "title": "Soorathenga so",
-    "artist": "Gold Devaraj so",
-    "album": "Koogle Kuttappa so",
+    "title": "Soorathenga",
+    "artist": "Gold Devaraj",
+    "album": "Koogle Kuttappa",
     "duration": 257,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Soorathenga-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Soorathenga-MassTamilan.so.jpg"
@@ -38690,18 +38690,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4333,
-    "title": "Sulthana so",
-    "artist": "Deepak Blue, Govind Prasad, Yogisekar, Mohan Krishna, Santhosh, Sachin Basrur, Ravi Basrur, Puneeth Rudranag, Manish Dinakar, VAISH so",
-    "album": "KGF Chapter 2 so",
+    "title": "Sulthana",
+    "artist": "Deepak Blue, Govind Prasad, Yogisekar, Mohan Krishna, Santhosh, Sachin Basrur, Ravi Basrur, Puneeth Rudranag, Manish Dinakar, VAISH",
+    "album": "KGF Chapter 2",
     "duration": 225,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Sulthana-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Sulthana-MassTamilan.so.jpg"
   },
   {
     "id": 4334,
-    "title": "Sundhara Vadhana so",
-    "artist": "Aishwarya Ravichandran so",
-    "album": "Radhe Shyam so",
+    "title": "Sundhara Vadhana",
+    "artist": "Aishwarya Ravichandran",
+    "album": "Radhe Shyam",
     "duration": 73,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Sundhara-Vadhana-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Sundhara-Vadhana-MassTamilan.so.jpg"
@@ -38726,9 +38726,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4337,
-    "title": "Takku Mukku Tikku Thalam Title Track so",
-    "artist": "Dharan Kumar, Deva so",
-    "album": "Takku Mukku Tikku Thalam so",
+    "title": "Takku Mukku Tikku Thalam Title Track",
+    "artist": "Dharan Kumar, Deva",
+    "album": "Takku Mukku Tikku Thalam",
     "duration": 202,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Takku-Mukku-Tikku-Thalam-Title-Track-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Takku-Mukku-Tikku-Thalam-Title-Track-MassTamilan.so.jpg"
@@ -38843,9 +38843,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4350,
-    "title": "Thailaanguyil so",
-    "artist": "Sid Sriram so",
-    "album": "Yutha Satham so",
+    "title": "Thailaanguyil",
+    "artist": "Sid Sriram",
+    "album": "Yutha Satham",
     "duration": 246,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Thailaanguyil-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Thailaanguyil-MassTamilan.so.jpg"
@@ -38969,9 +38969,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4364,
-    "title": "Thattiputta so",
-    "artist": "Ilaiyaraaja, Yuvan Shankar Raja so",
-    "album": "Maamanithan so",
+    "title": "Thattiputta",
+    "artist": "Ilaiyaraaja, Yuvan Shankar Raja",
+    "album": "Maamanithan",
     "duration": 208,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Thattiputta-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Thattiputta-MassTamilan.so.jpg"
@@ -39113,9 +39113,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4380,
-    "title": "The Monster Song so",
-    "artist": "Adithi Sagar so",
-    "album": "KGF Chapter 2 so",
+    "title": "The Monster Song",
+    "artist": "Adithi Sagar",
+    "album": "KGF Chapter 2",
     "duration": 166,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/The-Monster-Song-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/The-Monster-Song-MassTamilan.so.jpg"
@@ -39194,18 +39194,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4390,
-    "title": "Theera Nadhi so",
-    "artist": "Dhibu Ninan Thomas, Kapil Kapilan, Srinisha Jayaseelan so",
-    "album": "Nadhi so",
+    "title": "Theera Nadhi",
+    "artist": "Dhibu Ninan Thomas, Kapil Kapilan, Srinisha Jayaseelan",
+    "album": "Nadhi",
     "duration": 260,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Theera-Nadhi-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Theera-Nadhi-MassTamilan.so.jpg"
   },
   {
     "id": 4391,
-    "title": "Theeraamal so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Ranga so",
+    "title": "Theeraamal",
+    "artist": "Anirudh Ravichander",
+    "album": "Ranga",
     "duration": 238,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Theeraamal-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Theeraamal-MassTamilan.so.jpg"
@@ -39248,18 +39248,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4396,
-    "title": "Thimo Thimo Thima so",
-    "artist": "Narayanan Ravishankar, Jithin Raj so",
-    "album": "Yutha Satham so",
+    "title": "Thimo Thimo Thima",
+    "artist": "Narayanan Ravishankar, Jithin Raj",
+    "album": "Yutha Satham",
     "duration": 181,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Thimo-Thimo-Thima-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Thimo-Thimo-Thima-MassTamilan.so.jpg"
   },
   {
     "id": 4397,
-    "title": "Thiraiyoadu Thoorigai so",
-    "artist": "Sid Sriram so",
-    "album": "Radhe Shyam so",
+    "title": "Thiraiyoadu Thoorigai",
+    "artist": "Sid Sriram",
+    "album": "Radhe Shyam",
     "duration": 294,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Thiraiyoadu-Thoorigai-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Thiraiyoadu-Thoorigai-MassTamilan.so.jpg"
@@ -39302,9 +39302,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4402,
-    "title": "Thudithezhu Thozha so",
-    "artist": "Shenbagaraj, Aravind Srinivas, Narayanan, Sarath Santosh so",
-    "album": "Taanakkaran so",
+    "title": "Thudithezhu Thozha",
+    "artist": "Shenbagaraj, Aravind Srinivas, Narayanan, Sarath Santosh",
+    "album": "Taanakkaran",
     "duration": 228,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Thudithezhu-Thozha-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Thudithezhu-Thozha-MassTamilan.so.jpg"
@@ -39338,18 +39338,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4406,
-    "title": "Toofan so",
-    "artist": "Deepak Blue, Govind Prasad, Yogisekar, Mohan Krishna, Santhosh, Sachin Basrur, Ravi Basrur, Puneeth Rudranag, VAISH so",
-    "album": "KGF Chapter 2 so",
+    "title": "Toofan",
+    "artist": "Deepak Blue, Govind Prasad, Yogisekar, Mohan Krishna, Santhosh, Sachin Basrur, Ravi Basrur, Puneeth Rudranag, VAISH",
+    "album": "KGF Chapter 2",
     "duration": 214,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Toofan-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Toofan-MassTamilan.so.jpg"
   },
   {
     "id": 4407,
-    "title": "Two Two Two so",
-    "artist": "Anirudh Ravichander, Sunidhi Chauhan, Sanjana Kalmanje so",
-    "album": "Kaathuvaakula Rendu Kaadhal so",
+    "title": "Two Two Two",
+    "artist": "Anirudh Ravichander, Sunidhi Chauhan, Sanjana Kalmanje",
+    "album": "Kaathuvaakula Rendu Kaadhal",
     "duration": 176,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Two-Two-Two-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Two-Two-Two-MassTamilan.so.jpg"
@@ -39365,9 +39365,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4409,
-    "title": "Un Kangal so",
-    "artist": "Vijay Prakash, Shashaa Tirupati so",
-    "album": "Ranga so",
+    "title": "Un Kangal",
+    "artist": "Vijay Prakash, Shashaa Tirupati",
+    "album": "Ranga",
     "duration": 259,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Un-Kangal-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Un-Kangal-MassTamilan.so.jpg"
@@ -39401,9 +39401,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4413,
-    "title": "Undhan Padai Anbae so",
-    "artist": "Sunidhi Chauhan, Shankar Ehsaan Loy, Madhan Karky so",
-    "album": "Prithviraj so",
+    "title": "Undhan Padai Anbae",
+    "artist": "Sunidhi Chauhan, Shankar Ehsaan Loy, Madhan Karky",
+    "album": "Prithviraj",
     "duration": 243,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/songs/Undhan-Padai-Anbae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_26@main/covers/Undhan-Padai-Anbae-MassTamilan.so.jpg"
@@ -39437,18 +39437,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4417,
-    "title": "Unnaalae so",
-    "artist": "Anurag Kulkarni, Shreya Ghoshal so",
-    "album": "Radhe Shyam so",
+    "title": "Unnaalae",
+    "artist": "Anurag Kulkarni, Shreya Ghoshal",
+    "album": "Radhe Shyam",
     "duration": 240,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Unnaalae-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Unnaalae-MassTamilan.so.jpg"
   },
   {
     "id": 4418,
-    "title": "Unnai Keta so",
-    "artist": "Karthik so",
-    "album": "Clap so",
+    "title": "Unnai Keta",
+    "artist": "Karthik",
+    "album": "Clap",
     "duration": 300,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Unnai-Keta-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Unnai-Keta-MassTamilan.so.jpg"
@@ -39509,18 +39509,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4425,
-    "title": "Uyire so",
-    "artist": "Maragathamani so",
-    "album": "RRR so",
+    "title": "Uyire",
+    "artist": "Maragathamani",
+    "album": "RRR",
     "duration": 188,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Uyire-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Uyire-MassTamilan.so.jpg"
   },
   {
     "id": 4426,
-    "title": "Uzhudha Puzhuthila so",
-    "artist": "Prashant Pillai, Dinesh M so",
-    "album": "Kathir so",
+    "title": "Uzhudha Puzhuthila",
+    "artist": "Prashant Pillai, Dinesh M",
+    "album": "Kathir",
     "duration": 104,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Uzhudha-Puzhuthila-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Uzhudha-Puzhuthila-MassTamilan.so.jpg"
@@ -39536,9 +39536,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4428,
-    "title": "Va Kanakku so",
-    "artist": "Ajay Krishnaa, Swagatha S Krishnan so",
-    "album": "Manmatha Leelai so",
+    "title": "Va Kanakku",
+    "artist": "Ajay Krishnaa, Swagatha S Krishnan",
+    "album": "Manmatha Leelai",
     "duration": 235,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Va-Kanakku-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Va-Kanakku-MassTamilan.so.jpg"
@@ -39752,9 +39752,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4452,
-    "title": "Victim so",
-    "artist": "D Imman so",
-    "album": "Yutha Satham so",
+    "title": "Victim",
+    "artist": "D Imman",
+    "album": "Yutha Satham",
     "duration": 94,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Victim-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Victim-MassTamilan.so.jpg"
@@ -39779,9 +39779,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4455,
-    "title": "Vikram Title Track so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Vikram so",
+    "title": "Vikram Title Track",
+    "artist": "Anirudh Ravichander",
+    "album": "Vikram",
     "duration": 218,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Vikram-Title-Track-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Vikram-Title-Track-MassTamilan.so.jpg"
@@ -39797,9 +39797,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4457,
-    "title": "Wasted so",
-    "artist": "Anirudh Ravichander so",
-    "album": "Vikram so",
+    "title": "Wasted",
+    "artist": "Anirudh Ravichander",
+    "album": "Vikram",
     "duration": 182,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Wasted-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Wasted-MassTamilan.so.jpg"
@@ -39860,9 +39860,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4464,
-    "title": "Yaar Rab Sufi so",
-    "artist": "Javed Ali so",
-    "album": "Ranga so",
+    "title": "Yaar Rab Sufi",
+    "artist": "Javed Ali",
+    "album": "Ranga",
     "duration": 257,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Yaar-Rab---Sufi-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Yaar-Rab---Sufi-MassTamilan.so.jpg"
@@ -39941,27 +39941,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4473,
-    "title": "Yaro Yaro so",
-    "artist": "Aravind Srinivas so",
-    "album": "Koogle Kuttappa so",
+    "title": "Yaro Yaro",
+    "artist": "Aravind Srinivas",
+    "album": "Koogle Kuttappa",
     "duration": 251,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Yaro-Yaro-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Yaro-Yaro-MassTamilan.so.jpg"
   },
   {
     "id": 4474,
-    "title": "Ye Rasa so",
-    "artist": "Yuvan Shankar Raja, Ilaiyaraaja so",
-    "album": "Maamanithan so",
+    "title": "Ye Rasa",
+    "artist": "Yuvan Shankar Raja, Ilaiyaraaja",
+    "album": "Maamanithan",
     "duration": 242,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Ye-Rasa-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Ye-Rasa-MassTamilan.so.jpg"
   },
   {
     "id": 4475,
-    "title": "Yedakoodam so",
-    "artist": "G V Prakash Kumar, Arivu so",
-    "album": "Selfie so",
+    "title": "Yedakoodam",
+    "artist": "G V Prakash Kumar, Arivu",
+    "album": "Selfie",
     "duration": 190,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Yedakoodam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Yedakoodam-MassTamilan.so.jpg"
@@ -40013,9 +40013,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4481,
-    "title": "Yen Monam so",
-    "artist": "G V Prakash Kumar, Kapil Kapilan so",
-    "album": "Selfie so",
+    "title": "Yen Monam",
+    "artist": "G V Prakash Kumar, Kapil Kapilan",
+    "album": "Selfie",
     "duration": 125,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Yen-Monam-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Yen-Monam-MassTamilan.so.jpg"
