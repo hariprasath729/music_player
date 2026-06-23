@@ -1,1 +1,0 @@
-- [x] Update backend/utils/sendEmail.js: normalize FRONTEND_URL to remove trailing slash before building contactLink (fixes double-slash in email links).
