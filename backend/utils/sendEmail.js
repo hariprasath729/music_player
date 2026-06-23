@@ -208,7 +208,8 @@ export const sendApprovedNotificationEmail = async (to, name) => {
 };
 
 export const sendRejectedNotificationEmail = async (to, name) => {
-  const appUrl = process.env.FRONTEND_URL || 'https://music-player-psi-sepia.vercel.app';
+  const rawAppUrl = process.env.FRONTEND_URL || 'https://music-player-psi-sepia.vercel.app';
+  const appUrl = rawAppUrl.replace(/\/$/, ''); // prevent double-slash in links
   const contactLink = `${appUrl}/?contact=true&email=${encodeURIComponent(to)}&name=${encodeURIComponent(name)}`;
   const html = `
 <!DOCTYPE html>
@@ -317,6 +318,76 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
     console.log('📧 ✅ Admin Message Email sent successfully:', info.messageId);
   } catch (err) {
     console.error('❌ Exception sending Admin Message email:', err);
+  }
+};
+
+export const sendSongRequestToAdminEmail = async (userEmail, userName, songs) => {
+  const songsArray = Array.isArray(songs)
+    ? songs
+    : String(songs || '')
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+
+  const songsListHtml = songsArray.length
+    ? `<ul style="margin:0; padding-left:18px; color:#fff; font-size:16px; line-height:1.6;">${songsArray
+        .map(s => `<li style="word-break: break-word;">${s}</li>`)
+        .join('')}</ul>`
+    : `<p style="margin:0; color:#fff; font-size:16px; word-break: break-word;">(No songs specified)</p>`;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { margin: 0; padding: 0; background-color: #0f0f0f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  table { border-collapse: collapse; }
+  img { border: 0; line-height: 100%; outline: none; text-decoration: none; }
+  .container { width: 100% !important; max-width: 420px; margin: 0 auto; }
+  @media screen and (max-width: 480px) {
+    .container { max-width: 100% !important; }
+    .content-pad { padding: 20px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#0f0f0f;">
+<table width="100%" bgcolor="#0f0f0f" cellpadding="0" cellspacing="0" border="0" style="width: 100%; background-color: #0f0f0f;">
+<tr>
+<td align="center" style="padding:40px 20px;">
+  <table class="container" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:420px; background:#1c1c1c; border-radius:12px; margin:0 auto;">
+  <tr>
+  <td class="content-pad" align="center" style="padding:30px; color:white;">
+    <img src="https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/logo.png" width="60" alt="Music Player" style="display:block; margin:0 auto;"/>
+    <h2 style="margin:15px 0 5px 0; font-size: 24px; text-align: center;">Music Player</h2>
+    <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px; text-align: center;">Requested Songs</p>
+    <div style="background:#0f0f0f; padding:20px; border-radius:8px; text-align: left;">
+      <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">From</p>
+      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${userName} (${userEmail})</p>
+      <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Requested</p>
+      ${songsListHtml}
+    </div>
+  </td>
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: SENDER_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `Song request from ${userName}`,
+      html
+    });
+    console.log('📧 ✅ Song Request Email sent successfully:', info.messageId);
+  } catch (err) {
+    console.error('❌ Exception sending Song Request email:', err);
   }
 };
 

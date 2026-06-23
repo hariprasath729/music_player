@@ -26,6 +26,7 @@ interface AuthContextType {
   magicLogin: (token: string) => Promise<void>;
 
   contactAdmin: (email: string, name: string, message: string) => Promise<void>;
+  requestSong: (songs: string[] | string) => Promise<void>;
   logout: () => void;
   clearError: () => void;
   isPendingApproval: boolean;
@@ -52,6 +53,7 @@ const AuthContext = createContext<AuthContextType>({
   verifyToken: async () => ({ valid: false }),
   magicLogin: async () => {},
   contactAdmin: async () => {},
+  requestSong: async () => {},
   logout: () => {},
   clearError: () => {},
   isPendingApproval: false,
@@ -303,6 +305,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
+  const requestSong = useCallback(async (songs: string[] | string) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const tokenLocal = localStorage.getItem(AUTH_TOKEN_KEY);
+      if (!tokenLocal) throw new Error('Not authenticated');
+
+      const res = await fetch(`${API_URL}/auth/request-song`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${tokenLocal}`,
+        },
+        body: JSON.stringify({ songs }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok && !json.success) throw new Error(json.error || json.message || 'Failed to send song request');
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       if (token) {
@@ -362,6 +391,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         verifyToken,
         magicLogin,
         contactAdmin,
+        requestSong,
         logout,
         clearError,
         isPendingApproval,

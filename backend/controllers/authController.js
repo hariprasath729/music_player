@@ -10,7 +10,8 @@ import {
   sendApprovedNotificationEmail,
   sendRejectedNotificationEmail,
   sendMessageToAdminEmail,
-  sendPasswordAccessEmail
+  sendPasswordAccessEmail,
+  sendSongRequestToAdminEmail
 } from '../utils/sendEmail.js';
 
 const generateToken = (id, email) => {
@@ -203,6 +204,31 @@ export const contactAdmin = async (req, res) => {
   } catch (error) {
     console.error('❌ contactAdmin Error:', error);
     res.status(500).json({ success: false, error: error.message || 'Failed to send message' });
+  }
+};
+
+export const requestSongInSetting = async (req, res) => {
+  try {
+    const { songs } = req.body;
+
+    if (!songs || (Array.isArray(songs) && songs.length === 0)) {
+      return res.status(400).json({ success: false, error: 'Songs are required' });
+    }
+
+    // protect middleware only sets id/email, so fetch name from DB
+    const dbUser = await User.findById(req.user.id).select('name email');
+    if (!dbUser) return res.status(404).json({ success: false, error: 'User not found' });
+
+    const userEmail = dbUser.email;
+    const userName = dbUser.name || 'User';
+
+    // Ensure admin email is NOT revealed in response
+    await sendSongRequestToAdminEmail(userEmail, userName, songs);
+
+    return res.json({ success: true, message: 'Song request sent to admin' });
+  } catch (error) {
+    console.error('❌ requestSongInSetting Error:', error);
+    res.status(500).json({ success: false, error: error.message || 'Failed to send song request' });
   }
 };
 

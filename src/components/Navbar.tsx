@@ -351,7 +351,21 @@ export const Navbar: React.FC = () => {
               <button onClick={() => { handleInstallClick(); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]">
                 Install App
               </button>
-              <button onClick={() => { alert('More settings coming soon!'); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white">
+              <button
+                onClick={() => {
+                  setActiveDropdown(null);
+                  setView('request-song' as any);
+                }}
+                className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
+                Request a Song
+              </button>
+              <button
+                onClick={() => {showToast('General settings coming soon!');
+                  setActiveDropdown(null);
+                }}
+                className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
                 General Settings
               </button>
             </div>

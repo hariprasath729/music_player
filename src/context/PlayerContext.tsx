@@ -7,7 +7,19 @@ import { downloadService } from '../services/downloadService';
 import { X, Check, Plus, Heart, ListMusic } from 'lucide-react';
 
 export type RepeatMode = 'off' | 'all' | 'one';
-export type ViewType = 'home' | 'search' | 'library' | 'playlist' | 'liked-songs' | 'lyrics' | 'visualizer' | 'profile' | 'all-songs' | 'artists' | 'artist';
+export type ViewType =
+  | 'home'
+  | 'search'
+  | 'library'
+  | 'playlist'
+  | 'liked-songs'
+  | 'lyrics'
+  | 'visualizer'
+  | 'profile'
+  | 'all-songs'
+  | 'artists'
+  | 'artist'
+  | 'request-song';
 
 export interface ToastMessage {
   id: number;

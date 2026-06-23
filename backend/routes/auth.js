@@ -7,6 +7,7 @@ import {
   approveUser,
   rejectUser,
   contactAdmin,
+  requestSongInSetting,
   getMe,
   logout,
   forgotPassword,
@@ -25,6 +26,7 @@ router.post('/google', googleLogin);
 router.get('/approve', approveUser); // Admin clicking link from email
 router.get('/reject', rejectUser); // Admin clicking link from email
 router.post('/contact-admin', contactAdmin);
+router.post('/request-song', protect, requestSongInSetting);
 
 router.post('/forgot-password', forgotPassword);
 router.get('/magic-login', magicLogin);
