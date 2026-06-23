@@ -1,11 +1,20 @@
 import React from 'react';
-import { Play } from 'lucide-react';
+import { Play, Heart, Plus } from 'lucide-react';
 import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS, CATEGORIES, Track } from '../../data/musicCatalog';
 import { searchTracks, searchPlaylists } from '../../utils/search';
 
 export const SearchView: React.FC = () => {
-  const { searchQuery, setSearchQuery, playTrack, setView } = usePlayer();
+  const {
+    searchQuery,
+    setSearchQuery,
+    playTrack,
+    setView,
+    likedTracks,
+    toggleLike,
+    addToQueue,
+    showToast,
+  } = usePlayer();
 
   const filteredTracks = searchTracks(TRACKS, searchQuery);
   const filteredPlaylists = searchPlaylists(PLAYLISTS, searchQuery);
@@ -13,9 +22,11 @@ export const SearchView: React.FC = () => {
   const topResult = filteredTracks[0];
 
   const handleSearchPlay = (track: Track) => {
-    const validTracks = TRACKS.filter(t => !isBgmOrScore(t));
-    const upcoming = [...validTracks].sort(() => 0.5 - Math.random()).slice(0, 50);
-    playTrack(track, [track, ...upcoming.filter(t => t.id !== track.id)]);
+    const validTracks = TRACKS.filter((t) => !isBgmOrScore(t));
+    const upcoming = [...validTracks]
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 50);
+    playTrack(track, [track, ...upcoming.filter((t) => t.id !== track.id)]);
   };
 
   return (
@@ -73,22 +84,59 @@ export const SearchView: React.FC = () => {
           {/* Songs */}
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-bold text-white sm:text-2xl">Songs</h2>
-            {filteredTracks.slice(0, 6).map((track) => (
-              <div
-                key={track.id}
-                onClick={() => handleSearchPlay(track)}
-                className="flex cursor-pointer items-center gap-3 rounded-md px-1 py-2 transition-colors hover:bg-white/5 active:bg-white/5"
-              >
-                <div className="h-11 w-11 shrink-0 rounded" style={{ background: track.gradient }} />
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <span className="truncate text-[14px] font-medium text-white">{track.title}</span>
-                  <span className="truncate text-[12px] text-[#b3b3b3]">{track.artist}</span>
+            {filteredTracks.slice(0, 6).map((track) => {
+              const isLiked = likedTracks.includes(track.id);
+
+              return (
+                <div
+                  key={track.id}
+                  onClick={() => handleSearchPlay(track)}
+                  className="flex cursor-pointer items-center gap-3 rounded-md px-1 py-2 transition-colors hover:bg-white/5 active:bg-white/5"
+                >
+                  <div className="h-11 w-11 shrink-0 rounded" style={{ background: track.gradient }} />
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <span className="truncate text-[14px] font-medium text-white">
+                      {track.title}
+                    </span>
+                    <span className="truncate text-[12px] text-[#b3b3b3]">
+                      {track.artist}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {/* Like */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(track.id);
+                        // Play only when explicitly touching Like
+                        handleSearchPlay(track);
+                      }}
+                      className={`flex h-9 w-9 items-center justify-center rounded-full transition
+                        ${isLiked ? 'text-[#1db954]' : 'text-white/60 hover:text-white'}`}
+                      title={isLiked ? 'Liked' : 'Like'}
+                    >
+                      <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954]' : ''}`} />
+                    </button>
+
+                    {/* Add to queue */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToQueue(track);
+                        showToast('Added to queue', 'plus');
+                        // Play only when explicitly touching + Add to queue
+                        handleSearchPlay(track);
+                      }}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-white/60 transition hover:text-white hover:bg-white/5"
+                      title="Add to queue"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
-                <span className="text-[12px] tabular-nums text-[#b3b3b3]">
-                  {Math.floor(track.duration / 60)}:{String(Math.floor(track.duration % 60)).padStart(2, '0')}
-                </span>
-              </div>
-            ))}
+              );
+            })}
             {filteredTracks.length === 0 && (
               <p className="py-4 text-sm text-[#b3b3b3]">No results found for "{searchQuery}"</p>
             )}

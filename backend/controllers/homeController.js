@@ -6,6 +6,7 @@ import Playlist from '../models/Playlist.js';
 import RecentlyPlayed from '../models/RecentlyPlayed.js';
 import PlayCount from '../models/PlayCount.js';
 import FollowedArtist from '../models/FollowedArtist.js';
+import SkipAvoid from '../models/SkipAvoid.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,16 +27,54 @@ loadCatalog();
 
 const getFullSong = (songId) => songsCatalog.find(s => String(s.id) === String(songId));
 
+export const recordSkipAvoid = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { songId } = req.body || {};
+
+    if (!songId) {
+      return res.status(400).json({ success: false, error: 'songId is required' });
+    }
+
+    // Optional short-window de-dupe (avoids writing many rows if user spams next)
+    // If there’s an existing record for the same song within the last 1 hour, skip creating another.
+    const ONE_HOUR_MS = 60 * 60 * 1000;
+    const recentCutoff = new Date(Date.now() - ONE_HOUR_MS);
+
+    const existing = await SkipAvoid.findOne({
+      userId,
+      songId: String(songId),
+      skippedAt: { $gte: recentCutoff }
+    });
+
+    if (existing) {
+      return res.json({ success: true, message: 'Skip already recorded recently' });
+    }
+
+    await SkipAvoid.create({
+      userId,
+      songId: String(songId),
+      skippedAt: new Date()
+    });
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('[recordSkipAvoid] error:', error);
+    return res.status(500).json({ success: false, error: 'Server error' });
+  }
+};
+
 export const getHomeData = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const [likes, playlists, recentlyPlayed, playCounts, followedArtists] = await Promise.all([
+    const [likes, playlists, recentlyPlayed, playCounts, followedArtists, skipAvoid] = await Promise.all([
       Like.find({ userId }),
       Playlist.find({ userId }).sort({ createdAt: -1 }).limit(10),
       RecentlyPlayed.findOne({ userId }),
       PlayCount.find().sort({ count: -1 }).limit(20),
-      FollowedArtist.find({ userId })
+      FollowedArtist.find({ userId }),
+      SkipAvoid.find({ userId })
     ]);
 
     // 1. Recently Played (Limit to 10)
@@ -74,12 +113,39 @@ export const getHomeData = async (req, res) => {
       });
     }
 
-    let madeForYou = songsCatalog.filter(s => 
-      s && s.artist && !baseIds.has(String(s.id)) && s.artist.split(',').some(a => preferredArtists.has(a.trim()))
+    // 3b. Skip-Avoid filter (skip quickly within first 5s -> exclude for 7 days)
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const cutoff = new Date(Date.now() - SEVEN_DAYS_MS);
+    const skippedQuicklyIds = new Set(
+      (skipAvoid || [])
+        .filter((r) => r?.skippedAt && new Date(r.skippedAt) >= cutoff)
+        .map((r) => String(r.songId))
+    );
+
+    let madeForYou = songsCatalog.filter(s =>
+      s &&
+      s.artist &&
+      !baseIds.has(String(s.id)) &&
+      !skippedQuicklyIds.has(String(s.id)) &&
+      s.artist.split(',').some(a => preferredArtists.has(a.trim()))
     ).sort(() => 0.5 - Math.random()).slice(0, 20);
 
     // Fallback to general mix if user doesn't have enough history to base off yet
-    if (madeForYou.length < 5) madeForYou = [...songsCatalog].filter(s => s && s.id && !baseIds.has(String(s.id))).sort(() => 0.5 - Math.random()).slice(0, 20);
+    if (madeForYou.length < 5) {
+      madeForYou = [...songsCatalog]
+        .filter(s => s && s.id && !baseIds.has(String(s.id)) && !skippedQuicklyIds.has(String(s.id)))
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 20);
+    }
+
+    // Additionally filter trending fallback/results for the same avoidance window.
+    trending = trending.filter((t) => t && t.id && !skippedQuicklyIds.has(String(t.id)));
+    if (trending.length < 5) {
+      trending = [...songsCatalog]
+        .filter(s => s && s.id && !skippedQuicklyIds.has(String(s.id)))
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 20);
+    }
 
     // 4. Top Artists
     const topArtistsMap = new Map();

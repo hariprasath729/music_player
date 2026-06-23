@@ -216,6 +216,11 @@ export const libraryApi = {
 // ── Home APIs ──
 export const homeApi = {
   getHome: () => request<{ success: boolean; data: any }>('/api/home'),
+  recordSkipAvoid: (songId: string) =>
+    request<{ success: boolean; message?: string }>('/api/home/skip-avoid', {
+      method: 'POST',
+      body: JSON.stringify({ songId }),
+    }),
 };
 
 // ── Search & Metadata APIs ──

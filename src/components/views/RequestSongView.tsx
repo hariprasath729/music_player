@@ -12,8 +12,9 @@ const parseSongs = (raw: string): string[] => {
 };
 
 export const RequestSongView: React.FC = () => {
-  const { user, requestSong } = useAuth();
-  const { setView } = usePlayer();
+  const auth = useAuth();
+  const { user, requestSong } = auth;
+  const { setView, showToast } = usePlayer();
 
   const [rawSongs, setRawSongs] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -36,9 +37,17 @@ export const RequestSongView: React.FC = () => {
 
     try {
       setSubmitting(true);
+
+      if (typeof requestSong !== 'function') {
+        // eslint-disable-next-line no-console
+        console.error('[RequestSongView] requestSong missing. typeof:', typeof requestSong, 'auth keys:', Object.keys(auth || {}));
+        throw new Error('requestSong is not available (auth provider mismatch)');
+      }
+
       await requestSong(songs);
       setRawSongs('');
       setView('home');
+      showToast('Songs will be added in 2-3 bussiness days', 'success');
     } catch (err: any) {
       setLocalError(err?.message || 'Failed to send request');
     } finally {

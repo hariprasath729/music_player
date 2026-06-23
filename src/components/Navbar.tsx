@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ChevronLeft, ChevronRight, Search, Bell, User, Settings, X, Radio,
+  Search, Bell, User, Settings, X, Radio,
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { useAuth } from '../context/AuthContext'; // Replace with real toast in production
@@ -148,12 +148,7 @@ export const Navbar: React.FC = () => {
             )}
           </div>
         ) : currentView === 'playlist' ? (
-          <button
-            onClick={goBack}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
+          <div className="w-8" />
         ) : (
           <>
             <div className="flex items-center gap-3">
@@ -188,28 +183,6 @@ export const Navbar: React.FC = () => {
       {/* ─── DESKTOP HEADER ─── */}
       <div className="hidden w-full items-center justify-between md:flex">
         <div className="flex items-center gap-2">
-          {/* Back */}
-          <button
-            onClick={goBack}
-            disabled={!canGoBack}
-            className={`flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-all
-              ${canGoBack ? 'opacity-100 hover:bg-black/80' : 'cursor-not-allowed opacity-40'}`}
-            title="Go back"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-
-          {/* Forward */}
-          <button
-            onClick={goForward}
-            disabled={!canGoForward}
-            className={`flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-all
-              ${canGoForward ? 'opacity-100 hover:bg-black/80' : 'cursor-not-allowed opacity-40'}`}
-            title="Go forward"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
           {/* Search inline */}
           {currentView === 'search' && (
             <div className="relative ml-4">

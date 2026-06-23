@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Track, Playlist, TRACKS } from '../data/musicCatalog';
 import { audioEngine } from '../services/audioEngine';
-import { playlistApi, likeApi, recentlyPlayedApi, playCountApi, libraryApi, mapSongToTrack } from '../services/apiClient';
+import { playlistApi, likeApi, recentlyPlayedApi, playCountApi, libraryApi, mapSongToTrack, homeApi } from '../services/apiClient';
 import { useAuth } from './AuthContext';
 import { downloadService } from '../services/downloadService';
 import { X, Check, Plus, Heart, ListMusic } from 'lucide-react';
@@ -37,7 +37,8 @@ export const isBgmOrScore = (track: Track): boolean => {
     albumName.includes('side b') ||
     albumName.includes('instrumental') ||
     albumName.includes('theme') ||
-    titleName.includes('theme')
+    titleName.includes('theme') ||
+    titleName.includes('instrumental') 
   );
 };
 
@@ -66,6 +67,7 @@ interface PlayerContextType {
   isFullScreen: boolean;
   searchQuery: string;
   isQueueOpen: boolean;
+  isFullScreenMenuOpen: boolean;
   toasts: ToastMessage[];
   canGoBack: boolean;
   canGoForward: boolean;
@@ -97,6 +99,7 @@ interface PlayerContextType {
   toggleFullScreen: () => void;
   setSearchQuery: (query: string) => void;
   toggleQueue: () => void;
+  setIsFullScreenMenuOpen: (open: boolean) => void;
   showToast: (text: string, icon?: string) => void;
   goBack: () => void;
   goForward: () => void;
@@ -159,6 +162,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isQueueOpen, setIsQueueOpen] = useState<boolean>(false);
+  const [isFullScreenMenuOpen, setIsFullScreenMenuOpen] = useState<boolean>(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [viewStack, setViewStack] = useState<{ view: ViewType; playlist: Playlist | null }[]>([{ view: 'home', playlist: null }]);
   const [viewStackIndex, setViewStackIndex] = useState<number>(0);
@@ -346,11 +350,85 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [currentTrack, currentTime]);
 
   
-// Media Session useEffect will be defined after control functions
+  // ─────────────────────────────────────────────────────────────────────────────
+  // Media Session API integration (OS lock screen / BT / headset / media keys)
+  // Centralized here so it stays tightly coupled with global player state.
+  // ─────────────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms || typeof ms.setActionHandler !== 'function') return;
+
+    const safe = (fn: (() => void) | null | undefined) => {
+      try {
+        fn?.();
+      } catch (err) {
+        console.error('[mediaSession] handler error:', err);
+      }
+    };
+
+    // Register once (per mount). Subsequent state sync is handled by other effects.
+    ms.setActionHandler('play', () => safe(() => togglePlay(false, true)));
+    ms.setActionHandler('pause', () => safe(() => togglePlay(false, false)));
+    ms.setActionHandler('previoustrack', () => safe(() => prevTrack()));
+    ms.setActionHandler('nexttrack', () => safe(() => nextTrack()));
+
+    // Optional: keep existing defaults when unsupported.
+    return () => {
+      try {
+        ms.setActionHandler('play', null as any);
+        ms.setActionHandler('pause', null as any);
+        ms.setActionHandler('previoustrack', null as any);
+        ms.setActionHandler('nexttrack', null as any);
+      } catch {
+        // no-op
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem(PLAYER_SETTINGS_KEY, JSON.stringify({ volume, isShuffle, repeatMode, playbackRate }));
-  }, [volume, isShuffle, repeatMode, playbackRate]);
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms) return;
+
+    // Playback state sync
+    try {
+      ms.playbackState = isPlaying ? 'playing' : 'paused';
+    } catch {
+      // Some browsers may throw in restricted contexts; ignore.
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms) return;
+
+    const title = currentTrack.title || 'Unknown';
+    const artist = currentTrack.artist || 'Unknown';
+    const album = currentTrack.album || '';
+
+    // Artwork: prefer currentTrack.coverUrl if available.
+    // Media Session doesn’t define how to fetch multiple sizes; we provide the same URL
+    // across typical size slots as a safe fallback.
+    const coverUrl = (currentTrack as any).coverUrl as string | undefined;
+    const artwork = coverUrl
+      ? [
+          { src: coverUrl, sizes: '96x96', type: 'image/jpeg' },
+          { src: coverUrl, sizes: '128x128', type: 'image/jpeg' },
+          { src: coverUrl, sizes: '192x192', type: 'image/jpeg' },
+        ]
+      : [];
+
+    try {
+      ms.metadata = new MediaMetadata({
+        title,
+        artist,
+        album,
+        artwork,
+      });
+    } catch {
+      // If MediaMetadata construction fails, degrade gracefully.
+    }
+  }, [currentTrack]);
 
   // Sync playback time
   useEffect(() => {
@@ -505,10 +583,20 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const nextTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
+
+    // Skip quickly tracking: user pressed Next/skip while played < 5s
+    if (isLoggedIn && currentTrack.id !== '' && currentTime < 5) {
+      homeApi
+        .recordSkipAvoid(currentTrack.id)
+        .catch(() => {
+          // non-blocking / best-effort
+        });
+    }
+
     if (queue.length > 0) {
       const next = queue[0];
       setQueue((prev) => prev.slice(1));
-          playTrack(next, undefined, force);
+      playTrack(next, undefined, force);
     } else if (repeatMode === 'all') {
       const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS.filter(t => !isBgmOrScore(t));
       if (sourceList.length > 0) {
@@ -516,14 +604,29 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (isShuffle) nextList = nextList.sort(() => 0.5 - Math.random());
         const next = nextList[0];
         setQueue(nextList.slice(1));
-              playTrack(next, undefined, force);
+        playTrack(next, undefined, force);
       }
     } else {
-      // Autoplay fallback: play a random song avoiding BGMs when the queue ends
-      const validTracks = TRACKS.filter(t => !isBgmOrScore(t));
+      // Queue ended (queue empty).
+      // Requirement: never fall back to deterministic "top of list" order (id/title sorted).
+      // Even when repeatMode is 'off', pick a random next track and seed the remaining queue randomly.
+      const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS;
+
+      // Exclude BGMs/score and the currently playing track (avoid immediate duplicates).
+      const validTracks = sourceList.filter((t) => !isBgmOrScore(t) && t.id !== currentTrack.id);
+
       if (validTracks.length > 0) {
-        const randomTrack = validTracks[Math.floor(Math.random() * validTracks.length)];
-            playTrack(randomTrack, undefined, force);
+        // Always randomize for the "queue empty" fallback (independent of isShuffle).
+        // Use random index instead of taking first element.
+        const randomIndex = Math.floor(Math.random() * validTracks.length);
+        const next = validTracks[randomIndex];
+
+        // Seed remaining queue: remove `next` then shuffle the rest and cap.
+        const rest = validTracks.filter((t) => t.id !== next.id);
+        const remaining = [...rest].sort(() => Math.random() - 0.5).slice(0, 19);
+
+        setQueue(remaining.length > 0 ? remaining : [next]); // ensures queue isn't empty in UI
+        playTrack(next, undefined as any, force);
       } else {
         audioEngine.stop();
         setIsPlaying(false);
@@ -636,11 +739,17 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCurrentView(view);
     const pl = playlist !== undefined ? playlist : activePlaylist;
     if (playlist !== undefined) setActivePlaylist(playlist);
+
     setViewStack((prev) => {
       const truncated = prev.slice(0, viewStackIndex + 1);
       return [...truncated, { view, playlist: pl ?? null }];
     });
+
     setViewStackIndex((prev) => prev + 1);
+
+    // Push dummy history state to enable native swipe-back gestures for view navigation only.
+    // This must NOT be used as control flow; it only enables swipe-back popstate events.
+    window.history.pushState({ view }, '', window.location.href);
   };
 
   const goBack = () => {
@@ -705,6 +814,52 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const toggleFullScreen = () => setIsFullScreen((prev) => !prev);
   const toggleQueue = () => setIsQueueOpen((prev) => !prev);
+
+  const NAV_ROOT_EXIT_WINDOW_MS = 2000;
+  const lastRootBackPressAtRef = useRef<number | null>(null);
+
+  // Hardware back + native swipe-back:
+  // - Only affect internal view navigation (viewStack).
+  // - If an overlay is open (fullscreen player / queue), do NOT navigate views.
+  // - At root (Home): double-press back to exit. First press shows toast and stays.
+  useEffect(() => {
+    const onPopState = () => {
+      // If an overlay is open, do nothing here. Overlays have their own back handling.
+      if (isFullScreen || isQueueOpen || isFullScreenMenuOpen) return;
+
+      // Internal navigation stack handling
+      if (viewStackIndex > 0) {
+        // Compute target BEFORE mutating state
+        const newIdx = viewStackIndex - 1;
+        const target = viewStack[newIdx]?.view ?? 'home';
+
+        goBack();
+
+        // Re-push a dummy history state so swipe-back continues to work for the view stack
+        // without reloading/navigating to external routes.
+        window.history.pushState({ view: target }, '', window.location.href);
+        return;
+      }
+
+      // Root behavior: double-press to exit
+      const now = Date.now();
+      const last = lastRootBackPressAtRef.current;
+
+      if (last && now - last <= NAV_ROOT_EXIT_WINDOW_MS) {
+        // Second press: allow native exit / default behavior
+        return;
+      }
+
+      lastRootBackPressAtRef.current = now;
+      showToast('Press back again to exit', 'info');
+
+      // Cancel the exit by re-pushing root state
+      window.history.pushState({ view: 'home' }, '', window.location.href);
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [isFullScreen, isQueueOpen, viewStackIndex, viewStack, goBack]);
 
   const createPlaylist = async (title: string): Promise<string | undefined> => {
     const trimmed = title.trim();
@@ -896,7 +1051,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       searchQuery,
       setSearchQuery,
       isQueueOpen,
+      isFullScreenMenuOpen,
       toggleQueue,
+      setIsFullScreenMenuOpen,
       toasts,
       canGoBack: viewStackIndex > 0,
       canGoForward: viewStackIndex < viewStack.length - 1,

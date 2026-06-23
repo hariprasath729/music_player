@@ -18,55 +18,95 @@ import type { Track, Playlist } from '../data/musicCatalog';
  * - Returns results sorted by score (highest first)
  */
 
+function collapseRepeats(input: string): string {
+  // Collapses repeated characters: "raawadi" -> "rawadi"
+  // Keep it lightweight (no full edit-distance).
+  return input.toLowerCase().replace(/([a-z0-9])\1+/g, '$1');
+}
+
 function scoreTrack(track: Track, query: string): number {
   const q = query.toLowerCase().trim();
   const title = track.title.toLowerCase();
   const artist = track.artist.toLowerCase();
   const album = track.album.toLowerCase();
+
+  const titleN = collapseRepeats(title);
+  const artistN = collapseRepeats(artist);
+  const albumN = collapseRepeats(album);
+  const qN = collapseRepeats(q);
+
   const tokens = q.split(/\s+/).filter(t => t.length > 0);
-  
+  const tokensN = qN.split(/\s+/).filter(t => t.length > 0);
+
   // Check if ALL tokens match somewhere (AND logic)
-  const allTokensMatch = tokens.every(token => 
-    title.includes(token) || 
-    artist.includes(token) || 
-    album.includes(token)
-  );
-  
+  const allTokensMatch = tokens.every((token, idx) => {
+    const tokenN = tokensN[idx] ?? collapseRepeats(token);
+    return (
+      title.includes(token) ||
+      artist.includes(token) ||
+      album.includes(token) ||
+      titleN.includes(tokenN) ||
+      artistN.includes(tokenN) ||
+      albumN.includes(tokenN)
+    );
+  });
+
   if (!allTokensMatch) return -1;
-  
+
   let score = 0;
-  
+
   // Exact title match (highest priority)
   if (title === q) {
     score += 1000;
+  }
+  // Exact collapsed match
+  else if (titleN === qN) {
+    score += 900;
   }
   // Title starts with query
   else if (title.startsWith(q)) {
     score += 800;
   }
+  // Collapsed prefix match
+  else if (titleN.startsWith(qN)) {
+    score += 700;
+  }
   // Title contains full query
   else if (title.includes(q)) {
     score += 600;
   }
-  
+  // Collapsed contains full query
+  else if (titleN.includes(qN)) {
+    score += 520;
+  }
+
   // Title contains individual tokens (partial match)
   const titleTokenMatches = tokens.filter(t => title.includes(t)).length;
-  score += titleTokenMatches * 50;
-  
+  const titleTokenMatchesN = tokensN.filter(t => titleN.includes(t)).length;
+  score += (titleTokenMatches + titleTokenMatchesN) * 25;
+
   // Artist contains full query
   if (artist.includes(q)) {
     score += 400;
   }
+  if (artistN.includes(qN)) {
+    score += 300;
+  }
   const artistTokenMatches = tokens.filter(t => artist.includes(t)).length;
-  score += artistTokenMatches * 30;
-  
+  const artistTokenMatchesN = tokensN.filter(t => artistN.includes(t)).length;
+  score += (artistTokenMatches * 30) + (artistTokenMatchesN * 20);
+
   // Album contains full query
   if (album.includes(q)) {
     score += 200;
   }
+  if (albumN.includes(qN)) {
+    score += 150;
+  }
   const albumTokenMatches = tokens.filter(t => album.includes(t)).length;
-  score += albumTokenMatches * 20;
-  
+  const albumTokenMatchesN = tokensN.filter(t => albumN.includes(t)).length;
+  score += (albumTokenMatches * 20) + (albumTokenMatchesN * 15);
+
   return score;
 }
 
@@ -74,42 +114,64 @@ function scorePlaylist(playlist: Playlist, query: string): number {
   const q = query.toLowerCase().trim();
   const title = playlist.title.toLowerCase();
   const description = playlist.description.toLowerCase();
+
+  const titleN = collapseRepeats(title);
+  const descriptionN = collapseRepeats(description);
+  const qN = collapseRepeats(q);
+
   const tokens = q.split(/\s+/).filter(t => t.length > 0);
-  
+  const tokensN = qN.split(/\s+/).filter(t => t.length > 0);
+
   // Check if ALL tokens match somewhere
-  const allTokensMatch = tokens.every(token => 
-    title.includes(token) || 
-    description.includes(token)
-  );
-  
+  const allTokensMatch = tokens.every((token, idx) => {
+    const tokenN = tokensN[idx] ?? collapseRepeats(token);
+    return (
+      title.includes(token) ||
+      description.includes(token) ||
+      titleN.includes(tokenN) ||
+      descriptionN.includes(tokenN)
+    );
+  });
+
   if (!allTokensMatch) return -1;
-  
+
   let score = 0;
-  
+
   // Exact title match
   if (title === q) {
     score += 1000;
+  } else if (titleN === qN) {
+    score += 900;
   }
   // Title starts with query
   else if (title.startsWith(q)) {
     score += 800;
+  } else if (titleN.startsWith(qN)) {
+    score += 700;
   }
   // Title contains full query
   else if (title.includes(q)) {
     score += 600;
+  } else if (titleN.includes(qN)) {
+    score += 520;
   }
-  
+
   // Title contains individual tokens
   const titleTokenMatches = tokens.filter(t => title.includes(t)).length;
-  score += titleTokenMatches * 50;
-  
+  const titleTokenMatchesN = tokensN.filter(t => titleN.includes(t)).length;
+  score += (titleTokenMatches + titleTokenMatchesN) * 25;
+
   // Description contains full query
   if (description.includes(q)) {
     score += 200;
   }
+  if (descriptionN.includes(qN)) {
+    score += 150;
+  }
   const descTokenMatches = tokens.filter(t => description.includes(t)).length;
-  score += descTokenMatches * 20;
-  
+  const descTokenMatchesN = tokensN.filter(t => descriptionN.includes(t)).length;
+  score += (descTokenMatches * 20) + (descTokenMatchesN * 15);
+
   return score;
 }
 

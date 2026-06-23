@@ -62,7 +62,7 @@ export const ArtistDetailsView: React.FC = () => {
     }
 
     // Hide songs that contain "theme" in title/album
-    if (combined.includes('theme')) return false;
+    if (combined.includes('theme') || combined.includes('instrumental') ) return false;
 
     return true;
   });
