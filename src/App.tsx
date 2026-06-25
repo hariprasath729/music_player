@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './components/LoginPage';
 import { SignupPage } from './components/SignupPage';
+import { AppBootstrap } from './components/AppBootstrap';
 import { PlayerProvider } from './context/PlayerContext';
 import { Sidebar } from './components/Sidebar';
 import { Navbar } from './components/Navbar';
@@ -41,18 +42,14 @@ const PlayerShell: React.FC = () => (
   </PlayerProvider>
 );
 
-const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen }) => {
-  const { isLoggedIn } = useAuth();
-
-  // Route handling for auth-only flows (no react-router in this codebase)
+/** Login/Signup view — shown when user is not authenticated */
+const AuthPages: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen }) => {
   const [view, setView] = React.useState<'login' | 'signup'>('login');
 
   // Push screen identifier whenever view changes
   React.useEffect(() => {
     pushScreen(`view:${view}`);
   }, [view]);
-
-  if (isLoggedIn) return <PlayerShell />;
 
   const pathname = window.location.pathname;
   const search = window.location.search;
@@ -102,6 +99,33 @@ const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen })
   ) : (
     <SignupPage onSwitchToLogin={() => setView('login')} />
   );
+};
+
+const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen }) => {
+  const { isLoggedIn } = useAuth();
+
+  // No cached session → hide the splash screen since there's nothing to verify
+  // This runs before any conditional returns to respect React hooks rules
+  React.useEffect(() => {
+    if (!isLoggedIn && typeof (window as any).hideSplashScreen === 'function') {
+      (window as any).hideSplashScreen();
+    }
+  }, [isLoggedIn]);
+
+  // User has a cached session → run through AppBootstrap
+  // (verifies with backend, manages splash/skeleton/timeout)
+  if (isLoggedIn) {
+    return (
+      <AppBootstrap
+        loginFallback={<AuthPages pushScreen={pushScreen} />}
+      >
+        <PlayerShell />
+      </AppBootstrap>
+    );
+  }
+
+  // No cached session → show login directly
+  return <AuthPages pushScreen={pushScreen} />;
 };
 
 export const App: React.FC = () => {

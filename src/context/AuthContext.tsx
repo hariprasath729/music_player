@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 
 /* ─── Types ─────────────────────────────────────────────────── */
+export type AuthStatus = 'idle' | 'checking' | 'authenticated' | 'unauthenticated' | 'timeout';
 export interface AuthUser {
   id: string;
   name: string;
@@ -14,6 +15,8 @@ interface AuthContextType {
   isLoggedIn: boolean;
   isLoading: boolean;
   error: string | null;
+  authStatus: AuthStatus;
+  verifySession: (signal?: AbortSignal) => Promise<void>;
   login: (user: AuthUser) => void;
   loginWithEmail: (email: string, password: string) => Promise<void>;
   sendOtp: (email: string) => Promise<void>;
@@ -28,6 +31,7 @@ interface AuthContextType {
   contactAdmin: (email: string, name: string, message: string) => Promise<void>;
   requestSong: (songs: string[] | string) => Promise<void>;
   logout: () => void;
+  clearSession: () => void;
   clearError: () => void;
   isPendingApproval: boolean;
   setIsPendingApproval: (val: boolean) => void;
@@ -42,6 +46,8 @@ const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   isLoading: false,
   error: null,
+  authStatus: 'idle',
+  verifySession: async () => {},
   login: () => {},
   loginWithEmail: async () => {},
   sendOtp: async () => {},
@@ -55,6 +61,7 @@ const AuthContext = createContext<AuthContextType>({
   contactAdmin: async () => {},
   requestSong: async () => {},
   logout: () => {},
+  clearSession: () => {},
   clearError: () => {},
   isPendingApproval: false,
   setIsPendingApproval: () => {},
@@ -74,6 +81,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPendingApproval, setIsPendingApproval] = useState(false);
+  const [authStatus, setAuthStatus] = useState<AuthStatus>('idle');
+  const verifyAbortRef = useRef<AbortController | null>(null);
 
   const storeSession = (newToken: string, newUser: AuthUser) => {
     setToken(newToken);
@@ -85,7 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch {}
   };
 
-  const clearSession = () => {
+  const clearSession = useCallback(() => {
     setToken(null);
     setUser(null);
     setIsLoggedIn(false);
@@ -93,28 +102,96 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.removeItem(AUTH_TOKEN_KEY);
       localStorage.removeItem(AUTH_USER_KEY);
     } catch {}
-  };
+  }, []);
 
   const login = useCallback((newUser: AuthUser) => {
     storeSession(newUser.token || 'mock-token', newUser);
+    setAuthStatus('authenticated');
+  }, []);
+
+  /* ─── Session Verification (called by AppBootstrap during startup) ─── */
+  const verifySession = useCallback(async (signal?: AbortSignal) => {
+    // Clean up any previous in-flight verification
+    if (verifyAbortRef.current) {
+      verifyAbortRef.current.abort();
+    }
+
+    const storedToken = (() => {
+      try { return localStorage.getItem(AUTH_TOKEN_KEY); } catch { return null; }
+    })();
+
+    // No token at all → unauthenticated immediately
+    if (!storedToken) {
+      setAuthStatus('unauthenticated');
+      return;
+    }
+
+    // Temporary test user bypass — no backend to verify against
+    if (storedToken === 'temporary-test-token') {
+      setAuthStatus('authenticated');
+      return;
+    }
+
+    setAuthStatus('checking');
+
+    try {
+      const res = await fetch(`${API_URL}/auth/me`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${storedToken}`,
+        },
+        signal,
+      });
+
+      // If aborted after fetch started, the catch block handles it
+      if (signal?.aborted) return;
+
+      if (res.status === 401 || res.status === 403) {
+        clearSession();
+        setAuthStatus('unauthenticated');
+        return;
+      }
+
+      if (!res.ok) {
+        clearSession();
+        setAuthStatus('unauthenticated');
+        return;
+      }
+
+      const json = await res.json();
+      const verifiedUser = json.user;
+
+      if (!verifiedUser) {
+        clearSession();
+        setAuthStatus('unauthenticated');
+        return;
+      }
+
+      // Refresh local session with the verified backend data
+      storeSession(storedToken, {
+        id: verifiedUser.id,
+        name: verifiedUser.name,
+        email: verifiedUser.email,
+        profilePic: verifiedUser.profilePic,
+        token: storedToken,
+      });
+      setAuthStatus('authenticated');
+    } catch (err: unknown) {
+      // Aborted by AppBootstrap (timeout or cleanup) — don't change state here,
+      // AppBootstrap will set 'timeout' or 'unauthenticated' itself
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        return;
+      }
+      // Network error, backend down, etc.
+      clearSession();
+      setAuthStatus('unauthenticated');
+    }
   }, []);
 
   const loginWithEmail = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
-
-    // Temporary frontend-only test access. This does not hit MongoDB.
-    if (email.trim() === 'user@123' && password === '123') {
-      storeSession('temporary-test-token', {
-        id: 'temporary-user-123',
-        name: 'Temporary User',
-        email: 'user@123',
-        profilePic: 'https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72/1f3a7.png',
-        token: 'temporary-test-token',
-      });
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
@@ -382,6 +459,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isLoggedIn,
         isLoading,
         error,
+        authStatus,
+        verifySession,
         login,
         loginWithEmail,
         sendOtp,
@@ -393,6 +472,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         contactAdmin,
         requestSong,
         logout,
+        clearSession,
         clearError,
         isPendingApproval,
         setIsPendingApproval,

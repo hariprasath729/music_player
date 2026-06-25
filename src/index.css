@@ -77,6 +77,18 @@ input[type="range"] {
 .animate-wave-3 { animation: sound-wave 1.4s ease-in-out infinite 0.4s; }
 .animate-wave-4 { animation: sound-wave 1.0s ease-in-out infinite 0.1s; }
 
+/* Skeleton shimmer animation for startup loading UI */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #282828 25%, #3a3a3a 50%, #282828 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
 /* Line clamp for multi-line text */
 .line-clamp-2 {
   display: -webkit-box;

@@ -140,10 +140,8 @@
         }, 400);
       };
 
-      // Fallback: Auto-hide after 2.5 seconds if React takes too long to take over
-      window.addEventListener('load', function() {
-        window.setTimeout(window.hideSplashScreen, 2500);
-      });
+      // Splash dismissal is now managed by AppBootstrap in React.
+      // No fallback auto-hide timer — AppBootstrap enforces the 2500ms deadline.
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
