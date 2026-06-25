@@ -233,8 +233,16 @@ export const requestSongInSetting = async (req, res) => {
 };
 
 export const getMe = async (req, res) => {
-  const user = await User.findById(req.user.id).select('-password');
-  res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
+  } catch (error) {
+    console.error('❌ getMe Error:', error);
+    res.status(500).json({ success: false, error: error.message || 'Server error' });
+  }
 };
 
 export const logout = async (req, res) => res.json({ success: true });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth, AuthUser } from '../context/AuthContext';
+import { Eye, EyeOff } from 'lucide-react';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import { authApi } from '../services/apiClient';
 import { useBackButton } from '../hooks/useBackButton';
@@ -68,6 +69,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
   const { login, loginWithEmail, contactAdmin, clearError, error, isPendingApproval, setIsPendingApproval } = useAuth();
   const [emailInput, setEmailInput] = useState('');
   const [passInput, setPassInput] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
@@ -218,6 +220,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
           .music-player-login-main{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:16px;min-height:0}.login-card{background:var(--bg-card);border-radius:10px;border:1px solid var(--border);width:100%;max-width:460px;padding:clamp(20px,3.5vh,40px) clamp(20px,4vw,48px);overflow:hidden}.card-logo{display:flex;justify-content:center;margin-bottom:clamp(12px,2vh,22px)}.card-logo svg{width:clamp(34px,4vw,42px);height:clamp(34px,4vw,42px)}.login-card h1{font-size:clamp(1.25rem,2.5vw,1.85rem);font-weight:900;color:var(--text-primary);text-align:center;margin-bottom:clamp(14px,2.5vh,28px);letter-spacing:-.03em;line-height:1.2}
           .social-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:clamp(9px,1.2vh,13px) 18px;border-radius:500px;font-family:inherit;font-size:clamp(12px,1.3vw,14px);font-weight:700;letter-spacing:.03em;cursor:pointer;text-decoration:none;border:1px solid var(--border);background:transparent;color:var(--text-primary);margin-bottom:clamp(6px,1vh,10px);transition:border-color .15s,background .15s,transform .1s}.social-btn:last-of-type{margin-bottom:0}.social-btn:hover{border-color:var(--border-hover);background:rgba(255,255,255,.04);transform:scale(1.01)}.social-btn svg{width:18px;height:18px;flex-shrink:0}.apple-icon{fill:#fff}.phone-icon{stroke:#fff;fill:none}.divider{display:flex;align-items:center;gap:12px;margin:clamp(10px,1.6vh,20px) 0}.divider hr{flex:1;border:none;border-top:1px solid var(--border)}.divider span{font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:.05em}
           .form-group{margin-bottom:clamp(10px,1.4vh,16px)}.form-group label{display:block;font-size:clamp(12px,1.2vw,13.5px);font-weight:800;color:var(--text-primary);margin-bottom:6px}.form-group input{width:100%;padding:clamp(9px,1.2vh,13px) 14px;border:1px solid var(--border);border-radius:5px;font-family:inherit;font-size:clamp(13px,1.3vw,15px);color:var(--text-primary);background:var(--bg-input);outline:none;transition:border-color .15s,box-shadow .15s}.form-group input:hover{border-color:var(--border-hover)}.form-group input:focus{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(255,255,255,.07)}.form-group input::placeholder{color:var(--text-muted)}.forgot-link{display:inline-block;font-size:clamp(12px,1.2vw,13.5px);font-weight:700;color:var(--text-primary);text-decoration:underline;margin-bottom:clamp(12px,1.8vh,22px);transition:color .15s}.forgot-link:hover{color:var(--green)}.btn-login{display:block;width:100%;padding:clamp(10px,1.4vh,15px);background:var(--green);color:#000;border:none;border-radius:500px;font-family:inherit;font-size:clamp(13px,1.3vw,15px);font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .15s,transform .1s}.btn-login:hover{background:var(--green-hover);transform:scale(1.02)}.captcha-note{font-size:clamp(9.5px,1vw,11px);color:var(--text-muted);text-align:center;margin-top:clamp(10px,1.4vh,16px);line-height:1.6}.captcha-note a{color:var(--text-muted);text-decoration:underline}.captcha-note a:hover{color:var(--text-secondary)}.signup-footer{border-top:1px solid var(--border);margin-top:clamp(12px,1.8vh,24px);padding-top:clamp(12px,1.8vh,22px);text-align:center}.signup-footer p{font-size:clamp(13px,1.3vw,15px);color:var(--text-secondary)}.signup-footer a{color:var(--text-primary);font-weight:700;text-decoration:underline;transition:color .15s}.signup-footer a:hover{color:var(--green)}
+          .password-wrapper{position:relative;width:100%}.password-wrapper input{padding-right:40px!important}.password-toggle-btn{position:absolute;top:50%;right:12px;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;transition:color .15s}.password-toggle-btn:hover{color:var(--text-primary)}.password-toggle-btn svg{width:16px;height:16px}
           .music-player-login-footer{flex-shrink:0;background:var(--bg);border-top:1px solid var(--border);padding:0 48px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px}.music-player-login-footer p{font-size:11.5px;color:var(--text-muted);white-space:nowrap}.footer-links{display:flex;gap:18px;flex-wrap:nowrap;overflow:hidden}.footer-links a{font-size:11.5px;color:var(--text-muted);text-decoration:none;white-space:nowrap;transition:color .15s}.footer-links a:hover{color:var(--text-primary);text-decoration:underline}
           @media(max-width:768px){.music-player-login-footer{padding:10px 20px;height:auto;flex-wrap:wrap;gap:8px}.footer-links{gap:12px;flex-wrap:wrap}}
           @media(max-width:480px){.login-card{border:none;background:transparent}.music-player-login-footer{padding:8px 14px}.footer-links a,.music-player-login-footer p{font-size:10.5px}.footer-links{gap:10px}}
@@ -279,14 +282,24 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  autoComplete="current-password"
-                  value={passInput}
-                  onChange={(e) => setPassInput(e.target.value)}
-                />
+                <div className="password-wrapper">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    id="password"
+                    placeholder="Password"
+                    autoComplete="current-password"
+                    value={passInput}
+                    onChange={(e) => setPassInput(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff /> : <Eye />}
+                  </button>
+                </div>
               </div>
 
               <a

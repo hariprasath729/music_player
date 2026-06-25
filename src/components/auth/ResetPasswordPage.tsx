@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { Eye, EyeOff } from 'lucide-react';
 
 export const ResetPasswordPage: React.FC<{ token: string; onBackToLogin: () => void }> = ({
   token,
@@ -7,6 +8,7 @@ export const ResetPasswordPage: React.FC<{ token: string; onBackToLogin: () => v
 }) => {
   const { resetPassword, isLoading, error, clearError } = useAuth();
   const [newPassword, setNewPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [localError, setLocalError] = useState('');
   const [done, setDone] = useState(false);
 
@@ -45,6 +47,7 @@ export const ResetPasswordPage: React.FC<{ token: string; onBackToLogin: () => v
         .form-group{margin-bottom:14px}
         .label{display:block;font-size:13px;font-weight:800;color:var(--text-primary);margin-bottom:6px}
         input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;color:var(--text-primary);background:#242424;outline:none}
+        .password-wrapper{position:relative;width:100%}.password-wrapper input{padding-right:40px!important}.password-toggle-btn{position:absolute;top:50%;right:12px;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;transition:color .15s}.password-toggle-btn:hover{color:var(--text-primary)}.password-toggle-btn svg{width:16px;height:16px}
         input:focus{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(255,255,255,.07)}
         .btn{display:block;width:100%;padding:12px;border:none;border-radius:500px;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:.06em;cursor:pointer;transition:transform .1s, background .15s}
         .btn-primary{background:var(--green);color:#000}
@@ -70,14 +73,24 @@ export const ResetPasswordPage: React.FC<{ token: string; onBackToLogin: () => v
               <label className="label" htmlFor="npw">
                 New password
               </label>
-              <input
-                id="npw"
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="Enter new password"
-                autoComplete="new-password"
-              />
+              <div className="password-wrapper">
+                <input
+                  id="npw"
+                  type={showPassword ? 'text' : 'password'}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Enter new password"
+                  autoComplete="new-password"
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </button>
+              </div>
             </div>
 
             <div className="row">

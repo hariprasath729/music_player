@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Eye, EyeOff } from 'lucide-react';
 
 export const SignupPage: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitchToLogin }) => {
   const { signup, sendOtp, isLoading, error, clearError, isPendingApproval, setIsPendingApproval } = useAuth();
   const [form, setForm] = useState({ email: '', confirmEmail: '', password: '', name: '', day: '', month: '', year: '', gender: '' });
   const [termsChecked, setTermsChecked] = useState(false);
   const [localError, setLocalError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otpValues, setOtpValues] = useState<string[]>(Array(6).fill(''));
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -125,6 +127,7 @@ export const SignupPage: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitch
         .signup-card h1{font-size:1.4rem;font-weight:900;text-align:center;margin-bottom:20px;letter-spacing:-.03em;line-height:1.2}
         .section-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin:20px 0 12px;display:flex;align-items:center;gap:12px}.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
         .form-group{margin-bottom:16px}.form-group label{display:block;font-size:13px;font-weight:800;color:var(--text-primary);margin-bottom:6px}.form-group .hint{font-size:11.5px;color:var(--text-muted);font-weight:400;margin-top:5px;line-height:1.5}.form-group input{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:5px;font-family:var(--font);font-size:14px;color:var(--text-primary);background:var(--bg-input);outline:none;transition:border-color .15s,box-shadow .15s}.form-group input:hover{border-color:var(--border-hover)}.form-group input:focus{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(255,255,255,.07)}.form-group input::placeholder{color:var(--text-muted)}
+        .password-wrapper{position:relative;width:100%}.password-wrapper input{padding-right:40px!important}.password-toggle-btn{position:absolute;top:50%;right:12px;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;transition:color .15s}.password-toggle-btn:hover{color:var(--text-primary)}.password-toggle-btn svg{width:16px;height:16px}
         .dob-row{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px}.form-group select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:5px;font-family:var(--font);font-size:14px;color:var(--text-primary);background:var(--bg-input);outline:none;cursor:pointer;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3b3b3' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px}.form-group select:hover{border-color:var(--border-hover)}.form-group select:focus{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(255,255,255,0.07)}.form-group select option{background:var(--bg-elevated);color:var(--text-primary)}
         .gender-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gender-grid.row2{grid-template-columns:repeat(2,1fr);margin-top:10px}.gender-option{position:relative}.gender-option input{position:absolute;opacity:0;pointer-events:none}.gender-option label{display:flex;align-items:center;justify-content:center;padding:10px 8px;border:1px solid var(--border);border-radius:5px;font-size:12.5px;font-weight:700;color:var(--text-secondary);cursor:pointer;text-align:center;transition:border-color .15s,color .15s,background .15s;margin-bottom:0}.gender-option input:checked + label{border-color:var(--text-primary);color:var(--text-primary);background:rgba(255,255,255,0.06)}.gender-option label:hover{border-color:var(--border-hover)}
         .checkbox-group{display:flex;gap:10px;margin-bottom:16px;align-items:flex-start}.checkbox-group input[type="checkbox"]{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--green);cursor:pointer}.checkbox-group label,.checkbox-group p{font-size:12px;color:var(--text-secondary);line-height:1.5;cursor:pointer}.checkbox-group a{color:var(--text-primary);text-decoration:underline}.checkbox-group a:hover{color:var(--green)}
@@ -188,7 +191,25 @@ zm-3 12c13-4 28-3 44 3 2 1 1 3-1 4-13-5-28-5-41-2-2 0-3-2-2-5" fill="#fff"/>
             </div>
             <div className="form-group">
               <label htmlFor="password">Create a password</label>
-              <input type="password" id="password" placeholder="Password" value={form.password} onChange={e => update('password', e.target.value)} minLength={6} required />
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  placeholder="Password"
+                  value={form.password}
+                  onChange={e => update('password', e.target.value)}
+                  minLength={6}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </button>
+              </div>
             </div>
 
             <div className="section-label">Tell us about yourself</div>

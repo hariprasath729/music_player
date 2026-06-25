@@ -349,86 +349,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [currentTrack, currentTime]);
 
-  
-  // ─────────────────────────────────────────────────────────────────────────────
-  // Media Session API integration (OS lock screen / BT / headset / media keys)
-  // Centralized here so it stays tightly coupled with global player state.
-  // ─────────────────────────────────────────────────────────────────────────────
-  useEffect(() => {
-    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
-    if (!ms || typeof ms.setActionHandler !== 'function') return;
 
-    const safe = (fn: (() => void) | null | undefined) => {
-      try {
-        fn?.();
-      } catch (err) {
-        console.error('[mediaSession] handler error:', err);
-      }
-    };
-
-    // Register once (per mount). Subsequent state sync is handled by other effects.
-    ms.setActionHandler('play', () => safe(() => togglePlay(false, true)));
-    ms.setActionHandler('pause', () => safe(() => togglePlay(false, false)));
-    ms.setActionHandler('previoustrack', () => safe(() => prevTrack()));
-    ms.setActionHandler('nexttrack', () => safe(() => nextTrack()));
-
-    // Optional: keep existing defaults when unsupported.
-    return () => {
-      try {
-        ms.setActionHandler('play', null as any);
-        ms.setActionHandler('pause', null as any);
-        ms.setActionHandler('previoustrack', null as any);
-        ms.setActionHandler('nexttrack', null as any);
-      } catch {
-        // no-op
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
-    if (!ms) return;
-
-    // Playback state sync
-    try {
-      ms.playbackState = isPlaying ? 'playing' : 'paused';
-    } catch {
-      // Some browsers may throw in restricted contexts; ignore.
-    }
-  }, [isPlaying]);
-
-  useEffect(() => {
-    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
-    if (!ms) return;
-
-    const title = currentTrack.title || 'Unknown';
-    const artist = currentTrack.artist || 'Unknown';
-    const album = currentTrack.album || '';
-
-    // Artwork: prefer currentTrack.coverUrl if available.
-    // Media Session doesn’t define how to fetch multiple sizes; we provide the same URL
-    // across typical size slots as a safe fallback.
-    const coverUrl = (currentTrack as any).coverUrl as string | undefined;
-    const artwork = coverUrl
-      ? [
-          { src: coverUrl, sizes: '96x96', type: 'image/jpeg' },
-          { src: coverUrl, sizes: '128x128', type: 'image/jpeg' },
-          { src: coverUrl, sizes: '192x192', type: 'image/jpeg' },
-        ]
-      : [];
-
-    try {
-      ms.metadata = new MediaMetadata({
-        title,
-        artist,
-        album,
-        artwork,
-      });
-    } catch {
-      // If MediaMetadata construction fails, degrade gracefully.
-    }
-  }, [currentTrack]);
 
   // Sync playback time
   useEffect(() => {
@@ -1013,6 +934,129 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setNewPlTitle('');
     setAddToPlaylistTrack(null);
   };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // Media Session API integration (OS lock screen / BT / headset / media keys)
+  // Centralized here so it stays tightly coupled with global player state.
+  // ─────────────────────────────────────────────────────────────────────────────
+  const togglePlayRef = useRef(togglePlay);
+  const nextTrackRef = useRef(nextTrack);
+  const prevTrackRef = useRef(prevTrack);
+
+  // Keep refs up-to-date with latest PlayerContext callbacks to prevent stale closures.
+  togglePlayRef.current = togglePlay;
+  nextTrackRef.current = nextTrack;
+  prevTrackRef.current = prevTrack;
+
+  const mediaSessionActive = useRef<boolean>(false);
+
+  // Register Media Session handlers exactly once when a valid track is loaded,
+  // and keep them registered for the duration of the track's existence.
+  useEffect(() => {
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms || typeof ms.setActionHandler !== 'function') return;
+
+    const hasValidTrack = currentTrack && currentTrack.id !== '';
+
+    if (hasValidTrack && !mediaSessionActive.current) {
+      const safe = (fn: () => void) => {
+        try {
+          fn();
+        } catch (err) {
+          console.error('[mediaSession] handler error:', err);
+        }
+      };
+
+      ms.setActionHandler('play', () => safe(() => togglePlayRef.current()));
+      ms.setActionHandler('pause', () => safe(() => togglePlayRef.current()));
+      ms.setActionHandler('previoustrack', () => safe(() => prevTrackRef.current()));
+      ms.setActionHandler('nexttrack', () => safe(() => nextTrackRef.current()));
+
+      mediaSessionActive.current = true;
+    } else if (!hasValidTrack && mediaSessionActive.current) {
+      try {
+        ms.setActionHandler('play', null);
+        ms.setActionHandler('pause', null);
+        ms.setActionHandler('previoustrack', null);
+        ms.setActionHandler('nexttrack', null);
+      } catch (err) {
+        console.error('[mediaSession] unregister error:', err);
+      }
+      mediaSessionActive.current = false;
+    }
+
+    return () => {
+      // Cleanup on unmount
+      if (mediaSessionActive.current) {
+        try {
+          ms.setActionHandler('play', null);
+          ms.setActionHandler('pause', null);
+          ms.setActionHandler('previoustrack', null);
+          ms.setActionHandler('nexttrack', null);
+        } catch {
+          // no-op
+        }
+        mediaSessionActive.current = false;
+      }
+    };
+  }, [currentTrack.id]);
+
+  // Sync playback state with Media Session
+  useEffect(() => {
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms) return;
+
+    try {
+      if (currentTrack && currentTrack.id !== '') {
+        ms.playbackState = isPlaying ? 'playing' : 'paused';
+      } else {
+        ms.playbackState = 'none';
+      }
+    } catch {
+      // ignore
+    }
+  }, [isPlaying, currentTrack.id]);
+
+  // Update Media Session metadata when track changes
+  useEffect(() => {
+    const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+    if (!ms) return;
+
+    if (currentTrack && currentTrack.id !== '') {
+      const title = currentTrack.title || 'Unknown';
+      const artist = currentTrack.artist || 'Unknown';
+      const album = currentTrack.album || '';
+
+      const coverUrl = (currentTrack as any).coverUrl as string | undefined;
+      const artwork = coverUrl
+        ? [
+            { src: coverUrl, sizes: '96x96', type: 'image/jpeg' },
+            { src: coverUrl, sizes: '128x128', type: 'image/jpeg' },
+            { src: coverUrl, sizes: '192x192', type: 'image/jpeg' },
+            { src: coverUrl, sizes: '256x256', type: 'image/jpeg' },
+            { src: coverUrl, sizes: '384x384', type: 'image/jpeg' },
+            { src: coverUrl, sizes: '512x512', type: 'image/jpeg' },
+          ]
+        : [];
+
+      try {
+        ms.metadata = new MediaMetadata({
+          title,
+          artist,
+          album,
+          artwork,
+        });
+      } catch {
+        // If MediaMetadata construction fails, degrade gracefully.
+      }
+    } else {
+      try {
+        ms.metadata = null;
+      } catch {
+        // ignore
+      }
+    }
+  }, [currentTrack]);
 
   const value = useMemo(
     () => ({
