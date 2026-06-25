@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import OTP from '../models/OTP.js';
 import ApprovalToken from '../models/ApprovalToken.js';
+import SongRequest from '../models/SongRequest.js';
+import Notification from '../models/Notification.js';
 import {
   sendOtpEmail,
   sendAdminApprovalEmail,
@@ -19,7 +21,7 @@ const generateToken = (id, email) => {
 };
 
 // Private helper: Checks if token is active, otherwise generates a new 10 min token and emails admin
-const triggerAdminApproval = async (user) => {
+const triggerAdminApproval = async (user, req) => {
   let tokenRecord = await ApprovalToken.findOne({ email: user.email });
 
   if (tokenRecord && tokenRecord.expiresAt > new Date()) {
@@ -31,11 +33,15 @@ const triggerAdminApproval = async (user) => {
 
   await ApprovalToken.findOneAndUpdate({ email: user.email }, { token, expiresAt }, { upsert: true, new: true });
 
-  console.log(`\n🚨 [ADMIN ACTION REQUIRED] New user signup: ${user.email}`);
-  console.log(`✅ APPROVE: ${process.env.APP_URL || 'https://music-player-z1db.onrender.com'}/api/auth/approve?token=${token}`);
-  console.log(`❌ REJECT:  ${process.env.APP_URL || 'https://music-player-z1db.onrender.com'}/api/auth/reject?token=${token}\n`);
+  const protocol = req && (req.secure || req.headers['x-forwarded-proto'] === 'https') ? 'https' : 'http';
+  const host = req ? req.get('host') : 'localhost:5000';
+  const baseUrl = req ? `${protocol}://${host}` : (process.env.APP_URL || 'https://music-player-z1db.onrender.com');
 
-  sendAdminApprovalEmail(user.email, user.name, token);
+  console.log(`\n🚨 [ADMIN ACTION REQUIRED] New user signup: ${user.email}`);
+  console.log(`✅ APPROVE: ${baseUrl}/api/auth/approve?token=${token}`);
+  console.log(`❌ REJECT:  ${baseUrl}/api/auth/reject?token=${token}\n`);
+
+  sendAdminApprovalEmail(user.email, user.name, token, baseUrl);
 };
 
 export const sendOtp = async (req, res) => {
@@ -83,7 +89,7 @@ export const verifyOtpAndSignup = async (req, res) => {
     await OTP.deleteOne({ email }); // Single use OTP
 
     if (!user.isApproved) {
-      await triggerAdminApproval(user);
+      await triggerAdminApproval(user, req);
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
@@ -114,7 +120,7 @@ export const googleLogin = async (req, res) => {
     }
 
     if (!user.isApproved) {
-      await triggerAdminApproval(user);
+      await triggerAdminApproval(user, req);
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
@@ -142,7 +148,7 @@ export const login = async (req, res) => {
     }
 
     if (!user.isApproved) {
-      await triggerAdminApproval(user);
+      await triggerAdminApproval(user, req);
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
@@ -222,13 +228,110 @@ export const requestSongInSetting = async (req, res) => {
     const userEmail = dbUser.email;
     const userName = dbUser.name || 'User';
 
+    const songsArray = Array.isArray(songs)
+      ? songs
+      : String(songs || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+
+    const token = crypto.randomBytes(32).toString('hex');
+
+    await SongRequest.create({
+      userId: req.user.id,
+      songs: songsArray,
+      token
+    });
+
+    const protocol = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const host = req.get('host');
+    const baseUrl = `${protocol}://${host}`;
+
     // Ensure admin email is NOT revealed in response
-    await sendSongRequestToAdminEmail(userEmail, userName, songs);
+    await sendSongRequestToAdminEmail(userEmail, userName, songsArray, token, baseUrl);
 
     return res.json({ success: true, message: 'Song request sent to admin' });
   } catch (error) {
     console.error('❌ requestSongInSetting Error:', error);
     res.status(500).json({ success: false, error: error.message || 'Failed to send song request' });
+  }
+};
+
+export const completeSongRequest = async (req, res) => {
+  try {
+    const { token } = req.query;
+    if (!token) {
+      return res.status(400).send(`
+        <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <h1 style="color: #ff0000; font-size: 32px; margin-bottom: 20px;">Invalid Link</h1>
+          <p style="color: #aaa; font-size: 18px;">Token is missing from the request.</p>
+        </div>
+      `);
+    }
+
+    const songRequest = await SongRequest.findOne({ token, isCompleted: false });
+    if (!songRequest) {
+      return res.status(404).send(`
+        <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <h1 style="color: #ff0000; font-size: 32px; margin-bottom: 20px;">Expired or Completed Link</h1>
+          <p style="color: #aaa; font-size: 18px;">This request has already been completed, or the link has expired.</p>
+        </div>
+      `);
+    }
+
+    // Mark request completed
+    songRequest.isCompleted = true;
+    await songRequest.save();
+
+    // Create in-app notification for the user
+    await Notification.create({
+      userId: songRequest.userId,
+      message: 'the requested song added'
+    });
+
+    return res.send(`
+      <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="background: #1c1c1c; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); max-width: 450px;">
+          <h1 style="color: #1db954; font-size: 32px; margin-bottom: 20px;">Success!</h1>
+          <p style="color: #bbb; font-size: 18px; line-height: 1.5; margin-bottom: 0;">
+            The requested song has been marked as added, and the user has been notified inside the app.
+          </p>
+        </div>
+      </div>
+    `);
+  } catch (error) {
+    console.error('❌ completeSongRequest Error:', error);
+    return res.status(500).send(`
+      <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h1 style="color: #ff0000; font-size: 32px; margin-bottom: 20px;">Server Error</h1>
+        <p style="color: #aaa; font-size: 18px;">An error occurred while marking the song request as done.</p>
+      </div>
+    `);
+  }
+};
+
+export const getNotifications = async (req, res) => {
+  try {
+    const notifications = await Notification.find({ userId: req.user.id })
+      .sort({ createdAt: -1 });
+    return res.json({ success: true, data: notifications });
+  } catch (error) {
+    console.error('❌ getNotifications Error:', error);
+    return res.status(500).json({ success: false, error: 'Failed to retrieve notifications' });
+  }
+};
+
+export const deleteNotification = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const notification = await Notification.findOneAndDelete({ _id: id, userId: req.user.id });
+    if (!notification) {
+      return res.status(404).json({ success: false, error: 'Notification not found' });
+    }
+    return res.json({ success: true, message: 'Notification dismissed' });
+  } catch (error) {
+    console.error('❌ deleteNotification Error:', error);
+    return res.status(500).json({ success: false, error: 'Failed to dismiss notification' });
   }
 };
 

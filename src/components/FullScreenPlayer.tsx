@@ -66,6 +66,7 @@ export const FullScreenPlayer: React.FC = () => {
     playbackRate,
     setPlaybackRate,
     sleepTimerRemaining,
+    isSleepAtTrackEnd,
     setSleepTimer,
   } = usePlayer();
 
@@ -352,7 +353,7 @@ export const FullScreenPlayer: React.FC = () => {
               <span>Share</span>
             </button>
             <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
                 <Zap className="h-4 w-4 shrink-0 text-white/70" />
                 <span className="truncate">Song Speed</span>
               </div>
@@ -364,7 +365,7 @@ export const FullScreenPlayer: React.FC = () => {
                   setPlaybackRate(Number(e.target.value));
                   closeMenuSafe();
                 }}
-                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer"
+                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[80px]"
               >
                 <option value={0.5}>0.5x</option>
                 <option value={0.75}>0.75x</option>
@@ -375,14 +376,14 @@ export const FullScreenPlayer: React.FC = () => {
               </select>
             </div>
             <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
                 <Moon className="h-4 w-4 shrink-0 text-white/70" />
                 <span className="truncate">
-                  Sleep Timer {sleepTimerRemaining ? `(${sleepTimerRemaining}m)` : ''}
+                  Sleep Timer{isSleepAtTrackEnd ? ' (End of track)' : sleepTimerRemaining ? ` (${sleepTimerRemaining}m)` : ''}
                 </span>
               </div>
               <select 
-                value={sleepTimerRemaining ? "active" : "off"}
+                value={isSleepAtTrackEnd ? "track-end" : sleepTimerRemaining ? "active" : "off"}
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
                   e.stopPropagation();
@@ -393,14 +394,17 @@ export const FullScreenPlayer: React.FC = () => {
                     if (!isNaN(parsed) && parsed > 0) {
                       setSleepTimer(parsed);
                     }
+                  } else if (val === 'track-end') {
+                    setSleepTimer('track-end');
                   } else {
                     setSleepTimer(val === "off" ? null : Number(val));
                   }
                   closeMenuSafe();
                 }}
-                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer"
+                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[100px]"
               >
                 <option value="off">Off</option>
+                <option value="track-end">End of track</option>
                 <option value={5}>5 mins</option>
                 <option value={15}>15 mins</option>
                 <option value={30}>30 mins</option>

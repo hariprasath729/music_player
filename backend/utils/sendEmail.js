@@ -80,10 +80,10 @@ export const sendOtpEmail = async (to, otp) => {
   }
 };
 
-export const sendAdminApprovalEmail = async (userEmail, userName, token) => {
-  const baseUrl = process.env.APP_URL || 'https://music-player-z1db.onrender.com';
-  const approveLink = `${baseUrl}/api/auth/approve?token=${token}`;
-  const rejectLink = `${baseUrl}/api/auth/reject?token=${token}`;
+export const sendAdminApprovalEmail = async (userEmail, userName, token, baseUrl) => {
+  const finalBaseUrl = baseUrl || process.env.APP_URL || 'https://music-player-z1db.onrender.com';
+  const approveLink = `${finalBaseUrl}/api/auth/approve?token=${token}`;
+  const rejectLink = `${finalBaseUrl}/api/auth/reject?token=${token}`;
   const html = `
 <!DOCTYPE html>
 <html>
@@ -321,7 +321,7 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
   }
 };
 
-export const sendSongRequestToAdminEmail = async (userEmail, userName, songs) => {
+export const sendSongRequestToAdminEmail = async (userEmail, userName, songs, token, baseUrl) => {
   const songsArray = Array.isArray(songs)
     ? songs
     : String(songs || '')
@@ -334,6 +334,11 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs) =>
         .map(s => `<li style="word-break: break-word;">${s}</li>`)
         .join('')}</ul>`
     : `<p style="margin:0; color:#fff; font-size:16px; word-break: break-word;">(No songs specified)</p>`;
+
+  const finalBaseUrl = baseUrl || process.env.APP_URL || 'https://music-player-z1db.onrender.com';
+  const doneLink = `${finalBaseUrl}/api/auth/song-request/done?token=${token}`;
+
+  console.log(`\n🚨 [ADMIN ACTION REQUIRED] Song request done link:\n👉 ${doneLink}\n`);
 
   const html = `
 <!DOCTYPE html>
@@ -362,11 +367,16 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs) =>
     <img src="https://cdn.jsdelivr.net/gh/ritcv12345678-source/artists@main/logo.png" width="60" alt="Music Player" style="display:block; margin:0 auto;"/>
     <h2 style="margin:15px 0 5px 0; font-size: 24px; text-align: center;">Music Player</h2>
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px; text-align: center;">Requested Songs</p>
-    <div style="background:#0f0f0f; padding:20px; border-radius:8px; text-align: left;">
+    <div style="background:#0f0f0f; padding:20px; border-radius:8px; text-align: left; margin-bottom: 20px;">
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">From</p>
       <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${userName} (${userEmail})</p>
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Requested</p>
       ${songsListHtml}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="${doneLink}" style="display: inline-block; background-color: #1db954; color: #0b0b0b; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s;">
+        Done
+      </a>
     </div>
   </td>
   </tr>

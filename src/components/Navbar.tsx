@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { useAuth } from '../context/AuthContext'; // Replace with real toast in production
+import { notificationsApi, InAppNotification } from '../services/apiClient';
 
 /* Filter pills shown on mobile home/library */
 const MobileFilterPills: React.FC = () => {
@@ -40,6 +41,49 @@ export const Navbar: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
   const [updateVersion, setUpdateVersion] = useState<string>('unknown');
+
+  const [notifications, setNotifications] = useState<InAppNotification[]>([]);
+
+  const fetchNotifications = async () => {
+    if (!user) return;
+    try {
+      const res = await notificationsApi.getNotifications();
+      if (res.success && res.data) {
+        setNotifications(res.data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+    }
+  };
+
+  const handleDismissNotification = async (id: string) => {
+    try {
+      const res = await notificationsApi.deleteNotification(id);
+      if (res.success) {
+        setNotifications(prev => prev.filter(n => n._id !== id));
+        showToast('Notification dismissed');
+      }
+    } catch (error) {
+      console.error('Failed to dismiss notification:', error);
+      showToast('Failed to dismiss notification');
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+  }, [user]);
+
+  useEffect(() => {
+    if (activeDropdown === 'notifications') {
+      fetchNotifications();
+    }
+  }, [activeDropdown]);
+
+  useEffect(() => {
+    if (!user) return;
+    const interval = setInterval(fetchNotifications, 15000);
+    return () => clearInterval(interval);
+  }, [user]);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -168,7 +212,7 @@ export const Navbar: React.FC = () => {
             </button>
               <button onClick={() => setActiveDropdown(d => d === 'notifications' ? null : 'notifications')} className="relative">
                 <Bell className="h-5 w-5 text-white" />
-                {updateWorker && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500 border border-black"></div>}
+                {(updateWorker || notifications.length > 0) && <div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500 border border-black"></div>}
               </button>
               <div className="relative flex items-center">
                 <button onClick={() => setActiveDropdown(d => d === 'settings' ? null : 'settings')}>
@@ -228,7 +272,7 @@ export const Navbar: React.FC = () => {
             title="Notifications"
           >
             <Bell className="h-4 w-4" />
-            {updateWorker && <div className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500 border-2 border-black/60"></div>}
+            {(updateWorker || notifications.length > 0) && <div className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500 border-2 border-black/60"></div>}
           </button>
           <div
           onClick={() => setActiveDropdown(d => d === 'profile' ? null : 'profile')}
@@ -277,8 +321,8 @@ export const Navbar: React.FC = () => {
               <div className="p-4 border-b border-white/10">
                 <h3 className="font-bold text-white">Notifications</h3>
               </div>
-              <div className="flex flex-col p-2">
-                {updateWorker ? (
+              <div className="flex flex-col p-2 gap-2 max-h-[300px] overflow-y-auto">
+                {updateWorker && (
                   <div className="p-3 rounded-md bg-white/5">
                     <div className="flex justify-between items-center">
                       <p className="text-sm font-bold text-white">New version {updateVersion} is available</p>
@@ -313,7 +357,27 @@ export const Navbar: React.FC = () => {
                       Update Now
                     </button>
                   </div>
-                ) : (
+                )}
+
+                {notifications.map((notif) => (
+                  <div key={notif._id} className="p-3 rounded-md bg-white/5 flex justify-between items-start gap-2">
+                    <div className="flex-1">
+                      <p className="text-sm text-white">{notif.message}</p>
+                      <span className="text-[10px] text-[#b3b3b3]">
+                        {new Date(notif.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => handleDismissNotification(notif._id)}
+                      className="text-xs text-[#b3b3b3] hover:text-white mt-0.5"
+                      title="Dismiss"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                ))}
+
+                {!updateWorker && notifications.length === 0 && (
                   <p className="py-8 text-center text-sm text-[#b3b3b3]">No new notifications</p>
                 )}
               </div>

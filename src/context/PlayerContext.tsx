@@ -78,7 +78,8 @@ interface PlayerContextType {
   playbackRate: number;
   setPlaybackRate: (rate: number) => void;
   sleepTimerRemaining: number | null;
-  setSleepTimer: (minutes: number | null) => void;
+  isSleepAtTrackEnd: boolean;
+  setSleepTimer: (minutes: number | 'track-end' | null) => void;
 
   setIsPlaybackLocked: (locked: boolean) => void;
   playTrack: (track: Track, contextTracks?: Track[], force?: boolean) => void;
@@ -172,6 +173,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [playbackRate, setPlaybackRateState] = useState<number>(1);
   const [sleepTimerEnd, setSleepTimerEnd] = useState<number | null>(null);
   const [sleepTimerRemaining, setSleepTimerRemaining] = useState<number | null>(null);
+  const [isSleepAtTrackEnd, setIsSleepAtTrackEndState] = useState<boolean>(false);
+  const isSleepAtTrackEndRef = useRef<boolean>(false);
+
+  const setIsSleepAtTrackEnd = (val: boolean) => {
+    setIsSleepAtTrackEndState(val);
+    isSleepAtTrackEndRef.current = val;
+  };
   const [addToPlaylistTrack, setAddToPlaylistTrack] = useState<Track | null>(null);
   const [newPlTitle, setNewPlTitle] = useState('');
   const [downloadedTracks, setDownloadedTracks] = useState<string[]>([]);
@@ -323,6 +331,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setActivePlaylist(null);
       setFollowedArtists([]);
       setSavedAlbums([]);
+      setIsSleepAtTrackEnd(false);
+      setSleepTimerEnd(null);
+      setSleepTimerRemaining(null);
     }
   }, [isLoggedIn, user]);
 
@@ -436,6 +447,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const handleTrackEnd = () => {
     if (isPlaybackLocked) return; // Prevent listeners from auto-advancing tracks locally
     if (currentTrack.id === '') return;
+    if (isSleepAtTrackEndRef.current) {
+      audioEngine.pause();
+      setIsPlaying(false);
+      setIsSleepAtTrackEnd(false);
+      showToast('Sleeper ended playback', 'moon');
+      return;
+    }
     if (repeatMode === 'one') {
       audioEngine.play(currentTrack.genre, currentTrack.duration, 0, currentTrack.fileUrl);
       setCurrentTime(0);
@@ -720,9 +738,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [sleepTimerEnd]);
 
-  const setSleepTimer = (minutes: number | null) => {
-    setSleepTimerEnd(minutes === null ? null : Date.now() + minutes * 60000);
-    showToast(minutes === null ? 'Sleep timer canceled' : `Sleep timer set for ${minutes} minutes`, 'clock');
+  const setSleepTimer = (value: number | 'track-end' | null) => {
+    if (value === null) {
+      setSleepTimerEnd(null);
+      setSleepTimerRemaining(null);
+      setIsSleepAtTrackEnd(false);
+      showToast('Sleep timer canceled', 'clock');
+    } else if (value === 'track-end') {
+      setSleepTimerEnd(null);
+      setSleepTimerRemaining(null);
+      setIsSleepAtTrackEnd(true);
+      showToast('Sleeper set to end of track', 'clock');
+    } else {
+      setIsSleepAtTrackEnd(false);
+      setSleepTimerEnd(Date.now() + value * 60000);
+      showToast(`Sleep timer set for ${value} minutes`, 'clock');
+    }
   };
 
   const setPlaybackRate = (rate: number) => {
@@ -1109,6 +1140,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       playbackRate,
       setPlaybackRate,
       sleepTimerRemaining,
+      isSleepAtTrackEnd,
       setSleepTimer,
       customPlaylists,
       createPlaylist,
@@ -1150,6 +1182,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       activeFilter,
       playbackRate,
       sleepTimerRemaining,
+      isSleepAtTrackEnd,
       customPlaylists,
       isPlaybackLocked,
       downloadedTracks,

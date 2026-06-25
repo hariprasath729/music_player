@@ -243,3 +243,21 @@ export async function fetchTracksFromBackend(search?: string): Promise<Track[]> 
   const songs = await songsApi.list(search);
   return songs.map(mapSongToTrack);
 }
+
+// ── In-App Notification APIs ──
+export interface InAppNotification {
+  _id: string;
+  userId: string;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export const notificationsApi = {
+  getNotifications: () =>
+    request<{ success: boolean; data: InAppNotification[] }>('/api/auth/notifications'),
+  deleteNotification: (id: string) =>
+    request<{ success: boolean; message: string }>(`/api/auth/notifications/${id}`, {
+      method: 'DELETE',
+    }),
+};
