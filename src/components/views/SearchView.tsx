@@ -109,9 +109,7 @@ export const SearchView: React.FC = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         toggleLike(track.id);
-                        // Play only when explicitly touching Like
-                        handleSearchPlay(track);
-                      }}
+                         }}
                       className={`flex h-9 w-9 items-center justify-center rounded-full transition
                         ${isLiked ? 'text-[#1db954]' : 'text-white/60 hover:text-white'}`}
                       title={isLiked ? 'Liked' : 'Like'}
@@ -125,8 +123,7 @@ export const SearchView: React.FC = () => {
                         e.stopPropagation();
                         addToQueue(track);
                         showToast('Added to queue', 'plus');
-                        // Play only when explicitly touching + Add to queue
-                        handleSearchPlay(track);
+                        
                       }}
                       className="flex h-9 w-9 items-center justify-center rounded-full text-white/60 transition hover:text-white hover:bg-white/5"
                       title="Add to queue"
@@ -174,12 +171,19 @@ export const SearchView: React.FC = () => {
             <div className="flex flex-col items-center gap-3 py-16 text-center">
               <p className="text-2xl font-bold text-white">No results found</p>
               <p className="text-[#b3b3b3]">Try different keywords or check the spelling</p>
-              <button
+            <div className=' flex gap-4'>  <button
                 onClick={() => setSearchQuery('')}
                 className="mt-2 rounded-full bg-white px-6 py-2 text-sm font-bold text-black transition hover:scale-105"
               >
                 Browse categories
               </button>
+              <button
+                onClick={() => {setView('request-song' as any);}}
+                className="mt-2 rounded-full bg-white px-8 py-2 text-sm font-bold text-black transition hover:scale-105"
+              >
+                Request a Song
+              </button>
+              </div>
             </div>
           )}
         </div>
