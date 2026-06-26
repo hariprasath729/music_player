@@ -49597,5 +49597,14 @@
     "duration": 279,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Yen%20Da.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Yen%20Da.jpg"
+  },
+  {
+    "id":5566,
+    "title":"dori pavzha malli"
+    "artist":"dori kavi priya"
+    "album":"dori_album"
+    "duration":300,
+    "url":"https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_10@main/songs/dori_song.m4a",
+    "cover":"https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_10@main/covers/dori_songs.jpg"
   }
 ]
