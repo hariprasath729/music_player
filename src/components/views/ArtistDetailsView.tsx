@@ -35,13 +35,17 @@ export const ArtistDetailsView: React.FC = () => {
     return nameNorm === searchNorm || searchNorm.startsWith(nameNorm) || nameNorm.startsWith(searchNorm);
   });
   
-  // Find all tracks by this artist (handling comma-separated artists)
-  const artistTracks = TRACKS.filter(t =>
-    t.artist
-      .split(',')
-      .map(a => a.trim().toLowerCase())
-      .includes(artistName.toLowerCase())
-  );
+  // Find all tracks by this artist (handling comma-separated artists and substrings)
+  const artistTracks = TRACKS.filter(t => {
+    const trackArtistLower = (t.artist || '').toLowerCase();
+    const queryArtistLower = (artistName || '').toLowerCase();
+    
+    if (trackArtistLower === queryArtistLower) return true;
+    if (trackArtistLower.includes(queryArtistLower) || queryArtistLower.includes(trackArtistLower)) return true;
+    
+    const subArtists = trackArtistLower.split(',').map(a => a.trim());
+    return subArtists.includes(queryArtistLower);
+  });
 
   const albumScoreSuffix = '(original background score)';
   const normalizeForFilter = (s?: string) => (s ?? '').toLowerCase();
@@ -67,13 +71,12 @@ export const ArtistDetailsView: React.FC = () => {
     return true;
   });
 
-  if (filteredArtistTracks.length === 0) return null;
-
-  const isThisPlaying = isPlaying && filteredArtistTracks.some((t) => t.id === currentTrack.id);
+  const isThisPlaying = isPlaying && filteredArtistTracks.length > 0 && filteredArtistTracks.some((t) => t.id === currentTrack.id);
 
   const handleMasterPlay = () => {
+    if (filteredArtistTracks.length === 0) return;
     if (isThisPlaying) togglePlay();
-    else if (filteredArtistTracks.length > 0) {
+    else {
       const inList = filteredArtistTracks.find((t) => t.id === currentTrack.id);
       if (inList) togglePlay();
       else playTrack(filteredArtistTracks[0], filteredArtistTracks);
@@ -134,72 +137,76 @@ export const ArtistDetailsView: React.FC = () => {
       {/* ── TRACK LIST ── */}
       <div className="flex flex-col px-2 sm:px-6">
         <h2 className="px-2 pb-4 text-xl font-bold text-white sm:px-0 mt-4">Popular</h2>
-        {filteredArtistTracks.map((track) => {
-          const isCurrent = currentTrack.id === track.id;
-          const isLiked = likedTracks.includes(track.id);
-          const isMenuOpen = contextMenu?.track.id === track.id;
-          const isDownloaded = downloadedTracks.includes(track.id);
+        {filteredArtistTracks.length === 0 ? (
+          <p className="text-sm text-[#b3b3b3] px-2 py-8 sm:px-0">No popular songs found for this artist.</p>
+        ) : (
+          filteredArtistTracks.map((track) => {
+            const isCurrent = currentTrack.id === track.id;
+            const isLiked = likedTracks.includes(track.id);
+            const isMenuOpen = contextMenu?.track.id === track.id;
+            const isDownloaded = downloadedTracks.includes(track.id);
 
-          return (
-            <div
-              key={track.id}
-              className={`group relative flex cursor-pointer items-center gap-3 rounded-md px-2 py-2.5 transition-colors sm:px-3 ${isCurrent ? 'bg-white/5' : 'hover:bg-white/5'}`}
-              onClick={() => playTrack(track, filteredArtistTracks)}
-            >
-              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded shadow sm:h-10 sm:w-10" style={{ background: track.gradient }}>
-                {isCurrent ? (
-                  <div className="flex h-full w-full items-end justify-center gap-[2px] bg-black/40 pb-2">
-                    <div className="w-[3px] animate-wave-1 rounded-full bg-[#1db954]" />
-                    <div className="w-[3px] animate-wave-2 rounded-full bg-[#1db954]" />
-                    <div className="w-[3px] animate-wave-3 rounded-full bg-[#1db954]" />
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100">
-                    <Play className="h-5 w-5 fill-white text-white" />
+            return (
+              <div
+                key={track.id}
+                className={`group relative flex cursor-pointer items-center gap-3 rounded-md px-2 py-2.5 transition-colors sm:px-3 ${isCurrent ? 'bg-white/5' : 'hover:bg-white/5'}`}
+                onClick={() => playTrack(track, filteredArtistTracks)}
+              >
+                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded shadow sm:h-10 sm:w-10" style={{ background: track.gradient }}>
+                  {isCurrent ? (
+                    <div className="flex h-full w-full items-end justify-center gap-[2px] bg-black/40 pb-2">
+                      <div className="w-[3px] animate-wave-1 rounded-full bg-[#1db954]" />
+                      <div className="w-[3px] animate-wave-2 rounded-full bg-[#1db954]" />
+                      <div className="w-[3px] animate-wave-3 rounded-full bg-[#1db954]" />
+                    </div>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100">
+                      <Play className="h-5 w-5 fill-white text-white" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col">
+                  <span className={`truncate text-[14px] font-medium ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>{track.title}</span>
+                </div>
+                <div className="hidden items-center gap-3 sm:flex">
+                  <button onClick={(e) => { e.stopPropagation(); setAddToPlaylistTrack(track); }} className={`transition ${isLiked ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`} title="Add to playlist">
+                    <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954]' : ''}`} />
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); addToQueue(track); showToast(`Added to queue`, 'plus'); }} className="text-transparent transition group-hover:text-[#b3b3b3] hover:!text-white">
+                    <Plus className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); toggleDownload(track); }}
+                    className={`transition ${isDownloaded ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`}
+                    title={isDownloaded ? 'Remove download' : 'Download'}
+                  >
+                    {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
+                  </button>
+                  <span className="w-10 text-right text-[12px] tabular-nums text-[#b3b3b3]">
+                    {Math.floor(track.duration / 60)}:{String(Math.floor(track.duration % 60)).padStart(2, '0')}
+                  </span>
+                </div>
+                <button onClick={(e) => { e.stopPropagation(); setContextMenu(isMenuOpen ? null : { track }); }} className="p-1 text-[#b3b3b3] sm:hidden"><MoreVertical className="h-4 w-4" /></button>
+                {isMenuOpen && (
+                  <div className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-xl bg-[#282828] shadow-2xl sm:hidden" onClick={(e) => e.stopPropagation()}>
+                    <button onClick={() => { setAddToPlaylistTrack(track); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white">
+                      <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954] text-[#1db954]' : ''}`} /><span>Add to playlist</span>
+                    </button>
+                    <button onClick={() => { addToQueue(track); showToast('Added to queue', 'plus'); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"><Plus className="h-4 w-4" /><span>Add to queue</span></button>
+                    <button
+                      onClick={() => { toggleDownload(track); closeMenu(); }}
+                      className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white active:bg-[#3d3d3d]"
+                    >
+                      {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
+                      <span className={isDownloaded ? 'text-[#1db954]' : ''}>{isDownloaded ? 'Remove download' : 'Download'}</span>
+                    </button>
+                    <button onClick={() => { navigator.clipboard?.writeText(window.location.href); showToast('Copied', 'link'); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"><Share2 className="h-4 w-4" /><span>Share</span></button>
                   </div>
                 )}
               </div>
-              <div className="flex min-w-0 flex-1 flex-col">
-                <span className={`truncate text-[14px] font-medium ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>{track.title}</span>
-              </div>
-              <div className="hidden items-center gap-3 sm:flex">
-                <button onClick={(e) => { e.stopPropagation(); setAddToPlaylistTrack(track); }} className={`transition ${isLiked ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`} title="Add to playlist">
-                  <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954]' : ''}`} />
-                </button>
-                <button onClick={(e) => { e.stopPropagation(); addToQueue(track); showToast(`Added to queue`, 'plus'); }} className="text-transparent transition group-hover:text-[#b3b3b3] hover:!text-white">
-                  <Plus className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={(e) => { e.stopPropagation(); toggleDownload(track); }}
-                  className={`transition ${isDownloaded ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`}
-                  title={isDownloaded ? 'Remove download' : 'Download'}
-                >
-                  {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-                </button>
-                <span className="w-10 text-right text-[12px] tabular-nums text-[#b3b3b3]">
-                  {Math.floor(track.duration / 60)}:{String(Math.floor(track.duration % 60)).padStart(2, '0')}
-                </span>
-              </div>
-              <button onClick={(e) => { e.stopPropagation(); setContextMenu(isMenuOpen ? null : { track }); }} className="p-1 text-[#b3b3b3] sm:hidden"><MoreVertical className="h-4 w-4" /></button>
-              {isMenuOpen && (
-                <div className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-xl bg-[#282828] shadow-2xl sm:hidden" onClick={(e) => e.stopPropagation()}>
-                  <button onClick={() => { setAddToPlaylistTrack(track); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white">
-                    <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954] text-[#1db954]' : ''}`} /><span>Add to playlist</span>
-                  </button>
-                  <button onClick={() => { addToQueue(track); showToast('Added to queue', 'plus'); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"><Plus className="h-4 w-4" /><span>Add to queue</span></button>
-                  <button
-                    onClick={() => { toggleDownload(track); closeMenu(); }}
-                    className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white active:bg-[#3d3d3d]"
-                  >
-                    {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-                    <span className={isDownloaded ? 'text-[#1db954]' : ''}>{isDownloaded ? 'Remove download' : 'Download'}</span>
-                  </button>
-                  <button onClick={() => { navigator.clipboard?.writeText(window.location.href); showToast('Copied', 'link'); closeMenu(); }} className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"><Share2 className="h-4 w-4" /><span>Share</span></button>
-                </div>
-              )}
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

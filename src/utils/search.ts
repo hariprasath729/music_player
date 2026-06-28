@@ -21,14 +21,16 @@ import type { Track, Playlist } from '../data/musicCatalog';
 function collapseRepeats(input: string): string {
   // Collapses repeated characters: "raawadi" -> "rawadi"
   // Keep it lightweight (no full edit-distance).
+  if (!input) return '';
   return input.toLowerCase().replace(/([a-z0-9])\1+/g, '$1');
 }
 
 function scoreTrack(track: Track, query: string): number {
-  const q = query.toLowerCase().trim();
-  const title = track.title.toLowerCase();
-  const artist = track.artist.toLowerCase();
-  const album = track.album.toLowerCase();
+  if (!track) return -1;
+  const q = (query || '').toLowerCase().trim();
+  const title = (track.title || '').toLowerCase();
+  const artist = (track.artist || '').toLowerCase();
+  const album = (track.album || '').toLowerCase();
 
   const titleN = collapseRepeats(title);
   const artistN = collapseRepeats(artist);
@@ -111,9 +113,10 @@ function scoreTrack(track: Track, query: string): number {
 }
 
 function scorePlaylist(playlist: Playlist, query: string): number {
-  const q = query.toLowerCase().trim();
-  const title = playlist.title.toLowerCase();
-  const description = playlist.description.toLowerCase();
+  if (!playlist) return -1;
+  const q = (query || '').toLowerCase().trim();
+  const title = (playlist.title || '').toLowerCase();
+  const description = (playlist.description || '').toLowerCase();
 
   const titleN = collapseRepeats(title);
   const descriptionN = collapseRepeats(description);

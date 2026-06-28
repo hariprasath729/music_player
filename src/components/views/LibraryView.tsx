@@ -80,7 +80,7 @@ export const LibraryView: React.FC = () => {
 
   let filteredPlaylists = [...customPlaylists];
   if (librarySearch) {
-    filteredPlaylists = filteredPlaylists.filter((p) => p.title.toLowerCase().includes(librarySearch.toLowerCase()));
+    filteredPlaylists = filteredPlaylists.filter((p) => (p.title || '').toLowerCase().includes(librarySearch.toLowerCase()));
   }
   if (sort === 'A-Z') filteredPlaylists = filteredPlaylists.sort((a, b) => a.title.localeCompare(b.title));
 
@@ -262,9 +262,9 @@ export const LibraryView: React.FC = () => {
         {filter === 'Recently Played' && (
           history.length > 0 ? (history as any[])
             .filter((t) =>
-              t.title.toLowerCase().includes(librarySearch.toLowerCase()) ||
-              t.artist.toLowerCase().includes(librarySearch.toLowerCase()) ||
-              t.album.toLowerCase().includes(librarySearch.toLowerCase())
+              (t.title || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
+              (t.artist || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
+              (t.album || '').toLowerCase().includes(librarySearch.toLowerCase())
             )
             .map((t, idx) => {
               const dateStr = t.playedAt 
@@ -293,8 +293,8 @@ export const LibraryView: React.FC = () => {
 
         {(filter === 'All' || filter === 'Artists') &&
           artists
-            .filter((a) => followedArtists.includes(a.artist))
-            .filter((a) => a.artist.toLowerCase().includes(librarySearch.toLowerCase()))
+            .filter((a) => a.artist && followedArtists.includes(a.artist))
+            .filter((a) => (a.artist || '').toLowerCase().includes(librarySearch.toLowerCase()))
             .map((a) =>
               <React.Fragment key={`artist-${a.artist}`}>
                 {renderRow(
@@ -322,8 +322,8 @@ export const LibraryView: React.FC = () => {
 
         {(filter === 'All' || filter === 'Albums') &&
           albums
-            .filter((a) => savedAlbums.includes(a.album))
-            .filter((a) => a.album.toLowerCase().includes(librarySearch.toLowerCase()))
+            .filter((a) => a.album && savedAlbums.includes(a.album))
+            .filter((a) => (a.album || '').toLowerCase().includes(librarySearch.toLowerCase()))
             .map((a) =>
               <React.Fragment key={`album-${a.album}`}>
                 {renderRow(
@@ -373,9 +373,9 @@ export const LibraryView: React.FC = () => {
                 downloadedTracks.length > 0 ? (
                   TRACKS.filter((t) => downloadedTracks.includes(t.id))
                     .filter((t) =>
-                      t.title.toLowerCase().includes(librarySearch.toLowerCase()) ||
-                      t.artist.toLowerCase().includes(librarySearch.toLowerCase()) ||
-                      t.album.toLowerCase().includes(librarySearch.toLowerCase())
+                      (t.title || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
+                      (t.artist || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
+                      (t.album || '').toLowerCase().includes(librarySearch.toLowerCase())
                     )
                     .map((t, idx) => (
                       <React.Fragment key={`downloaded-${t.id}-${idx}`}>
@@ -394,7 +394,7 @@ export const LibraryView: React.FC = () => {
                 downloadedPlaylists.length > 0 ? (
                   [...PLAYLISTS, ...customPlaylists]
                     .filter((p) => downloadedPlaylists.includes(p.id))
-                    .filter((p) => p.title.toLowerCase().includes(librarySearch.toLowerCase()))
+                    .filter((p) => (p.title || '').toLowerCase().includes(librarySearch.toLowerCase()))
                     .map((pl, idx) => {
                       const songs = ('tracks' in pl) ? (pl as any).tracks : TRACKS.filter(t => (pl as any).songIds.includes(t.id));
                       const cover = ('coverGradient' in pl) ? (pl as any).coverGradient : (songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)');
