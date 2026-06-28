@@ -11,8 +11,6 @@ import { AuthUser } from '../context/AuthContext';
 // @ts-ignore
 const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
 
-console.log("🛠️ Frontend is trying to connect to Backend at:", API_URL);
-
 export interface BackendSong {
   id?: number | string;
   _id?: string;
