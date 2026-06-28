@@ -40085,9 +40085,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4489,
-    "title": "Aaha Kalyanam,
-    "artist": "Anthony Dhaasan,
-    "album": "Petta,
+    "title": "Aaha Kalyanam",
+    "artist": "Anthony Dhaasan",
+    "album": "Petta",
     "duration": 173,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Aaha-Kalyanam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Aaha-Kalyanam-MassTamilan.org.jpg"
@@ -49760,9 +49760,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5580,
-    "title": "Aasai Mugam org",
-    "artist": "Susheela Raman org",
-    "album": "Gypsy org",
+    "title": "Aasai Mugam",
+    "artist": "Susheela Raman",
+    "album": "Gypsy",
     "duration": 303,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Aasai-Mugam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Aasai-Mugam-MassTamilan.org.jpg"
@@ -50066,9 +50066,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5614,
-    "title": "Anangae Sinungalama org",
-    "artist": "Hariharan, Bharath Sundar, Tippu, Krish, Christopher, Arjun Chandy, Sharanya Gopinath org",
-    "album": "Dev org",
+    "title": "Anangae Sinungalama",
+    "artist": "Hariharan, Bharath Sundar, Tippu, Krish, Christopher, Arjun Chandy, Sharanya Gopinath",
+    "album": "Dev",
     "duration": 355,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Anangae-Sinungalama-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Anangae-Sinungalama-MassTamilan.org.jpg"
@@ -50309,9 +50309,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5642,
-    "title": "Bambara Boomi so",
-    "artist": "Santhosh Narayanan so",
-    "album": "Kadaisi Vivasayi so",
+    "title": "Bambara Boomi",
+    "artist": "Santhosh Narayanan",
+    "album": "Kadaisi Vivasayi",
     "duration": 194,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Bambara-Boomi-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Bambara-Boomi-MassTamilan.so.jpg"
@@ -50399,9 +50399,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5652,
-    "title": "Boomiyil org",
-    "artist": "Pradeep Kumar org",
-    "album": "Pizza II Villa org",
+    "title": "Boomiyil",
+    "artist": "Pradeep Kumar",
+    "album": "Pizza II Villa",
     "duration": 240,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Boomiyil-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Boomiyil-MassTamilan.org.jpg"
@@ -50516,9 +50516,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5665,
-    "title": "Chittuku Chittuku org",
-    "artist": "Santhosh Narayanan org",
-    "album": "A1 org",
+    "title": "Chittuku Chittuku",
+    "artist": "Santhosh Narayanan",
+    "album": "A1",
     "duration": 225,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Chittuku-Chittuku-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Chittuku-Chittuku-MassTamilan.org.jpg"
@@ -50633,9 +50633,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5678,
-    "title": "Dei Machan Dev org",
-    "artist": "Naresh Iyer, Velmurugan, Malavika Menon, Deepika org",
-    "album": "Dev org",
+    "title": "Dei Machan Dev",
+    "artist": "Naresh Iyer, Velmurugan, Malavika Menon, Deepika",
+    "album": "Dev",
     "duration": 300,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Dei-Machan-Dev-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Dei-Machan-Dev-MassTamilan.org.jpg"
@@ -50651,9 +50651,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5680,
-    "title": "Desaandhiri org",
-    "artist": "Siddharth, Santhosh Narayanan org",
-    "album": "Gypsy org",
+    "title": "Desaandhiri",
+    "artist": "Siddharth, Santhosh Narayanan",
+    "album": "Gypsy",
     "duration": 223,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Desaandhiri-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Desaandhiri-MassTamilan.org.jpg"
@@ -50777,9 +50777,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5694,
-    "title": "Disco Woman org",
-    "artist": "Dhee org",
-    "album": "Pizza II Villa org",
+    "title": "Disco Woman",
+    "artist": "Dhee",
+    "album": "Pizza II Villa",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/songs/Disco-Woman-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Disco-Woman-MassTamilan.org.jpg"
@@ -50930,9 +50930,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5711,
-    "title": "Engadi Nee Ponae org",
-    "artist": "S P Balasubhramanyam org",
-    "album": "Dev org",
+    "title": "Engadi Nee Ponae",
+    "artist": "S P Balasubhramanyam",
+    "album": "Dev",
     "duration": 306,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/songs/Engadi-Nee-Ponae-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Engadi-Nee-Ponae-MassTamilan.org.jpg"
@@ -51065,9 +51065,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5726,
-    "title": "Enniko Er Pudichane so",
-    "artist": "Santhosh Narayanan so",
-    "album": "Kadaisi Vivasayi so",
+    "title": "Enniko Er Pudichane",
+    "artist": "Santhosh Narayanan",
+    "album": "Kadaisi Vivasayi",
     "duration": 254,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/songs/Enniko-Er-Pudichane-MassTamilan.so.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Enniko-Er-Pudichane-MassTamilan.so.jpg"
@@ -51344,9 +51344,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5757,
-    "title": "Hey Amigo org",
-    "artist": "Blaaze, Jonita Gandhi org",
-    "album": "Kaappaan org",
+    "title": "Hey Amigo",
+    "artist": "Blaaze, Jonita Gandhi",
+    "album": "Kaappaan",
     "duration": 271,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/songs/Hey-Amigo-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Hey-Amigo-MassTamilan.org.jpg"
@@ -51776,9 +51776,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5805,
-    "title": "Kaathellam org",
-    "artist": "Pradeep Kumar org",
-    "album": "Gypsy org",
+    "title": "Kaathellam",
+    "artist": "Pradeep Kumar",
+    "album": "Gypsy",
     "duration": 223,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/songs/Kaathellam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Kaathellam-MassTamilan.org.jpg"
@@ -52127,9 +52127,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5846,
-    "title": "Kanum Gnyanam org",
-    "artist": "Kalyani Nair org",
-    "album": "Pizza II Villa org",
+    "title": "Kanum Gnyanam",
+    "artist": "Kalyani Nair",
+    "album": "Pizza II Villa",
     "duration": 216,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Kanum-Gnyanam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Kanum-Gnyanam-MassTamilan.org.jpg"
@@ -52361,9 +52361,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5873,
-    "title": "Kulirudha Pulla org",
-    "artist": "Sid Sriram, Sangeetha Karuppiah, R Parthiban org",
-    "album": "Oththa Seruppu org",
+    "title": "Kulirudha Pulla",
+    "artist": "Sid Sriram, Sangeetha Karuppiah, R Parthiban",
+    "album": "Oththa Seruppu",
     "duration": 298,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Kulirudha-Pulla-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Kulirudha-Pulla-MassTamilan.org.jpg"
@@ -52379,9 +52379,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5875,
-    "title": "Kurilae Kurilae org",
-    "artist": "Javed Ali, Darshana KT org",
-    "album": "Kaappaan org",
+    "title": "Kurilae Kurilae",
+    "artist": "Javed Ali, Darshana KT",
+    "album": "Kaappaan",
     "duration": 262,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Kurilae-Kurilae-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Kurilae-Kurilae-MassTamilan.org.jpg"
@@ -52487,9 +52487,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5887,
-    "title": "Maalai Nera org",
-    "artist": "Chinna org",
-    "album": "A1 org",
+    "title": "Maalai Nera",
+    "artist": "Chinna",
+    "album": "A1",
     "duration": 177,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Maalai-Nera-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Maalai-Nera-MassTamilan.org.jpg"
@@ -52514,9 +52514,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5890,
-    "title": "Machan Inga Vandhira org",
-    "artist": "Kharesma Ravichandran, Nikhita Gandhi, Arijit Singh org",
-    "album": "Kaappaan org",
+    "title": "Machan Inga Vandhira",
+    "artist": "Kharesma Ravichandran, Nikhita Gandhi, Arijit Singh",
+    "album": "Kaappaan",
     "duration": 217,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Machan-Inga-Vandhira-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Machan-Inga-Vandhira-MassTamilan.org.jpg"
@@ -52568,9 +52568,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5896,
-    "title": "Manamengum Maaya Oonjal org",
-    "artist": "Dhee, Ananthu, Haricharan org",
-    "album": "Gypsy org",
+    "title": "Manamengum Maaya Oonjal",
+    "artist": "Dhee, Ananthu, Haricharan",
+    "album": "Gypsy",
     "duration": 255,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/songs/Manamengum-Maaya-Oonjal-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Manamengum-Maaya-Oonjal-MassTamilan.org.jpg"
@@ -53657,9 +53657,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6019,
-    "title": "Oru Nooru Murai org",
-    "artist": "Sathyaprakash D, Shakthisree Gopalan org",
-    "album": "Dev org",
+    "title": "Oru Nooru Murai",
+    "artist": "Sathyaprakash D, Shakthisree Gopalan",
+    "album": "Dev",
     "duration": 308,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/songs/Oru-Nooru-Murai-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/covers/Oru-Nooru-Murai-MassTamilan.org.jpg"
@@ -53792,9 +53792,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6034,
-    "title": "Pa Pa org",
-    "artist": "Gana Bala org",
-    "album": "Pizza II Villa org",
+    "title": "Pa Pa",
+    "artist": "Gana Bala",
+    "album": "Pizza II Villa",
     "duration": 278,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/songs/Pa-Pa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/covers/Pa-Pa-MassTamilan.org.jpg"
@@ -54701,9 +54701,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6135,
-    "title": "She Is My Girl org",
-    "artist": "Haricharan, Christopher Stanley, Mahathi org",
-    "album": "Dev org",
+    "title": "She Is My Girl",
+    "artist": "Haricharan, Christopher Stanley, Mahathi",
+    "album": "Dev",
     "duration": 231,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/songs/She-Is-My-Girl-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/She-Is-My-Girl-MassTamilan.org.jpg"
@@ -54746,9 +54746,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6140,
-    "title": "Siriki org",
-    "artist": "Senthil Ganesh, Ramaniammal, Vishal Dadlani org",
-    "album": "Kaappaan org",
+    "title": "Siriki",
+    "artist": "Senthil Ganesh, Ramaniammal, Vishal Dadlani",
+    "album": "Kaappaan",
     "duration": 282,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/songs/Siriki-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Siriki-MassTamilan.org.jpg"
@@ -55043,9 +55043,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6174,
-    "title": "The Villa org",
-    "artist": "Studio Orchestra of Sydney org",
-    "album": "Pizza II Villa org",
+    "title": "The Villa",
+    "artist": "Studio Orchestra of Sydney",
+    "album": "Pizza II Villa",
     "duration": 64,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/songs/The-Villa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/The-Villa-MassTamilan.org.jpg"
@@ -55070,9 +55070,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6177,
-    "title": "Theevira Vyaadhi org",
-    "artist": "Arivu org",
-    "album": "Gypsy org",
+    "title": "Theevira Vyaadhi",
+    "artist": "Arivu",
+    "album": "Gypsy",
     "duration": 193,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/songs/Theevira-Vyaadhi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Theevira-Vyaadhi-MassTamilan.org.jpg"
@@ -55385,9 +55385,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6214,
-    "title": "Ullam Uruguthaiyaa org",
-    "artist": "Susheela Raman org",
-    "album": "Gypsy org",
+    "title": "Ullam Uruguthaiyaa",
+    "artist": "Susheela Raman",
+    "album": "Gypsy",
     "duration": 284,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/songs/Ullam-Uruguthaiyaa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Ullam-Uruguthaiyaa-MassTamilan.org.jpg"
@@ -55781,9 +55781,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6258,
-    "title": "Varaipadam org",
-    "artist": "OST Featuring Studio Orchestra of Sydney org",
-    "album": "Pizza II Villa org",
+    "title": "Varaipadam",
+    "artist": "OST Featuring Studio Orchestra of Sydney",
+    "album": "Pizza II Villa",
     "duration": 111,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/Varaipadam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/Varaipadam-MassTamilan.org.jpg"
@@ -55907,9 +55907,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6272,
-    "title": "Venpura org",
-    "artist": "T M Krishna org",
-    "album": "Gypsy org",
+    "title": "Venpura",
+    "artist": "T M Krishna",
+    "album": "Gypsy",
     "duration": 360,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/Venpura-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/Venpura-MassTamilan.org.jpg"
@@ -55934,9 +55934,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6275,
-    "title": "Very Very Bad org",
-    "artist": "Pradeep Kumar, Santhosh Narayanan org",
-    "album": "Gypsy org",
+    "title": "Very Very Bad",
+    "artist": "Pradeep Kumar, Santhosh Narayanan",
+    "album": "Gypsy",
     "duration": 214,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/Very-Very-Bad-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/Very-Very-Bad-MassTamilan.org.jpg"
@@ -55997,9 +55997,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6282,
-    "title": "Vinnil Vinmeen org",
-    "artist": "Shreya Ghoshal org",
-    "album": "Kaappaan org",
+    "title": "Vinnil Vinmeen",
+    "artist": "Shreya Ghoshal",
+    "album": "Kaappaan",
     "duration": 233,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/Vinnil-Vinmeen-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/Vinnil-Vinmeen-MassTamilan.org.jpg"
@@ -56330,18 +56330,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6319,
-    "title": "A Square B Square (Female Version) org",
-    "artist": "G V Prakash Kumar, Roshini, A Kiran Shravan org",
-    "album": "100% Kaadhal org",
+    "title": "A Square B Square (Female Version)",
+    "artist": "G V Prakash Kumar, Roshini, A Kiran Shravan",
+    "album": "100% Kaadhal",
     "duration": 150,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/A-Square-B-Square-(Female-Version)-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/A-Square-B-Square-(Female-Version)-MassTamilan.org.jpg"
   },
   {
     "id": 6320,
-    "title": "A Square B Square (Male Version) org",
-    "artist": "G V Prakash Kumar, Meghdeep Bose org",
-    "album": "100% Kaadhal org",
+    "title": "A Square B Square (Male Version)",
+    "artist": "G V Prakash Kumar, Meghdeep Bose",
+    "album": "100% Kaadhal",
     "duration": 150,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/songs/A-Square-B-Square-(Male-Version)-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/A-Square-B-Square-(Male-Version)-MassTamilan.org.jpg"
@@ -56834,9 +56834,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6378,
-    "title": "Ellu Vaya Pookalaye org",
-    "artist": "Saindhavi org",
-    "album": "Asuran (2019) org",
+    "title": "Ellu Vaya Pookalaye",
+    "artist": "Saindhavi",
+    "album": "Asuran (2019)",
     "duration": 354,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Ellu-Vaya-Pookalaye-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Ellu-Vaya-Pookalaye-MassTamilan.org.jpg"
@@ -56861,18 +56861,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6381,
-    "title": "Enakku Thaan org",
-    "artist": "G V Prakash Kumar, M M Manasi, Velmurugan, Sinduri Vishal org",
-    "album": "100% Kaadhal org",
+    "title": "Enakku Thaan",
+    "artist": "G V Prakash Kumar, M M Manasi, Velmurugan, Sinduri Vishal",
+    "album": "100% Kaadhal",
     "duration": 213,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Enakku-Thaan-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Enakku-Thaan-MassTamilan.org.jpg"
   },
   {
     "id": 6382,
-    "title": "Enga Area Engaludhu org",
-    "artist": "Santosh Hariharan org",
-    "album": "Kuppathu Raja org",
+    "title": "Enga Area Engaludhu",
+    "artist": "Santosh Hariharan",
+    "album": "Kuppathu Raja",
     "duration": 202,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Enga-Area-Engaludhu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Enga-Area-Engaludhu-MassTamilan.org.jpg"
@@ -57374,9 +57374,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6440,
-    "title": "Kannazhagu Rathiname org",
-    "artist": "Dhanush org",
-    "album": "Asuran (2019) org",
+    "title": "Kannazhagu Rathiname",
+    "artist": "Dhanush",
+    "album": "Asuran (2019)",
     "duration": 96,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Kannazhagu-Rathiname-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Kannazhagu-Rathiname-MassTamilan.org.jpg"
@@ -57410,9 +57410,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6444,
-    "title": "Kannum Kannum Plus org",
-    "artist": "G V Prakash Kumar, Maalavika Sundar org",
-    "album": "100% Kaadhal org",
+    "title": "Kannum Kannum Plus",
+    "artist": "G V Prakash Kumar, Maalavika Sundar",
+    "album": "100% Kaadhal",
     "duration": 266,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Kannum-Kannum-Plus-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Kannum-Kannum-Plus-MassTamilan.org.jpg"
@@ -57437,9 +57437,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6447,
-    "title": "Kathari Poovazhagi org",
-    "artist": "Velmurugan, Rajalakshmi, Napolia org",
-    "album": "Asuran (2019) org",
+    "title": "Kathari Poovazhagi",
+    "artist": "Velmurugan, Rajalakshmi, Napolia",
+    "album": "Asuran (2019)",
     "duration": 225,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Kathari-Poovazhagi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Kathari-Poovazhagi-MassTamilan.org.jpg"
@@ -57743,9 +57743,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6481,
-    "title": "Meen Kuzhambu org",
-    "artist": "Gaana Guna org",
-    "album": "Kuppathu Raja org",
+    "title": "Meen Kuzhambu",
+    "artist": "Gaana Guna",
+    "album": "Kuppathu Raja",
     "duration": 166,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/songs/Meen-Kuzhambu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_42@main/covers/Meen-Kuzhambu-MassTamilan.org.jpg"
@@ -58049,9 +58049,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6515,
-    "title": "Nenjellam Nindrayae org",
-    "artist": "G V Prakash Kumar, Vijay Prakash org",
-    "album": "100% Kaadhal org",
+    "title": "Nenjellam Nindrayae",
+    "artist": "G V Prakash Kumar, Vijay Prakash",
+    "album": "100% Kaadhal",
     "duration": 206,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Nenjellam-Nindrayae-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Nenjellam-Nindrayae-MassTamilan.org.jpg"
@@ -58103,9 +58103,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6521,
-    "title": "Oh Balu org",
-    "artist": "G V Prakash Kumar, Sudharshan Ashok, Suchith Suresan org",
-    "album": "100% Kaadhal org",
+    "title": "Oh Balu",
+    "artist": "G V Prakash Kumar, Sudharshan Ashok, Suchith Suresan",
+    "album": "100% Kaadhal",
     "duration": 220,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Oh-Balu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Oh-Balu-MassTamilan.org.jpg"
@@ -58247,9 +58247,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6537,
-    "title": "Oru Vaanam org",
-    "artist": "G V Prakash Kumar, Andrea Jeremiah org",
-    "album": "100% Kaadhal org",
+    "title": "Oru Vaanam",
+    "artist": "G V Prakash Kumar, Andrea Jeremiah",
+    "album": "100% Kaadhal",
     "duration": 249,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Oru-Vaanam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Oru-Vaanam-MassTamilan.org.jpg"
@@ -58373,9 +58373,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6551,
-    "title": "Polladha Boomi org",
-    "artist": "Dhanush, G V Prakash Kumar, Ken Karunas, Tee Jay org",
-    "album": "Asuran (2019) org",
+    "title": "Polladha Boomi",
+    "artist": "Dhanush, G V Prakash Kumar, Ken Karunas, Tee Jay",
+    "album": "Asuran (2019)",
     "duration": 237,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Polladha-Boomi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Polladha-Boomi-MassTamilan.org.jpg"
@@ -58742,18 +58742,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6592,
-    "title": "Taan Addi org",
-    "artist": "Rajaganapathy, Anthony Daasan, V M Mahalingam org",
-    "album": "Ayngaran org",
+    "title": "Taan Addi",
+    "artist": "Rajaganapathy, Anthony Daasan, V M Mahalingam",
+    "album": "Ayngaran",
     "duration": 205,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Taan-Addi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Taan-Addi-MassTamilan.org.jpg"
   },
   {
     "id": 6593,
-    "title": "Takkaru org",
-    "artist": "Siddharth Mahadevan, G V Prakash Kumar org",
-    "album": "Ayngaran org",
+    "title": "Takkaru",
+    "artist": "Siddharth Mahadevan, G V Prakash Kumar",
+    "album": "Ayngaran",
     "duration": 231,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Takkaru-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Takkaru-MassTamilan.org.jpg"
@@ -58832,9 +58832,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6602,
-    "title": "That Is Mahalakshmi org",
-    "artist": "G V Prakash Kumar, Clinton Cerejo, Megha org",
-    "album": "100% Kaadhal org",
+    "title": "That Is Mahalakshmi",
+    "artist": "G V Prakash Kumar, Clinton Cerejo, Megha",
+    "album": "100% Kaadhal",
     "duration": 222,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/That-Is-Mahalakshmi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/That-Is-Mahalakshmi-MassTamilan.org.jpg"
@@ -58886,9 +58886,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6608,
-    "title": "The Blood Bath org",
-    "artist": "Arunraja Kamaraj, Chorus org",
-    "album": "Asuran (2019) org",
+    "title": "The Blood Bath",
+    "artist": "Arunraja Kamaraj, Chorus",
+    "album": "Asuran (2019)",
     "duration": 242,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/The-Blood-Bath-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/The-Blood-Bath-MassTamilan.org.jpg"
@@ -58976,18 +58976,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6618,
-    "title": "Thiru Thiru Gananatha org",
-    "artist": "G V Prakash Kumar, Harini org",
-    "album": "100% Kaadhal org",
+    "title": "Thiru Thiru Gananatha",
+    "artist": "G V Prakash Kumar, Harini",
+    "album": "100% Kaadhal",
     "duration": 295,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Thiru-Thiru-Gananatha-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Thiru-Thiru-Gananatha-MassTamilan.org.jpg"
   },
   {
     "id": 6619,
-    "title": "Thithipa org",
-    "artist": "G V Prakash Kumar org",
-    "album": "Ayngaran org",
+    "title": "Thithipa",
+    "artist": "G V Prakash Kumar",
+    "album": "Ayngaran",
     "duration": 213,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Thithipa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Thithipa-MassTamilan.org.jpg"
@@ -59003,9 +59003,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6621,
-    "title": "Toto org",
-    "artist": "Arunraja Kamaraj, Sanjana Kalmanje org",
-    "album": "Watchman org",
+    "title": "Toto",
+    "artist": "Arunraja Kamaraj, Sanjana Kalmanje",
+    "album": "Watchman",
     "duration": 177,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/songs/Toto-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_43@main/covers/Toto-MassTamilan.org.jpg"
@@ -59192,9 +59192,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6642,
-    "title": "Uyirinum Uyarndha org",
-    "artist": "Hariharan org",
-    "album": "Ayngaran org",
+    "title": "Uyirinum Uyarndha",
+    "artist": "Hariharan",
+    "album": "Ayngaran",
     "duration": 227,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Uyirinum-Uyarndha-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Uyirinum-Uyarndha-MassTamilan.org.jpg"
@@ -59543,9 +59543,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6682,
-    "title": "Yeanadi Yeanadi org",
-    "artist": "G V Prakash Kumar, Keshav Vinod org",
-    "album": "100% Kaadhal org",
+    "title": "Yeanadi Yeanadi",
+    "artist": "G V Prakash Kumar, Keshav Vinod",
+    "album": "100% Kaadhal",
     "duration": 322,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Yeanadi-Yeanadi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Yeanadi-Yeanadi-MassTamilan.org.jpg"
@@ -59570,9 +59570,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 6685,
-    "title": "Yen Minukki org",
-    "artist": "Teejay Arunasalam, Chinmayi org",
-    "album": "Asuran (2019) org",
+    "title": "Yen Minukki",
+    "artist": "Teejay Arunasalam, Chinmayi",
+    "album": "Asuran (2019)",
     "duration": 272,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Yen-Minukki-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Yen-Minukki-MassTamilan.org.jpg"
