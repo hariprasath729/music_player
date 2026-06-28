@@ -40661,9 +40661,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4555,
-    "title": "Ilamai Thirumbudhe,
-    "artist": "Anirudh Ravichander,
-    "album": "Petta,
+    "title": "Ilamai Thirumbudhe",
+    "artist": "Anirudh Ravichander",
+    "album": "Petta",
     "duration": 218,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/songs/Ilamai-Thirumbudhe-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_27@main/covers/Ilamai-Thirumbudhe-MassTamilan.org.jpg"
@@ -40724,18 +40724,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4562,
-    "title": "Jilebara,
-    "artist": "Vivek Mervin, Jonita Gandhi,
-    "album": "Thumbaa,
+    "title": "Jilebara",
+    "artist": "Vivek Mervin, Jonita Gandhi",
+    "album": "Thumbaa",
     "duration": 273,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Jilebara-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Jilebara-MassTamilan.org.jpg"
   },
   {
     "id": 4563,
-    "title": "Jithu Theme,
-    "artist": "Instrumental,
-    "album": "Petta,
+    "title": "Jithu Theme",
+    "artist": "Instrumental",
+    "album": "Petta",
     "duration": 72,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Jithu-Theme-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Jithu-Theme-MassTamilan.org.jpg"
@@ -40787,9 +40787,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4569,
-    "title": "Kaali Theme,
-    "artist": "Instrumental,
-    "album": "Petta,
+    "title": "Kaali Theme",
+    "artist": "Instrumental",
+    "album": "Petta",
     "duration": 68,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Kaali-Theme-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Kaali-Theme-MassTamilan.org.jpg"
@@ -41075,9 +41075,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4601,
-    "title": "Madura Petta,
-    "artist": "Instrumental,
-    "album": "Petta,
+    "title": "Madura Petta",
+    "artist": "Instrumental",
+    "album": "Petta",
     "duration": 78,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Madura-Petta-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Madura-Petta-MassTamilan.org.jpg"
@@ -41129,18 +41129,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4607,
-    "title": "Marakkavillayae,
-    "artist": "Anirudh Ravichander,
-    "album": "Jersey,
+    "title": "Marakkavillayae",
+    "artist": "Anirudh Ravichander",
+    "album": "Jersey",
     "duration": 237,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Marakkavillayae-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Marakkavillayae-MassTamilan.org.jpg"
   },
   {
     "id": 4608,
-    "title": "Marana Mass,
-    "artist": "S P Balasubrahmanyam, Anirudh Ravichander,
-    "album": "Petta,
+    "title": "Marana Mass",
+    "artist": "S P Balasubrahmanyam, Anirudh Ravichander",
+    "album": "Petta",
     "duration": 194,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Marana-Mass-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Marana-Mass-MassTamilan.org.jpg"
@@ -41426,18 +41426,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4640,
-    "title": "Petta Paraak,
-    "artist": "Chorus,
-    "album": "Petta,
+    "title": "Petta Paraak",
+    "artist": "Chorus",
+    "album": "Petta",
     "duration": 240,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Petta-Paraak-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Petta-Paraak-MassTamilan.org.jpg"
   },
   {
     "id": 4641,
-    "title": "Petta Theme,
-    "artist": "Instrumental,
-    "album": "Petta,
+    "title": "Petta Theme",
+    "artist": "Instrumental",
+    "album": "Petta",
     "duration": 108,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Petta-Theme-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Petta-Theme-MassTamilan.org.jpg"
@@ -41660,9 +41660,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4666,
-    "title": "Singaar Singh,
-    "artist": "Instrumental,
-    "album": "Petta,
+    "title": "Singaar Singh",
+    "artist": "Instrumental",
+    "album": "Petta",
     "duration": 85,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Singaar-Singh-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Singaar-Singh-MassTamilan.org.jpg"
@@ -41876,9 +41876,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4690,
-    "title": "Thappad Maara,
-    "artist": "Sarwar Khan, Sartaz Khan Barna,
-    "album": "Petta,
+    "title": "Thappad Maara",
+    "artist": "Sarwar Khan, Sartaz Khan Barna",
+    "album": "Petta",
     "duration": 112,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Thappad-Maara-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Thappad-Maara-MassTamilan.org.jpg"
@@ -42029,9 +42029,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4707,
-    "title": "Ullaallaa,
-    "artist": "Nakash Aziz, Inno Genga,
-    "album": "Petta,
+    "title": "Ullaallaa",
+    "artist": "Nakash Aziz, Inno Genga",
+    "album": "Petta",
     "duration": 297,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Ullaallaa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Ullaallaa-MassTamilan.org.jpg"
@@ -42308,9 +42308,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4739,
-    "title": "Aatha Thottilile,
-    "artist": "Nivas K Prasanna,
-    "album": "Devarattam,
+    "title": "Aatha Thottilile",
+    "artist": "Nivas K Prasanna",
+    "album": "Devarattam",
     "duration": 284,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/Aatha-Thottilile-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/covers/Aatha-Thottilile-MassTamilan.org.jpg"
@@ -42677,9 +42677,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4781,
-    "title": "Azhagaru Vaaraaru,
-    "artist": "V M Mahalingam,
-    "album": "Devarattam,
+    "title": "Azhagaru Vaaraaru",
+    "artist": "V M Mahalingam",
+    "album": "Devarattam",
     "duration": 154,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/Azhagaru-Vaaraaru-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/covers/Azhagaru-Vaaraaru-MassTamilan.org.jpg"
@@ -43082,9 +43082,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4826,
-    "title": "Dingu Dongu,
-    "artist": "Bamba Bakya, Anthony Daasan,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Dingu Dongu",
+    "artist": "Bamba Bakya, Anthony Daasan",
+    "album": "Sarvam Thaala Mayam",
     "duration": 211,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/Dingu-Dongu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/covers/Dingu-Dongu-MassTamilan.org.jpg"
@@ -43298,9 +43298,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4850,
-    "title": "Enga Aatam,
-    "artist": "Nivas K Prasanna,
-    "album": "Devarattam,
+    "title": "Enga Aatam",
+    "artist": "Nivas K Prasanna",
+    "album": "Devarattam",
     "duration": 200,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_30@main/songs/Enga-Aatam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_30@main/covers/Enga-Aatam-MassTamilan.org.jpg"
@@ -44693,9 +44693,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5008,
-    "title": "Lesa Lesa,
-    "artist": "Chinmayi,
-    "album": "Devarattam,
+    "title": "Lesa Les",
+    "artist": "Chinmayi",
+    "album": "Devarattam",
     "duration": 225,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Lesa-Lesa-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Lesa-Lesa-MassTamilan.org.jpg"
@@ -44756,9 +44756,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5015,
-    "title": "Maakelara Vichaaramu,
-    "artist": "Bombay Jayashri,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Maakelara Vichaaramu",
+    "artist": "Bombay Jayashri",
+    "album": "Sarvam Thaala Mayam",
     "duration": 259,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Maakelara-Vichaaramu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Maakelara-Vichaaramu-MassTamilan.org.jpg"
@@ -44855,18 +44855,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5027,
-    "title": "Madura Palapalakkuthu Karaoke,
-    "artist": "Nivas K Prasanna,
-    "album": "Devarattam,
+    "title": "Madura Palapalakkuthu Karaoke",
+    "artist": "Nivas K Prasanna",
+    "album": "Devarattam",
     "duration": 425,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Madura-Palapalakkuthu-Karaoke-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Madura-Palapalakkuthu-Karaoke-MassTamilan.org.jpg"
   },
   {
     "id": 5028,
-    "title": "Madura Palapalakkuthu,
-    "artist": "Nivas K Prasanna, Vijay Sethupathi, Priyanka Deshpande, Niranjana Ramanan,
-    "album": "Devarattam,
+    "title": "Madura Palapalakkuthu",
+    "artist": "Nivas K Prasanna, Vijay Sethupathi, Priyanka Deshpande, Niranjana Ramanan",
+    "album": "Devarattam",
     "duration": 425,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Madura-Palapalakkuthu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Madura-Palapalakkuthu-MassTamilan.org.jpg"
@@ -45098,9 +45098,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5054,
-    "title": "Maya Maya,
-    "artist": "Chinmayi,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Maya Maya",
+    "artist": "Chinmayi",
+    "album": "Sarvam Thaala Mayam",
     "duration": 261,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Maya-Maya-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Maya-Maya-MassTamilan.org.jpg"
@@ -46151,18 +46151,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5173,
-    "title": "Pasappukkalli Karaoke,
-    "artist": "Nivas K Prasanna,
-    "album": "Devarattam,
+    "title": "Pasappukkalli Karaoke",
+    "artist": "Nivas K Prasanna",
+    "album": "Devarattam",
     "duration": 335,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/songs/Pasappukkalli-Karaoke-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/covers/Pasappukkalli-Karaoke-MassTamilan.org.jpg"
   },
   {
     "id": 5174,
-    "title": "Pasappukkalli,
-    "artist": "Nivas K Prasanna, Vijay Antony, Alex Samuel Jenito,
-    "album": "Devarattam,
+    "title": "Pasappukkalli",
+    "artist": "Nivas K Prasanna, Vijay Antony, Alex Samuel Jenito",
+    "album": "Devarattam",
     "duration": 335,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/songs/Pasappukkalli-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/covers/Pasappukkalli-MassTamilan.org.jpg"
@@ -46187,9 +46187,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5177,
-    "title": "Peter Beatu Yethu,
-    "artist": "G V Prakash Kumar, D Sathyaprakash, Arjun Chandy,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Peter Beatu Yethu",
+    "artist": "G V Prakash Kumar, D Sathyaprakash, Arjun Chandy",
+    "album": "Sarvam Thaala Mayam",
     "duration": 219,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/songs/Peter-Beatu-Yethu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/covers/Peter-Beatu-Yethu-MassTamilan.org.jpg"
@@ -46772,9 +46772,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5243,
-    "title": "Sarvam Thaala Mayam,
-    "artist": "Haricharan, Arjun Chandy,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Sarvam Thaala Mayam",
+    "artist": "Haricharan, Arjun Chandy",
+    "album": "Sarvam Thaala Mayam",
     "duration": 304,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Sarvam-Thaala-Mayam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Sarvam-Thaala-Mayam-MassTamilan.org.jpg"
@@ -47609,9 +47609,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5338,
-    "title": "Ulagam Unna Vittu,
-    "artist": "Vijay Yesudas,
-    "album": "Devarattam,
+    "title": "Ulagam Unna Vittu",
+    "artist": "Vijay Yesudas",
+    "album": "Devarattam",
     "duration": 294,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/songs/Ulagam-Unna-Vittu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/covers/Ulagam-Unna-Vittu-MassTamilan.org.jpg"
@@ -47888,9 +47888,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5369,
-    "title": "Varalama,
-    "artist": "Sriram Parthasarathy,
-    "album": "Sarvam Thaala Mayam,
+    "title": "Varalama",
+    "artist": "Sriram Parthasarathy",
+    "album": "Sarvam Thaala Mayam",
     "duration": 286,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/songs/Varalama-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/covers/Varalama-MassTamilan.org.jpg"
@@ -59274,7 +59274,7 @@ const RAW_SONGS: RawSong[] =[
   {
     "id": 6652,
     "title": "Veeramulla",
-    "artist": "Sriram, Manicka Vinayagam, Tharun Gopi,",
+    "artist": "Sriram, Manicka Vinayagam, Tharun Gopi",
     "album": "Kaalai",
     "duration": 312,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Veeramulla.mp3",
