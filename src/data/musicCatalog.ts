@@ -41507,9 +41507,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4649,
-    "title": "Pudhusaatam,
-    "artist": "Anirudh Ravichander,
-    "album": "Thumbaa,
+    "title": "Pudhusaatam",
+    "artist": "Anirudh Ravichander",
+    "album": "Thumbaa",
     "duration": 268,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/songs/Pudhusaatam-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_28@main/covers/Pudhusaatam-MassTamilan.org.jpg"
@@ -46889,9 +46889,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5256,
-    "title": "Simtaangaran,
-    "artist": "Bamba Bakiya, Vipin Aneja, Aparna Narayan,
-    "album": "Sarkar,
+    "title": "Simtaangaran",
+    "artist": "Bamba Bakiya, Vipin Aneja, Aparna Narayan",
+    "album": "Sarkar",
     "duration": 283,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Simtaangaran-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Simtaangaran-MassTamilan.org.jpg"
@@ -48176,9 +48176,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5402,
-    "title": "Aathadi,
-    "artist": "Hiphop Tamizha, V M Mahalingam,
-    "album": "Natpe Thunai,
+    "title": "Aathadi",
+    "artist": "Hiphop Tamizha, V M Mahalingam",
+    "album": "Natpe Thunai",
     "duration": 207,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/songs/Aathadi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/covers/Aathadi-MassTamilan.org.jpg"
@@ -48455,9 +48455,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5433,
-    "title": "Hi Sonna Pothum,
-    "artist": "Kaushik Krish, Hiphop Tamizha,
-    "album": "Comali,
+    "title": "Hi Sonna Pothum",
+    "artist": "Kaushik Krish, Hiphop Tamizha",
+    "album": "Comali",
     "duration": 230,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Hi-Sonna-Pothum-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Hi-Sonna-Pothum-MassTamilan.org.jpg"
@@ -48707,9 +48707,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5461,
-    "title": "Kerala Song,
-    "artist": "Hiphop Tamizha,
-    "album": "Natpe Thunai,
+    "title": "Kerala Song",
+    "artist": "Hiphop Tamizha",
+    "album": "Natpe Thunai",
     "duration": 237,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Kerala-Song-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Kerala-Song-MassTamilan.org.jpg"
@@ -48851,9 +48851,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5478,
-    "title": "Menaminiki,
-    "artist": "Benny Dayal, Snigdha Chandra,
-    "album": "Mr Local,
+    "title": "Menaminiki",
+    "artist": "Benny Dayal, Snigdha Chandra",
+    "album": "Mr Local",
     "duration": 232,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Menaminiki-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Menaminiki-MassTamilan.org.jpg"
@@ -48878,27 +48878,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5481,
-    "title": "Modern Muniyamma,
-    "artist": "Anthakudi Ilayaraja, Srinisha Jayaseelan,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Modern Muniyamma",
+    "artist": "Anthakudi Ilayaraja, Srinisha Jayaseelan",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 197,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Modern-Muniyamma-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Modern-Muniyamma-MassTamilan.org.jpg"
   },
   {
     "id": 5482,
-    "title": "Morattu Single,
-    "artist": "Hiphop Tamizha, D Sathyaprakash,
-    "album": "Natpe Thunai,
+    "title": "Morattu Single",
+    "artist": "Hiphop Tamizha, D Sathyaprakash",
+    "album": "Natpe Thunai",
     "duration": 186,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Morattu-Single-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Morattu-Single-MassTamilan.org.jpg"
   },
   {
     "id": 5483,
-    "title": "Mr Local Theme,
-    "artist": "Hiphop Tamizha, Paul B Sailus, SanGan, Palaniammal,
-    "album": "Mr Local,
+    "title": "Mr Local Theme",
+    "artist": "Hiphop Tamizha, Paul B Sailus, SanGan, Palaniammal",
+    "album": "Mr Local",
     "duration": 150,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Mr.-Local-Theme-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Mr.-Local-Theme-MassTamilan.org.jpg"
@@ -48968,9 +48968,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5491,
-    "title": "Nanba Nanba,
-    "artist": "Sanjith Hegde, Hiphop Tamizha,
-    "album": "Comali,
+    "title": "Nanba Nanba",
+    "artist": "Sanjith Hegde, Hiphop Tamizha",
+    "album": "Comali",
     "duration": 153,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Nanba-Nanba-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Nanba-Nanba-MassTamilan.org.jpg"
@@ -49004,9 +49004,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5495,
-    "title": "Nee Nenacha,
-    "artist": "Sid Sriram,
-    "album": "Mr Local,
+    "title": "Nee Nenacha",
+    "artist": "Sid Sriram",
+    "album": "Mr Local",
     "duration": 268,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Nee-Nenacha-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Nee-Nenacha-MassTamilan.org.jpg"
@@ -49067,18 +49067,18 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5502,
-    "title": "Oliyum Oliyum,
-    "artist": "Ajay Krishnaa, Hiphop Tamizha, Sathya Narayan,
-    "album": "Comali,
+    "title": "Oliyum Oliyum",
+    "artist": "Ajay Krishnaa, Hiphop Tamizha, Sathya Narayan",
+    "album": "Comali",
     "duration": 285,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Oliyum-Oliyum-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Oliyum-Oliyum-MassTamilan.org.jpg"
   },
   {
     "id": 5503,
-    "title": "Onnuku Renda,
-    "artist": "Senthil Ganesh, V M Mahalingam, Sathya Narayanan,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Onnuku Renda",
+    "artist": "Senthil Ganesh, V M Mahalingam, Sathya Narayanan",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 284,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Onnuku-Renda-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Onnuku-Renda-MassTamilan.org.jpg"
@@ -49121,27 +49121,27 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5508,
-    "title": "Paisa Note,
-    "artist": "Hiphop Tamizha,
-    "album": "Comali,
+    "title": "Paisa Note",
+    "artist": "Hiphop Tamizha",
+    "album": "Comali",
     "duration": 184,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Paisa-Note-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Paisa-Note-MassTamilan.org.jpg"
   },
   {
     "id": 5509,
-    "title": "Pallikoodam The Farewell Song,
-    "artist": "Sanjith Hegde,
-    "album": "Natpe Thunai,
+    "title": "Pallikoodam The Farewell Song",
+    "artist": "Sanjith Hegde",
+    "album": "Natpe Thunai",
     "duration": 184,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Pallikoodam-The-Farewell-Song-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Pallikoodam-The-Farewell-Song-MassTamilan.org.jpg"
   },
   {
     "id": 5510,
-    "title": "Paravaigal,
-    "artist": "Sanjith Hegde, Hiphop Tamizha,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Paravaigal",
+    "artist": "Sanjith Hegde, Hiphop Tamizha",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 252,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Paravaigal-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Paravaigal-MassTamilan.org.jpg"
@@ -49157,9 +49157,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5512,
-    "title": "Pattamarangal,
-    "artist": "Sanjith Hegde, Rakshitha Suresh, Srinidhi S,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Pattamarangal",
+    "artist": "Sanjith Hegde, Rakshitha Suresh, Srinidhi S",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 196,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Pattamarangal-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Pattamarangal-MassTamilan.org.jpg"
@@ -49220,9 +49220,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5519,
-    "title": "Red Cardu,
-    "artist": "Silambarasan, Hiphop Tamizha, Snigdha,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Red Cardu",
+    "artist": "Silambarasan, Hiphop Tamizha, Snigdha",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 209,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Red-Cardu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Red-Cardu-MassTamilan.org.jpg"
@@ -49274,9 +49274,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5525,
-    "title": "Single Pasanga,
-    "artist": "Ka Ka Balachander, Gana Ulagam Dharani, Arivu,
-    "album": "Natpe Thunai,
+    "title": "Single Pasanga",
+    "artist": "Ka Ka Balachander, Gana Ulagam Dharani, Arivu",
+    "album": "Natpe Thunai",
     "duration": 224,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Single-Pasanga-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Single-Pasanga-MassTamilan.org.jpg"
@@ -49472,9 +49472,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5547,
-    "title": "Vanga Machan Vanga,
-    "artist": "P Leela, Kaushik Krish,
-    "album": "Vantha Rajavathaan Varuven,
+    "title": "Vanga Machan Vanga",
+    "artist": "P Leela, Kaushik Krish",
+    "album": "Vantha Rajavathaan Varuven",
     "duration": 182,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Vanga-Machan-Vanga-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Vanga-Machan-Vanga-MassTamilan.org.jpg"
@@ -49490,9 +49490,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5549,
-    "title": "Veedhikor Jaadhi,
-    "artist": "Hiphop Tamizha, Arivu, Sollisai Selvender,
-    "album": "Natpe Thunai,
+    "title": "Veedhikor Jaadhi",
+    "artist": "Hiphop Tamizha, Arivu, Sollisai Selvender",
+    "album": "Natpe Thunai",
     "duration": 161,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Veedhikor-Jaadhi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Veedhikor-Jaadhi-MassTamilan.org.jpg"
@@ -49535,9 +49535,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5554,
-    "title": "Vengamavan,
-    "artist": "Hiphop Tamizha, Chinnaponnu,
-    "album": "Natpe Thunai,
+    "title": "Vengamavan",
+    "artist": "Hiphop Tamizha, Chinnaponnu",
+    "album": "Natpe Thunai",
     "duration": 217,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Vengamavan-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Vengamavan-MassTamilan.org.jpg"
@@ -49607,9 +49607,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5562,
-    "title": "Yaara Comali,
-    "artist": "Hiphop Tamizha,
-    "album": "Comali,
+    "title": "Yaara Comali",
+    "artist": "Hiphop Tamizha",
+    "album": "Comali",
     "duration": 198,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Yaara-Comali-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Yaara-Comali-MassTamilan.org.jpg"
