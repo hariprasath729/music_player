@@ -42902,9 +42902,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 4806,
-    "title": "CEO in the House,
-    "artist": "Nakul Abhyankar, Blaaze,
-    "album": "Sarkar,
+    "title": "CEO in the House",
+    "artist": "Nakul Abhyankar, Blaaze",
+    "album": "Sarkar",
     "duration": 232,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/CEO-in-the-House-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/covers/CEO-in-the-House-MassTamilan.org.jpg"
@@ -45071,9 +45071,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5051,
-    "title": "Marvel Anthem,
-    "artist": "A R Rahman, Arjun Chandy,
-    "album": "Marvel Anthem,
+    "title": "Marvel Anthem",
+    "artist": "A R Rahman, Arjun Chandy",
+    "album": "Marvel Anthem",
     "duration": 200,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/songs/Marvel-Anthem-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_31@main/covers/Marvel-Anthem-MassTamilan.org.jpg"
@@ -45908,9 +45908,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5146,
-    "title": "OMG Ponnu,
-    "artist": "Sid Sriram, Jonita Gandhi,
-    "album": "Sarkar,
+    "title": "OMG Ponnu",
+    "artist": "Sid Sriram, Jonita Gandhi",
+    "album": "Sarkar",
     "duration": 284,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/songs/OMG-Ponnu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/covers/OMG-Ponnu-MassTamilan.org.jpg"
@@ -46007,9 +46007,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5157,
-    "title": "Oru Viral Puratchi,
-    "artist": "A R Rahman, Srinidhi Venkatesh,
-    "album": "Sarkar,
+    "title": "Oru Viral Puratchi",
+    "artist": "A R Rahman, Srinidhi Venkatesh",
+    "album": "Sarkar",
     "duration": 328,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/songs/Oru-Viral-Puratchi-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_32@main/covers/Oru-Viral-Puratchi-MassTamilan.org.jpg"
@@ -47582,9 +47582,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5335,
-    "title": "Top Tucker,
-    "artist": "Mohit Chauhan,
-    "album": "Sarkar,
+    "title": "Top Tucker",
+    "artist": "Mohit Chauhan",
+    "album": "Sarkar",
     "duration": 223,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/songs/Top-Tucker-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/covers/Top-Tucker-MassTamilan.org.jpg"
@@ -48572,9 +48572,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5446,
-    "title": "Kalakkalu Mr Localu,
-    "artist": "Sivakarthikeyan,
-    "album": "Mr Local,
+    "title": "Kalakkalu Mr Localu",
+    "artist": "Sivakarthikeyan",
+    "album": "Mr Local",
     "duration": 225,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Kalakkalu-Mr.-Localu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Kalakkalu-Mr.-Localu-MassTamilan.org.jpg"
@@ -49328,9 +49328,9 @@ const RAW_SONGS: RawSong[] =[
   },
   {
     "id": 5531,
-    "title": "Takkunu Takkunu,
-    "artist": "Anirudh Ravichander,
-    "album": "Mr Local,
+    "title": "Takkunu Takkunu",
+    "artist": "Anirudh Ravichander",
+    "album": "Mr Local",
     "duration": 212,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/songs/Takkunu-Takkunu-MassTamilan.org.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_35@main/covers/Takkunu-Takkunu-MassTamilan.org.jpg"
