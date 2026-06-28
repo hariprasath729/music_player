@@ -58,7 +58,7 @@ export const LibraryView: React.FC = () => {
     const grouped = new Map<string, (typeof TRACKS)[number][]>();
     TRACKS.forEach((t) => {
       if (isBgmOrScore(t)) return;
-      t.artist.split(',').map(a => a.trim()).forEach((artistName) => {
+      (t.artist || '').split(',').map(a => a.trim()).forEach((artistName) => {
         if (!grouped.has(artistName)) grouped.set(artistName, []);
         grouped.get(artistName)!.push(t);
       });

@@ -137,7 +137,9 @@ export const PlaylistView: React.FC = () => {
                   <div className="border-t border-white/10 px-4 pb-1 pt-2 text-[10px] font-bold uppercase tracking-widest text-white/40">
                     Go to Artist
                   </div>
-                  {Array.from(new Set(activePlaylist.tracks.flatMap(t => t.artist.split(',').map(a => a.trim())))).map(artistName => (
+                  {Array.from(new Set(activePlaylist.tracks.flatMap(t => (t.artist || '').split(',').map(a => a.trim()))))
+                    .filter(Boolean)
+                    .map(artistName => (
                     <button
                       key={artistName}
                       onClick={() => {
@@ -211,7 +213,7 @@ export const PlaylistView: React.FC = () => {
                   {track.title}
                 </span>
                 <span className="truncate text-[12px] text-[#b3b3b3]">
-                  {track.artist.split(',').map((a, i) => (
+                  {(track.artist || '').split(',').map((a, i) => (
                     <React.Fragment key={i}>
                       {i > 0 && ', '}
                       <span

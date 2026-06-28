@@ -43,7 +43,7 @@ export const AllSongsView: React.FC = () => {
                   {track.title}
                 </span>
                 <span className="truncate text-xs text-[#b3b3b3]">
-                  {track.artist.split(',').map((a, i) => (
+                  {(track.artist || '').split(',').map((a, i) => (
                     <React.Fragment key={i}>
                       {i > 0 && ', '}
                       <span

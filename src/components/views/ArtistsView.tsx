@@ -10,7 +10,7 @@ export const ArtistsView: React.FC = () => {
   const artists = useMemo(() => {
     const grouped = new Map<string, Track[]>();
     TRACKS.forEach((t) => {
-      t.artist.split(',').map(a => a.trim()).forEach((artistName) => {
+      (t.artist || '').split(',').map(a => a.trim()).forEach((artistName) => {
         if (!grouped.has(artistName)) grouped.set(artistName, []);
         grouped.get(artistName)!.push(t);
       });
