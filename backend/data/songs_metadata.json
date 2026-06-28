@@ -59560,5 +59560,68 @@
     "duration": 217,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Ilakana%20Kavithai.mp3",
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Ilakana%20Kavithai.jpg"
+  },
+  {
+    "id": 6689,
+    "title": "Devan Magale",
+    "artist": "V V Prasanna, Saindhavi",
+    "album": "Neerparavai",
+    "duration": 284,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Devan-Magale.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Devan-Magale.jpg"
+  },
+  {
+    "id": 6690,
+    "title": "Meenuku",
+    "artist": "Vijay Prakash, Harini",
+    "album": "Neerparavai",
+    "duration": 319,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Meenuku.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Meenuku.jpg"
+  },
+  {
+    "id": 6691,
+    "title": "Para Para (New)",
+    "artist": "Shreya Ghosal",
+    "album": "Neerparavai",
+    "duration": 319,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Para-Para-New.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Para-Para-New.jpg"
+  },
+  {
+    "id": 6692,
+    "title": "Para Para (Sad)",
+    "artist": "Chinmayi",
+    "album": "Neerparavai",
+    "duration": 319,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Para-Para-Sad.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Para-Para-Sad.jpg"
+  },
+  {
+    "id": 6693,
+    "title": "Para Para",
+    "artist": "G V Prakash Kumar",
+    "album": "Neerparavai",
+    "duration": 319,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Para-Para.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Para-Para.jpg"
+  },
+  {
+    "id": 6694,
+    "title": "Raththa Kanneer",
+    "artist": "Harish Ragavendra",
+    "album": "Neerparavai",
+    "duration": 246,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Raththa-Kanneer.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Raththa-Kanneer.jpg"
+  },
+  {
+    "id": 6695,
+    "title": "Yaar Vettu",
+    "artist": "Anand Aravindakshan",
+    "album": "Neerparavai",
+    "duration": 208,
+    "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/songs/Yaar-Vettu.mp3",
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_44@main/covers/Yaar-Vettu.jpg"
   }
 ]
