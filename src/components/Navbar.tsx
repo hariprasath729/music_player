@@ -259,6 +259,12 @@ export const Navbar: React.FC = () => {
           >
             <span>Install App</span>
           </button>
+          <button 
+          onClick={() => setView('play-area')}
+          className="flex items-center gap-1 rounded-full bg-black px-4 py-1.5 text-xs text-[#a7a7a7] transition-transform hover:scale-[1.04]"
+            >
+            <span>Play Area</span>
+          </button>
           <button
             onClick={() => setView('visualizer')}
             className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-[#a7a7a7] transition-colors hover:text-white"
