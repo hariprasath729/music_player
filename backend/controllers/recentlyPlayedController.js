@@ -1,11 +1,14 @@
 import RecentlyPlayed from '../models/RecentlyPlayed.js';
+import { log } from '../utils/logger.js';
 
 export const addRecentlyPlayed = async (req, res) => {
   try {
     const { songId } = req.body;
     const userId = req.user.id;
 
-    if (!songId) return res.status(400).json({ success: false, error: 'songId is required' });
+    if (!songId || typeof songId !== 'string' || songId.length > 100) {
+      return res.status(400).json({ success: false, error: 'songId is required' });
+    }
 
     let history = await RecentlyPlayed.findOne({ userId });
 
@@ -32,7 +35,7 @@ export const addRecentlyPlayed = async (req, res) => {
 
     res.json({ success: true, message: 'Added to recently played' });
   } catch (error) {
-    console.error('Add recently played error:', error);
+    log('error', 'Add recently played failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -43,7 +46,7 @@ export const getRecentlyPlayed = async (req, res) => {
     const history = await RecentlyPlayed.findOne({ userId });
     res.json({ success: true, data: history ? history.songs : [] });
   } catch (error) {
-    console.error('Get recently played error:', error);
+    log('error', 'Get recently played failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -54,7 +57,7 @@ export const clearRecentlyPlayed = async (req, res) => {
     await RecentlyPlayed.findOneAndDelete({ userId });
     res.json({ success: true, message: 'Recently played cleared' });
   } catch (error) {
-    console.error('Clear recently played error:', error);
+    log('error', 'Clear recently played failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };

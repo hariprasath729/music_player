@@ -13,6 +13,13 @@ const userSchema = new mongoose.Schema({
   // Note: Token may be stored hashed; keep expiry to enforce 15-minute validity.
   resetToken: { type: String, default: null },
   resetTokenExpiry: { type: Date, default: null },
+
+  // Token version — incremented on password change to invalidate existing JWTs
+  tokenVersion: { type: Number, default: 0 },
+
+  // Brute-force tracking (persisted for cross-restart protection)
+  failedLoginAttempts: { type: Number, default: 0 },
+  lockUntil: { type: Date, default: null },
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

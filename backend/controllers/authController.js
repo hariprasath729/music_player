@@ -6,6 +6,15 @@ import OTP from '../models/OTP.js';
 import ApprovalToken from '../models/ApprovalToken.js';
 import SongRequest from '../models/SongRequest.js';
 import Notification from '../models/Notification.js';
+import BlacklistedToken from '../models/BlacklistedToken.js';
+import { JWT_SECRET } from '../utils/jwtSecret.js';
+import { log, securityEvent, SECURITY_EVENTS } from '../utils/logger.js';
+import { recordAudit, AUDIT_ACTIONS } from '../utils/auditTrail.js';
+import { escapeHtml } from '../utils/sanitizeHtml.js';
+import { validatePasswordStrength } from '../middleware/validate.js';
+import { recordFailedAttempt, resetAttempts } from '../middleware/bruteForce.js';
+import { addThreatScore } from '../middleware/ipBlacklist.js';
+import { getClientIP } from '../utils/logger.js';
 import {
   sendOtpEmail,
   sendAdminApprovalEmail,
@@ -16,8 +25,21 @@ import {
   sendSongRequestToAdminEmail
 } from '../utils/sendEmail.js';
 
-const generateToken = (id, email) => {
-  return jwt.sign({ id, email }, process.env.JWT_SECRET || 'dev_jwt_secret_change_me', { expiresIn: '30d' });
+const BCRYPT_ROUNDS = parseInt(process.env.BCRYPT_ROUNDS) || 12;
+
+const generateToken = (user) => {
+  return jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+      tokenVersion: user.tokenVersion || 0,
+    },
+    JWT_SECRET,
+    {
+      expiresIn: '30d',
+      issuer: 'music-player',
+    }
+  );
 };
 
 // Private helper: Checks if token is active, otherwise generates a new 10 min token and emails admin
@@ -37,9 +59,7 @@ const triggerAdminApproval = async (user, req) => {
   const host = req ? req.get('host') : 'localhost:5000';
   const baseUrl = req ? `${protocol}://${host}` : (process.env.APP_URL || 'https://music-player-z1db.onrender.com');
 
-  console.log(`\n🚨 [ADMIN ACTION REQUIRED] New user signup: ${user.email}`);
-  console.log(`✅ APPROVE: ${baseUrl}/api/auth/approve?token=${token}`);
-  console.log(`❌ REJECT:  ${baseUrl}/api/auth/reject?token=${token}\n`);
+  log('info', `New user signup requiring approval: ${user.email}`);
 
   sendAdminApprovalEmail(user.email, user.name, token, baseUrl);
 };
@@ -54,14 +74,17 @@ export const sendOtp = async (req, res) => {
 
     await OTP.findOneAndUpdate({ email }, { otp, expiresAt }, { upsert: true, new: true });
 
-    console.log(`\n🔑 [DEV MODE] OTP for ${email}: ${otp}\n`);
+    // Only log OTP in development — NEVER in production
+    if (process.env.NODE_ENV !== 'production') {
+      log('debug', `[DEV] OTP for ${email}: ${otp}`);
+    }
 
     sendOtpEmail(email, otp);
 
     res.json({ success: true, message: 'OTP sent to email' });
   } catch (error) {
-    console.error('❌ sendOtp Error:', error);
-    res.status(500).json({ success: false, error: error.message || 'Failed to send OTP' });
+    log('error', 'sendOtp failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -74,14 +97,23 @@ export const verifyOtpAndSignup = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Invalid or expired OTP' });
     }
 
+    // Password strength validation for new signups
+    if (password && !validatePasswordStrength(password)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Password must be at least 8 characters with uppercase, lowercase, and a digit',
+      });
+    }
+
     let user = await User.findOne({ email });
     if (!user) {
-      const hashed = await bcrypt.hash(password, 10);
+      const hashed = await bcrypt.hash(password, BCRYPT_ROUNDS);
       user = await User.create({ name: name || 'User', email, password: hashed, isVerified: true, authType: 'email' });
+      await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.REGISTER, req });
     } else {
       user.isVerified = true;
       if (password) {
-        const hashed = await bcrypt.hash(password, 10);
+        const hashed = await bcrypt.hash(password, BCRYPT_ROUNDS);
         user.password = hashed; // Overwrite if recovering
       }
       await user.save();
@@ -93,11 +125,12 @@ export const verifyOtpAndSignup = async (req, res) => {
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
-    const token = generateToken(user._id, user.email);
+    const token = generateToken(user);
+    securityEvent(SECURITY_EVENTS.AUTH_SUCCESS, req, { userId: String(user._id) });
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
-    console.error('❌ verifyOtpAndSignup Error:', error);
-    res.status(500).json({ success: false, error: error.message || 'Signup failed' });
+    log('error', 'verifyOtpAndSignup failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -109,11 +142,15 @@ export const googleLogin = async (req, res) => {
       headers: { Authorization: `Bearer ${credential}` }
     });
     const userInfo = await userInfoRes.json();
-    if (!userInfo.email) return res.status(400).json({ success: false, error: 'Invalid Google Token' });
+    if (!userInfo.email) {
+      securityEvent(SECURITY_EVENTS.AUTH_FAILURE, req, { details: 'Invalid Google token' });
+      return res.status(400).json({ success: false, error: 'Invalid Google Token' });
+    }
 
     let user = await User.findOne({ email: userInfo.email });
     if (!user) {
       user = await User.create({ email: userInfo.email, name: userInfo.name, profilePic: userInfo.picture, isVerified: true, authType: 'google' });
+      await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.REGISTER, req, metadata: { authType: 'google' } });
     } else {
       user.isVerified = true;
       await user.save();
@@ -124,10 +161,13 @@ export const googleLogin = async (req, res) => {
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
-    const token = generateToken(user._id, user.email);
+    const token = generateToken(user);
+    securityEvent(SECURITY_EVENTS.OAUTH_LOGIN, req, { userId: String(user._id) });
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.OAUTH_LOGIN, req });
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message || 'Login failed' });
+    log('error', 'googleLogin failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -136,13 +176,39 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
 
+    // Generic error for all authentication failures — prevents account enumeration
+    const genericError = { success: false, error: 'Invalid email or password' };
+
     if (!user) {
-      return res.status(404).json({ success: false, error: 'No user exists' });
+      // Don't reveal that the user doesn't exist
+      recordFailedAttempt(email, req);
+      securityEvent(SECURITY_EVENTS.AUTH_FAILURE, req, { details: 'Login attempt for non-existent account' });
+      return res.status(401).json(genericError);
     }
+
+    // Check account lockout
+    if (user.lockUntil && user.lockUntil > new Date()) {
+      securityEvent(SECURITY_EVENTS.BRUTE_FORCE, req, { details: 'Login attempt on locked account' });
+      return res.status(429).json({ success: false, error: 'Account temporarily locked. Please try again later.' });
+    }
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ success: false, error: 'Wrong password' });
+      recordFailedAttempt(email, req);
+      addThreatScore(getClientIP(req), 'brute_force', req);
+
+      // Update DB-level failed attempts
+      user.failedLoginAttempts = (user.failedLoginAttempts || 0) + 1;
+      if (user.failedLoginAttempts >= 5) {
+        user.lockUntil = new Date(Date.now() + 15 * 60 * 1000); // 15 min lock
+        securityEvent(SECURITY_EVENTS.ACCOUNT_LOCKED, req, { userId: String(user._id) });
+        await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.ACCOUNT_LOCKED, req });
+      }
+      await user.save();
+
+      return res.status(401).json(genericError);
     }
+
     if (!user.isVerified) {
       return res.status(403).json({ success: false, error: 'Email not verified' });
     }
@@ -152,16 +218,31 @@ export const login = async (req, res) => {
       return res.status(403).json({ success: false, error: 'Waiting for admin approval', isPending: true });
     }
 
-    const token = generateToken(user._id, user.email);
+    // Successful login — reset failed attempts
+    if (user.failedLoginAttempts > 0 || user.lockUntil) {
+      user.failedLoginAttempts = 0;
+      user.lockUntil = null;
+      await user.save();
+    }
+    resetAttempts(email);
+
+    const token = generateToken(user);
+    securityEvent(SECURITY_EVENTS.AUTH_SUCCESS, req, { userId: String(user._id) });
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.LOGIN, req });
     res.json({ success: true, data: { token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } } });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message || 'Login failed' });
+    log('error', 'login failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
 export const approveUser = async (req, res) => {
   try {
     const { token } = req.query;
+    if (!token || typeof token !== 'string') {
+      return res.status(400).send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #ff0000;">Invalid request.</h1>');
+    }
+
     const record = await ApprovalToken.findOne({ token });
 
     if (!record || record.expiresAt < new Date()) {
@@ -174,6 +255,7 @@ export const approveUser = async (req, res) => {
     await ApprovalToken.deleteOne({ _id: record._id });
     res.send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #1db954;">User approved successfully!</h1><p style="text-align:center; font-family: sans-serif;">The user has been notified via email and can now log in.</p>');
   } catch (error) {
+    log('error', 'approveUser failed', { details: error.message });
     res.status(500).send('Server Error');
   }
 };
@@ -181,6 +263,10 @@ export const approveUser = async (req, res) => {
 export const rejectUser = async (req, res) => {
   try {
     const { token } = req.query;
+    if (!token || typeof token !== 'string') {
+      return res.status(400).send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #ff0000;">Invalid request.</h1>');
+    }
+
     const record = await ApprovalToken.findOne({ token });
 
     if (!record || record.expiresAt < new Date()) {
@@ -193,6 +279,7 @@ export const rejectUser = async (req, res) => {
     await ApprovalToken.deleteOne({ _id: record._id });
     res.send('<h1 style="text-align:center; padding: 50px; font-family: sans-serif; color: #e53935;">User rejected.</h1><p style="text-align:center; font-family: sans-serif;">The user has been notified via email.</p>');
   } catch (error) {
+    log('error', 'rejectUser failed', { details: error.message });
     res.status(500).send('Server Error');
   }
 };
@@ -202,14 +289,14 @@ export const contactAdmin = async (req, res) => {
     const { email, name, message } = req.body;
     if (!email || !message) return res.status(400).json({ success: false, error: 'Email and message are required' });
 
-    console.log(`\n✉️ [MESSAGE TO ADMIN] From: ${name} (${email})\nMessage: ${message}\n`);
+    log('info', `Contact message from ${name || 'User'}`);
 
     sendMessageToAdminEmail(email, name || 'User', message);
 
     res.json({ success: true, message: 'Message sent to admin successfully' });
   } catch (error) {
-    console.error('❌ contactAdmin Error:', error);
-    res.status(500).json({ success: false, error: error.message || 'Failed to send message' });
+    log('error', 'contactAdmin failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -229,11 +316,12 @@ export const requestSongInSetting = async (req, res) => {
     const userName = dbUser.name || 'User';
 
     const songsArray = Array.isArray(songs)
-      ? songs
+      ? songs.map(s => typeof s === 'string' ? s.trim().substring(0, 200) : '').filter(Boolean).slice(0, 20)
       : String(songs || '')
           .split(',')
-          .map(s => s.trim())
-          .filter(Boolean);
+          .map(s => s.trim().substring(0, 200))
+          .filter(Boolean)
+          .slice(0, 20);
 
     const token = crypto.randomBytes(32).toString('hex');
 
@@ -252,15 +340,15 @@ export const requestSongInSetting = async (req, res) => {
 
     return res.json({ success: true, message: 'Song request sent to admin' });
   } catch (error) {
-    console.error('❌ requestSongInSetting Error:', error);
-    res.status(500).json({ success: false, error: error.message || 'Failed to send song request' });
+    log('error', 'requestSongInSetting failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
 export const completeSongRequest = async (req, res) => {
   try {
     const { token } = req.query;
-    if (!token) {
+    if (!token || typeof token !== 'string' || token.length > 256) {
       return res.status(400).send(`
         <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
           <h1 style="color: #ff0000; font-size: 32px; margin-bottom: 20px;">Invalid Link</h1>
@@ -300,7 +388,7 @@ export const completeSongRequest = async (req, res) => {
       </div>
     `);
   } catch (error) {
-    console.error('❌ completeSongRequest Error:', error);
+    log('error', 'completeSongRequest failed', { details: error.message });
     return res.status(500).send(`
       <div style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #0f0f0f; color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <h1 style="color: #ff0000; font-size: 32px; margin-bottom: 20px;">Server Error</h1>
@@ -313,11 +401,12 @@ export const completeSongRequest = async (req, res) => {
 export const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ userId: req.user.id })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .limit(50);
     return res.json({ success: true, data: notifications });
   } catch (error) {
-    console.error('❌ getNotifications Error:', error);
-    return res.status(500).json({ success: false, error: 'Failed to retrieve notifications' });
+    log('error', 'getNotifications failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -330,25 +419,50 @@ export const deleteNotification = async (req, res) => {
     }
     return res.json({ success: true, message: 'Notification dismissed' });
   } catch (error) {
-    console.error('❌ deleteNotification Error:', error);
-    return res.status(500).json({ success: false, error: 'Failed to dismiss notification' });
+    log('error', 'deleteNotification failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.user.id).select('-password -resetToken -resetTokenExpiry -tokenVersion -failedLoginAttempts -lockUntil -__v');
     if (!user) {
       return res.status(404).json({ success: false, error: 'User not found' });
     }
     res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
   } catch (error) {
-    console.error('❌ getMe Error:', error);
-    res.status(500).json({ success: false, error: error.message || 'Server error' });
+    log('error', 'getMe failed', { details: error.message });
+    res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
-export const logout = async (req, res) => res.json({ success: true });
+export const logout = async (req, res) => {
+  try {
+    // Blacklist the current token so it can't be reused
+    const token = req.headers.authorization?.split(' ')[1];
+    if (token) {
+      try {
+        const decoded = jwt.decode(token);
+        if (decoded?.exp) {
+          const expiresAt = new Date(decoded.exp * 1000);
+          await BlacklistedToken.create({ token, expiresAt });
+        }
+      } catch (e) {
+        // Token decode failed — that's fine, it's already invalid
+      }
+    }
+
+    if (req.user?.id) {
+      await recordAudit({ userId: req.user.id, action: AUDIT_ACTIONS.LOGOUT, req });
+    }
+
+    res.json({ success: true });
+  } catch (error) {
+    log('error', 'logout failed', { details: error.message });
+    res.json({ success: true }); // Still return success — logout should always "succeed"
+  }
+};
 
 const hashToken = (token) => {
   // Never store raw token in DB; store SHA256 hash instead.
@@ -366,13 +480,14 @@ export const forgotPassword = async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, error: 'Email is required' });
 
-    // Check if user exists
+    // ALWAYS return the same generic response — prevents email enumeration
+    const genericMsg = { success: true, message: 'If this email exists, a reset link has been sent' };
+
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ success: false, error: 'Account not found' });
+      // Don't reveal that the account doesn't exist
+      return res.json(genericMsg);
     }
-
-    const genericMsg = { success: true, message: 'If this email exists, a reset link has been sent' };
 
     // Only allow for approved users (matches existing login logic)
     if (!user.isApproved) return res.json(genericMsg);
@@ -391,11 +506,12 @@ export const forgotPassword = async (req, res) => {
     const resetLink = `${frontendBase}/reset-password?token=${encodeURIComponent(token)}`;
 
     await sendPasswordAccessEmail(user.email, user.name, magicLink, resetLink);
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.PASSWORD_RESET_REQUEST, req });
 
     return res.json(genericMsg);
   } catch (error) {
-    console.error('❌ forgotPassword Error:', error);
-    return res.status(500).json({ success: false, error: error.message || 'Failed to send reset email' });
+    log('error', 'forgotPassword failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
@@ -403,7 +519,7 @@ export const magicLogin = async (req, res) => {
   try {
     const { token } = req.query;
 
-    if (!token || typeof token !== 'string') {
+    if (!token || typeof token !== 'string' || token.length > 256) {
       return res.status(400).json({ success: false, error: 'Token is required' });
     }
 
@@ -422,12 +538,15 @@ export const magicLogin = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Invalid or expired token' });
     }
 
-    const appToken = generateToken(user._id, user.email);
+    const appToken = generateToken(user);
 
     // Delete one-time reset token immediately after successful usage
     user.resetToken = null;
     user.resetTokenExpiry = null;
     await user.save();
+
+    securityEvent(SECURITY_EVENTS.MAGIC_LOGIN, req, { userId: String(user._id) });
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.MAGIC_LOGIN, req });
 
     const redirectUrl = `${getFrontendUrl()}/?token=${encodeURIComponent(appToken)}`;
     const acceptsHtml = (req.headers.accept || '').includes('text/html');
@@ -438,18 +557,25 @@ export const magicLogin = async (req, res) => {
       return res.redirect(302, redirectUrl);
     }
 
-    // Default: JSON response (used by frontend fetch flow)
-    return res.json({ success: true, token: appToken, user, redirectUrl });
+    // Default: JSON response — return only safe user fields
+    return res.json({
+      success: true,
+      token: appToken,
+      user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic },
+      redirectUrl,
+    });
   } catch (error) {
-    console.error('❌ magicLogin Error:', error);
-    return res.status(500).json({ success: false, error: error.message || 'Magic login failed' });
+    log('error', 'magicLogin failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
 export const verifyToken = async (req, res) => {
   try {
     const { token } = req.query;
-    if (!token || typeof token !== 'string') return res.status(400).json({ success: false, error: 'Token is required' });
+    if (!token || typeof token !== 'string' || token.length > 256) {
+      return res.status(400).json({ success: false, error: 'Token is required' });
+    }
 
     const tokenHash = hashToken(token);
 
@@ -460,17 +586,24 @@ export const verifyToken = async (req, res) => {
 
     return res.json({ success: true, valid: !!user });
   } catch (error) {
-    console.error('❌ verifyToken Error:', error);
-    return res.status(500).json({ success: false, error: error.message || 'Token verification failed' });
+    log('error', 'verifyToken failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };
 
 export const resetPassword = async (req, res) => {
   try {
     const { token, newPassword } = req.body;
-    if (!token || typeof token !== 'string') return res.status(400).json({ success: false, error: 'Token is required' });
-    if (!newPassword || typeof newPassword !== 'string' || newPassword.length < 6) {
-      return res.status(400).json({ success: false, error: 'New password must be at least 6 characters' });
+    if (!token || typeof token !== 'string' || token.length > 256) {
+      return res.status(400).json({ success: false, error: 'Token is required' });
+    }
+
+    // Password strength validation
+    if (!validatePasswordStrength(newPassword)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Password must be at least 8 characters with uppercase, lowercase, and a digit',
+      });
     }
 
     const tokenHash = hashToken(token);
@@ -482,16 +615,24 @@ export const resetPassword = async (req, res) => {
 
     if (!user) return res.status(400).json({ success: false, error: 'Invalid or expired token' });
 
-    const passwordHash = await bcrypt.hash(newPassword, 10);
+    const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
 
     user.password = passwordHash;
     user.resetToken = null;
     user.resetTokenExpiry = null;
+    // Increment tokenVersion to invalidate ALL existing JWTs for this user
+    user.tokenVersion = (user.tokenVersion || 0) + 1;
+    // Reset failed login attempts
+    user.failedLoginAttempts = 0;
+    user.lockUntil = null;
     await user.save();
+
+    securityEvent(SECURITY_EVENTS.PASSWORD_RESET, req, { userId: String(user._id) });
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.PASSWORD_RESET_COMPLETE, req });
 
     return res.json({ success: true, message: 'Password updated successfully' });
   } catch (error) {
-    console.error('❌ resetPassword Error:', error);
-    return res.status(500).json({ success: false, error: error.message || 'Reset password failed' });
+    log('error', 'resetPassword failed', { details: error.message });
+    return res.status(500).json({ success: false, error: 'Something went wrong' });
   }
 };

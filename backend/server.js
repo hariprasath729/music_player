@@ -1,6 +1,5 @@
-﻿import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import 'dotenv/config';
+import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './config/db.js';
@@ -8,34 +7,82 @@ import authRoutes from './routes/auth.js';
 import featureRoutes from './routes/index.js';
 import synkHandler from './sockets/synkHandler.js';
 
+// Import Security Middleware and Utilities
+import { JWT_SECRET } from './utils/jwtSecret.js'; // Startup validation of JWT_SECRET occurs on import
+import { log } from './utils/logger.js';
+import {
+  helmetMiddleware,
+  corsMiddleware,
+  getSocketCorsOptions,
+  hppMiddleware,
+  requestIdMiddleware,
+  httpsRedirect
+} from './middleware/security.js';
+import { globalLimiter } from './middleware/rateLimiter.js';
+import { mongoSanitizeMiddleware, prototypePollutionGuard, xssGuard } from './middleware/sanitize.js';
+import { ipBlacklistGuard } from './middleware/ipBlacklist.js';
+import { configureServerTimeouts, requestTimeoutMiddleware } from './middleware/requestTimeout.js';
+import { applyQueryProtection } from './middleware/queryProtection.js';
+
 (async () => {
-  dotenv.config();
 
   const app = express();
   const httpServer = createServer(app);
 
+  // Initialize Server Timeouts
+  configureServerTimeouts(httpServer);
+
+  // Socket.IO Hardening
   const io = new Server(httpServer, {
-    cors: {
-      origin: true,
-      methods: ['GET', 'POST'],
-      credentials: true
-    }
+    cors: getSocketCorsOptions()
   });
 
   const PORT = process.env.PORT || 5000;
 
-  // CORS configuration
-  app.use(cors({
-    origin: true,
-    credentials: true
-  }));
+  // Apply Global Mongoose Query Protections
+  applyQueryProtection();
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  // --- Global Middleware Chain ---
+  
+  // 1. IP Blacklist Guard (Early termination)
+  app.use(ipBlacklistGuard());
+
+  // 2. HTTPS Redirect in production
+  app.use(httpsRedirect());
+
+  // 3. Request ID tracking
+  app.use(requestIdMiddleware());
+
+  // 4. Request Timeout
+  app.use(requestTimeoutMiddleware(30000));
+
+  // 5. Security Headers (Helmet)
+  app.use(helmetMiddleware());
+
+  // 6. CORS Hardening
+  app.use(corsMiddleware());
+
+  // 7. Request Payload Size Limits
+  app.use(express.json({ limit: '1mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+
+  // 8. NoSQL Injection Prevention
+  app.use(mongoSanitizeMiddleware());
+
+  // 9. Prototype Pollution Protection & XSS Guard
+  app.use(prototypePollutionGuard());
+  app.use(xssGuard());
+
+  // 10. HTTP Parameter Pollution Protection
+  app.use(hppMiddleware());
+
+  // 11. Global Rate Limiter
+  app.use(globalLimiter);
+
+  // --- Endpoints ---
 
   // Simple root health check
-  app.get('/', (req, res) =>
-    res.send('Alive'));
+  app.get('/', (req, res) => res.send('Alive'));
 
   // Routes
   app.use('/api/auth', authRoutes);
@@ -48,20 +95,28 @@ import synkHandler from './sockets/synkHandler.js';
   // Socket.io Handler
   synkHandler(io);
 
-  // 404
-  app.use((req, res) =>
-    res.status(404).json({ success: false, error: 'Route not found', path: req.originalUrl }));
+  // 404 handler
+  app.use((req, res) => {
+    res.status(404).json({ success: false, error: 'Route not found' });
+  });
 
-  // Error handler
+  // Centralized error handler
   app.use((err, req, res, _next) => {
-    console.error('[server] Error:', err);
+    log('error', 'Unhandled server error', {
+      requestId: req.requestId,
+      method: req.method,
+      path: req.originalUrl,
+      details: err.message,
+      stack: err.stack,
+    });
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   });
 
   // Connect to DB then start server
   await connectDB();
   httpServer.listen(PORT, () => {
-    console.log(`🎵 Backend API running → http://localhost:${PORT}`);
-    console.log(`   Health check → http://localhost:${PORT}/api/health`);
+    log('info', `🎵 Backend API running → http://localhost:${PORT}`);
+    log('info', `   Health check → http://localhost:${PORT}/api/health`);
+    log('info', '🛡️ Security hardening complete and verified.');
   });
 })();

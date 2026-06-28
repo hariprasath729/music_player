@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { sanitizeString } from '../utils/sanitizeHtml.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +14,7 @@ const loadData = async () => {
     const fileContent = await fs.readFile(dataPath, 'utf-8');
     songsData = JSON.parse(fileContent);
   } catch (error) {
-    console.error('Failed to load songs_metadata.json', error);
+    console.error('Failed to load songs_metadata.json', error.message);
   }
 };
 
@@ -24,7 +25,11 @@ export const searchSongs = async (req, res) => {
     const { q } = req.query;
     if (!q) return res.json({ success: true, data: [] });
 
-    const query = q.toLowerCase();
+    // Sanitize and limit query length
+    const sanitized = sanitizeString(q, 200);
+    if (!sanitized) return res.json({ success: true, data: [] });
+
+    const query = sanitized.toLowerCase();
 
     const results = songsData.filter(song => 
       (song.title && song.title.toLowerCase().includes(query)) ||
@@ -33,7 +38,6 @@ export const searchSongs = async (req, res) => {
 
     res.json({ success: true, data: results });
   } catch (error) {
-    console.error('Search error:', error);
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };

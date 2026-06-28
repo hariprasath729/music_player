@@ -7,6 +7,7 @@ import playRoutes from './play.js';
 import roomRoutes from './roomRoutes.js';
 import libraryRoutes from './libraryRoutes.js';
 import homeRoutes from './homeRoutes.js';
+import profileRoutes from './profile.js';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use('/play', playRoutes);
 router.use('/room', roomRoutes);
 router.use('/library', libraryRoutes);
 router.use('/home', homeRoutes);
+router.use('/profile', profileRoutes);
 
 export default router;

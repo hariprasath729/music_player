@@ -1,4 +1,4 @@
-﻿﻿import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { X, Users, Copy, Check, Radio } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 import { useAuth } from '../../context/AuthContext';
@@ -69,7 +69,10 @@ export const VisualizerView: React.FC = () => {
     setRoomId('');
     setInputRoomId('');
 
-    const newSocket = io(SOCKET_URL);
+    const token = localStorage.getItem('music_player_token');
+    const newSocket = io(SOCKET_URL, {
+      auth: { token: token || undefined }
+    });
     setSocket(newSocket);
 
     newSocket.on('room_created', ({ roomId }) => {

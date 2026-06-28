@@ -7,6 +7,7 @@ import RecentlyPlayed from '../models/RecentlyPlayed.js';
 import PlayCount from '../models/PlayCount.js';
 import FollowedArtist from '../models/FollowedArtist.js';
 import SkipAvoid from '../models/SkipAvoid.js';
+import { log } from '../utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,7 @@ const loadCatalog = async () => {
     const fileContent = await fs.readFile(dataPath, 'utf-8');
     songsCatalog = JSON.parse(fileContent);
   } catch (error) {
-    console.error('Failed to load songs_metadata.json for Home data mapping', error);
+    console.error('Failed to load songs_metadata.json for Home data mapping', error.message);
   }
 };
 
@@ -32,12 +33,12 @@ export const recordSkipAvoid = async (req, res) => {
     const userId = req.user.id;
     const { songId } = req.body || {};
 
-    if (!songId) {
+    if (!songId || typeof songId !== 'string' || songId.length > 100) {
       return res.status(400).json({ success: false, error: 'songId is required' });
     }
 
     // Optional short-window de-dupe (avoids writing many rows if user spams next)
-    // If there’s an existing record for the same song within the last 1 hour, skip creating another.
+    // If there's an existing record for the same song within the last 1 hour, skip creating another.
     const ONE_HOUR_MS = 60 * 60 * 1000;
     const recentCutoff = new Date(Date.now() - ONE_HOUR_MS);
 
@@ -59,7 +60,7 @@ export const recordSkipAvoid = async (req, res) => {
 
     return res.json({ success: true });
   } catch (error) {
-    console.error('[recordSkipAvoid] error:', error);
+    log('error', 'recordSkipAvoid failed', { details: error.message });
     return res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -162,6 +163,7 @@ export const getHomeData = async (req, res) => {
       data: { recentlyPlayed: recentSongs, madeForYou, trending, topArtists, playlists: mappedPlaylists }
     });
   } catch (error) {
+    log('error', 'getHomeData failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };

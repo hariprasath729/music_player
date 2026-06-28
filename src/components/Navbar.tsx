@@ -398,6 +398,15 @@ export const Navbar: React.FC = () => {
                 Request a Song
               </button>
               <button
+                onClick={() => {
+                  setView('play-area');
+                  setActiveDropdown(null);
+                }}
+                className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
+                Play Area
+              </button>
+              <button
                 onClick={() => {showToast('General settings coming soon!');
                   setActiveDropdown(null);
                 }}

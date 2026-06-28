@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { log } from '../utils/logger.js';
 
 const connectDB = async () => {
   try {
@@ -11,27 +12,32 @@ const connectDB = async () => {
 
     const conn = await mongoose.connect(mongoURI, {
       serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 10,
+      socketTimeoutMS: 45000,
     });
 
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    if (process.env.NODE_ENV !== 'production') {
+      log('info', `✅ MongoDB Connected: ${conn.connection.host}`);
+    } else {
+      log('info', '✅ Database connection established.');
+    }
 
     mongoose.connection.on('error', (err) => {
-      console.error('❌ MongoDB connection error:', err.message);
+      log('error', 'MongoDB connection error', { details: err.message });
     });
 
     mongoose.connection.on('disconnected', () => {
-      console.warn('⚠️  MongoDB disconnected');
+      log('warn', 'MongoDB disconnected');
     });
 
     process.on('SIGINT', async () => {
       await mongoose.connection.close();
-      console.log('📦 MongoDB connection closed');
+      log('info', 'MongoDB connection closed.');
       process.exit(0);
     });
   } catch (error) {
-    console.error('❌ Database connection failed:', error.message);
+    log('error', 'Database connection failed', { details: error.message });
     console.log('⚠️  Server will continue running, but database operations will fail');
-    // Do NOT call process.exit(1) – allow the server to run
   }
 };
 

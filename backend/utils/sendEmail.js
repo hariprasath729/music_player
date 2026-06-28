@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { escapeHtml } from './sanitizeHtml.js';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ const SENDER_EMAIL = `${process.env.MAIL_FROM_NAME} <${process.env.MAIL_FROM_EMA
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 export const sendOtpEmail = async (to, otp) => {
+  const safeOtp = escapeHtml(String(otp));
   const html = `
 <!DOCTYPE html>
 <html>
@@ -55,7 +57,7 @@ export const sendOtpEmail = async (to, otp) => {
     <p style="color:#aaa; margin:0 0 20px 0; font-size: 16px;">Login Verification</p>
     <div style="background:#0f0f0f; padding:20px; border-radius:8px; margin-bottom: 20px;">
       <p style="margin:0 0 10px 0; color:#bbb; font-size: 14px;">Your OTP</p>
-      <h1 style="margin:0; letter-spacing:6px; color:#ff0000; font-size: 32px;">${otp}</h1>
+      <h1 style="margin:0; letter-spacing:6px; color:#ff0000; font-size: 32px;">${safeOtp}</h1>
     </div>
     <p style="color:#888; font-size:13px; margin:0;">Valid for 5 minutes</p>
   </td>
@@ -84,6 +86,8 @@ export const sendAdminApprovalEmail = async (userEmail, userName, token, baseUrl
   const finalBaseUrl = baseUrl || process.env.APP_URL || 'https://music-player-z1db.onrender.com';
   const approveLink = `${finalBaseUrl}/api/auth/approve?token=${token}`;
   const rejectLink = `${finalBaseUrl}/api/auth/reject?token=${token}`;
+  const safeName = escapeHtml(userName);
+  const safeEmail = escapeHtml(userEmail);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -115,9 +119,9 @@ export const sendAdminApprovalEmail = async (userEmail, userName, token, baseUrl
     <p style="color:#aaa; margin:0 0 20px 0; font-size: 16px;">New Access Request</p>
     <div style="background:#0f0f0f; padding:20px; border-radius:8px; margin-bottom: 25px; text-align: left;">
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Name</p>
-      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${userName}</p>
+      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${safeName}</p>
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Email</p>
-      <p style="margin:0; font-weight:bold; font-size: 16px; word-break: break-all;">${userEmail}</p>
+      <p style="margin:0; font-weight:bold; font-size: 16px; word-break: break-all;">${safeEmail}</p>
     </div>
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 20px;">
       <tr>
@@ -154,6 +158,7 @@ export const sendAdminApprovalEmail = async (userEmail, userName, token, baseUrl
 
 export const sendApprovedNotificationEmail = async (to, name) => {
   const appUrl = process.env.FRONTEND_URL || 'https://music-player-psi-sepia.vercel.app';
+  const safeName = escapeHtml(name);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -182,7 +187,7 @@ export const sendApprovedNotificationEmail = async (to, name) => {
     <h2 style="margin:15px 0 5px 0; font-size: 24px;">Music Player</h2>
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px;">Account Status</p>
     <h2 style="color:#ff0000; margin:0 0 20px 0; font-size: 22px;">✅ Access Approved</h2>
-    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height: 1.5;">Hi <b>${name}</b>,</p>
+    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height: 1.5;">Hi <b>${safeName}</b>,</p>
     <p style="color:#bbb; margin:0 0 25px 0; font-size: 16px; line-height: 1.5;">Your request has been approved. You can now access the app.</p>
     <a href="${appUrl}" style="display:inline-block; padding:14px 30px; background:#ff0000; color:white; text-decoration:none; border-radius:6px; font-weight:bold; font-size: 16px; text-align:center;">Go to App</a>
   </td>
@@ -211,6 +216,7 @@ export const sendRejectedNotificationEmail = async (to, name) => {
   const rawAppUrl = process.env.FRONTEND_URL || 'https://music-player-psi-sepia.vercel.app';
   const appUrl = rawAppUrl.replace(/\/$/, ''); // prevent double-slash in links
   const contactLink = `${appUrl}/?contact=true&email=${encodeURIComponent(to)}&name=${encodeURIComponent(name)}`;
+  const safeName = escapeHtml(name);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -239,7 +245,7 @@ export const sendRejectedNotificationEmail = async (to, name) => {
     <h2 style="margin:15px 0 5px 0; font-size: 24px;">Music Player</h2>
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px;">Account Status</p>
     <h2 style="color:#ff0000; margin:0 0 20px 0; font-size: 22px;">❌ Access Denied</h2>
-    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height: 1.5;">Hi <b>${name}</b>,</p>
+    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height: 1.5;">Hi <b>${safeName}</b>,</p>
     <p style="color:#bbb; margin:0 0 20px 0; font-size: 16px; line-height: 1.5;">Your access request was not approved.</p>
     <p style="color:#888; font-size:13px; margin:0 0 25px 0;">If you think this is a mistake, you can contact the admin.</p>
     <a href="${contactLink}" style="display:inline-block; padding:14px 30px; background:#3e3e3e; color:white; text-decoration:none; border-radius:6px; font-weight:bold; font-size: 16px; text-align:center;">Contact Admin</a>
@@ -266,6 +272,9 @@ export const sendRejectedNotificationEmail = async (to, name) => {
 };
 
 export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
+  const safeName = escapeHtml(userName);
+  const safeEmail = escapeHtml(userEmail);
+  const safeMessage = escapeHtml(message);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -295,9 +304,9 @@ export const sendMessageToAdminEmail = async (userEmail, userName, message) => {
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px; text-align: center;">Admin Support Message</p>
     <div style="background:#0f0f0f; padding:20px; border-radius:8px; text-align: left;">
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">From</p>
-      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${userName} (${userEmail})</p>
+      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${safeName} (${safeEmail})</p>
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Message</p>
-      <p style="margin:0; white-space:pre-wrap; color:#fff; font-size: 16px; line-height: 1.5; word-break: break-word;">${message}</p>
+      <p style="margin:0; white-space:pre-wrap; color:#fff; font-size: 16px; line-height: 1.5; word-break: break-word;">${safeMessage}</p>
     </div>
   </td>
   </tr>
@@ -329,8 +338,10 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs, to
         .map(s => s.trim())
         .filter(Boolean);
 
-  const songsListHtml = songsArray.length
-    ? `<ul style="margin:0; padding-left:18px; color:#fff; font-size:16px; line-height:1.6;">${songsArray
+  const escapedSongs = songsArray.map(s => escapeHtml(s));
+
+  const songsListHtml = escapedSongs.length
+    ? `<ul style="margin:0; padding-left:18px; color:#fff; font-size:16px; line-height:1.6;">${escapedSongs
         .map(s => `<li style="word-break: break-word;">${s}</li>`)
         .join('')}</ul>`
     : `<p style="margin:0; color:#fff; font-size:16px; word-break: break-word;">(No songs specified)</p>`;
@@ -339,6 +350,9 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs, to
   const doneLink = `${finalBaseUrl}/api/auth/song-request/done?token=${token}`;
 
   console.log(`\n🚨 [ADMIN ACTION REQUIRED] Song request done link:\n👉 ${doneLink}\n`);
+
+  const safeName = escapeHtml(userName);
+  const safeEmail = escapeHtml(userEmail);
 
   const html = `
 <!DOCTYPE html>
@@ -369,7 +383,7 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs, to
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px; text-align: center;">Requested Songs</p>
     <div style="background:#0f0f0f; padding:20px; border-radius:8px; text-align: left; margin-bottom: 20px;">
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">From</p>
-      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${userName} (${userEmail})</p>
+      <p style="margin:0 0 15px 0; font-weight:bold; font-size: 16px; word-break: break-word;">${safeName} (${safeEmail})</p>
       <p style="color:#bbb; margin:0 0 5px 0; font-size: 14px;">Requested</p>
       ${songsListHtml}
     </div>
@@ -402,7 +416,7 @@ export const sendSongRequestToAdminEmail = async (userEmail, userName, songs, to
 };
 
 export const sendPasswordAccessEmail = async (to, name, magicLink, resetLink) => {
-  // HTML template for Forgot Password + Magic Login
+  const safeName = escapeHtml(name);
   const html = `
 <!DOCTYPE html>
 <html>
@@ -433,7 +447,7 @@ export const sendPasswordAccessEmail = async (to, name, magicLink, resetLink) =>
     <h2 style="margin:15px 0 5px 0; font-size: 24px;">Music Player</h2>
     <p style="color:#aaa; margin:0 0 25px 0; font-size: 16px;">Reset your password or login instantly</p>
 
-    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height:1.5;">Hi <b>${name}</b>,</p>
+    <p style="color:#bbb; margin:0 0 10px 0; font-size: 16px; line-height:1.5;">Hi <b>${safeName}</b>,</p>
     <p style="color:#bbb; margin:0 0 25px 0; font-size: 16px; line-height:1.5;">
       Use the links below. They are valid for 15 minutes and can be used only once.
     </p>

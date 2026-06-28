@@ -19,7 +19,8 @@ export type ViewType =
   | 'all-songs'
   | 'artists'
   | 'artist'
-  | 'request-song';
+  | 'request-song'
+  | 'play-area';
 
 export interface ToastMessage {
   id: number;

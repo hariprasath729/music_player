@@ -7,6 +7,8 @@ import RecentlyPlayed from '../models/RecentlyPlayed.js';
 import Download from '../models/Download.js';
 import FollowedArtist from '../models/FollowedArtist.js';
 import SavedAlbum from '../models/SavedAlbum.js';
+import { log } from '../utils/logger.js';
+import { sanitizeString } from '../utils/sanitizeHtml.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +22,7 @@ const loadCatalog = async () => {
     const fileContent = await fs.readFile(dataPath, 'utf-8');
     songsCatalog = JSON.parse(fileContent);
   } catch (error) {
-    console.error('Failed to load songs_metadata.json for Library mapping', error);
+    console.error('Failed to load songs_metadata.json for Library mapping', error.message);
   }
 };
 
@@ -35,12 +37,12 @@ export const getLibrary = async (req, res) => {
     const userId = req.user.id;
 
     const [likes, playlists, recentlyPlayed, downloads, followed, saved] = await Promise.all([
-      Like.find({ userId }).sort({ createdAt: -1 }),
-      Playlist.find({ userId }).sort({ createdAt: -1 }),
+      Like.find({ userId }).sort({ createdAt: -1 }).limit(500),
+      Playlist.find({ userId }).sort({ createdAt: -1 }).limit(50),
       RecentlyPlayed.findOne({ userId }),
       Download.findOne({ userId }),
-      FollowedArtist.find({ userId }).sort({ createdAt: -1 }),
-      SavedAlbum.find({ userId }).sort({ createdAt: -1 })
+      FollowedArtist.find({ userId }).sort({ createdAt: -1 }).limit(200),
+      SavedAlbum.find({ userId }).sort({ createdAt: -1 }).limit(200)
     ]);
 
     // Map raw DB song IDs to full song objects from the master catalog
@@ -71,7 +73,7 @@ export const getLibrary = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Get library error:', error);
+    log('error', 'Get library failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -82,15 +84,23 @@ export const toggleFollowArtist = async (req, res) => {
   try {
     const { artistName } = req.body;
     const userId = req.user.id;
-    const exists = await FollowedArtist.findOne({ userId, artistName });
+
+    if (!artistName || typeof artistName !== 'string' || artistName.length > 200) {
+      return res.status(400).json({ success: false, error: 'Artist name is required' });
+    }
+
+    const sanitizedName = sanitizeString(artistName, 200);
+
+    const exists = await FollowedArtist.findOne({ userId, artistName: sanitizedName });
     if (exists) {
       await FollowedArtist.deleteOne({ _id: exists._id });
       res.json({ success: true, isFollowing: false });
     } else {
-      await FollowedArtist.create({ userId, artistName });
+      await FollowedArtist.create({ userId, artistName: sanitizedName });
       res.json({ success: true, isFollowing: true });
     }
   } catch (error) {
+    log('error', 'Toggle follow artist failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -99,15 +109,23 @@ export const toggleSaveAlbum = async (req, res) => {
   try {
     const { albumName } = req.body;
     const userId = req.user.id;
-    const exists = await SavedAlbum.findOne({ userId, albumName });
+
+    if (!albumName || typeof albumName !== 'string' || albumName.length > 200) {
+      return res.status(400).json({ success: false, error: 'Album name is required' });
+    }
+
+    const sanitizedName = sanitizeString(albumName, 200);
+
+    const exists = await SavedAlbum.findOne({ userId, albumName: sanitizedName });
     if (exists) {
       await SavedAlbum.deleteOne({ _id: exists._id });
       res.json({ success: true, isSaved: false });
     } else {
-      await SavedAlbum.create({ userId, albumName });
+      await SavedAlbum.create({ userId, albumName: sanitizedName });
       res.json({ success: true, isSaved: true });
     }
   } catch (error) {
+    log('error', 'Toggle save album failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -118,11 +136,14 @@ export const addDownload = async (req, res) => {
   try {
     const { songId } = req.body;
     const userId = req.user.id;
-    if (!songId) return res.status(400).json({ success: false, error: 'songId is required' });
+    if (!songId || typeof songId !== 'string' || songId.length > 100) {
+      return res.status(400).json({ success: false, error: 'songId is required' });
+    }
 
     const download = await Download.findOneAndUpdate({ userId }, { $addToSet: { songs: songId } }, { new: true, upsert: true });
     res.json({ success: true, data: download.songs });
   } catch (error) {
+    log('error', 'Add download failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };
@@ -131,9 +152,15 @@ export const removeDownload = async (req, res) => {
   try {
     const { songId } = req.body;
     const userId = req.user.id;
+
+    if (!songId || typeof songId !== 'string' || songId.length > 100) {
+      return res.status(400).json({ success: false, error: 'songId is required' });
+    }
+
     const download = await Download.findOneAndUpdate({ userId }, { $pull: { songs: songId } }, { new: true });
     res.json({ success: true, data: download ? download.songs : [] });
   } catch (error) {
+    log('error', 'Remove download failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });
   }
 };

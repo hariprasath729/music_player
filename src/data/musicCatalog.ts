@@ -42903,7 +42903,6 @@ const RAW_SONGS: RawSong[] =[
   {
     "id": 4806,
     "title": "CEO in the House",
-    "artist": "Nakul Abhyankar, Blaaze",
     "album": "Sarkar",
     "duration": 232,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/CEO-in-the-House-MassTamilan.org.mp3",
