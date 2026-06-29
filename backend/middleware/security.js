@@ -16,7 +16,7 @@ function getAllowedOrigins() {
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:5000',
-    'https://music-player-psi-sepia.vercel.app',
+    'https://music-player-hp.vercel.app',
     'https://music-player-z1db.onrender.com',
   ];
 

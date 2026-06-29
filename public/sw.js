@@ -1,5 +1,5 @@
 // Hardcode the version here. Update this string to trigger a new app update!
-const CACHE_NAME = "music-player-v11.0.0";
+const CACHE_NAME = "music-player-v12.0.0";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -93,7 +93,13 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .catch((err) => {
           console.warn("API fetch failed, attempting cache fallback:", err);
-          return caches.match(request);
+          return caches.match(request).then((cached) => {
+            if (cached) return cached;
+            return new Response(
+              JSON.stringify({ success: false, error: "Network error or offline" }),
+              { status: 503, headers: { "Content-Type": "application/json" } }
+            );
+          });
         })
     );
     return;
