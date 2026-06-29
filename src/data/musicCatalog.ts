@@ -42628,7 +42628,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 345,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/songs/Athiradee-Kaalam.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_29@main/covers/Athiradee-Kaalam.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 4776,
@@ -44023,7 +44023,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 366,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_30@main/songs/Kaaveri-AarumBalleilakka.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_30@main/covers/Kaaveri-AarumBalleilakka.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 4933,
@@ -46642,7 +46642,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 270,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Sahana-II---Melody.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Sahana-II---Melody.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5229,
@@ -46651,7 +46651,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 319,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Sahana-Saral-Thoo.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Sahana-Saral-Thoo.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5230,
@@ -46921,7 +46921,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 70,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Sivaji-Theme.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Sivaji-Theme.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5260,
@@ -47065,7 +47065,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 311,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/Style---Thee-Thee.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/Style---Thee-Thee.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5276,
@@ -47254,7 +47254,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 198,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/songs/The-Boss---Theme-Music.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_33@main/covers/The-Boss---Theme-Music.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5297,
@@ -47812,7 +47812,7 @@ const RAW_SONGS: RawSong[] =[
     "album": "Sivaji",
     "duration": 347,
     "url": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/songs/Vaaji-Vaaji-En-Sivaji.mp3",
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_34@main/covers/Vaaji-Vaaji-En-Sivaji.jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_16@main/covers/sivaji.jpg"
   },
   {
     "id": 5361,
