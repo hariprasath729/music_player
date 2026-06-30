@@ -33,7 +33,6 @@ export const MainContent: React.FC = () => {
       {currentView === 'library' && <LibraryView />}
       {currentView === 'liked-songs' && <LikedSongsView />}
       {currentView === 'lyrics' && <LyricsView />}
-      {currentView === 'profile' && <ProfileView />}
       {currentView === 'all-songs' && <AllSongsView />}
       {currentView === 'artists' && <ArtistsView />}
       {currentView === 'artist' && <ArtistDetailsView />}

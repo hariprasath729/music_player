@@ -1,5 +1,5 @@
 // Hardcode the version here. Update this string to trigger a new app update!
-const CACHE_NAME = "music-player-v12.2.4";
+const CACHE_NAME = "music-player-v12.2.7";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [

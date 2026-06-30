@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
   const {
     currentView, setView, searchQuery, setSearchQuery,
     canGoBack, canGoForward, goBack, goForward, showToast,
-    
+    setIsProfileModalOpen,
   } = usePlayer();
   const { user, logout } = useAuth(); // Replace with real toast in production
 
@@ -304,14 +304,13 @@ export const Navbar: React.FC = () => {
               )}
               {[
                 { label: 'Profile', view: 'profile' },
-                { label: 'Synk Session', view: 'visualizer' },
                 { label: 'Log out', view: 'logout' },
               ].map(({ label, view }) => (
                 <button
                   key={label}
                   onClick={() => {
                     setActiveDropdown(null);
-                    if (view === 'profile') setView('profile');
+                    if (view === 'profile') setIsProfileModalOpen(true);
                     else if (view === 'visualizer') setView('visualizer');
                     else if (view === 'logout') logout();
                   }}

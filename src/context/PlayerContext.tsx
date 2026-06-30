@@ -68,6 +68,8 @@ interface PlayerContextType {
   isFullScreen: boolean;
   searchQuery: string;
   isQueueOpen: boolean;
+  isProfileModalOpen: boolean;
+  setIsProfileModalOpen: (open: boolean) => void;
   isFullScreenMenuOpen: boolean;
   toasts: ToastMessage[];
   canGoBack: boolean;
@@ -164,6 +166,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isQueueOpen, setIsQueueOpen] = useState<boolean>(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
   const [isFullScreenMenuOpen, setIsFullScreenMenuOpen] = useState<boolean>(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [viewStack, setViewStack] = useState<{ view: ViewType; playlist: Playlist | null }[]>([{ view: 'home', playlist: null }]);
@@ -1159,6 +1162,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       toggleSaveAlbum,
       addToPlaylistTrack,
       setAddToPlaylistTrack,
+      isProfileModalOpen,
+      setIsProfileModalOpen,
     }),
     [
       currentTrack,
@@ -1191,6 +1196,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       followedArtists,
       savedAlbums,
       addToPlaylistTrack,
+      isProfileModalOpen,
     ]
   );
 

@@ -29,6 +29,7 @@ import { TRACKS } from '../data/musicCatalog';
 import artistsData from '../data/artists.json';
 import { useBackButton } from '../hooks/useBackButton';
 import { MarqueeText } from './MarqueeText';
+import MagicRings from './MagicRings';
 
 export const FullScreenPlayer: React.FC = () => {
   const {
@@ -73,6 +74,18 @@ export const FullScreenPlayer: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const isClosingMenuRef = useRef(false);
   const isClosingQueueRef = useRef(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(() => {
+    return typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : false;
+  });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsLargeScreen(e.matches);
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     if (!isQueueOpen) {
@@ -127,6 +140,7 @@ export const FullScreenPlayer: React.FC = () => {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[40px]" />
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] via-transparent to-black/60" />
       
+
       {/* Large blurred album gradient in background */}
       <div
         className="pointer-events-none absolute left-1/2 top-[15%] h-[70vh] w-[85vw] max-w-[600px] -translate-x-1/2 rounded-full opacity-25 blur-[80px]"
@@ -179,9 +193,18 @@ export const FullScreenPlayer: React.FC = () => {
       </div>
 
       {/* ─── ALBUM ART (centered, flexible) ─── */}
-      <div className="relative z-10 flex flex-1 items-center justify-center px-8 py-4 sm:px-16">
+      <div className="relative z-10 flex flex-1 items-center justify-center px-8 py-4 sm:px-16 w-full h-full">
+        {isLargeScreen && (
+          <div className="absolute inset-0 z-0 opacity-70 pointer-events-auto">
+            <MagicRings
+              color={currentTrack.color}
+              followMouse={false}
+              clickBurst={true}
+            />
+          </div>
+        )}
         <div
-          className="aspect-square w-full max-w-[min(85vw,420px)] rounded-lg border border-white/10 shadow-2xl shadow-black/50"
+          className="relative z-10 aspect-square w-full max-w-[min(85vw,420px)] rounded-lg border border-white/10 shadow-2xl shadow-black/50"
           style={{ background: currentTrack.gradient }}
         />
       </div>

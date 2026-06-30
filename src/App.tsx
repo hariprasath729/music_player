@@ -15,6 +15,7 @@ import { MobileNav } from './components/MobileNav';
 import { MiniPlayer } from './components/MiniPlayer';
 import { Toast } from './components/Toast';
 import { useBackHandler } from './hooks/useBackHandler';
+import { ProfileView } from './components/views/ProfileView';
 
 import { ForgotPasswordPage } from './components/auth/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
@@ -38,6 +39,7 @@ const PlayerShell: React.FC = () => (
       <MobileNav />
       <PlayerControls />
       <FullScreenPlayer />
+      <ProfileView />
       <Toast />
     </div>
   </PlayerProvider>

@@ -14,7 +14,7 @@ const parseSongs = (raw: string): string[] => {
 export const RequestSongView: React.FC = () => {
   const auth = useAuth();
   const { user, requestSong } = auth;
-  const { setView, showToast } = usePlayer();
+  const { setView, showToast, goBack } = usePlayer();
 
   const [rawSongs, setRawSongs] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -66,7 +66,7 @@ export const RequestSongView: React.FC = () => {
         </div>
 
         <button
-          onClick={() => setView('profile')}
+          onClick={() => goBack()}
           className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#b3b3b3] font-bold hover:bg-white/10 transition"
         >
           Back
