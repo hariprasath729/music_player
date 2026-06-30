@@ -26,7 +26,7 @@ export const MainContent: React.FC = () => {
   }, [currentView]);
 
   return (
-    <main ref={scrollRef} className="flex-1 overflow-y-auto bg-[#121212] relative">
+    <main ref={scrollRef} id="snap-main-container" className="flex-1 overflow-y-auto bg-[#121212] relative">
       {currentView === 'home' && <HomeView />}
       {currentView === 'search' && <SearchView />}
       {currentView === 'playlist' && <PlaylistView />}

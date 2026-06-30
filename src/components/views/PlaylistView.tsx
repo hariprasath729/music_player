@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 import { Track } from '../../data/musicCatalog';
+import GlareHover from '../GlareHover';
 
 export const PlaylistView: React.FC = () => {
   const {
@@ -46,7 +47,20 @@ export const PlaylistView: React.FC = () => {
         className="flex flex-col items-center px-4 pt-4 pb-5 sm:flex-row sm:items-end sm:gap-6 sm:px-6 sm:pt-12 sm:pb-6"
         style={{ background: `linear-gradient(180deg, ${activePlaylist.primaryColor}aa 0%, ${activePlaylist.primaryColor}33 60%, #121212 100%)` }}
       >
-        <div className="h-48 w-48 shrink-0 rounded-md shadow-2xl sm:h-56 sm:w-56" style={{ background: activePlaylist.coverGradient }} />
+        <GlareHover
+          width="100%"
+          height="100%"
+          background={activePlaylist.coverGradient}
+          borderRadius="6px"
+          borderColor="transparent"
+          glareColor="#ffffff"
+          glareOpacity={0.2}
+          glareSize={200}
+          transitionDuration={800}
+          className="h-48 w-48 shrink-0 rounded-md shadow-2xl sm:h-56 sm:w-56"
+        >
+          <div className="h-full w-full" />
+        </GlareHover>
         <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left">
           <span className="hidden text-xs font-bold uppercase tracking-widest text-white/60 sm:block">Playlist</span>
           <h1 className="line-clamp-2 text-2xl font-extrabold tracking-tight text-white sm:text-5xl md:text-7xl sm:py-1">

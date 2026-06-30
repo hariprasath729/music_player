@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Play, Heart, User, Loader2 } from 'lucide-react';
 import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
+import ScrollAnimateContainer from '../ScrollAnimateContainer';
+import GlareHover from '../GlareHover';
 import { TRACKS, PLAYLISTS, Track, Playlist } from '../../data/musicCatalog';
 import { useAuth } from '../../context/AuthContext';
 import { homeApi, mapSongToTrack } from '../../services/apiClient';
@@ -61,7 +63,19 @@ const PlaylistCard = memo(function PlaylistCard({
       className="group flex w-[140px] shrink-0 cursor-pointer flex-col gap-2 rounded-md bg-[#181818] p-3 transition-colors hover:bg-[#282828] sm:w-auto sm:p-4"
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-md shadow-lg">
-        <div className="h-full w-full" style={{ background: playlist.coverGradient }} />
+        <GlareHover
+          width="100%"
+          height="100%"
+          background={playlist.coverGradient}
+          borderRadius="6px"
+          borderColor="transparent"
+          glareColor="#ffffff"
+          glareOpacity={0.25}
+          glareSize={200}
+          transitionDuration={600}
+        >
+          <div className="h-full w-full" />
+        </GlareHover>
         <PlayBadge
           onClick={(e) => {
             e.stopPropagation();
@@ -180,105 +194,119 @@ export const HomeView: React.FC = () => {
   return (
     <div className="flex flex-col gap-5 px-4 py-3 pb-4 sm:gap-8 sm:px-6 sm:py-4 sm:pb-8">
       {/* Greeting */}
-      <h1 className="text-[22px] font-bold text-white sm:text-3xl">{getGreeting()}</h1>
+      <ScrollAnimateContainer delay={0.05}>
+        <h1 className="text-[22px] font-bold text-white sm:text-3xl">{getGreeting()}</h1>
+      </ScrollAnimateContainer>
 
       {/* ── Quick Access Grid (Spotify mobile 2-col) ── */}
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 sm:gap-3">
-        {/* Liked Songs */}
-        <div
-          onClick={() => setView('liked-songs')}
-          className="group relative flex cursor-pointer items-center overflow-hidden rounded bg-[#282828]/60 transition-colors hover:bg-[#393939]"
-        >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-gradient-to-br from-[#450af5] to-[#c4efd9] sm:h-16 sm:w-16">
-            <Heart className="h-4 w-4 fill-white text-white sm:h-5 sm:w-5" />
-          </div>
-          <span className="truncate px-2 text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
-            Liked Songs
-          </span>
-        </div>
-
-        {quickAccess.map((t: Track) => (
+      <ScrollAnimateContainer delay={0.1}>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 sm:gap-3">
+          {/* Liked Songs */}
           <div
-            key={`qa-${t.id}`}
-            onClick={() => playAnyTrack(t, quickAccess)}
+            onClick={() => setView('liked-songs')}
             className="group relative flex cursor-pointer items-center overflow-hidden rounded bg-[#282828]/60 transition-colors hover:bg-[#393939]"
           >
-            <div
-              className="h-12 w-12 shrink-0 sm:h-16 sm:w-16"
-              style={{ background: t.gradient }}
-            />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-gradient-to-br from-[#450af5] to-[#c4efd9] sm:h-16 sm:w-16">
+              <Heart className="h-4 w-4 fill-white text-white sm:h-5 sm:w-5" />
+            </div>
             <span className="truncate px-2 text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
-              {t.title}
+              Liked Songs
             </span>
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1db954] shadow-md hover:scale-105 active:scale-95 sm:h-10 sm:w-10">
-                <Play className="h-4 w-4 translate-x-0.5 fill-black text-black sm:h-5 sm:w-5" />
+          </div>
+
+          {quickAccess.map((t: Track) => (
+            <div
+              key={`qa-${t.id}`}
+              onClick={() => playAnyTrack(t, quickAccess)}
+              className="group relative flex cursor-pointer items-center overflow-hidden rounded bg-[#282828]/60 transition-colors hover:bg-[#393939]"
+            >
+              <div
+                className="h-12 w-12 shrink-0 sm:h-16 sm:w-16"
+                style={{ background: t.gradient }}
+              />
+              <span className="truncate px-2 text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
+                {t.title}
+              </span>
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1db954] shadow-md hover:scale-105 active:scale-95 sm:h-10 sm:w-10">
+                  <Play className="h-4 w-4 translate-x-0.5 fill-black text-black sm:h-5 sm:w-5" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </ScrollAnimateContainer>
 
       {recentlyPlayed && (
-        <section className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-white sm:text-2xl">Recently Played</h2>
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-            {recentlyPlayed.map((t: Track) => (
-              <TrackCard key={`recent-${t.id}`} track={t} list={recentlyPlayed} onPlay={playAnyTrack} />
-            ))}
-          </div>
-        </section>
+        <ScrollAnimateContainer delay={0.1}>
+          <section className="flex flex-col gap-3">
+            <h2 className="text-lg font-bold text-white sm:text-2xl">Recently Played</h2>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
+              {recentlyPlayed.map((t: Track) => (
+                <TrackCard key={`recent-${t.id}`} track={t} list={recentlyPlayed} onPlay={playAnyTrack} />
+              ))}
+            </div>
+          </section>
+        </ScrollAnimateContainer>
       )}
 
       {/* ── Made For You ── */}
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-bold text-white sm:text-2xl">Made For You</h2>
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-          {madeForYou.map((t: Track) => (
-            <TrackCard key={`m4u-${t.id}`} track={t} list={madeForYou} onPlay={playAnyTrack} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── Trending ── */}
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-bold text-white sm:text-2xl">Trending Now</h2>
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-          {trending.map((t: Track) => (
-            <TrackCard key={`trend-${t.id}`} track={t} list={trending} onPlay={playAnyTrack} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── Top Artists ── */}
-      {topArtists.length > 0 && (
+      <ScrollAnimateContainer delay={0.1}>
         <section className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-white sm:text-2xl">Your Top Artists</h2>
+          <h2 className="text-lg font-bold text-white sm:text-2xl">Made For You</h2>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-            {topArtists.map((artist: string) => (
-              <ArtistCard
-                key={artist}
-                artistName={artist}
-                onClick={() => {
-                  setSearchQuery(artist);
-                  setView('artist');
-                }}
-              />
+            {madeForYou.map((t: Track) => (
+              <TrackCard key={`m4u-${t.id}`} track={t} list={madeForYou} onPlay={playAnyTrack} />
             ))}
           </div>
         </section>
+      </ScrollAnimateContainer>
+
+      {/* ── Trending ── */}
+      <ScrollAnimateContainer delay={0.1}>
+        <section className="flex flex-col gap-3">
+          <h2 className="text-lg font-bold text-white sm:text-2xl">Trending Now</h2>
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
+            {trending.map((t: Track) => (
+              <TrackCard key={`trend-${t.id}`} track={t} list={trending} onPlay={playAnyTrack} />
+            ))}
+          </div>
+        </section>
+      </ScrollAnimateContainer>
+
+      {/* ── Top Artists ── */}
+      {topArtists.length > 0 && (
+        <ScrollAnimateContainer delay={0.1}>
+          <section className="flex flex-col gap-3">
+            <h2 className="text-lg font-bold text-white sm:text-2xl">Your Top Artists</h2>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
+              {topArtists.map((artist: string) => (
+                <ArtistCard
+                  key={artist}
+                  artistName={artist}
+                  onClick={() => {
+                    setSearchQuery(artist);
+                    setView('artist');
+                  }}
+                />
+              ))}
+            </div>
+          </section>
+        </ScrollAnimateContainer>
       )}
 
       {/* ── User Playlists ── */}
       {playlists.length > 0 && (
-        <section className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-white sm:text-2xl">Your Playlists</h2>
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-            {playlists.map((pl: Playlist) => (
-              <PlaylistCard key={pl.id} playlist={pl} onOpen={openPlaylist} onPlay={playPlaylist} />
-            ))}
-          </div>
-        </section>
+        <ScrollAnimateContainer delay={0.1}>
+          <section className="flex flex-col gap-3">
+            <h2 className="text-lg font-bold text-white sm:text-2xl">Your Playlists</h2>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
+              {playlists.map((pl: Playlist) => (
+                <PlaylistCard key={pl.id} playlist={pl} onOpen={openPlaylist} onPlay={playPlaylist} />
+              ))}
+            </div>
+          </section>
+        </ScrollAnimateContainer>
       )}
     </div>
   );

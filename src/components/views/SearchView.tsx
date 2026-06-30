@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Heart, Plus } from 'lucide-react';
 import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
+import GlareHover from '../GlareHover';
 import { TRACKS, PLAYLISTS, CATEGORIES, Track } from '../../data/musicCatalog';
 import { searchTracks, searchPlaylists } from '../../utils/search';
 
@@ -151,7 +152,19 @@ export const SearchView: React.FC = () => {
                     className="group flex w-[140px] shrink-0 cursor-pointer flex-col gap-2 rounded-md bg-[#181818] p-3 transition-colors hover:bg-[#282828] sm:w-auto sm:p-4"
                   >
                     <div className="relative aspect-square w-full overflow-hidden rounded-md shadow-lg">
-                      <div className="h-full w-full" style={{ background: pl.coverGradient }} />
+                      <GlareHover
+                        width="100%"
+                        height="100%"
+                        background={pl.coverGradient}
+                        borderRadius="6px"
+                        borderColor="transparent"
+                        glareColor="#ffffff"
+                        glareOpacity={0.25}
+                        glareSize={200}
+                        transitionDuration={600}
+                      >
+                        <div className="h-full w-full" />
+                      </GlareHover>
                       <button
                         onClick={(e) => { e.stopPropagation(); if (pl.tracks.length) playTrack(pl.tracks[0], pl.tracks); }}
                         className="absolute bottom-2 right-2 flex h-11 w-11 translate-y-2 items-center justify-center rounded-full bg-[#1db954] opacity-0 shadow-xl transition-all group-hover:translate-y-0 group-hover:opacity-100 hover:scale-105"
