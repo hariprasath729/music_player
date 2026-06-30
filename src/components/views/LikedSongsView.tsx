@@ -48,7 +48,7 @@ export const LikedSongsView: React.FC = () => {
         >
           <Heart className="h-20 w-20 fill-white text-white sm:h-24 sm:w-24" />
         </div>
-        <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left">
+        <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left min-w-0 flex-1 w-full">
           <span className="hidden text-xs font-bold uppercase tracking-widest text-white/60 sm:block">Playlist</span>
           <h1 className="line-clamp-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl md:text-7xl sm:py-1">
             Liked Songs

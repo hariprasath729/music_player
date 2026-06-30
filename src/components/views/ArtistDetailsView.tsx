@@ -96,7 +96,7 @@ export const ArtistDetailsView: React.FC = () => {
           className="h-48 w-48 shrink-0 rounded-full shadow-2xl sm:h-56 sm:w-56"
           style={{ background: artistInfo?.image ? `url("${artistInfo.image}") center / cover no-repeat` : filteredArtistTracks[0]?.gradient }}
         />
-        <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left">
+        <div className="mt-4 flex flex-col items-center text-center sm:mt-0 sm:items-start sm:text-left min-w-0 flex-1 w-full">
           <div className="flex items-center gap-2 mb-2">
             <div className="flex items-center justify-center h-5 w-5 bg-[#3d91f4] text-white rounded-full text-xs">
               <Check className="h-3 w-3" strokeWidth={3} />

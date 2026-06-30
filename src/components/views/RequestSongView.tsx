@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Send, Music, AlertCircle } from 'lucide-react';
+import { Send, Music, AlertCircle, Home } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { usePlayer } from '../../context/PlayerContext';
 
@@ -14,7 +14,7 @@ const parseSongs = (raw: string): string[] => {
 export const RequestSongView: React.FC = () => {
   const auth = useAuth();
   const { user, requestSong } = auth;
-  const { setView, showToast, goBack } = usePlayer();
+  const { setView, showToast } = usePlayer();
 
   const [rawSongs, setRawSongs] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -66,9 +66,10 @@ export const RequestSongView: React.FC = () => {
         </div>
 
         <button
-          onClick={() => goBack()}
+          onClick={() => setView('home')}
           className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#b3b3b3] font-bold hover:bg-white/10 transition"
         >
+          
           Back
         </button>
       </div>
