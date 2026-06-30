@@ -4,6 +4,7 @@ import { LoginPage } from './components/LoginPage';
 import { SignupPage } from './components/SignupPage';
 import { AppBootstrap } from './components/AppBootstrap';
 import { PlayerProvider } from './context/PlayerContext';
+import AuthLayout from './components/auth/AuthLayout';
 import { Sidebar } from './components/Sidebar';
 import { Navbar } from './components/Navbar';
 import { MainContent } from './components/MainContent';
@@ -117,7 +118,7 @@ const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen })
   if (isLoggedIn) {
     return (
       <AppBootstrap
-        loginFallback={<AuthPages pushScreen={pushScreen} />}
+        loginFallback={<AuthLayout><AuthPages pushScreen={pushScreen} /></AuthLayout>}
       >
         <PlayerShell />
       </AppBootstrap>
@@ -125,7 +126,7 @@ const AppGate: React.FC<{ pushScreen: (id: string) => void }> = ({ pushScreen })
   }
 
   // No cached session → show login directly
-  return <AuthPages pushScreen={pushScreen} />;
+  return <AuthLayout><AuthPages pushScreen={pushScreen} /></AuthLayout>;
 };
 
 export const App: React.FC = () => {
@@ -149,11 +150,13 @@ export const App: React.FC = () => {
   if (pathname.endsWith('/forgot-password')) {
     return (
       <AuthProvider>
-        <ForgotPasswordPage
-          onBackToLogin={() => {
-            window.location.pathname = '/';
-          }}
-        />
+        <AuthLayout>
+          <ForgotPasswordPage
+            onBackToLogin={() => {
+              window.location.pathname = '/';
+            }}
+          />
+        </AuthLayout>
       </AuthProvider>
     );
   }
@@ -162,12 +165,14 @@ export const App: React.FC = () => {
     const token = params.get('token') || '';
     return (
       <AuthProvider>
-        <ResetPasswordPage
-          token={token}
-          onBackToLogin={() => {
-            window.location.pathname = '/';
-          }}
-        />
+        <AuthLayout>
+          <ResetPasswordPage
+            token={token}
+            onBackToLogin={() => {
+              window.location.pathname = '/';
+            }}
+          />
+        </AuthLayout>
       </AuthProvider>
     );
   }
@@ -176,12 +181,14 @@ export const App: React.FC = () => {
     const token = params.get('token') || '';
     return (
       <AuthProvider>
-        <MagicLoginPage
-          token={token}
-          onBackToLogin={() => {
-            window.location.pathname = '/';
-          }}
-        />
+        <AuthLayout>
+          <MagicLoginPage
+            token={token}
+            onBackToLogin={() => {
+              window.location.pathname = '/';
+            }}
+          />
+        </AuthLayout>
       </AuthProvider>
     );
   }

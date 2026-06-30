@@ -40,19 +40,20 @@ export const ResetPasswordPage: React.FC<{ token: string; onBackToLogin: () => v
     <div className="music-player-login-page">
       <style>{`
         .music-player-login-page *,.music-player-login-page *::before,.music-player-login-page *::after{box-sizing:border-box;margin:0;padding:0}
-        .music-player-login-page{--green:#ff0000;--green-hover:#ff3333;--bg:#121212;--bg-card:#181818;--border:#3e3e3e;--text-primary:#fff;--text-secondary:#b3b3b3;--text-muted:#727272;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg);font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased}
-        .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;width:100%;max-width:360px;padding:24px}
+        .music-player-login-page{--green:#ff0000;--green-hover:#ff3333;--bg:#121212;--bg-card:#181818;--border:rgba(255,255,255,0.08);--text-primary:#fff;--text-secondary:#b3b3b3;--text-muted:#727272;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:transparent;pointer-events:none;font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased}
+        .card{background:rgba(24, 24, 24, 0.45);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:10px;width:100%;max-width:360px;padding:24px;box-shadow:0 8px 32px 0 rgba(0,0,0,0.37);pointer-events:auto}
         .title{font-size:24px;font-weight:900;text-align:center;margin-bottom:16px}
         .hint{font-size:13px;color:var(--text-secondary);text-align:center;margin-bottom:18px;line-height:1.6}
         .form-group{margin-bottom:14px}
         .label{display:block;font-size:13px;font-weight:800;color:var(--text-primary);margin-bottom:6px}
-        input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;color:var(--text-primary);background:#242424;outline:none}
+        input{width:100%;padding:12px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-family:inherit;font-size:14px;color:var(--text-primary);background:rgba(0,0,0,0.25);outline:none}
         .password-wrapper{position:relative;width:100%}.password-wrapper input{padding-right:40px!important}.password-toggle-btn{position:absolute;top:50%;right:12px;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;transition:color .15s}.password-toggle-btn:hover{color:var(--text-primary)}.password-toggle-btn svg{width:16px;height:16px}
-        input:focus{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(255,255,255,.07)}
+        input:focus{border-color:rgba(255,255,255,0.4);box-shadow:0 0 0 3px rgba(255,255,255,0.03)}
         .btn{display:block;width:100%;padding:12px;border:none;border-radius:500px;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:.06em;cursor:pointer;transition:transform .1s, background .15s}
         .btn-primary{background:var(--green);color:#000}
         .btn-primary:hover{background:var(--green-hover);transform:scale(1.02)}
-        .btn-ghost{background:transparent;color:#fff;border:1px solid var(--border)}
+        .btn-ghost{background:rgba(255,255,255,0.02);color:#fff;border:1px solid rgba(255,255,255,0.08)}
+        .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.2)}
         .row{display:flex;gap:10px;align-items:center;margin-top:14px}
         .row .btn-ghost{flex:1}
         .row .btn-primary{flex:1}
