@@ -201,7 +201,7 @@ export const schemas = {
     email: { required: true, type: 'email' },
     otp: { required: true, type: 'string', minLength: 6, maxLength: 6, pattern: /^\d{6}$/ },
     name: { required: false, type: 'string', minLength: 2, maxLength: 50, sanitize: true },
-    password: { required: false, type: 'string', minLength: 8, maxLength: 128 },
+    password: { required: false, type: 'string', minLength: 6, maxLength: 128 },
   },
   googleLogin: {
     credential: { required: true, type: 'string', minLength: 1, maxLength: 5000 },
@@ -211,7 +211,7 @@ export const schemas = {
   },
   resetPassword: {
     token: { required: true, type: 'string', minLength: 1, maxLength: 256 },
-    newPassword: { required: true, type: 'string', minLength: 8, maxLength: 128 },
+    newPassword: { required: true, type: 'string', minLength: 6, maxLength: 128 },
   },
   contactAdmin: {
     email: { required: true, type: 'email' },
@@ -249,10 +249,7 @@ export const schemas = {
 // ── Password Strength Validator ──
 export function validatePasswordStrength(password) {
   if (typeof password !== 'string') return false;
-  if (password.length < 8) return false;
+  if (password.length < 6) return false;
   if (password.length > 128) return false;
-  if (!/[a-z]/.test(password)) return false;
-  if (!/[A-Z]/.test(password)) return false;
-  if (!/\d/.test(password)) return false;
   return true;
 }

@@ -184,6 +184,10 @@ class AudioEngine {
     }
   }
 
+  public getPlaybackRate(): number {
+    return this.playbackRate;
+  }
+
   public getCurrentTime(): number {
     if (this.media) {
       return this.media.currentTime || this.pausedTime || 0;

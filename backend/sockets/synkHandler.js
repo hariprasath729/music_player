@@ -22,29 +22,103 @@ setInterval(() => {
   }
 }, 60000);
 
+// ─── In-Memory Room Sync State ───────────────────────────────────────────────
+// Primary source of truth for real-time sync. MongoDB is used only for
+// persistence, recovery, analytics, and room lifecycle.
+const roomSyncState = new Map();
+// Structure per room:
+// {
+//   songId, currentTime, isPlaying, updatedAt (ms timestamp),
+//   sequenceNumber, hostId, participants: Set,
+//   heartbeatMode: 'steady' | 'burst', burstUntil: 0
+// }
+
+function createRoomState(roomId, hostId, songId, currentTime, isPlaying) {
+  const state = {
+    roomId,
+    hostId,
+    participants: new Set([hostId]),
+    songId: songId || null,
+    currentTime: typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0,
+    isPlaying: typeof isPlaying === 'boolean' ? isPlaying : false,
+    updatedAt: Date.now(),
+    sequenceNumber: 0,
+    heartbeatMode: 'steady',
+    burstUntil: 0,
+  };
+  roomSyncState.set(roomId, state);
+  return state;
+}
+
+function getEstimatedTime(state) {
+  if (!state.isPlaying) return state.currentTime;
+  const elapsed = (Date.now() - state.updatedAt) / 1000;
+  return state.currentTime + elapsed;
+}
+
+function buildSyncPayload(state) {
+  state.sequenceNumber++;
+  const now = Date.now();
+  return {
+    songId: state.songId,
+    currentTime: getEstimatedTime(state),
+    isPlaying: state.isPlaying,
+    hostTimestamp: now,
+    playbackTimestamp: state.updatedAt,
+    sequenceNumber: state.sequenceNumber,
+  };
+}
+
+function triggerBurst(state) {
+  state.heartbeatMode = 'burst';
+  state.burstUntil = Date.now() + 3000; // 3s burst window after events
+}
+
+// ─── Periodic DB Checkpoint (every 5s) ───────────────────────────────────────
+setInterval(async () => {
+  for (const [roomId, state] of roomSyncState.entries()) {
+    try {
+      await Room.updateOne(
+        { roomId },
+        {
+          currentSongId: state.songId,
+          currentTime: getEstimatedTime(state),
+          isPlaying: state.isPlaying,
+          updatedAt: new Date(state.updatedAt),
+        }
+      );
+    } catch (err) {
+      // Non-critical — best effort persistence
+    }
+  }
+}, 5000);
+
 export default function synkHandler(io) {
   const activeSockets = new Map(); // Track connected users: socketId -> { userId, roomId, eventCount, lastReset }
 
-  // Periodic Drift handling: broadcast sync_state for active rooms every 5s
-  setInterval(async () => {
-    try {
-      const activeRooms = await Room.find({ isPlaying: true });
-      for (const room of activeRooms) {
-        const now = new Date();
-        const elapsed = (now - room.updatedAt) / 1000;
-        const currentEstimatedTime = room.currentTime + elapsed;
-
-        io.to(room.roomId).emit('sync_state', {
-          songId: room.currentSongId,
-          currentTime: currentEstimatedTime,
-          isPlaying: room.isPlaying,
-          updatedAt: now
-        });
+  // ─── Adaptive Heartbeat ──────────────────────────────────────────────────
+  // Runs every 100ms but only emits based on each room's heartbeat mode:
+  //   steady: every 600ms (within 500-700ms range)
+  //   burst:  every 150ms (within 100-200ms range) for 3s after events
+  const heartbeatCounters = new Map(); // roomId -> lastEmitTime
+  setInterval(() => {
+    const now = Date.now();
+    for (const [roomId, state] of roomSyncState.entries()) {
+      // Auto-transition burst → steady when burst window expires
+      if (state.heartbeatMode === 'burst' && now >= state.burstUntil) {
+        state.heartbeatMode = 'steady';
       }
-    } catch (err) {
-      console.error('[socket] Error in periodic sync:', err);
+
+      const interval = state.heartbeatMode === 'burst' ? 150 : 600;
+      const lastEmit = heartbeatCounters.get(roomId) || 0;
+
+      if (now - lastEmit >= interval) {
+        heartbeatCounters.set(roomId, now);
+        const payload = buildSyncPayload(state);
+        io.to(roomId).emit('sync_state', payload);
+      }
     }
-  }, 5000);
+  }, 100);
 
   // Periodic token validity check: disconnect sockets with expired or invalidated tokens
   setInterval(async () => {
@@ -168,14 +242,14 @@ export default function synkHandler(io) {
         return false;
       }
 
-      // 1. Event Rate Limiting (max 15 events/second)
+      // 1. Event Rate Limiting (max 30 events/second — increased for sync traffic)
       const now = Date.now();
       if (now - session.lastReset > 1000) {
         session.eventCount = 0;
         session.lastReset = now;
       }
       session.eventCount++;
-      if (session.eventCount > 15) {
+      if (session.eventCount > 30) {
         securityEvent(SECURITY_EVENTS.API_ABUSE, null, {
           ip,
           userId: session.userId,
@@ -202,6 +276,23 @@ export default function synkHandler(io) {
       return true;
     };
 
+    // ─── Clock Synchronization (NTP-style) ─────────────────────────────────
+    socket.on('clock_sync_request', (data) => {
+      // Lightweight — skip full validateEvent to avoid rate limit pressure
+      socket.emit('clock_sync_response', {
+        clientSendTime: data?.clientSendTime,
+        serverTime: Date.now(),
+      });
+    });
+
+    // ─── Latency Ping/Pong ─────────────────────────────────────────────────
+    socket.on('latency_ping', (data) => {
+      socket.emit('latency_pong', {
+        clientSendTime: data?.clientSendTime,
+      });
+    });
+
+    // ─── Room Creation ─────────────────────────────────────────────────────
     socket.on('create_room', async (data) => {
       if (!validateEvent('create_room', data)) return;
       
@@ -227,6 +318,9 @@ export default function synkHandler(io) {
         });
         await room.save();
 
+        // Create in-memory sync state
+        createRoomState(roomId, userId, songId ? String(songId).substring(0, 100) : null, currentTime, isPlaying);
+
         socket.join(roomId);
         session.roomId = roomId;
         activeSockets.set(socket.id, session);
@@ -238,6 +332,7 @@ export default function synkHandler(io) {
       }
     });
 
+    // ─── Room Joining ──────────────────────────────────────────────────────
     socket.on('join_room', async (data) => {
       if (!validateEvent('join_room', data)) return;
 
@@ -277,43 +372,67 @@ export default function synkHandler(io) {
           await room.save();
         }
 
+        // Update in-memory state
+        let state = roomSyncState.get(roomId);
+        if (!state) {
+          // Rebuild from DB if not in memory (e.g., server restart)
+          state = createRoomState(roomId, room.hostId, room.currentSongId, room.currentTime, room.isPlaying);
+          for (const p of room.participants) state.participants.add(p);
+        } else {
+          state.participants.add(userId);
+        }
+
+        // Trigger burst mode for rapid sync of the new joiner
+        triggerBurst(state);
+
         socket.to(roomId).emit('user_joined', { userId });
 
-        socket.emit('sync_state', {
-          songId: room.currentSongId,
-          currentTime: room.currentTime,
-          isPlaying: room.isPlaying,
-          updatedAt: room.updatedAt
-        });
+        // Send immediate sync to the joining participant
+        const payload = buildSyncPayload(state);
+        socket.emit('sync_state', payload);
       } catch (err) {
         console.error('[socket] Error joining room:', err);
         socket.emit('error', { message: 'Failed to join room' });
       }
     });
 
+    // ─── Host Control Events ───────────────────────────────────────────────
     const handleControlEvent = async (roomId, userId, action) => {
       try {
         if (!roomId || typeof roomId !== 'string' || roomId.length > 100) return;
-        const room = await Room.findOne({ roomId });
-        if (!room) {
+
+        // Check in-memory state first for host validation
+        const state = roomSyncState.get(roomId);
+        if (!state) {
           socket.emit('error', { message: 'Room not found' });
           return;
         }
-        if (room.hostId !== userId) {
+        if (state.hostId !== userId) {
           socket.emit('error', { message: 'Only host can control playback' });
           return;
         }
 
-        await action(room);
-        room.updatedAt = new Date();
-        await room.save();
+        // Apply mutation to in-memory state
+        action(state);
+        state.updatedAt = Date.now();
 
-        io.to(roomId).emit('sync_state', {
-          songId: room.currentSongId,
-          currentTime: room.currentTime,
-          isPlaying: room.isPlaying,
-          updatedAt: room.updatedAt
-        });
+        // Trigger burst mode for rapid re-sync after control event
+        triggerBurst(state);
+
+        // Emit immediately to all participants (event-based sync)
+        const payload = buildSyncPayload(state);
+        io.to(roomId).emit('sync_state', payload);
+
+        // Persist to DB on important events (async, non-blocking)
+        Room.updateOne(
+          { roomId },
+          {
+            currentSongId: state.songId,
+            currentTime: state.currentTime,
+            isPlaying: state.isPlaying,
+            updatedAt: new Date(state.updatedAt),
+          }
+        ).catch(() => {});
       } catch (err) {
         console.error(`[socket] Error in control event:`, err);
       }
@@ -325,9 +444,9 @@ export default function synkHandler(io) {
       const session = activeSockets.get(socket.id);
       if (!session || session.roomId !== roomId) return;
 
-      handleControlEvent(roomId, session.userId, (room) => {
-        room.isPlaying = true;
-        room.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
+      handleControlEvent(roomId, session.userId, (state) => {
+        state.isPlaying = true;
+        state.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
       });
     });
 
@@ -337,9 +456,9 @@ export default function synkHandler(io) {
       const session = activeSockets.get(socket.id);
       if (!session || session.roomId !== roomId) return;
 
-      handleControlEvent(roomId, session.userId, (room) => {
-        room.isPlaying = false;
-        room.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
+      handleControlEvent(roomId, session.userId, (state) => {
+        state.isPlaying = false;
+        state.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
       });
     });
 
@@ -349,8 +468,8 @@ export default function synkHandler(io) {
       const session = activeSockets.get(socket.id);
       if (!session || session.roomId !== roomId) return;
 
-      handleControlEvent(roomId, session.userId, (room) => {
-        room.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
+      handleControlEvent(roomId, session.userId, (state) => {
+        state.currentTime = typeof currentTime === 'number' && !isNaN(currentTime) ? Math.max(0, currentTime) : 0;
       });
     });
 
@@ -360,13 +479,14 @@ export default function synkHandler(io) {
       const session = activeSockets.get(socket.id);
       if (!session || session.roomId !== roomId) return;
 
-      handleControlEvent(roomId, session.userId, (room) => {
-        room.currentSongId = songId ? String(songId).substring(0, 100) : null;
-        room.currentTime = 0;
-        room.isPlaying = true;
+      handleControlEvent(roomId, session.userId, (state) => {
+        state.songId = songId ? String(songId).substring(0, 100) : null;
+        state.currentTime = 0;
+        state.isPlaying = true;
       });
     });
 
+    // ─── Leave / Disconnect ────────────────────────────────────────────────
     const handleLeave = async (socketId) => {
       const session = activeSockets.get(socketId);
       if (session) {
@@ -379,6 +499,21 @@ export default function synkHandler(io) {
 
         try {
           if (roomId) {
+            // Update in-memory state
+            const state = roomSyncState.get(roomId);
+            if (state) {
+              state.participants.delete(userId);
+              if (state.participants.size === 0) {
+                roomSyncState.delete(roomId);
+                heartbeatCounters.delete(roomId);
+              } else if (state.hostId === userId) {
+                // Transfer host
+                state.hostId = [...state.participants][0];
+                io.to(roomId).emit('host_transferred', { newHostId: state.hostId });
+              }
+            }
+
+            // Update DB
             const room = await Room.findOne({ roomId });
             if (room) {
               room.participants = room.participants.filter(id => id !== userId);
@@ -389,7 +524,6 @@ export default function synkHandler(io) {
                 // Transfer host role if original host disconnected
                 room.hostId = room.participants[0];
                 await room.save();
-                io.to(roomId).emit('host_transferred', { newHostId: room.hostId });
               } else {
                 await room.save();
               }

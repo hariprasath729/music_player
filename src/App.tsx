@@ -147,6 +147,20 @@ export const App: React.FC = () => {
     },
   });
 
+  React.useEffect(() => {
+    // If we are on one of the auth-subpages, ensure the splash screen is hidden
+    const path = window.location.pathname;
+    if (
+      path.includes('forgot-password') ||
+      path.includes('reset-password') ||
+      path.includes('magic-login')
+    ) {
+      if (typeof (window as any).hideSplashScreen === 'function') {
+        (window as any).hideSplashScreen();
+      }
+    }
+  }, []);
+
   // Render auth-subpages without the logged-in/player shell,
   // but keep AuthProvider so useAuth() functions exist.
   if (pathname.endsWith('/forgot-password')) {

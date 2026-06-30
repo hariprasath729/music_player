@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
+import { Analytics } from "@vercel/analytics/react";
 if ('serviceWorker' in navigator) {
   // This variable will be used to store the version of the new service worker.
   // The 'pwa-update-available' event will set this, and the 'controllerchange'
@@ -97,5 +97,6 @@ if ('serviceWorker' in navigator) {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
+    <Analytics />
   </StrictMode>
 );

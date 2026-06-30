@@ -31,8 +31,7 @@ const MobileFilterPills: React.FC = () => {
 
 export const Navbar: React.FC = () => {
   const {
-    currentView, setView, searchQuery, setSearchQuery,
-    canGoBack, canGoForward, goBack, goForward, showToast,
+    currentView, setView, searchQuery, setSearchQuery, showToast,
     setIsProfileModalOpen,
   } = usePlayer();
   const { user, logout } = useAuth(); // Replace with real toast in production
