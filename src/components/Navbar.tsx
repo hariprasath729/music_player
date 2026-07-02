@@ -222,8 +222,8 @@ export const Navbar: React.FC = () => {
             </button>
             <button
               onClick={() => {
-                sessionStorage.removeItem('pwa-update-pending');
-                sessionStorage.removeItem('pwa-update-pending-version');
+                // Only hide the banner for this session — keep sessionStorage
+                // flags so the notification reappears on the next refresh/login.
                 setUpdateWorker(null);
                 setUpdateVersion('unknown');
               }}
