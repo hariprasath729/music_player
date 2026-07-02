@@ -33,6 +33,9 @@ export function useBackHandler({ customBackHandler }: BackHandlerOptions): UseBa
 
   // Popstate handler: browser already moved back, we now reconcile UI state
   const popHandler = useCallback(() => {
+    // If we are currently handling a programmatic/cleanup history pop, ignore it.
+    if ((window as any).__blockPopState) return;
+
     // Remove the most recent entry (the one we just backed out of)
     appHistory.current.pop();
     // Let the custom handler decide what to do with the remaining stack

@@ -24,6 +24,7 @@ export const useBackButton = (isOpen: boolean, onBack: () => void, stateId: stri
     window.history.pushState({ backId: stateId }, '');
 
     const handlePopState = () => {
+      if ((window as any).__blockPopState) return;
       // Physical back button was pressed -> state was popped natively
       onBackRef.current();
     };
@@ -36,7 +37,11 @@ export const useBackButton = (isOpen: boolean, onBack: () => void, stateId: stri
       // If the component unmounts via a UI action (not the back button),
       // clean up the history stack so we don't leave orphaned states.
       if (window.history.state?.backId === stateId) {
+        (window as any).__blockPopState = true;
         window.history.back();
+        setTimeout(() => {
+          (window as any).__blockPopState = false;
+        }, 0);
       }
     };
   }, [isOpen, stateId]);

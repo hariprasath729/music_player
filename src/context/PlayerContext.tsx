@@ -783,6 +783,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // - At root (Home): double-press back to exit. First press shows toast and stays.
   useEffect(() => {
     const onPopState = () => {
+      // If we are currently handling a programmatic/cleanup history pop, ignore it.
+      if ((window as any).__blockPopState) return;
+
       // If an overlay is open, do nothing here. Overlays have their own back handling.
       if (isFullScreen || isQueueOpen || isFullScreenMenuOpen) return;
 
