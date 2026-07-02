@@ -121,11 +121,14 @@ const ArtistCard = memo(function ArtistCard({ artistName, onClick }: { artistNam
   );
 });
 
+let cachedHomeData: any = null;
+let cachedLoading = true;
+
 export const HomeView: React.FC = () => {
   const { setView, playTrack, setSearchQuery } = usePlayer();
   const { isLoggedIn } = useAuth();
-  const [homeData, setHomeData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [homeData, setHomeData] = useState<any>(cachedHomeData);
+  const [loading, setLoading] = useState(cachedLoading);
 
   const getGreeting = () => {
     const h = new Date().getHours();
@@ -142,11 +145,13 @@ export const HomeView: React.FC = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      setLoading(true);
+      if (!cachedHomeData) {
+        setLoading(true);
+      }
       homeApi.getHome()
         .then(res => {
           if (res.success) {
-            setHomeData({
+            const data = {
               recentlyPlayed: res.data.recentlyPlayed.map(mapSongToTrack),
               madeForYou: res.data.madeForYou.map(mapSongToTrack),
               trending: res.data.trending.map(mapSongToTrack),
@@ -163,12 +168,19 @@ export const HomeView: React.FC = () => {
                   likes: 0
                 };
               })
-            });
+            };
+            cachedHomeData = data;
+            cachedLoading = false;
+            setHomeData(data);
           }
         })
         .catch(err => console.error('Failed to load home data', err))
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+        });
     } else {
+      cachedHomeData = null;
+      cachedLoading = true;
       setHomeData(null);
       setLoading(false);
     }

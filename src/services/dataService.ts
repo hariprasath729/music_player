@@ -24,6 +24,12 @@ export interface Track {
   fileUrl?: string;
   /** CDN image link for album artwork (present when sourced from backend). */
   coverUrl?: string;
+  _titleLower?: string;
+  _artistLower?: string;
+  _albumLower?: string;
+  _titleCollapsed?: string;
+  _artistCollapsed?: string;
+  _albumCollapsed?: string;
 }
 
 export interface Playlist {

@@ -65,6 +65,27 @@ export const recordSkipAvoid = async (req, res) => {
   }
 };
 
+const dailyRandomSort = (songs, userId) => {
+  if (!songs || !songs.length) return [];
+  const todayStr = new Date().toISOString().split('T')[0];
+  const songsWithHashes = songs.map(s => {
+    if (!s) return { song: s, hash: 0 };
+    const songId = s.id || '';
+    const key = `${userId}_${songId}_${todayStr}`;
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      const char = key.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash |= 0;
+    }
+    return { song: s, hash };
+  });
+  
+  return songsWithHashes
+    .sort((a, b) => a.hash - b.hash)
+    .map(x => x.song);
+};
+
 export const getHomeData = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -87,7 +108,7 @@ export const getHomeData = async (req, res) => {
     // 2. Trending
     let trending = playCounts.map(p => getFullSong(p.songId)).filter(Boolean);
     if (trending.length < 5) {
-      trending = [...songsCatalog].sort(() => 0.5 - Math.random()).slice(0, 20); // Fallback
+      trending = dailyRandomSort([...songsCatalog], userId).slice(0, 20); // Fallback
     }
 
     // 3. Made For You (Recommendation MVP)
@@ -123,29 +144,28 @@ export const getHomeData = async (req, res) => {
         .map((r) => String(r.songId))
     );
 
-    let madeForYou = songsCatalog.filter(s =>
+    const filteredMadeForYou = songsCatalog.filter(s =>
       s &&
       s.artist &&
       !baseIds.has(String(s.id)) &&
       !skippedQuicklyIds.has(String(s.id)) &&
       s.artist.split(',').some(a => preferredArtists.has(a.trim()))
-    ).sort(() => 0.5 - Math.random()).slice(0, 20);
+    );
+    let madeForYou = dailyRandomSort(filteredMadeForYou, userId).slice(0, 20);
 
     // Fallback to general mix if user doesn't have enough history to base off yet
     if (madeForYou.length < 5) {
-      madeForYou = [...songsCatalog]
-        .filter(s => s && s.id && !baseIds.has(String(s.id)) && !skippedQuicklyIds.has(String(s.id)))
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 20);
+      const fallbackMadeForYou = [...songsCatalog]
+        .filter(s => s && s.id && !baseIds.has(String(s.id)) && !skippedQuicklyIds.has(String(s.id)));
+      madeForYou = dailyRandomSort(fallbackMadeForYou, userId).slice(0, 20);
     }
 
     // Additionally filter trending fallback/results for the same avoidance window.
     trending = trending.filter((t) => t && t.id && !skippedQuicklyIds.has(String(t.id)));
     if (trending.length < 5) {
-      trending = [...songsCatalog]
-        .filter(s => s && s.id && !skippedQuicklyIds.has(String(s.id)))
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 20);
+      const fallbackTrending = [...songsCatalog]
+        .filter(s => s && s.id && !skippedQuicklyIds.has(String(s.id)));
+      trending = dailyRandomSort(fallbackTrending, userId).slice(0, 20);
     }
 
     // 4. Top Artists

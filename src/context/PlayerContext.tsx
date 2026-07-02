@@ -252,6 +252,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       window.setTimeout(() => {
         sessionStorage.removeItem('pwa-suppress-update-ui');
       }, 1000);
+    } else {
+      // Clear suppression immediately on normal page loads/manual refreshes
+      sessionStorage.removeItem('pwa-suppress-update-ui');
     }
   }, []);
   useEffect(() => {

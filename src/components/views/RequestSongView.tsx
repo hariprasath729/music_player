@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Send, Music, AlertCircle, Home } from 'lucide-react';
+import { Send, Music, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { usePlayer } from '../../context/PlayerContext';
 

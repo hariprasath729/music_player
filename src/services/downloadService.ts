@@ -3,23 +3,7 @@ const DOWNLOADS_KEY = 'music_player_downloads';
 const DOWNLOADED_PLAYLISTS_KEY = 'music_player_downloaded_playlists';
 
 export const downloadService = {
-  init: () => {
-    // Register Service Worker only in production builds to avoid dev reload loops
-    if (import.meta.env && import.meta.env.PROD && 'serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        // Clear out any stuck, broken service workers
-        navigator.serviceWorker.getRegistrations().then((registrations) => {
-          for (let registration of registrations) {
-            registration.unregister();
-          }
-          // Register the fresh one with a cache-busting timestamp
-          navigator.serviceWorker.register(`/sw.js?v=${Date.now()}`).catch(err => {
-            console.error('ServiceWorker registration failed: ', err);
-          });
-        });
-      });
-    }
-  },
+  init: () => {},
   getDownloadedIds: (): string[] => {
     try {
       return JSON.parse(localStorage.getItem(DOWNLOADS_KEY) || '[]');

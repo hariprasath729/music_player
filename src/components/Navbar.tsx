@@ -36,6 +36,23 @@ export const Navbar: React.FC = () => {
   } = usePlayer();
   const { user, logout } = useAuth(); // Replace with real toast in production
 
+  const [localSearch, setLocalSearch] = useState(searchQuery);
+
+  // Sync local search when global searchQuery changes from categories/artists
+  useEffect(() => {
+    setLocalSearch(searchQuery);
+  }, [searchQuery]);
+
+  // Debounce propagating local search changes to global search query
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (localSearch !== searchQuery) {
+        setSearchQuery(localSearch);
+      }
+    }, 250);
+    return () => clearTimeout(handler);
+  }, [localSearch, searchQuery, setSearchQuery]);
+
   const [activeDropdown, setActiveDropdown] = useState<'profile' | 'notifications' | 'settings' | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
@@ -94,24 +111,40 @@ export const Navbar: React.FC = () => {
   }, []);
 
   // If we've already updated, make sure the bell notification UI is hidden on mount.
+  // Otherwise, check for a pending update flag that survived a page reload / HMR.
   useEffect(() => {
     if (sessionStorage.getItem('pwa-updated') === 'true') {
       setUpdateWorker(null);
       setUpdateVersion('unknown');
+      return;
+    }
+
+    // Check for a persisted "update pending" flag (set in main.tsx, survives reloads)
+    if (sessionStorage.getItem('pwa-update-pending') === 'true') {
+      const pendingVersion = sessionStorage.getItem('pwa-update-pending-version') || 'unknown';
+      console.log('[PWA Navbar] Found pwa-update-pending on mount, version:', pendingVersion);
+      setUpdateVersion(pendingVersion);
+
+      // Try to get the actual waiting worker from the SW registration
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then((registration) => {
+          if (registration.waiting) {
+            console.log('[PWA Navbar] Hydrated waiting worker from registration');
+            setUpdateWorker(registration.waiting);
+          } else {
+            console.log('[PWA Navbar] No waiting worker found, but showing banner anyway');
+            // Create a minimal proxy that sends SKIP_WAITING to the controller
+            setUpdateWorker(navigator.serviceWorker.controller as ServiceWorker);
+          }
+        });
+      }
     }
   }, []);
 
   useEffect(() => {
     const handleUpdate = (e: Event) => {
-      // This is a first-time install if there's no active controller AND no app settings in storage.
-      // In that case, we don't need to show an "update available" prompt.
-      const isFirstInstall =
-        !navigator.serviceWorker.controller &&
-        !localStorage.getItem('music_player_settings');
-
-      if (isFirstInstall) return;
-
       const detail = (e as CustomEvent).detail;
+      console.log('[PWA Navbar] handleUpdate triggered with detail:', detail);
       const payload = detail as { worker?: ServiceWorker; version?: string } | null | undefined;
 
       const incomingVersion =
@@ -121,9 +154,11 @@ export const Navbar: React.FC = () => {
 
       const alreadyUpdated = sessionStorage.getItem('pwa-updated') === 'true';
       const updatedVersion = sessionStorage.getItem('pwa-updated-version');
+      console.log('[PWA Navbar] Session storage status:', { alreadyUpdated, updatedVersion, incomingVersion });
 
       // If we've already applied this exact version, never reopen the UI.
       if (alreadyUpdated && updatedVersion && incomingVersion && updatedVersion === incomingVersion) {
+        console.log('[PWA Navbar] Suppressing notification: version already updated');
         return;
       }
 
@@ -131,6 +166,7 @@ export const Navbar: React.FC = () => {
       // Do NOT clear the flag here; PlayerContext will clear it after the "updated" toast,
       // otherwise the UI can immediately re-open on the next update event during reload.
       if (sessionStorage.getItem('pwa-suppress-update-ui') === 'true') {
+        console.log('[PWA Navbar] Suppressing notification: pwa-suppress-update-ui is true');
         return;
       }
 
@@ -166,7 +202,39 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between bg-transparent px-4 py-2 select-none sm:bg-[#121212]/90 sm:px-6 sm:backdrop-blur-md md:h-16">
+    <>
+      {updateWorker && (
+        <div className="fixed top-0 left-0 right-0 z-[9999] flex items-center justify-between bg-[#1db954] px-4 py-2.5 text-xs font-bold text-black shadow-xl md:text-sm">
+          <span className="truncate">New version {updateVersion !== 'unknown' ? updateVersion : ''} is available! Update to get the latest features.</span>
+          <div className="flex shrink-0 items-center gap-3">
+            <button
+              onClick={() => {
+                sessionStorage.setItem('pwa-suppress-update-ui', 'true');
+                sessionStorage.removeItem('pwa-update-pending');
+                sessionStorage.removeItem('pwa-update-pending-version');
+                applyUpdate();
+                setUpdateWorker(null);
+                setUpdateVersion('unknown');
+              }}
+              className="rounded-full bg-black px-4 py-1.5 text-xs font-bold text-white transition hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              Update Now
+            </button>
+            <button
+              onClick={() => {
+                sessionStorage.removeItem('pwa-update-pending');
+                sessionStorage.removeItem('pwa-update-pending-version');
+                setUpdateWorker(null);
+                setUpdateVersion('unknown');
+              }}
+              className="text-xs font-bold text-black/70 hover:text-black cursor-pointer"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+      <header className="sticky top-0 z-10 flex items-center justify-between bg-transparent px-4 py-2 select-none sm:bg-[#121212]/90 sm:px-6 sm:backdrop-blur-md md:h-16">
 
       {/* ─── MOBILE HEADER ─── */}
       <div className="flex w-full items-center justify-between md:hidden">
@@ -175,15 +243,18 @@ export const Navbar: React.FC = () => {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#121212]" />
             <input
               type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
               placeholder="What do you want to listen to?"
               className="w-full rounded-md bg-white py-2.5 pl-10 pr-10 text-[14px] font-medium text-[#121212] placeholder-[#757575] focus:outline-none"
               autoFocus
             />
-            {searchQuery.length > 0 && (
+            {localSearch.length > 0 && (
               <button
-                onClick={() => setSearchQuery('')}
+                onClick={() => {
+                  setLocalSearch('');
+                  setSearchQuery('');
+                }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575]"
               >
                 <X className="h-4 w-4" />
@@ -232,15 +303,18 @@ export const Navbar: React.FC = () => {
               <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[#a7a7a7]" />
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={localSearch}
+                onChange={(e) => setLocalSearch(e.target.value)}
                 placeholder="What do you want to play?"
                 className="w-80 rounded-full border-2 border-transparent bg-[#242424] py-2 pl-10 pr-10 text-sm text-white placeholder-[#a7a7a7] transition-all focus:border-white focus:outline-none"
                 autoFocus
               />
-              {searchQuery.length > 0 && (
+              {localSearch.length > 0 && (
                 <button
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => {
+                    setLocalSearch('');
+                    setSearchQuery('');
+                  }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a7a7a7] hover:text-white"
                 >
                   <X className="h-4 w-4" />
@@ -423,5 +497,6 @@ export const Navbar: React.FC = () => {
         </>
       )}
     </header>
+    </>
   );
 };

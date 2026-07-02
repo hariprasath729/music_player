@@ -12,6 +12,12 @@ export interface Track {
   color: string;
   fileUrl: string;
   coverUrl: string;
+  _titleLower?: string;
+  _artistLower?: string;
+  _albumLower?: string;
+  _titleCollapsed?: string;
+  _artistCollapsed?: string;
+  _albumCollapsed?: string;
 }
 
 export interface Playlist {

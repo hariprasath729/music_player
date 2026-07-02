@@ -25,20 +25,55 @@ function collapseRepeats(input: string): string {
   return input.toLowerCase().replace(/([a-z0-9])\1+/g, '$1');
 }
 
-function scoreTrack(track: Track, query: string): number {
+interface ParsedQuery {
+  raw: string;
+  lower: string;
+  collapsed: string;
+  tokens: string[];
+  tokensN: string[];
+}
+
+interface SearchableTrack extends Track {
+  _titleLower?: string;
+  _artistLower?: string;
+  _albumLower?: string;
+  _titleCollapsed?: string;
+  _artistCollapsed?: string;
+  _albumCollapsed?: string;
+}
+
+interface SearchablePlaylist extends Playlist {
+  _titleLower?: string;
+  _descLower?: string;
+  _titleCollapsed?: string;
+  _descCollapsed?: string;
+}
+
+function scoreTrack(track: Track, query: ParsedQuery): number {
   if (!track) return -1;
-  const q = (query || '').toLowerCase().trim();
-  const title = (track.title || '').toLowerCase();
-  const artist = (track.artist || '').toLowerCase();
-  const album = (track.album || '').toLowerCase();
 
-  const titleN = collapseRepeats(title);
-  const artistN = collapseRepeats(artist);
-  const albumN = collapseRepeats(album);
-  const qN = collapseRepeats(q);
+  const t = track as SearchableTrack;
+  if (!t._titleLower) {
+    t._titleLower = (t.title || '').toLowerCase();
+    t._artistLower = (t.artist || '').toLowerCase();
+    t._albumLower = (t.album || '').toLowerCase();
+    t._titleCollapsed = collapseRepeats(t._titleLower);
+    t._artistCollapsed = collapseRepeats(t._artistLower);
+    t._albumCollapsed = collapseRepeats(t._albumLower);
+  }
 
-  const tokens = q.split(/\s+/).filter(t => t.length > 0);
-  const tokensN = qN.split(/\s+/).filter(t => t.length > 0);
+  const title = t._titleLower;
+  const artist = t._artistLower;
+  const album = t._albumLower;
+
+  const titleN = t._titleCollapsed;
+  const artistN = t._artistCollapsed;
+  const albumN = t._albumCollapsed;
+
+  const q = query.lower;
+  const qN = query.collapsed;
+  const tokens = query.tokens;
+  const tokensN = query.tokensN;
 
   // Check if ALL tokens match somewhere (AND logic)
   const allTokensMatch = tokens.every((token, idx) => {
@@ -112,18 +147,27 @@ function scoreTrack(track: Track, query: string): number {
   return score;
 }
 
-function scorePlaylist(playlist: Playlist, query: string): number {
+function scorePlaylist(playlist: Playlist, query: ParsedQuery): number {
   if (!playlist) return -1;
-  const q = (query || '').toLowerCase().trim();
-  const title = (playlist.title || '').toLowerCase();
-  const description = (playlist.description || '').toLowerCase();
 
-  const titleN = collapseRepeats(title);
-  const descriptionN = collapseRepeats(description);
-  const qN = collapseRepeats(q);
+  const pl = playlist as SearchablePlaylist;
+  if (!pl._titleLower) {
+    pl._titleLower = (pl.title || '').toLowerCase();
+    pl._descLower = (pl.description || '').toLowerCase();
+    pl._titleCollapsed = collapseRepeats(pl._titleLower);
+    pl._descCollapsed = collapseRepeats(pl._descLower);
+  }
 
-  const tokens = q.split(/\s+/).filter(t => t.length > 0);
-  const tokensN = qN.split(/\s+/).filter(t => t.length > 0);
+  const title = pl._titleLower;
+  const description = pl._descLower;
+
+  const titleN = pl._titleCollapsed;
+  const descriptionN = pl._descCollapsed;
+
+  const q = query.lower;
+  const qN = query.collapsed;
+  const tokens = query.tokens;
+  const tokensN = query.tokensN;
 
   // Check if ALL tokens match somewhere
   const allTokensMatch = tokens.every((token, idx) => {
@@ -179,10 +223,24 @@ function scorePlaylist(playlist: Playlist, query: string): number {
 }
 
 export function searchTracks(tracks: Track[], query: string): Track[] {
-  if (!query.trim()) return [];
+  const trimmed = query.trim();
+  if (!trimmed) return [];
+
+  const lower = trimmed.toLowerCase();
+  const collapsed = collapseRepeats(lower);
+  const tokens = lower.split(/\s+/).filter(t => t.length > 0);
+  const tokensN = collapsed.split(/\s+/).filter(t => t.length > 0);
+
+  const parsed: ParsedQuery = {
+    raw: trimmed,
+    lower,
+    collapsed,
+    tokens,
+    tokensN
+  };
   
   const results = tracks
-    .map(track => ({ track, score: scoreTrack(track, query) }))
+    .map(track => ({ track, score: scoreTrack(track, parsed) }))
     .filter(r => r.score > 0)
     .sort((a, b) => b.score - a.score)
     .map(r => r.track);
@@ -191,10 +249,24 @@ export function searchTracks(tracks: Track[], query: string): Track[] {
 }
 
 export function searchPlaylists(playlists: Playlist[], query: string): Playlist[] {
-  if (!query.trim()) return [];
+  const trimmed = query.trim();
+  if (!trimmed) return [];
+
+  const lower = trimmed.toLowerCase();
+  const collapsed = collapseRepeats(lower);
+  const tokens = lower.split(/\s+/).filter(t => t.length > 0);
+  const tokensN = collapsed.split(/\s+/).filter(t => t.length > 0);
+
+  const parsed: ParsedQuery = {
+    raw: trimmed,
+    lower,
+    collapsed,
+    tokens,
+    tokensN
+  };
   
   const results = playlists
-    .map(playlist => ({ playlist, score: scorePlaylist(playlist, query) }))
+    .map(playlist => ({ playlist, score: scorePlaylist(playlist, parsed) }))
     .filter(r => r.score > 0)
     .sort((a, b) => b.score - a.score)
     .map(r => r.playlist);
