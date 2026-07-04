@@ -48,6 +48,9 @@ export const protect = async (req, res, next) => {
     req.user = { id: decoded.id || decoded.userId, email: decoded.email || user.email };
     next();
   } catch (error) {
+    if (res.headersSent) {
+      return;
+    }
     // Log specific JWT errors internally but return generic error to client
     if (error.name === 'TokenExpiredError') {
       securityEvent(SECURITY_EVENTS.JWT_FAILURE, req, { details: 'Expired token' });

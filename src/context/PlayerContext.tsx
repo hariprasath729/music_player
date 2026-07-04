@@ -471,6 +471,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const playTrack = (track: Track, contextTracks?: Track[], force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
+
+    // Check if offline and trying to play a non-downloaded song
+    if (!navigator.onLine && !downloadedTracks.includes(track.id)) {
+      showToast('You are offline. Only downloaded songs can be played.', 'error');
+      return;
+    }
+
     if (contextTracks) {
       const trackIndex = contextTracks.findIndex((t) => t.id === track.id);
       if (trackIndex !== -1) {
@@ -518,6 +525,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       audioEngine.pause();
       setIsPlaying(false);
     } else {
+      // Check if offline and trying to play a non-downloaded song
+      if (!navigator.onLine && !downloadedTracks.includes(currentTrack.id)) {
+        showToast('You are offline. Only downloaded songs can be played.', 'error');
+        return;
+      }
+
       audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
       audioEngine.setVolume(isMuted ? 0 : volume);
       if (typeof (audioEngine as any).setPlaybackRate === 'function') {
@@ -525,7 +538,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }
       setIsPlaying(true);
     }
-  }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime]);
+  }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime, downloadedTracks]);
 
   const nextTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;

@@ -110,6 +110,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   /* ─── Session Verification (called by AppBootstrap during startup) ─── */
+  const isTokenExpired = useCallback((tok: string): boolean => {
+    try {
+      const parts = tok.split('.');
+      if (parts.length !== 3) return false;
+      const payload = JSON.parse(atob(parts[1]));
+      if (payload.exp) {
+        return payload.exp * 1000 <= Date.now();
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  }, []);
+
   const verifySession = useCallback(async (signal?: AbortSignal) => {
     // Clean up any previous in-flight verification
     if (verifyAbortRef.current) {
@@ -132,6 +146,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
 
+    // Check token validity before doing anything else
+    if (isTokenExpired(storedToken)) {
+      try {
+        localStorage.setItem('auth_session_expired_toast', 'true');
+      } catch {}
+      clearSession();
+      setAuthStatus('unauthenticated');
+      return;
+    }
+
+    // If offline, trust the cached token immediately without checking with the backend/DB
+    if (!navigator.onLine) {
+      console.log('App is offline. Trusting cached session without DB check.');
+      setAuthStatus('authenticated');
+      return;
+    }
+
     setAuthStatus('checking');
 
     try {
@@ -148,15 +179,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (signal?.aborted) return;
 
       if (res.status === 401 || res.status === 403) {
+        try {
+          localStorage.setItem('auth_session_expired_toast', 'true');
+        } catch {}
         clearSession();
         setAuthStatus('unauthenticated');
         return;
       }
 
       if (!res.ok) {
-        clearSession();
-        setAuthStatus('unauthenticated');
-        return;
+        throw new Error(`Server returned status ${res.status}`);
       }
 
       const json = await res.json();
@@ -183,11 +215,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (err instanceof DOMException && err.name === 'AbortError') {
         return;
       }
+      
+      // Trust cached session on network error or server error since token isn't expired
+      const isNetworkError = !navigator.onLine || (err instanceof TypeError) || (err instanceof Error && err.message.includes('Server returned'));
+      if (isNetworkError) {
+        console.warn('Network/Server error verifying session. Trusting cached session.', err);
+        setAuthStatus('authenticated');
+        return;
+      }
+
       // Network error, backend down, etc.
       clearSession();
       setAuthStatus('unauthenticated');
     }
-  }, []);
+  }, [clearSession, isTokenExpired]);
 
   const loginWithEmail = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
@@ -433,19 +474,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (parts.length !== 3) return;
       const payload = JSON.parse(atob(parts[1]));
       if (payload.exp) {
-        const timeRemaining = payload.exp * 1000 - Date.now();
-        if (timeRemaining <= 0) {
-          alert('The session expires relogin to continue , now logging out');
-          logout();
-        } else if (timeRemaining <= 2147483647) {
-          // Only set the timeout if it falls within the 32-bit integer limit (~24.8 days)
-          // otherwise setTimeout overflows and fires immediately.
-          const timer = setTimeout(() => {
-            alert('The session expires relogin to continue , now logging out');
+        const checkExpiry = () => {
+          const timeRemaining = payload.exp * 1000 - Date.now();
+          if (timeRemaining <= 0) {
+            try {
+              localStorage.setItem('auth_session_expired_toast', 'true');
+            } catch {}
             logout();
-          }, timeRemaining);
-          return () => clearTimeout(timer);
-        }
+            return true;
+          }
+          return false;
+        };
+
+        // Check immediately
+        if (checkExpiry()) return;
+
+        // Set up interval to check every 30 seconds
+        const interval = setInterval(checkExpiry, 30000);
+        return () => clearInterval(interval);
       }
     } catch (err) {
       console.error('Failed to parse token for expiration', err);

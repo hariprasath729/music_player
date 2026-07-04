@@ -98,6 +98,16 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      const expired = localStorage.getItem('auth_session_expired_toast');
+      if (expired === 'true') {
+        localStorage.removeItem('auth_session_expired_toast');
+        showToast('Session expired. Please log in again.');
+      }
+    } catch {}
+  }, []);
+
   const showToast = (text: string) => {
     const id = ++toastIdRef.current;
     setToasts((prev) => [...prev.slice(-2), { id, text }]);

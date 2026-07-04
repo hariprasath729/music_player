@@ -145,6 +145,11 @@ export const HomeView: React.FC = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
+      if (!navigator.onLine) {
+        console.log('App is offline, using offline defaults for HomeView.');
+        setLoading(false);
+        return;
+      }
       if (!cachedHomeData) {
         setLoading(true);
       }
