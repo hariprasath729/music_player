@@ -62,7 +62,9 @@ export function mapSongToTrack(song: BackendSong): Track {
   const fileUrl = song.file_url || song.url || '';
   const coverUrl = song.cover_url || song.cover || '';
 
-  const coverGradient = coverUrl ? `url("${coverUrl}") center / cover no-repeat` : GRADIENTS[idx];
+  const coverGradient = coverUrl
+    ? `url("${coverUrl}") center / cover no-repeat, url("/fallback_cover.png") center / cover no-repeat`
+    : `url("/fallback_cover.png") center / cover no-repeat`;
 
   return {
     id: songIdString,

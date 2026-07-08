@@ -69,6 +69,12 @@ export const sendOtp = async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, error: 'Email is required' });
 
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, error: 'Account already exists' });
+    }
+
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
@@ -92,6 +98,12 @@ export const verifyOtpAndSignup = async (req, res) => {
   try {
     const { email, otp, name, password } = req.body;
 
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, error: 'Account already exists' });
+    }
+
     const record = await OTP.findOne({ email });
     if (!record || record.otp !== otp || record.expiresAt < new Date()) {
       return res.status(400).json({ success: false, error: 'Invalid or expired OTP' });
@@ -105,19 +117,10 @@ export const verifyOtpAndSignup = async (req, res) => {
       });
     }
 
-    let user = await User.findOne({ email });
-    if (!user) {
-      const hashed = await bcrypt.hash(password, BCRYPT_ROUNDS);
-      user = await User.create({ name: name || 'User', email, password: hashed, isVerified: true, authType: 'email' });
-      await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.REGISTER, req });
-    } else {
-      user.isVerified = true;
-      if (password) {
-        const hashed = await bcrypt.hash(password, BCRYPT_ROUNDS);
-        user.password = hashed; // Overwrite if recovering
-      }
-      await user.save();
-    }
+    const hashed = await bcrypt.hash(password, BCRYPT_ROUNDS);
+    const user = await User.create({ name: name || 'User', email, password: hashed, isVerified: true, authType: 'email' });
+    await recordAudit({ userId: user._id, action: AUDIT_ACTIONS.REGISTER, req });
+    
     await OTP.deleteOne({ email }); // Single use OTP
 
     if (!user.isApproved) {

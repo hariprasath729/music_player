@@ -125,7 +125,7 @@ let cachedHomeData: any = null;
 let cachedLoading = true;
 
 export const HomeView: React.FC = () => {
-  const { setView, playTrack, setSearchQuery } = usePlayer();
+  const { setView, playTrack, setSearchQuery, currentTrack } = usePlayer();
   const { isLoggedIn } = useAuth();
   const [homeData, setHomeData] = useState<any>(cachedHomeData);
   const [loading, setLoading] = useState(cachedLoading);
@@ -189,7 +189,7 @@ export const HomeView: React.FC = () => {
       setHomeData(null);
       setLoading(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentTrack?.id]);
 
   if (loading) {
     return (

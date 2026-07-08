@@ -16,7 +16,7 @@ import { PlayAreaView } from './views/PlayAreaView';
 import { DownloadsView } from './views/DownloadsView';
 
 export const MainContent: React.FC = () => {
-  const { currentView } = usePlayer();
+  const { currentView, currentTrack } = usePlayer();
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll to top on view change
@@ -27,7 +27,16 @@ export const MainContent: React.FC = () => {
   }, [currentView]);
 
   return (
-    <main ref={scrollRef} id="snap-main-container" className="flex-1 overflow-y-auto bg-[#121212] relative">
+    <main
+      ref={scrollRef}
+      id="snap-main-container"
+      className="flex-1 overflow-y-auto relative transition-[background] duration-500 ease-in-out"
+      style={{
+        background: currentTrack?.color
+          ? `linear-gradient(180deg, ${currentTrack.color}1c 0%, #121212 40%)`
+          : '#121212'
+      }}
+    >
       {currentView === 'home' && <HomeView />}
       {currentView === 'search' && <SearchView />}
       {currentView === 'playlist' && <PlaylistView />}

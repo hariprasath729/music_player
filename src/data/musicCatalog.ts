@@ -59679,7 +59679,10 @@ const RAW_SONGS: RawSong[] =[
 const COLORS = ['#1db954', '#7c3aed', '#ef4444', '#0ea5e9', '#f97316', '#ec4899'];
 const genres: Genre[] = ['ambient', 'house', 'acoustic', 'lofi', 'synthwave'];
 
-const coverBackground = (url: string) => `url("${url}") center / cover no-repeat`;
+const coverBackground = (url: string) =>
+  url
+    ? `url("${url}") center / cover no-repeat, url("/fallback_cover.png") center / cover no-repeat`
+    : `url("/fallback_cover.png") center / cover no-repeat`;
 
 export const TRACKS: Track[] = RAW_SONGS.map((song, index) => ({
   id: String(song.id),
