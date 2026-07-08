@@ -23,6 +23,7 @@ import {
   Zap,
   Moon,
 } from 'lucide-react';
+import { CircularDownloadButton } from './CircularDownloadButton';
 import { usePlayer } from '../context/PlayerContext';
 import { PLAYLISTS } from '../data/musicCatalog';
 import { TRACKS } from '../data/musicCatalog';
@@ -64,6 +65,7 @@ export const FullScreenPlayer: React.FC = () => {
     toggleSaveAlbum,
     downloadedTracks,
     toggleDownload,
+    downloadProgress,
     playbackRate,
     setPlaybackRate,
     sleepTimerRemaining,
@@ -237,13 +239,13 @@ export const FullScreenPlayer: React.FC = () => {
             </MarqueeText>
           </div>
           <div className="flex shrink-0 items-center gap-4 pl-4">
-            <button
+            <CircularDownloadButton
+              isDownloaded={isDownloaded}
+              progress={downloadProgress[currentTrack.id]}
               onClick={() => toggleDownload(currentTrack)}
-              className={`shrink-0 transition-transform hover:scale-110 ${isDownloaded ? 'text-[#1db954]' : 'text-white/60'}`}
-              title={isDownloaded ? 'Remove download' : 'Download'}
-            >
-              {isDownloaded ? <CheckCircle2 className="h-6 w-6 sm:h-7 sm:w-7 text-[#1db954]" /> : <Download className="h-6 w-6 sm:h-7 sm:w-7" />}
-            </button>
+              className={`shrink-0 transition-transform hover:scale-110 ${isDownloaded || downloadProgress[currentTrack.id] !== undefined ? 'text-[#1db954]' : 'text-white/60'}`}
+              size={24}
+            />
             <button
               onClick={() => setAddToPlaylistTrack(currentTrack)}
               className={`shrink-0 transition-transform hover:scale-110 ${isLiked ? 'text-[#1db954]' : 'text-white/60'}`}

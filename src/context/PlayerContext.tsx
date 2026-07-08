@@ -20,7 +20,8 @@ export type ViewType =
   | 'artists'
   | 'artist'
   | 'request-song'
-  | 'play-area';
+  | 'play-area'
+  | 'downloads';
 
 export interface ToastMessage {
   id: number;
@@ -123,6 +124,7 @@ interface PlayerContextType {
   toggleSaveAlbum: (albumName: string) => void;
   addToPlaylistTrack: Track | null;
   setAddToPlaylistTrack: (track: Track | null) => void;
+  downloadProgress: Record<string, number>;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
@@ -188,6 +190,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [newPlTitle, setNewPlTitle] = useState('');
   const [downloadedTracks, setDownloadedTracks] = useState<string[]>([]);
   const [downloadedPlaylists, setDownloadedPlaylists] = useState<string[]>([]);
+  const [downloadProgress, setDownloadProgress] = useState<Record<string, number>>({});
   const [followedArtists, setFollowedArtists] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('music_player_followed_artists') || '[]'); } catch { return []; }
   });
@@ -926,12 +929,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const toggleDownload = async (track: Track) => {
     const isDownloaded = downloadedTracks.includes(track.id);
     
-    // Optimistic UI update
-    setDownloadedTracks((prev) => 
-      isDownloaded ? prev.filter((id) => id !== track.id) : [...prev, track.id]
-    );
-
     if (isDownloaded) {
+      setDownloadedTracks((prev) => prev.filter((id) => id !== track.id));
       const success = await downloadService.removeTrack(track);
       if (success) {
         showToast('Removed from downloads', 'minus');
@@ -940,12 +939,25 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         showToast('Failed to remove download', 'error');
       }
     } else {
+      if (downloadProgress[track.id] !== undefined) return;
+
       showToast('Downloading...', 'download');
-      const success = await downloadService.downloadTrack(track);
+      setDownloadProgress((prev) => ({ ...prev, [track.id]: 0 }));
+
+      const success = await downloadService.downloadTrack(track, (progress) => {
+        setDownloadProgress((prev) => ({ ...prev, [track.id]: progress }));
+      });
+
+      setDownloadProgress((prev) => {
+        const copy = { ...prev };
+        delete copy[track.id];
+        return copy;
+      });
+
       if (success) {
+        setDownloadedTracks((prev) => [...prev, track.id]);
         showToast('Download complete', 'check');
       } else {
-        setDownloadedTracks((prev) => prev.filter((id) => id !== track.id));
         showToast('Download failed', 'error');
       }
     }
@@ -1183,6 +1195,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setAddToPlaylistTrack,
       isProfileModalOpen,
       setIsProfileModalOpen,
+      downloadProgress,
     }),
     [
       currentTrack,
@@ -1216,6 +1229,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       savedAlbums,
       addToPlaylistTrack,
       isProfileModalOpen,
+      downloadProgress,
     ]
   );
 

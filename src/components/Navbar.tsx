@@ -54,7 +54,15 @@ export const Navbar: React.FC = () => {
   }, [localSearch, searchQuery, setSearchQuery]);
 
   const [activeDropdown, setActiveDropdown] = useState<'profile' | 'notifications' | 'settings' | null>(null);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(() =>
+    // Pick up the prompt captured early in index.html (before React mounted)
+    (window as any).__pwaInstallPrompt ?? null
+  );
+  const [isAppInstalled, setIsAppInstalled] = useState(() =>
+    // Hide if already running in standalone/PWA mode
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (window.navigator as any).standalone === true
+  );
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
   const [updateVersion, setUpdateVersion] = useState<string>('unknown');
 
@@ -102,12 +110,31 @@ export const Navbar: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      // Stash the event so it can be triggered later.
-      setDeferredPrompt(e);
+    // Sync from global in case the event fired between index.html and our mount
+    if ((window as any).__pwaInstallPrompt) {
+      setDeferredPrompt((window as any).__pwaInstallPrompt);
+      setIsAppInstalled(false);
+    }
+
+    // index.html captures beforeinstallprompt early and fires this custom event
+    const handlePromptReady = () => {
+      const prompt = (window as any).__pwaInstallPrompt;
+      if (prompt) {
+        setDeferredPrompt(prompt);
+        setIsAppInstalled(false);
+      }
     };
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    const handleAppInstalled = () => {
+      (window as any).__pwaInstallPrompt = null;
+      setDeferredPrompt(null);
+      setIsAppInstalled(true);
+    };
+    window.addEventListener('pwa-install-prompt-ready', handlePromptReady);
+    window.addEventListener('pwa-app-installed', handleAppInstalled);
+    return () => {
+      window.removeEventListener('pwa-install-prompt-ready', handlePromptReady);
+      window.removeEventListener('pwa-app-installed', handleAppInstalled);
+    };
   }, []);
 
   // If we've already updated, make sure the bell notification UI is hidden on mount.
@@ -185,15 +212,18 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) {
-      showToast("App installation is not supported by your browser or it's already installed. Try using Chrome or check your browser menu for 'Add to Home Screen'.");
-      return;
-    }
+    if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     // We've used the prompt, and can't use it again, throw it away
-    if (outcome === 'accepted') setDeferredPrompt(null);
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+      setIsAppInstalled(true);
+    }
   };
+
+  // Show install button only when a prompt is available and app isn't installed
+  const showInstallButton = !isAppInstalled && !!deferredPrompt;
 
   const applyUpdate = () => {
     if (updateWorker) {
@@ -326,12 +356,14 @@ export const Navbar: React.FC = () => {
 
         {/* Right side */}
         <div className="flex items-center gap-3 text-sm font-bold">
-          <button
-            onClick={handleInstallClick}
-            className="flex items-center gap-1 rounded-full bg-[#1db954] px-4 py-1.5 text-xs text-black transition-transform hover:scale-[1.04]"
-          >
-            <span>Install App</span>
-          </button>
+          {showInstallButton && (
+            <button
+              onClick={handleInstallClick}
+              className="flex items-center gap-1 rounded-full bg-[#1db954] px-4 py-1.5 text-xs text-black transition-transform hover:scale-[1.04]"
+            >
+              <span>Install App</span>
+            </button>
+          )}
           <button 
           onClick={() => setView('play-area')}
           className="flex items-center gap-1 rounded-full bg-black px-4 py-1.5 text-xs text-[#a7a7a7] transition-transform hover:scale-[1.04]"
@@ -463,9 +495,11 @@ export const Navbar: React.FC = () => {
           )}
           {activeDropdown === 'settings' && (
             <div className="absolute right-0 top-10 z-50 w-48 overflow-hidden rounded-md bg-[#282828] shadow-2xl">
-              <button onClick={() => { handleInstallClick(); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]">
-                Install App
-              </button>
+              {showInstallButton && (
+                <button onClick={() => { handleInstallClick(); setActiveDropdown(null); }} className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d]">
+                  Install App
+                </button>
+              )}
               <button
                 onClick={() => {
                   setActiveDropdown(null);
@@ -485,7 +519,7 @@ export const Navbar: React.FC = () => {
                 Play Area
               </button>
               <button
-                onClick={() => {showToast('General settings coming soon!');
+                onClick={() =>{showToast('General settings coming soon!');
                   setActiveDropdown(null);
                 }}
                 className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"

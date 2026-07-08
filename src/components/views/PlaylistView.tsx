@@ -6,13 +6,15 @@ import {
 import { usePlayer } from '../../context/PlayerContext';
 import { Track } from '../../data/musicCatalog';
 import GlareHover from '../GlareHover';
+import { CircularDownloadButton } from '../CircularDownloadButton';
 
 export const PlaylistView: React.FC = () => {
   const {
     activePlaylist, currentTrack, isPlaying, playTrack, togglePlay,
     likedTracks, setAddToPlaylistTrack, isShuffle,
     addToQueue, showToast, toggleQueue, setView, setSearchQuery,
-    downloadedTracks, toggleDownload, downloadedPlaylists, togglePlaylistDownload
+    downloadedTracks, toggleDownload, downloadedPlaylists, togglePlaylistDownload,
+    downloadProgress,
   } = usePlayer();
 
   const [contextMenu, setContextMenu] = useState<{ track: Track } | null>(null);
@@ -262,13 +264,13 @@ export const PlaylistView: React.FC = () => {
                 >
                   <Plus className="h-4 w-4" />
                 </button>
-                <button
+                <CircularDownloadButton
+                  isDownloaded={isDownloaded}
+                  progress={downloadProgress[track.id]}
                   onClick={(e) => { e.stopPropagation(); toggleDownload(track); }}
-                  className={`transition ${isDownloaded ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`}
-                  title={isDownloaded ? 'Remove download' : 'Download'}
-                >
-                  {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-                </button>
+                  className={`transition ${isDownloaded || downloadProgress[track.id] !== undefined ? 'text-[#1db954]' : 'text-transparent group-hover:text-[#b3b3b3] hover:!text-white'}`}
+                  size={16}
+                />
                 <span className="w-10 text-right text-[12px] tabular-nums text-[#b3b3b3]">
                   {Math.floor(track.duration / 60)}:{String(Math.floor(track.duration % 60)).padStart(2, '0')}
                 </span>
@@ -306,8 +308,16 @@ export const PlaylistView: React.FC = () => {
                     onClick={() => { toggleDownload(track); closeMenu(); }}
                     className="flex w-full items-center gap-3 px-4 py-3.5 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white active:bg-[#3d3d3d]"
                   >
-                    {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-                    <span className={isDownloaded ? 'text-[#1db954]' : ''}>{isDownloaded ? 'Remove download' : 'Download'}</span>
+                    <CircularDownloadButton
+                      isDownloaded={isDownloaded}
+                      progress={downloadProgress[track.id]}
+                      onClick={() => {}}
+                      className="text-[#b3b3b3] pointer-events-none"
+                      size={16}
+                    />
+                    <span className={isDownloaded || downloadProgress[track.id] !== undefined ? 'text-[#1db954]' : ''}>
+                      {isDownloaded ? 'Remove download' : downloadProgress[track.id] !== undefined ? 'Downloading...' : 'Download'}
+                    </span>
                   </button>
                   <button
                     onClick={() => { navigator.clipboard?.writeText(window.location.href); showToast('Link copied to clipboard', 'link'); closeMenu(); }}

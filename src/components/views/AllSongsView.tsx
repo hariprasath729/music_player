@@ -2,9 +2,14 @@ import React from 'react';
 import { Heart, Download, CheckCircle2 } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 import { TRACKS } from '../../data/musicCatalog';
+import { CircularDownloadButton } from '../CircularDownloadButton';
 
 export const AllSongsView: React.FC = () => {
-  const { currentTrack, isPlaying, playTrack, setAddToPlaylistTrack, likedTracks, setView, setSearchQuery, downloadedTracks, toggleDownload } = usePlayer();
+  const {
+    currentTrack, isPlaying, playTrack, setAddToPlaylistTrack,
+    likedTracks, setView, setSearchQuery, downloadedTracks,
+    toggleDownload, downloadProgress,
+  } = usePlayer();
 
   return (
     <div className="flex flex-col gap-6 px-4 py-6 sm:px-6">
@@ -69,13 +74,13 @@ export const AllSongsView: React.FC = () => {
                 <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954]' : ''}`} />
               </button>
 
-              <button
+              <CircularDownloadButton
+                isDownloaded={isDownloaded}
+                progress={downloadProgress[track.id]}
                 onClick={(e) => { e.stopPropagation(); toggleDownload(track); }}
-                className={`p-2 rounded-full transition ${isDownloaded ? 'text-[#1db954]' : 'text-[#b3b3b3] hover:text-white'}`}
-                title={isDownloaded ? 'Remove download' : 'Download'}
-              >
-                {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-              </button>
+                className={`p-2 rounded-full transition ${isDownloaded || downloadProgress[track.id] !== undefined ? 'text-[#1db954]' : 'text-[#b3b3b3] hover:text-white'}`}
+                size={16}
+              />
 
               <span className="w-12 text-right text-xs text-[#b3b3b3] tabular-nums">
                 {Math.floor(track.duration / 60)}:{String(Math.floor(track.duration % 60)).padStart(2, '0')}

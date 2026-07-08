@@ -35,14 +35,13 @@ export const MobileNav: React.FC = () => {
 
       <button
         onClick={() => {
-          setActiveFilter('Downloaded');
-          setView('library');
+          setView('downloads');
         }}
         className={`flex flex-1 flex-col items-center justify-center gap-[2px] py-2.5 text-[10px] font-semibold tracking-wide transition-colors ${
-          currentView === 'library' && activeFilter === 'Downloaded' ? 'text-white' : 'text-[#b3b3b3]'
+          currentView === 'downloads' ? 'text-white' : 'text-[#b3b3b3]'
         } hover:text-white`}
       >
-        <Download className="h-6 w-6" strokeWidth={currentView === 'library' && activeFilter === 'Downloaded' ? 2.5 : 1.5} />
+        <Download className="h-6 w-6" strokeWidth={currentView === 'downloads' ? 2.5 : 1.5} />
         <span>Downloads</span>
       </button>
     </nav>

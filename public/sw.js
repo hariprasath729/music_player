@@ -1,5 +1,5 @@
 // Hardcode the version here. Update this string to trigger a new app update!
-const CACHE_NAME = "music-player-v12.4.17";
+const CACHE_NAME = "music-player-v12.4.21";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -54,18 +54,70 @@ self.addEventListener("message", (event) => {
   }
 });
 
+// Helper to handle Range Requests for cached audio files (enables offline playback)
+async function handleAudioRequest(request) {
+  const SONGS_CACHE_NAME = "music-player-songs-v1";
+  try {
+    const cache = await caches.open(SONGS_CACHE_NAME);
+    const cachedResponse = await cache.match(request.url);
+
+    if (cachedResponse) {
+      const rangeHeader = request.headers.get("range");
+      if (rangeHeader) {
+        const arrayBuffer = await cachedResponse.arrayBuffer();
+        const totalLength = arrayBuffer.byteLength;
+
+        // Parse range: "bytes=start-end"
+        const parts = rangeHeader.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : totalLength - 1;
+
+        // Ensure range bounds are valid
+        const safeStart = Math.max(0, Math.min(start, totalLength - 1));
+        const safeEnd = Math.max(safeStart, Math.min(end, totalLength - 1));
+
+        const slicedData = arrayBuffer.slice(safeStart, safeEnd + 1);
+
+        return new Response(slicedData, {
+          status: 206,
+          statusText: "Partial Content",
+          headers: {
+            "Content-Range": `bytes ${safeStart}-${safeEnd}/${totalLength}`,
+            "Content-Length": slicedData.byteLength.toString(),
+            "Content-Type": cachedResponse.headers.get("content-type") || "audio/mpeg",
+            "Accept-Ranges": "bytes",
+          },
+        });
+      }
+      return cachedResponse;
+    }
+  } catch (err) {
+    console.warn("Error serving audio from cache, falling back to network:", err);
+  }
+
+  // Fallback to fetching directly from network/CDN
+  return fetch(request);
+}
+
 // Fetch strategy
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // 1. Bypass Service Worker for external CDNs and media files
-  // This prevents CORS errors and avoids caching large audio files
+  // 1. Intercept media/audio requests to support offline playback of downloaded songs
+  if (
+    url.pathname.endsWith(".mp3") ||
+    url.pathname.endsWith(".wav") ||
+    request.destination === "audio"
+  ) {
+    event.respondWith(handleAudioRequest(request));
+    return;
+  }
+
+  // 2. Bypass Service Worker for external CDNs (non-audio files)
   if (
     url.hostname.includes("cdn.jsdelivr.net") ||
-    url.hostname.includes("raw.githubusercontent.com") ||
-    url.pathname.endsWith(".mp3") ||
-    url.pathname.endsWith(".wav")
+    url.hostname.includes("raw.githubusercontent.com")
   ) {
     return; // Let the browser handle the request directly
   }

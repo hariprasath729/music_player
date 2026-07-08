@@ -12,6 +12,20 @@
         window.top.location = window.self.location;
       }
 
+      // Capture PWA install prompt as early as possible (before React mounts).
+      // React's Navbar reads window.__pwaInstallPrompt on mount so no event is missed.
+      window.__pwaInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        window.__pwaInstallPrompt = e;
+        // Notify React if it is already listening
+        window.dispatchEvent(new CustomEvent('pwa-install-prompt-ready'));
+      });
+      window.addEventListener('appinstalled', function() {
+        window.__pwaInstallPrompt = null;
+        window.dispatchEvent(new CustomEvent('pwa-app-installed'));
+      });
+
       // PWA Auto-Recovery: Disabled during development to prevent infinite reload loops.
       if (location.port !== '5173') {
         window.addEventListener('error', function(e) {

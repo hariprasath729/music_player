@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { MarqueeText } from './MarqueeText';
+import { CircularDownloadButton } from './CircularDownloadButton';
 
 export const PlayerControls: React.FC = () => {
   const {
@@ -48,6 +49,7 @@ export const PlayerControls: React.FC = () => {
     toggleFullScreen,
     downloadedTracks,
     toggleDownload,
+    downloadProgress,
   } = usePlayer();
 
   const isLiked = likedTracks.includes(currentTrack.id);
@@ -104,13 +106,13 @@ export const PlayerControls: React.FC = () => {
         >
           <Heart className={`h-4 w-4 ${isLiked ? 'fill-[#1db954]' : ''}`} />
         </button>
-        <button
+        <CircularDownloadButton
+          isDownloaded={isDownloaded}
+          progress={downloadProgress[currentTrack.id]}
           onClick={() => toggleDownload(currentTrack)}
-          className={`shrink-0 transition-transform hover:scale-110 ${isDownloaded ? 'text-[#1db954]' : 'text-[#b3b3b3] hover:text-white'}`}
-          title={isDownloaded ? 'Remove download' : 'Download'}
-        >
-          {isDownloaded ? <CheckCircle2 className="h-4 w-4 text-[#1db954]" /> : <Download className="h-4 w-4" />}
-        </button>
+          className={`shrink-0 transition-transform hover:scale-110 ${isDownloaded || downloadProgress[currentTrack.id] !== undefined ? 'text-[#1db954]' : 'text-[#b3b3b3] hover:text-white'}`}
+          size={16}
+        />
       </div>
 
       {/* CENTER — transport + progress */}

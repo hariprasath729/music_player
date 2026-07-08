@@ -24,19 +24,87 @@ export const downloadService = {
   saveDownloadedPlaylists: (ids: string[]) => {
     localStorage.setItem(DOWNLOADED_PLAYLISTS_KEY, JSON.stringify(ids));
   },
-  downloadTrack: async (track: { id: string; fileUrl?: string }): Promise<boolean> => {
+  downloadTrack: async (
+    track: { id: string; fileUrl?: string },
+    onProgress?: (progress: number) => void
+  ): Promise<boolean> => {
     if (!track.fileUrl) return false;
     try {
-      const cache = await caches.open(CACHE_NAME);
       const response = await fetch(track.fileUrl);
-      if (response.ok || response.type === 'opaque') {
-        await cache.put(track.fileUrl, response);
+      if (!response.ok) return false;
+
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+
+      // If content-length is missing or it's an opaque CORS response, simulate the progress smoothly
+      if (total === 0 || response.type === 'opaque') {
+        let simulatedProgress = 0;
+        const interval = setInterval(() => {
+          simulatedProgress += 0.08;
+          if (simulatedProgress >= 0.95) {
+            simulatedProgress = 0.95;
+            clearInterval(interval);
+          }
+          if (onProgress) onProgress(simulatedProgress);
+        }, 120);
+
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(track.fileUrl, response.clone());
+        clearInterval(interval);
+        if (onProgress) onProgress(1);
+
         const ids = downloadService.getDownloadedIds();
         if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
         return true;
       }
-      return false;
+
+      // Read response body as stream to get real progress
+      const reader = response.body ? response.body.getReader() : null;
+      if (!reader) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(track.fileUrl, response.clone());
+        if (onProgress) onProgress(1);
+        const ids = downloadService.getDownloadedIds();
+        if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
+        return true;
+      }
+
+      let receivedLength = 0;
+      const chunks: Uint8Array[] = [];
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+          chunks.push(value);
+          receivedLength += value.length;
+          if (onProgress) {
+            onProgress(receivedLength / total);
+          }
+        }
+      }
+
+      // Reconstruct full response from chunks
+      const chunksAll = new Uint8Array(receivedLength);
+      let position = 0;
+      for (const chunk of chunks) {
+        chunksAll.set(chunk, position);
+        position += chunk.length;
+      }
+
+      const blob = new Blob([chunksAll], { type: response.headers.get('content-type') || 'audio/mpeg' });
+      const cache = await caches.open(CACHE_NAME);
+      const newResponse = new Response(blob, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
+      await cache.put(track.fileUrl, newResponse);
+
+      const ids = downloadService.getDownloadedIds();
+      if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
+      return true;
     } catch (e) {
+      console.error('Download failed:', e);
       return false;
     }
   },

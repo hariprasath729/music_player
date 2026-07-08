@@ -13,6 +13,7 @@ import { ArtistsView } from './views/ArtistsView';
 import { ArtistDetailsView } from './views/ArtistDetailsView';
 import { RequestSongView } from './views/RequestSongView';
 import { PlayAreaView } from './views/PlayAreaView';
+import { DownloadsView } from './views/DownloadsView';
 
 export const MainContent: React.FC = () => {
   const { currentView } = usePlayer();
@@ -38,6 +39,7 @@ export const MainContent: React.FC = () => {
       {currentView === 'artist' && <ArtistDetailsView />}
       {currentView === 'request-song' && <RequestSongView />}
       {currentView === 'play-area' && <PlayAreaView />}
+      {currentView === 'downloads' && <DownloadsView />}
       
       {/* Keep VisualizerView mounted to maintain the socket connection across the app */}
       <div className={currentView === 'visualizer' ? 'block h-full w-full' : 'hidden'}>
