@@ -2,7 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import connectDB from './config/db.js';
+import connectDB, { connectSongsDB } from './config/db.js';
+import { loadSongStorageMap } from './services/songStorageService.js';
 import authRoutes from './routes/auth.js';
 import featureRoutes from './routes/index.js';
 import synkHandler from './sockets/synkHandler.js';
@@ -114,6 +115,10 @@ import { applyQueryProtection } from './middleware/queryProtection.js';
 
   // Connect to DB then start server
   await connectDB();
+
+  // Connect to Songs-dedicated DB and warm up the storage map in the background
+  connectSongsDB().then(() => loadSongStorageMap()).catch(() => {});
+
   httpServer.listen(PORT, () => {
     log('info', `🎵 Backend API running → http://localhost:${PORT}`);
     log('info', `   Health check → http://localhost:${PORT}/api/health`);

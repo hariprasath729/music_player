@@ -1,3 +1,5 @@
+import streamService from './streamService';
+
 const CACHE_NAME = 'music-player-songs-v1';
 const DOWNLOADS_KEY = 'music_player_downloads';
 const DOWNLOADED_PLAYLISTS_KEY = 'music_player_downloaded_playlists';
@@ -28,9 +30,21 @@ export const downloadService = {
     track: { id: string; fileUrl?: string },
     onProgress?: (progress: number) => void
   ): Promise<boolean> => {
-    if (!track.fileUrl) return false;
+    let url = track.fileUrl;
+
+    // If there's no permanent fileUrl (new secure architecture), request one via the stream service.
+    // The stream URL is a backend redirect — caches.put() will follow the redirect and store the CDN response.
+    if (!url) {
+      try {
+        url = await streamService.getStreamUrl(track.id);
+      } catch {
+        return false;
+      }
+    }
+    if (!url) return false;
+
     try {
-      const response = await fetch(track.fileUrl);
+      const response = await fetch(url);
       if (!response.ok) return false;
 
       const contentLength = response.headers.get('content-length');
@@ -49,7 +63,7 @@ export const downloadService = {
         }, 120);
 
         const cache = await caches.open(CACHE_NAME);
-        await cache.put(track.fileUrl, response.clone());
+        await cache.put(`song:${track.id}`, response.clone());
         clearInterval(interval);
         if (onProgress) onProgress(1);
 
@@ -62,7 +76,7 @@ export const downloadService = {
       const reader = response.body ? response.body.getReader() : null;
       if (!reader) {
         const cache = await caches.open(CACHE_NAME);
-        await cache.put(track.fileUrl, response.clone());
+        await cache.put(`song:${track.id}`, response.clone());
         if (onProgress) onProgress(1);
         const ids = downloadService.getDownloadedIds();
         if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
@@ -98,7 +112,7 @@ export const downloadService = {
         statusText: response.statusText,
         headers: response.headers,
       });
-      await cache.put(track.fileUrl, newResponse);
+      await cache.put(`song:${track.id}`, newResponse);
 
       const ids = downloadService.getDownloadedIds();
       if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
@@ -109,9 +123,9 @@ export const downloadService = {
     }
   },
   removeTrack: async (track: { id: string; fileUrl?: string }): Promise<boolean> => {
-    if (!track.fileUrl) return false;
     const cache = await caches.open(CACHE_NAME);
-    await cache.delete(track.fileUrl);
+    // Use the stable song:id key (not the temp stream URL which changes each session)
+    await cache.delete(`song:${track.id}`);
     const newIds = downloadService.getDownloadedIds().filter((id) => id !== track.id);
     downloadService.saveDownloadedIds(newIds);
     return true;

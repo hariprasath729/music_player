@@ -4,6 +4,7 @@ import { audioEngine } from '../services/audioEngine';
 import { playlistApi, likeApi, recentlyPlayedApi, playCountApi, libraryApi, mapSongToTrack, homeApi } from '../services/apiClient';
 import { useAuth } from './AuthContext';
 import { downloadService } from '../services/downloadService';
+import streamService from '../services/streamService';
 import { X, Check, Plus, Heart, ListMusic } from 'lucide-react';
 
 export type RepeatMode = 'off' | 'all' | 'one';
@@ -344,6 +345,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setIsSleepAtTrackEnd(false);
       setSleepTimerEnd(null);
       setSleepTimerRemaining(null);
+      // Clear stream token cache so stale tokens don't linger
+      streamService.clearStreamCache();
     }
   }, [isLoggedIn, user]);
 
@@ -393,19 +396,47 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => clearInterval(interval);
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
-  // Preload next song for instant playback
+  // Prefetch stream URLs for the next 2 tracks and preload audio bytes for the next 1 track for seamless transitions
   useEffect(() => {
     const next = queue[0];
-    if (next?.fileUrl) {
-      const audio = new Audio(next.fileUrl);
-      audio.preload = 'auto';
-      audio.onloadedmetadata = () => {
-        if (audio.duration && audio.duration > 0 && next) {
-          next.duration = audio.duration;
-        }
-      };
-      preloadAudioRef.current = audio;
+    const afterNext = queue[1];
+
+    // 1. Prefetch the second next song's stream URL from the backend
+    if (afterNext?.id) {
+      streamService.prefetch(afterNext.id);
     }
+
+    if (!next?.id) {
+      preloadAudioRef.current = null;
+      return;
+    }
+
+    let active = true;
+
+    // 2. Prefetch the next song's stream URL AND preload its audio bytes
+    streamService.getStreamUrl(next.id)
+      .then((streamUrl) => {
+        if (!active) return;
+        // Keep the resolved URL on the track object
+        next.fileUrl = streamUrl;
+
+        // Preload audio bytes into browser cache
+        const audio = new Audio(streamUrl);
+        audio.preload = 'auto';
+        audio.onloadedmetadata = () => {
+          if (active && audio.duration && audio.duration > 0) {
+            next.duration = audio.duration;
+          }
+        };
+        preloadAudioRef.current = audio;
+      })
+      .catch((err) => {
+        console.warn('[PlayerContext] Preload next song failed:', err);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [queue]);
 
   // Keyboard shortcuts
@@ -465,8 +496,16 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
     if (repeatMode === 'one') {
-      audioEngine.play(currentTrack.genre, currentTrack.duration, 0, currentTrack.fileUrl);
-      setCurrentTime(0);
+      // Re-fetch a fresh stream URL for repeat-one (current token might be near expiry)
+      streamService.getStreamUrl(currentTrack.id).then((streamUrl) => {
+        const trackWithUrl = { ...currentTrack, fileUrl: streamUrl };
+        audioEngine.play(trackWithUrl.genre, trackWithUrl.duration, 0, streamUrl);
+        setCurrentTime(0);
+      }).catch(() => {
+        // On failure just try with whatever fileUrl is stored
+        audioEngine.play(currentTrack.genre, currentTrack.duration, 0, currentTrack.fileUrl);
+        setCurrentTime(0);
+      });
     } else {
       nextTrack();
     }
@@ -504,18 +543,30 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setDuration(track.duration);
     setCurrentTime(0);
     setIsPlaying(true);
-    
+
     // Sync recently played & play count with backend
     if (isLoggedIn) {
-      recentlyPlayedApi.add(track.id).catch(err => console.error("Failed to log play", err));
-      playCountApi.increment(track.id).catch(err => console.error("Failed to increment count", err));
+      recentlyPlayedApi.add(track.id).catch(err => console.error('Failed to log play', err));
+      playCountApi.increment(track.id).catch(err => console.error('Failed to increment count', err));
     }
 
-    audioEngine.play(track.genre, track.duration, 0, track.fileUrl);
-    audioEngine.setVolume(isMuted ? 0 : volume);
-    if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-      (audioEngine as any).setPlaybackRate(playbackRate);
-    }
+    // Resolve the stream URL from the backend then start playback.
+    // The real CDN URL is never stored in the track object.
+    streamService.getStreamUrl(track.id)
+      .then((streamUrl) => {
+        // Store the resolved temporary URL on the track object so togglePlay can resume it.
+        track.fileUrl = streamUrl;
+        audioEngine.play(track.genre, track.duration, 0, streamUrl);
+        audioEngine.setVolume(isMuted ? 0 : volume);
+        if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+          (audioEngine as any).setPlaybackRate(playbackRate);
+        }
+      })
+      .catch((err) => {
+        console.error('[playTrack] Stream URL fetch failed:', err);
+        showToast('Could not load song. Please try again.', 'error');
+        setIsPlaying(false);
+      });
   };
 
   const togglePlay = useCallback((force: boolean = false, forceState?: boolean) => {

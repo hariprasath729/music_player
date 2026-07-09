@@ -1,6 +1,36 @@
 import mongoose from 'mongoose';
 import { log } from '../utils/logger.js';
 
+// ── Secondary connection for the Songs-dedicated cluster ──
+let songsConnection = null;
+
+export function getSongsDb() {
+  return songsConnection;
+}
+
+export async function connectSongsDB() {
+  const songsURI = process.env.SONGS_METADATA;
+  if (!songsURI) {
+    console.warn('[songsDB] SONGS_METADATA not set — song URL lookups will use JSON fallback.');
+    return;
+  }
+  try {
+    songsConnection = mongoose.createConnection(songsURI + '/songs', {
+      serverSelectionTimeoutMS: 6000,
+      maxPoolSize: 5,
+    });
+    songsConnection.on('connected', () => {
+      console.log('[songsDB] ✅ Songs DB connected');
+    });
+    songsConnection.on('error', (err) => {
+      console.error('[songsDB] Connection error:', err.message);
+    });
+  } catch (err) {
+    console.warn('[songsDB] Failed to connect, will use JSON fallback:', err.message);
+  }
+}
+
+// ── Primary connection (main app DB) ──
 const connectDB = async () => {
   try {
     const mongoURI = process.env.MONGO_URI;

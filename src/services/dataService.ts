@@ -80,16 +80,14 @@ export const searchTracks = async (query: string): Promise<Track[]> => {
   return allTracks.filter(t =>
     t.title.toLowerCase().includes(query.toLowerCase()) ||
     t.artist.toLowerCase().includes(query.toLowerCase()) ||
-    t.album.toLowerCase().includes(query.toLowerCase())
+    (t.album && t.album.toLowerCase().includes(query.toLowerCase()))
   );
 };
 
 export const getLikedTracks = async (): Promise<string[]> => {
-  // In real implementation, fetch from user's profile
   return ['track-1', 'track-3'];
 };
 
 export const toggleLikeTrack = async (): Promise<boolean> => {
-  // In real implementation, make API call
   return true;
 };

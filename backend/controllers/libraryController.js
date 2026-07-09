@@ -1,6 +1,3 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import Like from '../models/Like.js';
 import Playlist from '../models/Playlist.js';
 import RecentlyPlayed from '../models/RecentlyPlayed.js';
@@ -9,20 +6,16 @@ import FollowedArtist from '../models/FollowedArtist.js';
 import SavedAlbum from '../models/SavedAlbum.js';
 import { log } from '../utils/logger.js';
 import { sanitizeString } from '../utils/sanitizeHtml.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { loadSongsFromCatalog } from '../utils/catalogLoader.js';
 
 // In-memory cache for fast mapping
 let songsCatalog = [];
 
 const loadCatalog = async () => {
   try {
-    const dataPath = path.join(__dirname, '../data/songs_metadata.json');
-    const fileContent = await fs.readFile(dataPath, 'utf-8');
-    songsCatalog = JSON.parse(fileContent);
+    songsCatalog = await loadSongsFromCatalog();
   } catch (error) {
-    console.error('Failed to load songs_metadata.json for Library mapping', error.message);
+    console.error('Failed to load catalog for Library mapping', error.message);
   }
 };
 

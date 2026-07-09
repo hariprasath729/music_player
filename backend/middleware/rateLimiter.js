@@ -78,3 +78,13 @@ export const contactLimiter = createLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 3,
 });
+
+// ── Stream Authorization: POST /stream/request, GET /stream/play/:token ──
+// Generous enough for normal listening + prefetch, but blocks automated library scrapers.
+export const streamLimiter = createLimiter({
+  name: 'stream',
+  windowMs: 60 * 1000, // 1 minute
+  max: 200,
+  keyGenerator: (req) => req.user?.id || getClientIP(req),
+});
+

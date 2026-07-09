@@ -1,6 +1,3 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import Like from '../models/Like.js';
 import Playlist from '../models/Playlist.js';
 import RecentlyPlayed from '../models/RecentlyPlayed.js';
@@ -8,19 +5,15 @@ import PlayCount from '../models/PlayCount.js';
 import FollowedArtist from '../models/FollowedArtist.js';
 import SkipAvoid from '../models/SkipAvoid.js';
 import { log } from '../utils/logger.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { loadSongsFromCatalog } from '../utils/catalogLoader.js';
 
 let songsCatalog = [];
 
 const loadCatalog = async () => {
   try {
-    const dataPath = path.join(__dirname, '../data/songs_metadata.json');
-    const fileContent = await fs.readFile(dataPath, 'utf-8');
-    songsCatalog = JSON.parse(fileContent);
+    songsCatalog = await loadSongsFromCatalog();
   } catch (error) {
-    console.error('Failed to load songs_metadata.json for Home data mapping', error.message);
+    console.error('Failed to load catalog for Home data mapping', error.message);
   }
 };
 

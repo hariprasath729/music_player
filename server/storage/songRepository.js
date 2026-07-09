@@ -1,20 +1,13 @@
 /**
- * Song Repository — JSON file storage
- * -----------------------------------
- * This is the ONLY file that knows about the storage mechanism.
- * Backed by a JSON file for a lightweight, zero-dependency footprint.
+ * Song Repository — Dynamic Catalog Loader
+ * ----------------------------------------
+ * This repository dynamically parses the single source of truth for
+ * metadata (`src/data/musicCatalog.ts`) to avoid duplicate JSON data files.
  *
- * To scale to a real database later, replace internals here without
- * touching any controller, route, or validation code.
+ * To scale to a database later, replace internals here.
  */
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_FILE = join(__dirname, '..', 'data', 'songs.json');
+import { loadSongsFromCatalog } from '../utils/catalogLoader.js';
 
 // In-memory cache for fast reads.
 let cache = null;
@@ -43,26 +36,17 @@ function normalizeSong(song) {
 async function loadCache() {
   if (cache) return cache;
   try {
-    if (!existsSync(DATA_FILE)) {
-      await mkdir(dirname(DATA_FILE), { recursive: true });
-      await writeFile(DATA_FILE, '[]', 'utf-8');
-    }
-    const raw = await readFile(DATA_FILE, 'utf-8');
-    cache = JSON.parse(raw || '[]').map(normalizeSong);
+    const raw = await loadSongsFromCatalog();
+    cache = raw.map(normalizeSong);
   } catch (err) {
-    console.error('[songRepository] Failed to load data:', err);
+    console.error('[songRepository] Failed to load data from musicCatalog:', err);
     cache = [];
   }
   return cache;
 }
 
 async function persist() {
-  try {
-    await writeFile(DATA_FILE, JSON.stringify(cache, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('[songRepository] Failed to persist data:', err);
-    throw new Error('Storage write failed');
-  }
+  // Read-only catalog fallback, writing disabled
 }
 
 function nextId() {
@@ -90,7 +74,7 @@ export const songRepository = {
     return songs.find((s) => s.id === id) || null;
   },
 
-  /** Creates a new song. */
+  /** Creates a new song in memory. */
   async create(data) {
     await loadCache();
     const song = normalizeSong({
@@ -108,7 +92,7 @@ export const songRepository = {
     return song;
   },
 
-  /** Partially updates an existing song. Returns updated song or null. */
+  /** Partially updates an existing song in memory. */
   async update(id, data) {
     await loadCache();
     const idx = cache.findIndex((s) => s.id === id);
@@ -133,7 +117,7 @@ export const songRepository = {
     return updated;
   },
 
-  /** Deletes a song by id. Returns true if deleted, false if not found. */
+  /** Deletes a song by id in memory. */
   async remove(id) {
     await loadCache();
     const idx = cache.findIndex((s) => s.id === id);

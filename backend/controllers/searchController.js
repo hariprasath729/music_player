@@ -1,20 +1,13 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { sanitizeString } from '../utils/sanitizeHtml.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { loadSongsFromCatalog } from '../utils/catalogLoader.js';
 
 let songsData = [];
 
 const loadData = async () => {
   try {
-    const dataPath = path.join(__dirname, '../data/songs_metadata.json');
-    const fileContent = await fs.readFile(dataPath, 'utf-8');
-    songsData = JSON.parse(fileContent);
+    songsData = await loadSongsFromCatalog();
   } catch (error) {
-    console.error('Failed to load songs_metadata.json', error.message);
+    console.error('Failed to load catalog', error.message);
   }
 };
 
