@@ -10,30 +10,46 @@ export const addRecentlyPlayed = async (req, res) => {
       return res.status(400).json({ success: false, error: 'songId is required' });
     }
 
-    let history = await RecentlyPlayed.findOne({ userId });
+    const maxRetries = 3;
+    let attempt = 0;
 
-    if (!history) {
-      history = await RecentlyPlayed.create({
-        userId,
-        songs: [{ songId, playedAt: new Date() }]
-      });
-    } else {
-      // If the last played song is exactly the same, just update the timestamp
-      if (history.songs.length > 0 && history.songs[0].songId === songId) {
-        history.songs[0].playedAt = new Date();
-      } else {
-        history.songs = history.songs.filter(s => s.songId !== songId);
-        history.songs.unshift({ songId, playedAt: new Date() });
-        
-        // Enforce the 25 limit policy
-        if (history.songs.length > 25) {
-          history.songs = history.songs.slice(0, 25);
+    while (attempt < maxRetries) {
+      try {
+        let history = await RecentlyPlayed.findOne({ userId });
+
+        if (!history) {
+          history = await RecentlyPlayed.create({
+            userId,
+            songs: [{ songId, playedAt: new Date() }]
+          });
+        } else {
+          // If the last played song is exactly the same, just update the timestamp
+          if (history.songs.length > 0 && history.songs[0].songId === songId) {
+            history.songs[0].playedAt = new Date();
+          } else {
+            history.songs = history.songs.filter(s => s.songId !== songId);
+            history.songs.unshift({ songId, playedAt: new Date() });
+            
+            // Enforce the 25 limit policy
+            if (history.songs.length > 25) {
+              history.songs = history.songs.slice(0, 25);
+            }
+          }
+          await history.save();
         }
-      }
-      await history.save();
-    }
 
-    res.json({ success: true, message: 'Added to recently played' });
+        return res.json({ success: true, message: 'Added to recently played' });
+      } catch (error) {
+        attempt++;
+        if ((error.name === 'VersionError' || error.code === 11000) && attempt < maxRetries) {
+          log('warn', `Recently played concurrency collision, retrying (attempt ${attempt})...`);
+          // Wait a short random delay before retrying
+          await new Promise(resolve => setTimeout(resolve, Math.random() * 50 + 10));
+          continue;
+        }
+        throw error; // Propagate other errors to outer catch block
+      }
+    }
   } catch (error) {
     log('error', 'Add recently played failed', { details: error.message });
     res.status(500).json({ success: false, error: 'Server error' });

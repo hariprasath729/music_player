@@ -62,7 +62,7 @@ function computeJitter(samples: number[]): number {
 export const VisualizerView: React.FC = () => {
   const { currentTrack, isPlaying, goBack, canGoBack, setView, currentTime, seek, playTrack, togglePlay, setIsPlaybackLocked, currentView } = usePlayer();
   const { user } = useAuth();
-  
+
   const [socket, setSocket] = useState<Socket | null>(null);
   const [shouldConnect, setShouldConnect] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string>('');
@@ -72,7 +72,7 @@ export const VisualizerView: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [showDiagnostics, setShowDiagnostics] = useState<boolean>(false);
-  
+
   const [guestId] = useState(() => 'guest_' + Math.random().toString(36).substr(2, 5));
   const userId = user?.id || guestId;
 
@@ -431,7 +431,7 @@ export const VisualizerView: React.FC = () => {
       sequenceNumber: number;
     }) => {
       if (isHostRef.current) return; // Host dictates, doesn't listen (synchronous ref)
-      
+
       packetsReceived.current++;
       lastSyncTime.current = Date.now();
 
@@ -593,7 +593,7 @@ export const VisualizerView: React.FC = () => {
 
   const createRoom = () => {
     if (socket) {
-      socket.emit('create_room', { 
+      socket.emit('create_room', {
         userId,
         songId: currentTrack.id,
         currentTime,
@@ -766,7 +766,7 @@ export const VisualizerView: React.FC = () => {
             >
               Start Session (Host)
             </button>
-            
+
             <div className="flex items-center gap-2 text-sm text-[#b3b3b3]">
               <div className="h-px flex-1 bg-white/10" />
               <span>OR</span>

@@ -47,24 +47,24 @@ const AuthContext = createContext<AuthContextType>({
   isLoading: false,
   error: null,
   authStatus: 'idle',
-  verifySession: async () => {},
-  login: () => {},
-  loginWithEmail: async () => {},
-  sendOtp: async () => {},
-  signup: async () => {},
+  verifySession: async () => { },
+  login: () => { },
+  loginWithEmail: async () => { },
+  sendOtp: async () => { },
+  signup: async () => { },
 
   // Forgot password / reset / magic login
-  forgotPassword: async () => {},
-  resetPassword: async () => {},
+  forgotPassword: async () => { },
+  resetPassword: async () => { },
   verifyToken: async () => ({ valid: false }),
-  magicLogin: async () => {},
-  contactAdmin: async () => {},
-  requestSong: async () => {},
-  logout: () => {},
-  clearSession: () => {},
-  clearError: () => {},
+  magicLogin: async () => { },
+  contactAdmin: async () => { },
+  requestSong: async () => { },
+  logout: () => { },
+  clearSession: () => { },
+  clearError: () => { },
   isPendingApproval: false,
-  setIsPendingApproval: () => {},
+  setIsPendingApproval: () => { },
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       localStorage.setItem(AUTH_TOKEN_KEY, newToken);
       localStorage.setItem(AUTH_USER_KEY, JSON.stringify(newUser));
-    } catch {}
+    } catch { }
   };
 
   const clearSession = useCallback(() => {
@@ -101,7 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       localStorage.removeItem(AUTH_TOKEN_KEY);
       localStorage.removeItem(AUTH_USER_KEY);
-    } catch {}
+    } catch { }
   }, []);
 
   const login = useCallback((newUser: AuthUser) => {
@@ -150,7 +150,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (isTokenExpired(storedToken)) {
       try {
         localStorage.setItem('auth_session_expired_toast', 'true');
-      } catch {}
+      } catch { }
       clearSession();
       setAuthStatus('unauthenticated');
       return;
@@ -167,7 +167,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Set up a local abort controller for the fetch so we can timeout locally
     const localAbortController = new AbortController();
-    
+
     // Propagate the external signal abort if it occurs
     const onExternalAbort = () => {
       localAbortController.abort();
@@ -204,7 +204,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (res.status === 401 || res.status === 403 || res.status === 404) {
         try {
           localStorage.setItem('auth_session_expired_toast', 'true');
-        } catch {}
+        } catch { }
         clearSession();
         setAuthStatus('unauthenticated');
         return;
@@ -282,11 +282,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       const json = await res.json();
       if (!res.ok && !json.success) throw new Error(json.error || json.message || 'Login failed');
-      
+
       // Adapt to either { success: true, data: { token, user } } OR direct { token, user }
       const responseToken = json.data?.token || json.token;
       const responseUser = json.data?.user || json.user;
-      
+
       if (!responseToken || !responseUser) throw new Error('Invalid response format from server');
       storeSession(responseToken, responseUser);
     } catch (err: unknown) {
@@ -333,11 +333,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       const json = await res.json();
       if (!res.ok && !json.success) throw new Error(json.error || json.message || 'Signup failed');
-      
+
       // Adapt to either { success: true, data: { token, user } } OR direct { token, user }
       const responseToken = json.data?.token || json.token;
       const responseUser = json.data?.user || json.user;
-      
+
       if (!responseToken || !responseUser) throw new Error('Invalid response format from server');
       storeSession(responseToken, responseUser);
     } catch (err: unknown) {
@@ -421,7 +421,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       // Backend may redirect; if so, browser will handle. If it returns JSON, we parse.
       let json: any = null;
-      try { json = await res.json(); } catch {}
+      try { json = await res.json(); } catch { }
 
       // If backend returns token/user JSON:
       const responseToken = json?.data?.token || json?.token;
@@ -519,7 +519,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (timeRemaining <= 0) {
             try {
               localStorage.setItem('auth_session_expired_toast', 'true');
-            } catch {}
+            } catch { }
             logout();
             return true;
           }

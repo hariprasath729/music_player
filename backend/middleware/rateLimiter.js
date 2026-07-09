@@ -88,3 +88,11 @@ export const streamLimiter = createLimiter({
   keyGenerator: (req) => req.user?.id || getClientIP(req),
 });
 
+// ── Telemetry / Playback Logging: recently played, play count increment, skip avoidance ──
+export const telemetryLimiter = createLimiter({
+  name: 'telemetry',
+  windowMs: 60 * 1000, // 1 minute
+  max: 200,
+  keyGenerator: (req) => req.user?.id || getClientIP(req),
+});
+
