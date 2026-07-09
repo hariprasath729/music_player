@@ -63,7 +63,7 @@ export const downloadService = {
         }, 120);
 
         const cache = await caches.open(CACHE_NAME);
-        await cache.put(`song:${track.id}`, response.clone());
+        await cache.put(`https://music-player.local/song/${track.id}`, response.clone());
         clearInterval(interval);
         if (onProgress) onProgress(1);
 
@@ -76,7 +76,7 @@ export const downloadService = {
       const reader = response.body ? response.body.getReader() : null;
       if (!reader) {
         const cache = await caches.open(CACHE_NAME);
-        await cache.put(`song:${track.id}`, response.clone());
+        await cache.put(`https://music-player.local/song/${track.id}`, response.clone());
         if (onProgress) onProgress(1);
         const ids = downloadService.getDownloadedIds();
         if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
@@ -112,7 +112,7 @@ export const downloadService = {
         statusText: response.statusText,
         headers: response.headers,
       });
-      await cache.put(`song:${track.id}`, newResponse);
+      await cache.put(`https://music-player.local/song/${track.id}`, newResponse);
 
       const ids = downloadService.getDownloadedIds();
       if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
@@ -124,8 +124,8 @@ export const downloadService = {
   },
   removeTrack: async (track: { id: string; fileUrl?: string }): Promise<boolean> => {
     const cache = await caches.open(CACHE_NAME);
-    // Use the stable song:id key (not the temp stream URL which changes each session)
-    await cache.delete(`song:${track.id}`);
+    // Use the stable virtual HTTPS URL (not the temp stream URL which changes each session)
+    await cache.delete(`https://music-player.local/song/${track.id}`);
     const newIds = downloadService.getDownloadedIds().filter((id) => id !== track.id);
     downloadService.saveDownloadedIds(newIds);
     return true;

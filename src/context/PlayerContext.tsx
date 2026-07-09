@@ -561,6 +561,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       playCountApi.increment(track.id).catch(err => console.error('Failed to increment count', err));
     }
 
+    // If the song is already downloaded, play it from the local cache immediately
+    if (downloadedTracks.includes(track.id)) {
+      const cachedUrl = `https://music-player.local/song/${track.id}`;
+      track.fileUrl = cachedUrl;
+      setIsPlaying(true);
+      audioEngine.play(track.genre, track.duration, 0, cachedUrl);
+      audioEngine.setVolume(isMuted ? 0 : volume);
+      if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+        (audioEngine as any).setPlaybackRate(playbackRate);
+      }
+      return;
+    }
+
     // Resolve the stream URL from the backend then start playback.
     // The real CDN URL is never stored in the track object.
     streamService.getStreamUrl(track.id)
@@ -602,6 +615,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       // Check if offline and trying to play a non-downloaded song
       if (!navigator.onLine && !downloadedTracks.includes(currentTrack.id)) {
         showToast('You are offline. Only downloaded songs can be played.', 'error');
+        return;
+      }
+
+      // If the song is already downloaded, play it from the local cache immediately
+      if (downloadedTracks.includes(currentTrack.id)) {
+        const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
+        currentTrack.fileUrl = cachedUrl;
+        audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, cachedUrl);
+        audioEngine.setVolume(isMuted ? 0 : volume);
+        if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+          (audioEngine as any).setPlaybackRate(playbackRate);
+        }
+        setIsPlaying(true);
         return;
       }
 

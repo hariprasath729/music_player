@@ -108,6 +108,7 @@ self.addEventListener("fetch", (event) => {
   if (
     url.pathname.endsWith(".mp3") ||
     url.pathname.endsWith(".wav") ||
+    url.hostname === "music-player.local" ||
     request.destination === "audio"
   ) {
     event.respondWith(handleAudioRequest(request));
