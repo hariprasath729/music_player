@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { Analytics } from "@vercel/analytics/react";
 if ('serviceWorker' in navigator) {
+  const isAlreadyControlled = !!navigator.serviceWorker.controller;
   // This variable will be used to store the version of the new service worker.
   // The 'pwa-update-available' event will set this, and the 'controllerchange'
   // event will read it to know which version was just activated.
@@ -129,6 +130,7 @@ if ('serviceWorker' in navigator) {
     let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         if (refreshing) return;
+        if (!isAlreadyControlled) return; // Skip reload on first-time registration
         refreshing = true;
 
         // Mark update success exactly once (used by toast + to suppress re-notification)
