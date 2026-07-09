@@ -165,6 +165,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     setAuthStatus('checking');
 
+    // Set up a local abort controller for the fetch so we can timeout locally
+    const localAbortController = new AbortController();
+    
+    // Propagate the external signal abort if it occurs
+    const onExternalAbort = () => {
+      localAbortController.abort();
+    };
+    if (signal) {
+      signal.addEventListener('abort', onExternalAbort);
+    }
+
+    // Set up a local timeout of 2.5 seconds to race the fetch
+    const timeoutId = setTimeout(() => {
+      localAbortController.abort();
+    }, 2500);
+
     try {
       const res = await fetch(`${API_URL}/auth/me`, {
         method: 'GET',
@@ -172,13 +188,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           'Content-Type': 'application/json',
           Authorization: `Bearer ${storedToken}`,
         },
-        signal,
+        signal: localAbortController.signal,
       });
 
-      // If aborted after fetch started, the catch block handles it
+      clearTimeout(timeoutId);
+      if (signal) {
+        signal.removeEventListener('abort', onExternalAbort);
+      }
+
+      // If aborted by external cleanup/unmount, don't change state
       if (signal?.aborted) return;
 
-      if (res.status === 401 || res.status === 403) {
+      // 401, 403, and 404 explicitly mean the user doesn't exist or is not authorized anymore.
+      // In these cases, we must clear the session.
+      if (res.status === 401 || res.status === 403 || res.status === 404) {
         try {
           localStorage.setItem('auth_session_expired_toast', 'true');
         } catch {}
@@ -210,21 +233,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       setAuthStatus('authenticated');
     } catch (err: unknown) {
-      // Aborted by AppBootstrap (timeout or cleanup) — don't change state here,
-      // AppBootstrap will set 'timeout' or 'unauthenticated' itself
-      if (err instanceof DOMException && err.name === 'AbortError') {
+      clearTimeout(timeoutId);
+      if (signal) {
+        signal.removeEventListener('abort', onExternalAbort);
+      }
+
+      // If externally aborted (e.g. component unmounted), return without setting state
+      if (signal?.aborted) {
         return;
       }
-      
-      // Trust cached session on network error or server error since token isn't expired
-      const isNetworkError = !navigator.onLine || (err instanceof TypeError) || (err instanceof Error && err.message.includes('Server returned'));
+
+      // Distinguish a local timeout abort from external abort
+      const isTimeout = err instanceof DOMException && err.name === 'AbortError' && !signal?.aborted;
+
+      // Trust cached session on network error, server error (500), or timeout since the local token is valid and unexpired
+      const isNetworkError =
+        isTimeout ||
+        !navigator.onLine ||
+        (err instanceof TypeError) ||
+        (err instanceof Error && err.message.includes('Server returned'));
+
       if (isNetworkError) {
-        console.warn('Network/Server error verifying session. Trusting cached session.', err);
+        console.warn(
+          isTimeout
+            ? 'Session verification timed out. Trusting cached session.'
+            : 'Network/Server error verifying session. Trusting cached session.',
+          err
+        );
         setAuthStatus('authenticated');
         return;
       }
 
-      // Network error, backend down, etc.
+      // Unexpected error - log out as fallback
       clearSession();
       setAuthStatus('unauthenticated');
     }

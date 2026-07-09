@@ -90,9 +90,9 @@ export const AppBootstrap: React.FC<AppBootstrapProps> = ({ children, loginFallb
         abortControllerRef.current = null;
       }
 
-      // Force timeout state
-      clearSession();
-      setPendingAuthResult('unauthenticated');
+      // Trust the cached session on timeout instead of logging out
+      console.warn('Backup timeout triggered in AppBootstrap. Trusting cached session.');
+      setPendingAuthResult('authenticated');
     }, STARTUP_CONFIG.authTimeout);
 
     return cleanup;
