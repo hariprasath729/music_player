@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Search, ArrowDownUp, X, ArrowLeft, Download, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, X, ArrowLeft, Download, CheckCircle2 } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS } from '../../data/musicCatalog';
 import { CircularDownloadButton } from '../CircularDownloadButton';

@@ -157,7 +157,11 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // 4. Local Static files → cache first
+  // 4. Local Static files → cache first (Only GET requests can be cached)
+  if (request.method !== 'GET') {
+    return; // Let the browser handle POST, PUT, DELETE directly
+  }
+
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
