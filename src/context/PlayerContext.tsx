@@ -597,12 +597,25 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         return;
       }
 
-      audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
-      audioEngine.setVolume(isMuted ? 0 : volume);
-      if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-        (audioEngine as any).setPlaybackRate(playbackRate);
-      }
-      setIsPlaying(true);
+      streamService.getStreamUrl(currentTrack.id)
+        .then((streamUrl) => {
+          currentTrack.fileUrl = streamUrl;
+          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl);
+          audioEngine.setVolume(isMuted ? 0 : volume);
+          if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+            (audioEngine as any).setPlaybackRate(playbackRate);
+          }
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          // Fallback to old URL if getStreamUrl fails
+          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
+          audioEngine.setVolume(isMuted ? 0 : volume);
+          if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+            (audioEngine as any).setPlaybackRate(playbackRate);
+          }
+          setIsPlaying(true);
+        });
     }
   }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime, downloadedTracks]);
 
