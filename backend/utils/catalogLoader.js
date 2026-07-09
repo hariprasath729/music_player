@@ -21,12 +21,20 @@ export async function loadSongsFromCatalog() {
     const tsPath = path.resolve(__dirname, '../../src/data/musicCatalog.ts');
     const content = await fs.readFile(tsPath, 'utf-8');
 
-    const startIndex = content.indexOf('const RAW_SONGS: RawSong[] =[');
+    const startIndex = content.indexOf('const RAW_SONGS');
     if (startIndex === -1) {
       throw new Error('Could not find RAW_SONGS assignment in musicCatalog.ts');
     }
 
-    const arrayStart = content.indexOf('[', startIndex);
+    const eqIndex = content.indexOf('=', startIndex);
+    if (eqIndex === -1) {
+      throw new Error('Could not find = assignment in musicCatalog.ts');
+    }
+
+    const arrayStart = content.indexOf('[', eqIndex);
+    if (arrayStart === -1) {
+      throw new Error('Could not find array start [ in musicCatalog.ts');
+    }
     let bracketCount = 0;
     let arrayEndIndex = -1;
 
@@ -48,6 +56,7 @@ export async function loadSongsFromCatalog() {
 
     const jsonText = content.substring(arrayStart, arrayEndIndex);
     cachedSongs = JSON.parse(jsonText);
+    console.log(`[catalogLoader] ✅ Loaded ${cachedSongs.length} songs from musicCatalog.ts`);
     return cachedSongs;
   } catch (error) {
     console.error('[catalogLoader] Failed to load from musicCatalog.ts:', error.message);

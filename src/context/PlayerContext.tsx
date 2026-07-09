@@ -203,6 +203,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const prevVolumeRef = useRef<number>(0.7);
   const toastIdRef = useRef<number>(0);
   const preloadAudioRef = useRef<HTMLAudioElement | null>(null);
+  const loadingTrackIdRef = useRef<string | null>(null);
 
   const lastClickPos = useRef<{ x: number; y: number } | null>(null);
   const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
@@ -520,6 +521,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
 
+    // Stop current audio playback immediately so the transition is instant
+    audioEngine.stop();
+    setIsPlaying(false);
+
+    // Track the latest requested song ID to prevent race conditions
+    loadingTrackIdRef.current = track.id;
+
     if (contextTracks) {
       const trackIndex = contextTracks.findIndex((t) => t.id === track.id);
       if (trackIndex !== -1) {
@@ -542,7 +550,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCurrentTrack(track);
     setDuration(track.duration);
     setCurrentTime(0);
-    setIsPlaying(true);
 
     // Sync recently played & play count with backend
     if (isLoggedIn) {
@@ -554,8 +561,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     // The real CDN URL is never stored in the track object.
     streamService.getStreamUrl(track.id)
       .then((streamUrl) => {
+        // Prevent playing if the user has already switched to another song
+        if (loadingTrackIdRef.current !== track.id) return;
+
         // Store the resolved temporary URL on the track object so togglePlay can resume it.
         track.fileUrl = streamUrl;
+        setIsPlaying(true);
         audioEngine.play(track.genre, track.duration, 0, streamUrl);
         audioEngine.setVolume(isMuted ? 0 : volume);
         if (typeof (audioEngine as any).setPlaybackRate === 'function') {
@@ -563,6 +574,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         }
       })
       .catch((err) => {
+        if (loadingTrackIdRef.current !== track.id) return;
         console.error('[playTrack] Stream URL fetch failed:', err);
         showToast('Could not load song. Please try again.', 'error');
         setIsPlaying(false);
