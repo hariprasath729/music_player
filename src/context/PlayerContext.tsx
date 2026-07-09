@@ -398,14 +398,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
   // Prefetch stream URLs for the next 2 tracks and preload audio bytes for the next 1 track for seamless transitions
+  // We delay the preload by 3 seconds to let the current song buffer and start playing instantly without network congestion.
   useEffect(() => {
     const next = queue[0];
     const afterNext = queue[1];
-
-    // 1. Prefetch the second next song's stream URL from the backend
-    if (afterNext?.id) {
-      streamService.prefetch(afterNext.id);
-    }
 
     if (!next?.id) {
       preloadAudioRef.current = null;
@@ -414,29 +410,37 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     let active = true;
 
-    // 2. Prefetch the next song's stream URL AND preload its audio bytes
-    streamService.getStreamUrl(next.id)
-      .then((streamUrl) => {
-        if (!active) return;
-        // Keep the resolved URL on the track object
-        next.fileUrl = streamUrl;
+    const delayTimer = setTimeout(() => {
+      // 1. Prefetch the second next song's stream URL from the backend
+      if (afterNext?.id) {
+        streamService.prefetch(afterNext.id);
+      }
 
-        // Preload audio bytes into browser cache
-        const audio = new Audio(streamUrl);
-        audio.preload = 'auto';
-        audio.onloadedmetadata = () => {
-          if (active && audio.duration && audio.duration > 0) {
-            next.duration = audio.duration;
-          }
-        };
-        preloadAudioRef.current = audio;
-      })
-      .catch((err) => {
-        console.warn('[PlayerContext] Preload next song failed:', err);
-      });
+      // 2. Prefetch the next song's stream URL AND preload its audio bytes
+      streamService.getStreamUrl(next.id)
+        .then((streamUrl) => {
+          if (!active) return;
+          // Keep the resolved URL on the track object
+          next.fileUrl = streamUrl;
+
+          // Preload audio bytes into browser cache
+          const audio = new Audio(streamUrl);
+          audio.preload = 'auto';
+          audio.onloadedmetadata = () => {
+            if (active && audio.duration && audio.duration > 0) {
+              next.duration = audio.duration;
+            }
+          };
+          preloadAudioRef.current = audio;
+        })
+        .catch((err) => {
+          console.warn('[PlayerContext] Preload next song failed:', err);
+        });
+    }, 3000);
 
     return () => {
       active = false;
+      clearTimeout(delayTimer);
     };
   }, [queue]);
 
