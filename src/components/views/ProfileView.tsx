@@ -24,7 +24,21 @@ export const ProfileView: React.FC = () => {
       if (!token) return;
 
       try {
-        const res = await fetch(`http://${window.location.hostname}:5000/api/auth/me`, {
+        const baseUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+        let targetUrl = baseUrl ? `${baseUrl}/api/auth/me` : `http://localhost:5000/api/auth/me`;
+
+        if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
+          targetUrl = targetUrl.replace(/^http:/, 'https:');
+          if (targetUrl.includes('vercel.app')) {
+            targetUrl = targetUrl.replace(/:5000$/, '').replace(/:5000\/$/, '');
+          }
+        }
+
+        if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !baseUrl) {
+          targetUrl = `${window.location.origin}/api/auth/me`;
+        }
+
+        const res = await fetch(targetUrl, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) {

@@ -74,6 +74,9 @@ export const FullScreenPlayer: React.FC = () => {
   } = usePlayer();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [isCustomSpeed, setIsCustomSpeed] = useState(() => {
+    return ![0.5, 0.75, 1, 1.25, 1.5, 2].includes(playbackRate);
+  });
   const isClosingMenuRef = useRef(false);
   const isClosingQueueRef = useRef(false);
   const [isLargeScreen, setIsLargeScreen] = useState(() => {
@@ -377,28 +380,83 @@ export const FullScreenPlayer: React.FC = () => {
               <Share2 className="h-4 w-4 shrink-0 text-white/70" />
               <span>Share</span>
             </button>
-            <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                <Zap className="h-4 w-4 shrink-0 text-white/70" />
-                <span className="truncate">Song Speed</span>
+            <div className="flex flex-col w-full border-b border-white/5 pb-2">
+              <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <Zap className="h-4 w-4 shrink-0 text-white/70" />
+                  <span className="truncate">Song Speed</span>
+                </div>
+                <select 
+                  value={isCustomSpeed ? 'custom' : playbackRate}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    const val = e.target.value;
+                    if (val === 'custom') {
+                      setIsCustomSpeed(true);
+                    } else {
+                      setIsCustomSpeed(false);
+                      setPlaybackRate(Number(val));
+                    }
+                  }}
+                  className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[90px]"
+                >
+                  <option value={0.5}>0.5x</option>
+                  <option value={0.75}>0.75x</option>
+                  <option value={1}>Normal</option>
+                  <option value={1.25}>1.25x</option>
+                  <option value={1.5}>1.5x</option>
+                  <option value={2}>2x</option>
+                  <option value="custom">Custom...</option>
+                </select>
               </div>
-              <select 
-                value={playbackRate}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setPlaybackRate(Number(e.target.value));
-                  closeMenuSafe();
-                }}
-                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[80px]"
-              >
-                <option value={0.5}>0.5x</option>
-                <option value={0.75}>0.75x</option>
-                <option value={1}>Normal</option>
-                <option value={1.25}>1.25x</option>
-                <option value={1.5}>1.5x</option>
-                <option value={2}>2x</option>
-              </select>
+              {isCustomSpeed && (
+                <div className="px-4 py-2 flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center justify-between text-xs text-white/60">
+                    <span>Speed: {playbackRate.toFixed(2)}x</span>
+                    <button 
+                      onClick={() => {
+                        setPlaybackRate(1.0);
+                        setIsCustomSpeed(false);
+                      }}
+                      className="text-[#1db954] hover:underline text-[10px] uppercase font-bold"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => {
+                        const newRate = Math.max(0.25, Number((playbackRate - 0.05).toFixed(2)));
+                        setPlaybackRate(newRate);
+                      }}
+                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition active:scale-95"
+                    >
+                      -
+                    </button>
+                    <input 
+                      type="range"
+                      min={0.25}
+                      max={4.0}
+                      step={0.05}
+                      value={playbackRate}
+                      onChange={(e) => {
+                        setPlaybackRate(Number(e.target.value));
+                      }}
+                      className="flex-1 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#1db954] outline-none"
+                    />
+                    <button
+                      onClick={() => {
+                        const newRate = Math.min(4.0, Number((playbackRate + 0.05).toFixed(2)));
+                        setPlaybackRate(newRate);
+                      }}
+                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition active:scale-95"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
               <div className="flex items-center gap-3 min-w-0 flex-1">

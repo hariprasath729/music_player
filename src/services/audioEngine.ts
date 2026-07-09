@@ -44,9 +44,9 @@ class AudioEngine {
     }
   }
 
-  public play(genre: string, duration: number, startFromTime: number = 0, fileUrl?: string) {
+  public play(genre: string, duration: number, startFromTime: number = 0, fileUrl?: string, preloadedMedia?: HTMLAudioElement) {
     if (fileUrl) {
-      this.playMedia(fileUrl, duration, startFromTime);
+      this.playMedia(fileUrl, duration, startFromTime, preloadedMedia);
       return;
     }
 
@@ -71,17 +71,34 @@ class AudioEngine {
     this.startGenreLoop(genre);
   }
 
-  private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
+  private playMedia(fileUrl: string, duration: number, startFromTime: number = 0, preloadedMedia?: HTMLAudioElement) {
     this.clearAllNodes();
 
-    if (!this.media || this.media.src !== fileUrl) {
+    if (preloadedMedia && preloadedMedia.src === fileUrl) {
+      if (this.media && this.media !== preloadedMedia) {
+        this.media.pause();
+        this.media.onended = null;
+        this.media.onloadedmetadata = null;
+      }
+      this.media = preloadedMedia;
+      // Bind standard ended handlers for preloaded media
+      this.media.onended = () => {
+        this.mediaEnded = true;
+      };
+      this.media.onloadedmetadata = () => {
+        if (this.media && Number.isFinite(this.media.duration)) {
+          this.currentTrackDuration = this.media.duration;
+        }
+      };
+    } else if (!this.media || this.media.src !== fileUrl) {
       if (this.media) {
         this.media.pause();
+        this.media.onended = null;
+        this.media.onloadedmetadata = null;
       }
       this.media = new Audio(fileUrl);
       this.media.crossOrigin = 'anonymous';
       this.media.preload = 'auto';
-      this.media.playbackRate = this.playbackRate;
       this.media.onloadedmetadata = () => {
         if (this.media && Number.isFinite(this.media.duration)) {
           this.currentTrackDuration = this.media.duration;

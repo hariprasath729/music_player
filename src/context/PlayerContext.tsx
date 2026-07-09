@@ -571,7 +571,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         // Store the resolved temporary URL on the track object so togglePlay can resume it.
         track.fileUrl = streamUrl;
         setIsPlaying(true);
-        audioEngine.play(track.genre, track.duration, 0, streamUrl);
+        // Reuse preloaded audio element if it matches
+        const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
+          ? preloadAudioRef.current
+          : undefined;
+        audioEngine.play(track.genre, track.duration, 0, streamUrl, preloadedElement);
         audioEngine.setVolume(isMuted ? 0 : volume);
         if (typeof (audioEngine as any).setPlaybackRate === 'function') {
           (audioEngine as any).setPlaybackRate(playbackRate);
@@ -604,7 +608,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       streamService.getStreamUrl(currentTrack.id)
         .then((streamUrl) => {
           currentTrack.fileUrl = streamUrl;
-          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl);
+          // Reuse preloaded audio element if it matches
+          const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
+            ? preloadAudioRef.current
+            : undefined;
+          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl, preloadedElement);
           audioEngine.setVolume(isMuted ? 0 : volume);
           if (typeof (audioEngine as any).setPlaybackRate === 'function') {
             (audioEngine as any).setPlaybackRate(playbackRate);
