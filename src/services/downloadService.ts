@@ -30,16 +30,11 @@ export const downloadService = {
     track: { id: string; fileUrl?: string },
     onProgress?: (progress: number) => void
   ): Promise<boolean> => {
-    let url = track.fileUrl;
-
-    // If there's no permanent fileUrl (new secure architecture), request one via the stream service.
-    // The stream URL is a backend redirect — caches.put() will follow the redirect and store the CDN response.
-    if (!url) {
-      try {
-        url = await streamService.getStreamUrl(track.id);
-      } catch {
-        return false;
-      }
+    let url;
+    try {
+      url = await streamService.getStreamUrl(track.id);
+    } catch {
+      return false;
     }
     if (!url) return false;
 
