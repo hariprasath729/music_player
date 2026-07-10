@@ -535,11 +535,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       // Re-fetch a fresh stream URL for repeat-one (current token might be near expiry)
       streamService.getStreamUrl(currentTrack.id).then((streamUrl) => {
         const trackWithUrl = { ...currentTrack, fileUrl: streamUrl };
-        audioEngine.play(trackWithUrl.genre, trackWithUrl.duration, 0, streamUrl);
+        audioEngine.play(trackWithUrl.duration, 0, streamUrl);
         setCurrentTime(0);
       }).catch(() => {
         // On failure just try with whatever fileUrl is stored
-        audioEngine.play(currentTrack.genre, currentTrack.duration, 0, currentTrack.fileUrl);
+        audioEngine.play(currentTrack.duration, 0, currentTrack.fileUrl);
         setCurrentTime(0);
       });
     } else {
@@ -604,7 +604,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           const cachedUrl = `https://music-player.local/song/${track.id}`;
           track.fileUrl = cachedUrl;
           setIsPlaying(true);
-          audioEngine.play(track.genre, track.duration, 0, cachedUrl);
+          audioEngine.play(track.duration, 0, cachedUrl);
           audioEngine.setVolume(isMuted ? 0 : volume);
           if (typeof (audioEngine as any).setPlaybackRate === 'function') {
             (audioEngine as any).setPlaybackRate(playbackRate);
@@ -642,7 +642,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
           ? preloadAudioRef.current
           : undefined;
-        audioEngine.play(track.genre, track.duration, 0, streamUrl, preloadedElement);
+        audioEngine.play(track.duration, 0, streamUrl, preloadedElement);
         audioEngine.setVolume(isMuted ? 0 : volume);
         if (typeof (audioEngine as any).setPlaybackRate === 'function') {
           (audioEngine as any).setPlaybackRate(playbackRate);
@@ -683,7 +683,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
               ? preloadAudioRef.current
               : undefined;
-            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl, preloadedElement);
+            audioEngine.play(currentTrack.duration, currentTime, streamUrl, preloadedElement);
             audioEngine.setVolume(isMuted ? 0 : volume);
             if (typeof (audioEngine as any).setPlaybackRate === 'function') {
               (audioEngine as any).setPlaybackRate(playbackRate);
@@ -692,7 +692,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           })
           .catch(() => {
             // Fallback to old URL if getStreamUrl fails
-            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
+            audioEngine.play(currentTrack.duration, currentTime, currentTrack.fileUrl);
             audioEngine.setVolume(isMuted ? 0 : volume);
             if (typeof (audioEngine as any).setPlaybackRate === 'function') {
               (audioEngine as any).setPlaybackRate(playbackRate);
@@ -717,7 +717,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           } else {
             const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
             currentTrack.fileUrl = cachedUrl;
-            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, cachedUrl);
+            audioEngine.play(currentTrack.duration, currentTime, cachedUrl);
             audioEngine.setVolume(isMuted ? 0 : volume);
             if (typeof (audioEngine as any).setPlaybackRate === 'function') {
               (audioEngine as any).setPlaybackRate(playbackRate);

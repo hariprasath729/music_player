@@ -67,6 +67,11 @@ export const Navbar: React.FC = () => {
   const [updateVersion, setUpdateVersion] = useState<string>('unknown');
 
   const [notifications, setNotifications] = useState<InAppNotification[]>([]);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactSubject, setContactSubject] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+  const [contactSending, setContactSending] = useState(false);
+  const [contactSent, setContactSent] = useState(false);
 
   const fetchNotifications = async () => {
     if (!user) return;
@@ -90,6 +95,40 @@ export const Navbar: React.FC = () => {
     } catch (error) {
       console.error('Failed to dismiss notification:', error);
       showToast('Failed to dismiss notification');
+    }
+  };
+
+  const sendContactMessage = async () => {
+    if (!contactSubject.trim() || !contactMessage.trim()) {
+      showToast('Please fill in both subject and message', 'error');
+      return;
+    }
+    setContactSending(true);
+    try {
+      const apiBase = (import.meta.env.VITE_API_URL || 'https://music-player-z1db.onrender.com').replace(/\/$/, '');
+      const userEmail = user?.email || 'unknown@user.com';
+      const res = await fetch(`${apiBase}/api/auth/contact-admin`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userEmail,
+          name: user?.name || 'App User',
+          message: `[${contactSubject}]\n\n${contactMessage}`,
+        }),
+      });
+      if (res.ok) {
+        setContactSent(true);
+        setContactSubject('');
+        setContactMessage('');
+        showToast('Message sent to admin!', 'check');
+        setTimeout(() => { setShowContactModal(false); setContactSent(false); }, 1800);
+      } else {
+        showToast('Failed to send message. Try again.', 'error');
+      }
+    } catch {
+      showToast('Failed to send message. Try again.', 'error');
+    } finally {
+      setContactSending(false);
     }
   };
 
@@ -526,12 +565,81 @@ export const Navbar: React.FC = () => {
               >
                 General Settings
               </button>
+              <button
+                onClick={() => { setActiveDropdown(null); setShowContactModal(true); }}
+                className="w-full px-4 py-3 text-left text-sm text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
+                Contact Admin
+              </button>
               
             </div>
           )}
         </>
       )}
     </header>
+
+      {/* Contact Admin Modal */}
+      {showContactModal && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowContactModal(false); }}
+        >
+          <div className="relative w-full max-w-md rounded-2xl bg-[#181818] p-6 shadow-2xl border border-white/10">
+            <button
+              onClick={() => setShowContactModal(false)}
+              className="absolute right-4 top-4 text-[#b3b3b3] hover:text-white transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <h2 className="mb-1 text-xl font-bold text-white">Contact Admin</h2>
+            <p className="mb-5 text-sm text-[#b3b3b3]">
+              Send a message to the admin. We'll get back to you as soon as possible.
+            </p>
+            {contactSent ? (
+              <div className="flex flex-col items-center gap-3 py-6">
+                <div className="h-12 w-12 rounded-full bg-[#1db954]/20 flex items-center justify-center">
+                  <svg className="h-6 w-6 text-[#1db954]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <p className="text-white font-semibold">Message sent!</p>
+                <p className="text-sm text-[#b3b3b3]">The admin will review your message shortly.</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#b3b3b3]">Subject</label>
+                  <input
+                    type="text"
+                    value={contactSubject}
+                    onChange={(e) => setContactSubject(e.target.value)}
+                    placeholder="e.g. Song request, Bug report, Feedback..."
+                    maxLength={120}
+                    className="w-full rounded-lg bg-[#2a2a2a] px-4 py-3 text-sm text-white placeholder-[#666] outline-none border border-white/10 focus:border-[#1db954] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#b3b3b3]">Message</label>
+                  <textarea
+                    rows={5}
+                    value={contactMessage}
+                    onChange={(e) => setContactMessage(e.target.value)}
+                    placeholder="Describe your issue or request in detail..."
+                    maxLength={1000}
+                    className="w-full resize-none rounded-lg bg-[#2a2a2a] px-4 py-3 text-sm text-white placeholder-[#666] outline-none border border-white/10 focus:border-[#1db954] transition-colors"
+                  />
+                  <p className="mt-1 text-right text-xs text-[#666]">{contactMessage.length}/1000</p>
+                </div>
+                <button
+                  onClick={sendContactMessage}
+                  disabled={contactSending || !contactSubject.trim() || !contactMessage.trim()}
+                  className="w-full rounded-full bg-[#1db954] py-3 text-sm font-bold text-black transition hover:scale-[1.02] hover:bg-[#1ed760] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {contactSending ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 };

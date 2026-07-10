@@ -45,7 +45,7 @@ class AudioEngine {
     }
   }
 
-  public play(genre: string, duration: number, startFromTime: number = 0, fileUrl?: string, preloadedMedia?: HTMLAudioElement) {
+  public play( duration: number, startFromTime: number = 0, fileUrl?: string, preloadedMedia?: HTMLAudioElement) {
     if (fileUrl) {
       this.playMedia(fileUrl, duration, startFromTime, preloadedMedia);
       return;
