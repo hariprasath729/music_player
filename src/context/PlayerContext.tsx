@@ -1122,11 +1122,23 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const togglePlayRef = useRef(togglePlay);
   const nextTrackRef = useRef(nextTrack);
   const prevTrackRef = useRef(prevTrack);
+  const handleTrackEndRef = useRef(handleTrackEnd);
 
   // Keep refs up-to-date with latest PlayerContext callbacks to prevent stale closures.
   togglePlayRef.current = togglePlay;
   nextTrackRef.current = nextTrack;
   prevTrackRef.current = prevTrack;
+  handleTrackEndRef.current = handleTrackEnd;
+
+  // Register native ended handler to support background playback transitions when device is locked/sleeping
+  useEffect(() => {
+    audioEngine.setOnEnded(() => {
+      handleTrackEndRef.current();
+    });
+    return () => {
+      audioEngine.setOnEnded(() => {});
+    };
+  }, []);
 
   const mediaSessionActive = useRef<boolean>(false);
 

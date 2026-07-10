@@ -15,6 +15,7 @@ class AudioEngine {
   private currentTrackDuration: number = 200;
   private mediaEnded: boolean = false;
   private playbackRate: number = 1;
+  private onEndedCallback: (() => void) | null = null;
 
   // Pattern loop timers
   private loopInterval: number | null = null;
@@ -84,6 +85,9 @@ class AudioEngine {
       // Bind standard ended handlers for preloaded media
       this.media.onended = () => {
         this.mediaEnded = true;
+        if (this.onEndedCallback) {
+          this.onEndedCallback();
+        }
       };
       this.media.onloadedmetadata = () => {
         if (this.media && Number.isFinite(this.media.duration)) {
@@ -106,6 +110,9 @@ class AudioEngine {
       };
       this.media.onended = () => {
         this.mediaEnded = true;
+        if (this.onEndedCallback) {
+          this.onEndedCallback();
+        }
       };
     }
 
@@ -203,6 +210,10 @@ class AudioEngine {
 
   public getPlaybackRate(): number {
     return this.playbackRate;
+  }
+
+  public setOnEnded(callback: () => void) {
+    this.onEndedCallback = callback;
   }
 
   public getCurrentTime(): number {
