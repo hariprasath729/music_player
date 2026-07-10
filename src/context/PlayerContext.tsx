@@ -1251,6 +1251,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       ms.setActionHandler('pause', () => safe(() => togglePlayRef.current()));
       ms.setActionHandler('previoustrack', () => safe(() => prevTrackRef.current()));
       ms.setActionHandler('nexttrack', () => safe(() => nextTrackRef.current()));
+      // Allow seeking from lock screen / notification shade
+      try {
+        ms.setActionHandler('seekto', (details) => {
+          if (details.seekTime != null) {
+            seekTo(details.seekTime);
+          }
+        });
+        ms.setActionHandler('seekforward', (details) => {
+          seekTo(Math.min(currentTime + (details.seekOffset ?? 10), duration));
+        });
+        ms.setActionHandler('seekbackward', (details) => {
+          seekTo(Math.max(currentTime - (details.seekOffset ?? 10), 0));
+        });
+      } catch {
+        // seekto not supported on this browser
+      }
 
       mediaSessionActive.current = true;
     } else if (!hasValidTrack && mediaSessionActive.current) {
@@ -1259,6 +1275,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         ms.setActionHandler('pause', null);
         ms.setActionHandler('previoustrack', null);
         ms.setActionHandler('nexttrack', null);
+        try { ms.setActionHandler('seekto', null); } catch { /* ignore */ }
+        try { ms.setActionHandler('seekforward', null); } catch { /* ignore */ }
+        try { ms.setActionHandler('seekbackward', null); } catch { /* ignore */ }
       } catch (err) {
         console.error('[mediaSession] unregister error:', err);
       }
@@ -1273,6 +1292,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           ms.setActionHandler('pause', null);
           ms.setActionHandler('previoustrack', null);
           ms.setActionHandler('nexttrack', null);
+          try { ms.setActionHandler('seekto', null); } catch { /* ignore */ }
+          try { ms.setActionHandler('seekforward', null); } catch { /* ignore */ }
+          try { ms.setActionHandler('seekbackward', null); } catch { /* ignore */ }
         } catch {
           // no-op
         }
@@ -1281,21 +1303,32 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
   }, [currentTrack.id]);
 
-  // Sync playback state with Media Session
+  // Sync playback state + position with Media Session (timing bar + play/pause icon on lock screen)
   useEffect(() => {
     const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
     if (!ms) return;
 
     try {
       if (currentTrack && currentTrack.id !== '') {
+        // Update play/pause icon
         ms.playbackState = isPlaying ? 'playing' : 'paused';
+
+        // Update the timing / seek bar
+        const dur = duration > 0 ? duration : (currentTrack.duration ?? 0);
+        if (dur > 0 && Number.isFinite(currentTime) && Number.isFinite(dur)) {
+          ms.setPositionState({
+            duration: dur,
+            playbackRate: 1,
+            position: Math.min(currentTime, dur),
+          });
+        }
       } else {
         ms.playbackState = 'none';
       }
     } catch {
-      // ignore
+      // ignore browsers that don't fully support Media Session
     }
-  }, [isPlaying, currentTrack.id]);
+  }, [isPlaying, currentTime, duration, currentTrack.id]);
 
   // Update Media Session metadata when track changes
   useEffect(() => {
