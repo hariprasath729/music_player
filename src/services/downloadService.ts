@@ -39,75 +39,36 @@ export const downloadService = {
     if (!url) return false;
 
     try {
-      const response = await fetch(url);
-      if (!response.ok) return false;
-
-      const contentLength = response.headers.get('content-length');
-      const total = contentLength ? parseInt(contentLength, 10) : 0;
-
-      // If content-length is missing or it's an opaque CORS response, simulate the progress smoothly
-      if (total === 0 || response.type === 'opaque') {
-        let simulatedProgress = 0;
-        const interval = setInterval(() => {
-          simulatedProgress += 0.08;
-          if (simulatedProgress >= 0.95) {
-            simulatedProgress = 0.95;
-            clearInterval(interval);
-          }
-          if (onProgress) onProgress(simulatedProgress);
-        }, 120);
-
-        const cache = await caches.open(CACHE_NAME);
-        await cache.put(`https://music-player.local/song/${track.id}`, response.clone());
-        clearInterval(interval);
-        if (onProgress) onProgress(1);
-
-        const ids = downloadService.getDownloadedIds();
-        if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
-        return true;
-      }
-
-      // Read response body as stream to get real progress
-      const reader = response.body ? response.body.getReader() : null;
-      if (!reader) {
-        const cache = await caches.open(CACHE_NAME);
-        await cache.put(`https://music-player.local/song/${track.id}`, response.clone());
-        if (onProgress) onProgress(1);
-        const ids = downloadService.getDownloadedIds();
-        if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);
-        return true;
-      }
-
-      let receivedLength = 0;
-      const chunks: Uint8Array[] = [];
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        if (value) {
-          chunks.push(value);
-          receivedLength += value.length;
-          if (onProgress) {
-            onProgress(receivedLength / total);
-          }
+      // Start a simulated progress bar to keep UI active and responsive
+      let simulatedProgress = 0;
+      const interval = setInterval(() => {
+        simulatedProgress += 0.05;
+        if (simulatedProgress >= 0.95) {
+          simulatedProgress = 0.95;
         }
+        if (onProgress) onProgress(simulatedProgress);
+      }, 100);
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        clearInterval(interval);
+        return false;
       }
 
-      // Reconstruct full response from chunks
-      const chunksAll = new Uint8Array(receivedLength);
-      let position = 0;
-      for (const chunk of chunks) {
-        chunksAll.set(chunk, position);
-        position += chunk.length;
-      }
+      // Delegate buffering to native browser thread
+      const blob = await response.blob();
+      clearInterval(interval);
 
-      const blob = new Blob([chunksAll], { type: response.headers.get('content-type') || 'audio/mpeg' });
       const cache = await caches.open(CACHE_NAME);
       const newResponse = new Response(blob, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: response.headers,
+        status: 200,
+        headers: {
+          'Content-Type': response.headers.get('content-type') || 'audio/mpeg',
+          'Content-Length': blob.size.toString(),
+        },
       });
       await cache.put(`https://music-player.local/song/${track.id}`, newResponse);
+      if (onProgress) onProgress(1);
 
       const ids = downloadService.getDownloadedIds();
       if (!ids.includes(track.id)) downloadService.saveDownloadedIds([...ids, track.id]);

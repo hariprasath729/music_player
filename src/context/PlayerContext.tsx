@@ -449,7 +449,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         .catch((err) => {
           console.warn('[PlayerContext] Preload next song failed:', err);
         });
-    }, 3000);
+    }, 2500);
 
     return () => {
       active = false;

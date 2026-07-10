@@ -98,10 +98,13 @@ export const PlaylistView: React.FC = () => {
               togglePlaylistDownload(activePlaylist.id, isNowDownloaded);
               if (isNowDownloaded) {
                 showToast(`Downloading ${activePlaylist.title}...`, 'download');
-                for (const t of activePlaylist.tracks) {
-                  if (!downloadedTracks.includes(t.id)) await toggleDownload(t);
-                }
-                showToast(`Downloaded ${activePlaylist.title}`, 'check');
+                 const tracksToDownload = activePlaylist.tracks.filter(t => !downloadedTracks.includes(t.id));
+                 const chunkSize = 4;
+                 for (let i = 0; i < tracksToDownload.length; i += chunkSize) {
+                   const chunk = tracksToDownload.slice(i, i + chunkSize);
+                   await Promise.all(chunk.map(t => toggleDownload(t)));
+                 }
+                 showToast(`Downloaded ${activePlaylist.title}`, 'check');
               }
             }}
             className={`transition-transform hover:scale-110 ${downloaded ? 'text-[#1db954]' : 'text-white/60 hover:text-white'}`}
