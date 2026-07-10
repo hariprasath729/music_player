@@ -526,6 +526,7 @@ export const Navbar: React.FC = () => {
               >
                 General Settings
               </button>
+              
             </div>
           )}
         </>

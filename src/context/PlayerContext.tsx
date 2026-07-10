@@ -230,6 +230,24 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setDownloadedPlaylists(downloadService.getDownloadedPlaylists());
   }, []);
 
+  // When the user comes back online, silently re-download any tracks that were
+  // in the download list but whose cache entry was cleared by the browser.
+  useEffect(() => {
+    const handleOnline = async () => {
+      const ids = downloadService.getDownloadedIds();
+      if (ids.length === 0) return;
+      for (const id of ids) {
+        const exists = await downloadService.isCached(id);
+        if (!exists) {
+          // Re-download silently in the background
+          downloadService.downloadTrack({ id }).catch(() => {});
+        }
+      }
+    };
+    window.addEventListener('online', handleOnline);
+    return () => window.removeEventListener('online', handleOnline);
+  }, []);
+
   // Global input tracker for popup positioning
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
@@ -535,6 +553,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     // Check if offline and trying to play a non-downloaded song
     if (!navigator.onLine && !downloadedTracks.includes(track.id)) {
       showToast('You are offline. Only downloaded songs can be played.', 'error');
+      audioEngine.stop();
+      setIsPlaying(false);
       return;
     }
 
@@ -590,13 +610,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             (audioEngine as any).setPlaybackRate(playbackRate);
           }
           return true;
+        } else if (!navigator.onLine) {
+          // Cache is gone and we're offline — keep the download marker, block playback
+          showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
+          audioEngine.stop();
+          setIsPlaying(false);
+          return true; // Prevent falling through to online playback
         } else {
-          // Self-heal: remove ghost entry from UI
-          setDownloadedTracks((prev) => {
-            const updated = prev.filter((id) => id !== track.id);
-            downloadService.saveDownloadedIds(updated);
-            return updated;
-          });
+          // Online and cache is missing — silently trigger a background re-download
+          downloadService.downloadTrack({ id: track.id }).catch(() => {});
         }
       }
       return false;
@@ -648,6 +670,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       // Check if offline and trying to play a non-downloaded song
       if (!navigator.onLine && !downloadedTracks.includes(currentTrack.id)) {
         showToast('You are offline. Only downloaded songs can be played.', 'error');
+        audioEngine.pause();
+        setIsPlaying(false);
         return;
       }
 
@@ -682,12 +706,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       if (isDownloaded) {
         downloadService.isCached(currentTrack.id).then((exists) => {
           if (!exists) {
-            // Self-heal: remove ghost entry from UI
-            setDownloadedTracks((prev) => {
-              const updated = prev.filter((id) => id !== currentTrack.id);
-              downloadService.saveDownloadedIds(updated);
-              return updated;
-            });
+            if (!navigator.onLine) {
+              // Cache gone + offline — block playback, keep download marker
+              showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
+              return;
+            }
+            // Cache gone but online — silently re-download then play online
+            downloadService.downloadTrack({ id: currentTrack.id }).catch(() => {});
             resumeOnline();
           } else {
             const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
