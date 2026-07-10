@@ -51,25 +51,8 @@ class AudioEngine {
       return;
     }
 
-    this.initContext();
-    if (!this.ctx || !this.masterGain) return;
-
-    this.stop(); // Clear existing playback
-
-    this.isPlaying = true;
-    this.currentGenre = genre;
-    this.currentTrackDuration = duration;
-    
-    // Set timing
-    this.startTime = this.ctx.currentTime - startFromTime;
-
-    // Fade in
-    this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
-    this.masterGain.gain.setValueAtTime(0, this.ctx.currentTime);
-    this.masterGain.gain.linearRampToValueAtTime(0.7, this.ctx.currentTime + 0.1);
-
-    // Start procedural loops based on genre
-    this.startGenreLoop(genre);
+    console.warn('[AudioEngine] Play called without a valid file URL. Ignoring synth fallback.');
+    this.isPlaying = false;
   }
 
   private playMedia(fileUrl: string, duration: number, startFromTime: number = 0, preloadedMedia?: HTMLAudioElement) {
