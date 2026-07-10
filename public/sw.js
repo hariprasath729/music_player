@@ -1,5 +1,5 @@
 // Hardcode the version here. Update this string to trigger a new app update!
-const CACHE_NAME = "music-player-v12.5.7.3";
+const CACHE_NAME = "music-player-v12.5.7.4";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -108,13 +108,8 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // 1. Intercept media/audio requests to support offline playback of downloaded songs
-  if (
-    url.pathname.endsWith(".mp3") ||
-    url.pathname.endsWith(".wav") ||
-    url.hostname === "music-player.local" ||
-    request.destination === "audio"
-  ) {
+  // 1. Intercept media/audio requests strictly for downloaded songs to support offline playback
+  if (url.hostname === "music-player.local") {
     event.respondWith(handleAudioRequest(request));
     return;
   }
