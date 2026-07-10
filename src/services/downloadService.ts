@@ -122,6 +122,15 @@ export const downloadService = {
       return false;
     }
   },
+  isCached: async (trackId: string | number): Promise<boolean> => {
+    try {
+      const cache = await caches.open(CACHE_NAME);
+      const match = await cache.match(`https://music-player.local/song/${trackId}`);
+      return !!match;
+    } catch {
+      return false;
+    }
+  },
   removeTrack: async (track: { id: string; fileUrl?: string }): Promise<boolean> => {
     const cache = await caches.open(CACHE_NAME);
     // Use the stable virtual HTTPS URL (not the temp stream URL which changes each session)

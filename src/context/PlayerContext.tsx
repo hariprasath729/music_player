@@ -119,6 +119,8 @@ interface PlayerContextType {
   toggleDownload: (track: Track) => Promise<void>;
   downloadedPlaylists: string[];
   togglePlaylistDownload: (playlistId: string, isDownloaded: boolean) => void;
+  likedPlaylists: string[];
+  toggleLikePlaylist: (playlistId: string) => void;
   followedArtists: string[];
   toggleFollowArtist: (artistName: string) => void;
   savedAlbums: string[];
@@ -191,6 +193,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [newPlTitle, setNewPlTitle] = useState('');
   const [downloadedTracks, setDownloadedTracks] = useState<string[]>([]);
   const [downloadedPlaylists, setDownloadedPlaylists] = useState<string[]>([]);
+  const [likedPlaylists, setLikedPlaylists] = useState<string[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('music_player_liked_playlists') || '[]');
+    } catch {
+      return [];
+    }
+  });
   const [downloadProgress, setDownloadProgress] = useState<Record<string, number>>({});
   const [followedArtists, setFollowedArtists] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('music_player_followed_artists') || '[]'); } catch { return []; }
@@ -354,6 +363,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     localStorage.setItem('music_player_liked_tracks', JSON.stringify(likedTracks));
   }, [likedTracks]);
+
+  useEffect(() => {
+    localStorage.setItem('music_player_liked_playlists', JSON.stringify(likedPlaylists));
+  }, [likedPlaylists]);
 
   useEffect(() => {
     localStorage.setItem('music_player_history', JSON.stringify(history));
@@ -561,22 +574,41 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       playCountApi.increment(track.id).catch(err => console.error('Failed to increment count', err));
     }
 
-    // If the song is already downloaded, play it from the local cache immediately
-    if (downloadedTracks.includes(track.id)) {
-      const cachedUrl = `https://music-player.local/song/${track.id}`;
-      track.fileUrl = cachedUrl;
-      setIsPlaying(true);
-      audioEngine.play(track.genre, track.duration, 0, cachedUrl);
-      audioEngine.setVolume(isMuted ? 0 : volume);
-      if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-        (audioEngine as any).setPlaybackRate(playbackRate);
+    // If the song is already downloaded, check if it exists in local storage cache
+    const checkAndPlayCache = async () => {
+      const isDownloaded = downloadedTracks.includes(track.id);
+      if (isDownloaded) {
+        const exists = await downloadService.isCached(track.id);
+        if (exists) {
+          if (loadingTrackIdRef.current !== track.id) return true;
+          const cachedUrl = `https://music-player.local/song/${track.id}`;
+          track.fileUrl = cachedUrl;
+          setIsPlaying(true);
+          audioEngine.play(track.genre, track.duration, 0, cachedUrl);
+          audioEngine.setVolume(isMuted ? 0 : volume);
+          if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+            (audioEngine as any).setPlaybackRate(playbackRate);
+          }
+          return true;
+        } else {
+          // Self-heal: remove ghost entry from UI
+          setDownloadedTracks((prev) => {
+            const updated = prev.filter((id) => id !== track.id);
+            downloadService.saveDownloadedIds(updated);
+            return updated;
+          });
+        }
       }
-      return;
-    }
+      return false;
+    };
 
-    // Resolve the stream URL from the backend then start playback.
-    // The real CDN URL is never stored in the track object.
-    streamService.getStreamUrl(track.id)
+    checkAndPlayCache().then((playedFromCache) => {
+      if (playedFromCache) return;
+      if (loadingTrackIdRef.current !== track.id) return;
+
+      // Resolve the stream URL from the backend then start playback.
+      // The real CDN URL is never stored in the track object.
+      streamService.getStreamUrl(track.id)
       .then((streamUrl) => {
         // Prevent playing if the user has already switched to another song
         if (loadingTrackIdRef.current !== track.id) return;
@@ -600,6 +632,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         showToast('Could not load song. Please try again.', 'error');
         setIsPlaying(false);
       });
+    });
   };
 
   const togglePlay = useCallback((force: boolean = false, forceState?: boolean) => {
@@ -618,42 +651,59 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         return;
       }
 
-      // If the song is already downloaded, play it from the local cache immediately
-      if (downloadedTracks.includes(currentTrack.id)) {
-        const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
-        currentTrack.fileUrl = cachedUrl;
-        audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, cachedUrl);
-        audioEngine.setVolume(isMuted ? 0 : volume);
-        if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-          (audioEngine as any).setPlaybackRate(playbackRate);
-        }
-        setIsPlaying(true);
+      const resumeOnline = () => {
+        streamService.getStreamUrl(currentTrack.id)
+          .then((streamUrl) => {
+            currentTrack.fileUrl = streamUrl;
+            // Reuse preloaded audio element if it matches
+            const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
+              ? preloadAudioRef.current
+              : undefined;
+            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl, preloadedElement);
+            audioEngine.setVolume(isMuted ? 0 : volume);
+            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+              (audioEngine as any).setPlaybackRate(playbackRate);
+            }
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            // Fallback to old URL if getStreamUrl fails
+            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
+            audioEngine.setVolume(isMuted ? 0 : volume);
+            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+              (audioEngine as any).setPlaybackRate(playbackRate);
+            }
+            setIsPlaying(true);
+          });
+      };
+
+      // If the song is already downloaded, check if it exists in local storage cache
+      const isDownloaded = downloadedTracks.includes(currentTrack.id);
+      if (isDownloaded) {
+        downloadService.isCached(currentTrack.id).then((exists) => {
+          if (!exists) {
+            // Self-heal: remove ghost entry from UI
+            setDownloadedTracks((prev) => {
+              const updated = prev.filter((id) => id !== currentTrack.id);
+              downloadService.saveDownloadedIds(updated);
+              return updated;
+            });
+            resumeOnline();
+          } else {
+            const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
+            currentTrack.fileUrl = cachedUrl;
+            audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, cachedUrl);
+            audioEngine.setVolume(isMuted ? 0 : volume);
+            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+              (audioEngine as any).setPlaybackRate(playbackRate);
+            }
+            setIsPlaying(true);
+          }
+        });
         return;
       }
 
-      streamService.getStreamUrl(currentTrack.id)
-        .then((streamUrl) => {
-          currentTrack.fileUrl = streamUrl;
-          // Reuse preloaded audio element if it matches
-          const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
-            ? preloadAudioRef.current
-            : undefined;
-          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, streamUrl, preloadedElement);
-          audioEngine.setVolume(isMuted ? 0 : volume);
-          if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-            (audioEngine as any).setPlaybackRate(playbackRate);
-          }
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // Fallback to old URL if getStreamUrl fails
-          audioEngine.play(currentTrack.genre, currentTrack.duration, currentTime, currentTrack.fileUrl);
-          audioEngine.setVolume(isMuted ? 0 : volume);
-          if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-            (audioEngine as any).setPlaybackRate(playbackRate);
-          }
-          setIsPlaying(true);
-        });
+      resumeOnline();
     }
   }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime, downloadedTracks]);
 
@@ -809,6 +859,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         showToast('Action failed', 'error');
       }
     }
+  };
+
+  const toggleLikePlaylist = (playlistId: string) => {
+    setLikedPlaylists((prev) => {
+      const isLiked = prev.includes(playlistId);
+      if (isLiked) {
+        showToast('Removed playlist from library', 'heart');
+        return prev.filter((id) => id !== playlistId);
+      } else {
+        showToast('Saved playlist to library', 'heart');
+        return [...prev, playlistId];
+      }
+    });
   };
 
   const setView = (view: ViewType, playlist?: Playlist | null) => {
@@ -1313,6 +1376,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       toggleDownload,
       downloadedPlaylists,
       togglePlaylistDownload,
+      likedPlaylists,
+      toggleLikePlaylist,
       followedArtists,
       toggleFollowArtist,
       savedAlbums,
@@ -1351,6 +1416,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       isPlaybackLocked,
       downloadedTracks,
       downloadedPlaylists,
+      likedPlaylists,
       followedArtists,
       savedAlbums,
       addToPlaylistTrack,

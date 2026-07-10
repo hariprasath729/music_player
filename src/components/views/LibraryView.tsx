@@ -23,6 +23,7 @@ export const LibraryView: React.FC = () => {
     downloadedTracks,
     toggleDownload,
     downloadedPlaylists,
+    likedPlaylists,
     followedArtists,
     savedAlbums,
     activeFilter,
@@ -83,6 +84,17 @@ export const LibraryView: React.FC = () => {
     filteredPlaylists = filteredPlaylists.filter((p) => (p.title || '').toLowerCase().includes(librarySearch.toLowerCase()));
   }
   if (sort === 'A-Z') filteredPlaylists = filteredPlaylists.sort((a, b) => a.title.localeCompare(b.title));
+
+  const likedPublicPlaylists = useMemo(() => {
+    let list = PLAYLISTS.filter((p) => likedPlaylists.includes(p.id));
+    if (librarySearch) {
+      list = list.filter((p) => (p.title || '').toLowerCase().includes(librarySearch.toLowerCase()));
+    }
+    if (sort === 'A-Z') {
+      list = [...list].sort((a, b) => a.title.localeCompare(b.title));
+    }
+    return list;
+  }, [likedPlaylists, librarySearch, sort]);
 
   const filters: FilterMode[] = ['All', 'Playlists', 'Artists', 'Albums', 'Downloaded', 'Recently Played'];
   const sorts: SortMode[] = ['Recents', 'A-Z', 'Creator'];
@@ -254,6 +266,16 @@ export const LibraryView: React.FC = () => {
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
+              );
+            })}
+
+            {likedPublicPlaylists.map((pl) => {
+              return renderRow(
+                pl.title,
+                `Playlist • ${pl.tracks.length} songs`,
+                pl.coverGradient,
+                () => setView('playlist', pl),
+                currentTrack.id !== '' && pl.tracks.some((t) => t.id === currentTrack.id)
               );
             })}
           </>

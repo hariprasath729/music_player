@@ -14,12 +14,11 @@ export const PlaylistView: React.FC = () => {
     likedTracks, setAddToPlaylistTrack, isShuffle,
     addToQueue, showToast, toggleQueue, setView, setSearchQuery,
     downloadedTracks, toggleDownload, downloadedPlaylists, togglePlaylistDownload,
-    downloadProgress,
+    downloadProgress, likedPlaylists, toggleLikePlaylist,
   } = usePlayer();
 
   const [contextMenu, setContextMenu] = useState<{ track: Track } | null>(null);
   const [playlistMenuOpen, setPlaylistMenuOpen] = useState(false);
-  const [likedPlaylist, setLikedPlaylist] = useState(false);
 
   if (!activePlaylist) return null;
   const downloaded = downloadedPlaylists.includes(activePlaylist.id);
@@ -85,11 +84,11 @@ export const PlaylistView: React.FC = () => {
         <div className="flex items-center gap-5">
           {/* Like playlist */}
           <button
-            onClick={() => setLikedPlaylist(p => !p)}
-            className={`transition-transform hover:scale-110 ${likedPlaylist ? 'text-[#1db954]' : 'text-white/60 hover:text-white'}`}
-            title={likedPlaylist ? 'Remove from library' : 'Save to library'}
+            onClick={() => toggleLikePlaylist(activePlaylist.id)}
+            className={`transition-transform hover:scale-110 ${likedPlaylists.includes(activePlaylist.id) ? 'text-[#1db954]' : 'text-white/60 hover:text-white'}`}
+            title={likedPlaylists.includes(activePlaylist.id) ? 'Remove from library' : 'Save to library'}
           >
-            <Heart className={`h-6 w-6 sm:h-7 sm:w-7 ${likedPlaylist ? 'fill-[#1db954]' : ''}`} />
+            <Heart className={`h-6 w-6 sm:h-7 sm:w-7 ${likedPlaylists.includes(activePlaylist.id) ? 'fill-[#1db954]' : ''}`} />
           </button>
 
           {/* Download */}
@@ -142,14 +141,13 @@ export const PlaylistView: React.FC = () => {
                 <div className="absolute left-0 top-10 z-[100] max-h-80 w-64 overflow-y-auto rounded-xl bg-[#282828] shadow-2xl">
                   <button
                     onClick={() => {
-                      setLikedPlaylist(p => !p);
-                      showToast(likedPlaylist ? 'Removed from library' : 'Saved to library', 'check');
+                      toggleLikePlaylist(activePlaylist.id);
                       closeMenu();
                     }}
                     className="flex w-full items-center gap-3 px-4 py-3 text-[14px] text-[#b3b3b3] transition-colors hover:bg-[#3d3d3d] hover:text-white"
                   >
-                    <Heart className={`h-4 w-4 ${likedPlaylist ? 'fill-[#1db954] text-[#1db954]' : ''}`} />
-                    <span>{likedPlaylist ? 'Remove from library' : 'Save to library'}</span>
+                    <Heart className={`h-4 w-4 ${likedPlaylists.includes(activePlaylist.id) ? 'fill-[#1db954] text-[#1db954]' : ''}`} />
+                    <span>{likedPlaylists.includes(activePlaylist.id) ? 'Remove from library' : 'Save to library'}</span>
                   </button>
                   <div className="border-t border-white/10 px-4 pb-1 pt-2 text-[10px] font-bold uppercase tracking-widest text-white/40">
                     Go to Artist

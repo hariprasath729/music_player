@@ -1,5 +1,5 @@
 // Hardcode the version here. Update this string to trigger a new app update!
-const CACHE_NAME = "music-player-v12.5.7.2";
+const CACHE_NAME = "music-player-v12.5.7.3";
 
 // Files to cache (basic UI)
 const ASSETS_TO_CACHE = [
@@ -96,6 +96,10 @@ async function handleAudioRequest(request) {
   }
 
   // Fallback to fetching directly from network/CDN
+  const url = new URL(request.url);
+  if (url.hostname === "music-player.local") {
+    return new Response("Not found in cache", { status: 404, statusText: "Not Found" });
+  }
   return fetch(request);
 }
 
