@@ -1,10 +1,77 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Eye, EyeOff } from 'lucide-react';
 
 export const SignupPage: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitchToLogin }) => {
   const { signup, sendOtp, isLoading, error, clearError, isPendingApproval, setIsPendingApproval } = useAuth();
   const [form, setForm] = useState({ email: '', confirmEmail: '', password: '', name: '', day: '', month: '', year: '', gender: '' });
+
+  // Rate limiting lockout state (in seconds)
+  const [lockoutSecondsLeft, setLockoutSecondsLeft] = useState<number>(0);
+
+  // Format countdown as MM:SS
+  const formatLockoutTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Check for active lockout on mount
+  useEffect(() => {
+    try {
+      const expiryStr = localStorage.getItem('auth_login_lockout_expiry');
+      if (expiryStr) {
+        const expiry = parseInt(expiryStr, 10);
+        if (expiry > Date.now()) {
+          setLockoutSecondsLeft(Math.ceil((expiry - Date.now()) / 1000));
+        } else {
+          localStorage.removeItem('auth_login_lockout_expiry');
+        }
+      }
+    } catch {}
+  }, []);
+
+  // Update lockout countdown timer
+  useEffect(() => {
+    if (lockoutSecondsLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      try {
+        const expiryStr = localStorage.getItem('auth_login_lockout_expiry');
+        if (expiryStr) {
+          const expiry = parseInt(expiryStr, 10);
+          const diff = expiry - Date.now();
+          if (diff <= 0) {
+            setLockoutSecondsLeft(0);
+            localStorage.removeItem('auth_login_lockout_expiry');
+            clearError(); // clear the rate limit error automatically when done
+          } else {
+            setLockoutSecondsLeft(Math.ceil(diff / 1000));
+          }
+        } else {
+          setLockoutSecondsLeft(0);
+        }
+      } catch {
+        setLockoutSecondsLeft(0);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [lockoutSecondsLeft, clearError]);
+
+  // Sync state if context throws rate limit error
+  useEffect(() => {
+    if (error && (error.includes('Too many authentication attempts') || error.includes('Too many requests') || error.includes('rate limit'))) {
+      try {
+        const currentExpiry = localStorage.getItem('auth_login_lockout_expiry');
+        if (!currentExpiry || parseInt(currentExpiry, 10) < Date.now()) {
+          const expiry = Date.now() + 15 * 60 * 1000; // 15 minutes lockout
+          localStorage.setItem('auth_login_lockout_expiry', expiry.toString());
+          setLockoutSecondsLeft(15 * 60);
+        }
+      } catch {}
+    }
+  }, [error]);
   const [termsChecked, setTermsChecked] = useState(false);
   const [localError, setLocalError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -273,8 +340,22 @@ zm-3 12c13-4 28-3 44 3 2 1 1 3-1 4-13-5-28-5-41-2-2 0-3-2-2-5" fill="#fff"/>
               </p>
             </div>
 
-            <button type="submit" className="btn-signup" disabled={isLoading}>
-              {isLoading ? <span className="spinner" /> : 'Send OTP'}
+            <button
+              type="submit"
+              className="btn-signup"
+              disabled={isLoading || lockoutSecondsLeft > 0}
+              style={lockoutSecondsLeft > 0 ? {
+                opacity: 0.5,
+                cursor: 'not-allowed',
+                background: '#282828',
+                color: '#727272'
+              } : {}}
+            >
+              {lockoutSecondsLeft > 0
+                ? `Locked out (${formatLockoutTime(lockoutSecondsLeft)})`
+                : isLoading
+                  ? <span className="spinner" />
+                  : 'Send OTP'}
             </button>
           </form>
           ) : (
@@ -300,8 +381,22 @@ zm-3 12c13-4 28-3 44 3 2 1 1 3-1 4-13-5-28-5-41-2-2 0-3-2-2-5" fill="#fff"/>
                 ))}
               </div>
             </div>
-            <button type="submit" className="btn-signup" disabled={isLoading}>
-              {isLoading ? <span className="spinner" /> : 'Verify & Sign up'}
+            <button
+              type="submit"
+              className="btn-signup"
+              disabled={isLoading || lockoutSecondsLeft > 0}
+              style={lockoutSecondsLeft > 0 ? {
+                opacity: 0.5,
+                cursor: 'not-allowed',
+                background: '#282828',
+                color: '#727272'
+              } : {}}
+            >
+              {lockoutSecondsLeft > 0
+                ? `Locked out (${formatLockoutTime(lockoutSecondsLeft)})`
+                : isLoading
+                  ? <span className="spinner" />
+                  : 'Verify & Sign up'}
             </button>
             <button type="button" onClick={() => setOtpSent(false)} className="btn-signup" style={{ background: 'transparent', border: '1px solid #3e3e3e', color: '#fff', marginTop: '10px' }} disabled={isLoading}>
               Edit Details

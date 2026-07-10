@@ -74,6 +74,74 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
   const [errorMsg, setErrorMsg] = useState('');
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
   const toastIdRef = React.useRef(0);
+
+  // Rate limiting lockout state (in seconds)
+  const [lockoutSecondsLeft, setLockoutSecondsLeft] = useState<number>(0);
+
+  // Format countdown as MM:SS
+  const formatLockoutTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Check for active lockout on mount
+  useEffect(() => {
+    try {
+      const expiryStr = localStorage.getItem('auth_login_lockout_expiry');
+      if (expiryStr) {
+        const expiry = parseInt(expiryStr, 10);
+        if (expiry > Date.now()) {
+          setLockoutSecondsLeft(Math.ceil((expiry - Date.now()) / 1000));
+        } else {
+          localStorage.removeItem('auth_login_lockout_expiry');
+        }
+      }
+    } catch {}
+  }, []);
+
+  // Update lockout countdown timer
+  useEffect(() => {
+    if (lockoutSecondsLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      try {
+        const expiryStr = localStorage.getItem('auth_login_lockout_expiry');
+        if (expiryStr) {
+          const expiry = parseInt(expiryStr, 10);
+          const diff = expiry - Date.now();
+          if (diff <= 0) {
+            setLockoutSecondsLeft(0);
+            localStorage.removeItem('auth_login_lockout_expiry');
+            clearError(); // clear the rate limit error automatically when done
+          } else {
+            setLockoutSecondsLeft(Math.ceil(diff / 1000));
+          }
+        } else {
+          setLockoutSecondsLeft(0);
+        }
+      } catch {
+        setLockoutSecondsLeft(0);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [lockoutSecondsLeft, clearError]);
+
+  // Sync state if context throws rate limit error
+  useEffect(() => {
+    if (error && (error.includes('Too many authentication attempts') || error.includes('Too many requests') || error.includes('rate limit'))) {
+      try {
+        const currentExpiry = localStorage.getItem('auth_login_lockout_expiry');
+        if (!currentExpiry || parseInt(currentExpiry, 10) < Date.now()) {
+          const expiry = Date.now() + 15 * 60 * 1000; // 15 minutes lockout
+          localStorage.setItem('auth_login_lockout_expiry', expiry.toString());
+          setLockoutSecondsLeft(15 * 60);
+        }
+      } catch {}
+    }
+  }, [error]);
+
   
   // Contact Admin Modal State
   const [showContactModal, setShowContactModal] = useState(false);
@@ -322,8 +390,22 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
               >
                 Forgot your password?
               </a>
-              <button className="btn-login" type="submit" disabled={loading}>
-                {loading ? 'Logging In…' : 'Log In'}
+              <button
+                className="btn-login"
+                type="submit"
+                disabled={loading || lockoutSecondsLeft > 0}
+                style={lockoutSecondsLeft > 0 ? {
+                  opacity: 0.5,
+                  cursor: 'not-allowed',
+                  background: '#282828',
+                  color: '#727272'
+                } : {}}
+              >
+                {lockoutSecondsLeft > 0
+                  ? `Locked out (${formatLockoutTime(lockoutSecondsLeft)})`
+                  : loading
+                    ? 'Logging In…'
+                    : 'Log In'}
               </button>
             </form>
 
