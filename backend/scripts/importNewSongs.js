@@ -13,7 +13,7 @@
  *   2. Run: node backend/scripts/importNewSongs.js
  */
 
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { readFile, writeFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
@@ -21,6 +21,9 @@ import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load env vars from backend/.env relative to this script path
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // ── Song Schema ──
 const songSchema = new mongoose.Schema({
@@ -110,13 +113,15 @@ async function importSongs() {
   const content = await readFile(catalogPath, 'utf-8');
 
   // Locate the RAW_SONGS array in the file
-  const startIndex = content.indexOf('const RAW_SONGS: RawSong[] =[');
-  if (startIndex === -1) {
+  const match = content.match(/const\s+RAW_SONGS\s*:\s*RawSong\s*\[\s*\]\s*=\s*\[/);
+  if (!match) {
     console.error('❌ Could not find RAW_SONGS assignment in musicCatalog.ts');
     process.exit(1);
   }
 
-  const arrayStart = content.indexOf('[', startIndex);
+  const startIndex = match.index;
+  const equalsIndex = content.indexOf('=', startIndex);
+  const arrayStart = content.indexOf('[', equalsIndex);
   let bracketCount = 0;
   let arrayEndIndex = -1;
 
@@ -162,6 +167,9 @@ async function importSongs() {
   }
 
   if (addedCount > 0) {
+    // Sort by id ascending to ensure new songs are at the end
+    currentCatalog.sort((a, b) => Number(a.id) - Number(b.id));
+
     // Reconstruct musicCatalog.ts contents
     const header = content.substring(0, arrayStart);
     const footer = content.substring(arrayEndIndex);
