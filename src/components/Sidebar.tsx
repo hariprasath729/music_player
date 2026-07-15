@@ -6,23 +6,21 @@ import { PLAYLISTS, TRACKS } from '../data/musicCatalog';
 type LibraryFilter = 'Playlists' | 'Music';
 
 export const Sidebar: React.FC = () => {
-  const { currentView, setView, activePlaylist, likedTracks, currentTrack, playTrack } = usePlayer();
+  const { currentView, setView, activePlaylist, likedTracks, currentTrack, playTrack, customPlaylists, createPlaylist } = usePlayer();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [filter, setFilter] = useState<LibraryFilter>('Playlists');
 
   return (
     <aside
-      className={`hidden h-full flex-col gap-2 bg-[#121212] p-2 text-sm font-medium text-[#b3b3b3] select-none md:flex transition-[width] duration-300 ease-in-out shrink-0 ${
-        isCollapsed ? 'w-[80px]' : 'w-64'
-      }`}
+      className={`hidden h-full flex-col gap-2 bg-[#121212] p-2 text-sm font-medium text-[#b3b3b3] select-none md:flex transition-[width] duration-300 ease-in-out shrink-0 ${isCollapsed ? 'w-[80px]' : 'w-64'
+        }`}
     >
       {/* Top Nav Box */}
       <div className="bg-[#121212] rounded-lg px-2 py-2 flex flex-col gap-1">
         <button
           onClick={() => setView('home')}
-          className={`flex items-center gap-4 px-3 py-3 rounded-md transition-colors hover:text-white ${
-            currentView === 'home' ? 'text-white' : ''
-          } ${isCollapsed ? 'justify-center' : ''}`}
+          className={`flex items-center gap-4 px-3 py-3 rounded-md transition-colors hover:text-white ${currentView === 'home' ? 'text-white' : ''
+            } ${isCollapsed ? 'justify-center' : ''}`}
           title="Home"
         >
           <Home className="w-6 h-6 shrink-0" />
@@ -31,9 +29,8 @@ export const Sidebar: React.FC = () => {
 
         <button
           onClick={() => setView('search')}
-          className={`flex items-center gap-4 px-3 py-3 rounded-md transition-colors hover:text-white ${
-            currentView === 'search' ? 'text-white' : ''
-          } ${isCollapsed ? 'justify-center' : ''}`}
+          className={`flex items-center gap-4 px-3 py-3 rounded-md transition-colors hover:text-white ${currentView === 'search' ? 'text-white' : ''
+            } ${isCollapsed ? 'justify-center' : ''}`}
           title="Search"
         >
           <Search className="w-6 h-6 shrink-0" />
@@ -47,9 +44,8 @@ export const Sidebar: React.FC = () => {
         <div className={`px-3 py-3 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
           <button
             onClick={() => setView('library')}
-            className={`flex items-center gap-3 transition-colors hover:text-white ${
-              currentView === 'library' ? 'text-white' : ''
-            }`}
+            className={`flex items-center gap-3 transition-colors hover:text-white ${currentView === 'library' ? 'text-white' : ''
+              }`}
             title="Your Library"
           >
             <Library className="w-6 h-6 shrink-0" />
@@ -59,6 +55,12 @@ export const Sidebar: React.FC = () => {
           {!isCollapsed && (
             <div className="flex items-center gap-1">
               <button
+                onClick={() => {
+                  const title = prompt('Enter new playlist name:');
+                  if (title && title.trim()) {
+                    createPlaylist(title.trim());
+                  }
+                }}
                 className="p-1.5 rounded-full hover:bg-[#1a1a1a] hover:text-white transition-colors"
                 title="Create playlist or folder"
               >
@@ -89,21 +91,19 @@ export const Sidebar: React.FC = () => {
           <div className="px-4 py-2 flex gap-2 animate-fade-in">
             <button
               onClick={() => setFilter('Playlists')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
-                filter === 'Playlists'
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${filter === 'Playlists'
                   ? 'bg-white text-black'
                   : 'bg-[#232323] text-white hover:bg-[#2a2a2a]'
-              }`}
+                }`}
             >
               Playlists
             </button>
             <button
               onClick={() => setFilter('Music')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
-                filter === 'Music'
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${filter === 'Music'
                   ? 'bg-white text-black'
                   : 'bg-[#232323] text-white hover:bg-[#2a2a2a]'
-              }`}
+                }`}
             >
               Music
             </button>
@@ -117,9 +117,8 @@ export const Sidebar: React.FC = () => {
               {/* Liked Songs */}
               <button
                 onClick={() => setView('liked-songs')}
-                className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${
-                  currentView === 'liked-songs' ? 'bg-[#232323] text-white' : ''
-                } ${isCollapsed ? 'justify-center' : ''}`}
+                className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${currentView === 'liked-songs' ? 'bg-[#232323] text-white' : ''
+                  } ${isCollapsed ? 'justify-center' : ''}`}
                 title="Liked Songs"
               >
                 <div className="w-12 h-12 rounded flex items-center justify-center bg-gradient-to-br from-[#450af5] to-[#c4efd9] text-white shrink-0 shadow-md">
@@ -135,6 +134,46 @@ export const Sidebar: React.FC = () => {
                 )}
               </button>
 
+              {/* Custom Playlists */}
+              {customPlaylists.map((pl) => {
+                const songs = TRACKS.filter((t) => pl.songIds.includes(t.id));
+                const isActive = currentView === 'playlist' && activePlaylist?.id === pl.id;
+                const playlistObj = {
+                  id: pl.id,
+                  title: pl.title,
+                  description: 'Custom playlist',
+                  coverGradient: songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)',
+                  primaryColor: songs[0]?.color || '#282828',
+                  tracks: songs,
+                  likes: '0',
+                  followers: 0
+                };
+                return (
+                  <button
+                    key={pl.id}
+                    onClick={() => setView('playlist', playlistObj as any)}
+                    className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${isActive ? 'bg-[#232323] text-white' : ''
+                      } ${isCollapsed ? 'justify-center' : ''}`}
+                    title={`${pl.title} • ${songs.length} tracks`}
+                  >
+                    <div
+                      className="w-12 h-12 rounded shrink-0 shadow-md"
+                      style={{ background: songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)' }}
+                    />
+                    {!isCollapsed && (
+                      <div className="flex flex-col overflow-hidden animate-fade-in">
+                        <span className={`font-bold truncate ${isActive ? 'text-[#1db954]' : 'text-white'}`}>
+                          {pl.title}
+                        </span>
+                        <span className="text-xs text-[#a7a7a7] truncate">
+                          Custom playlist • {songs.length} tracks
+                        </span>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+
               {/* Preset Playlists */}
               {PLAYLISTS.map((playlist) => {
                 const isActive = currentView === 'playlist' && activePlaylist?.id === playlist.id;
@@ -142,9 +181,8 @@ export const Sidebar: React.FC = () => {
                   <button
                     key={playlist.id}
                     onClick={() => setView('playlist', playlist)}
-                    className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${
-                      isActive ? 'bg-[#232323] text-white' : ''
-                    } ${isCollapsed ? 'justify-center' : ''}`}
+                    className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${isActive ? 'bg-[#232323] text-white' : ''
+                      } ${isCollapsed ? 'justify-center' : ''}`}
                     title={`${playlist.title} • ${playlist.tracks.length} tracks`}
                   >
                     <div
@@ -175,9 +213,8 @@ export const Sidebar: React.FC = () => {
                   <button
                     key={track.id}
                     onClick={() => playTrack(track, TRACKS)}
-                    className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${
-                      isCurrent ? 'bg-[#232323]' : ''
-                    } ${isCollapsed ? 'justify-center' : ''}`}
+                    className={`w-full flex items-center gap-3 p-1.5 rounded-md hover:bg-[#1a1a1a] transition-colors text-left ${isCurrent ? 'bg-[#232323]' : ''
+                      } ${isCollapsed ? 'justify-center' : ''}`}
                     title={`${track.title} • ${track.artist}`}
                   >
                     <div className="relative w-12 h-12 rounded shrink-0 shadow-md overflow-hidden" style={{ background: track.gradient }}>

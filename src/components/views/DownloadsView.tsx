@@ -178,13 +178,23 @@ export const DownloadsView: React.FC = () => {
               return matchedPlaylists.map((pl, idx) => {
                 const songs = ('tracks' in pl) ? (pl as any).tracks : TRACKS.filter(t => (pl as any).songIds.includes(t.id));
                 const cover = ('coverGradient' in pl) ? (pl as any).coverGradient : (songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)');
+                const playlistObj = ('tracks' in pl) ? pl : {
+                  id: pl.id,
+                  title: pl.title,
+                  description: 'Custom playlist',
+                  coverGradient: cover,
+                  primaryColor: songs[0]?.color || '#282828',
+                  tracks: songs,
+                  likes: '0',
+                  followers: 0
+                };
                 return (
                   <React.Fragment key={`downloads-pl-${pl.id}-${idx}`}>
                     {renderRow(
                       pl.title,
                       `Playlist • ${songs.length} songs`,
                       cover,
-                      () => setView('playlist', pl as any),
+                      () => setView('playlist', playlistObj as any),
                       false,
                       <CheckCircle2 className="h-4 w-4 text-[#1db954] shrink-0" />
                     )}

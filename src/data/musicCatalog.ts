@@ -53528,7 +53528,6 @@ const RAW_SONGS: RawSong[] = [
     "duration": 231,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Porvizhi%20Paarvaiyal.jpg"
   },
-  
   {
     "id": 6764,
     "title": "Rebel Among Slave",
@@ -53537,7 +53536,6 @@ const RAW_SONGS: RawSong[] = [
     "duration": 55,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Rebel-Among-Slave-MassTamilan.org.jpg"
   },
-  
   {
     "id": 6766,
     "title": "Rise of KGF",
@@ -53650,7 +53648,6 @@ const RAW_SONGS: RawSong[] = [
     "duration": 245,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Salaam-Rocky-Bhai-MassTamilan.org.jpg"
   },
-  
   {
     "id": 6781,
     "title": "Settai",
@@ -53786,6 +53783,942 @@ const RAW_SONGS: RawSong[] = [
     "album": "KGF (Original Soundtrack) Vol 1",
     "duration": 87,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Your-El-Dorado-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6800,
+    "title": "Aala Aala (Lakshmi)",
+    "artist": "G V Prakash Kumar, Saindhavi",
+    "album": "Lakshmi",
+    "duration": 192,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Aala-Aala-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6801,
+    "title": "Aalaliloo Aalaliloo Nee Paada",
+    "artist": "Swagatha S Krishnan",
+    "album": "Karu",
+    "duration": 324,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Aalaliloo-Aalaliloo-Nee-Paada-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6802,
+    "title": "Aangu Vaangu",
+    "artist": "C S Sam, Mukesh Mohamed, M L R Karthikeyan, Guna",
+    "album": "Adanga Maru",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Aangu-Vaangu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6803,
+    "title": "Aathangarai",
+    "artist": "C S Sam, Swetha Mohan",
+    "album": "Kadalai",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Aathangarai.jpg"
+  },
+  {
+    "id": 6804,
+    "title": "Aayava Kaanom",
+    "artist": "Ma Ka Pa Anand",
+    "album": "Kadalai",
+    "duration": 231,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Aayava-Kaanom.jpg"
+  },
+  {
+    "id": 6805,
+    "title": "Agulu Bagulu",
+    "artist": "Benny Dayal",
+    "album": "100",
+    "duration": 237,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Agulu-Bagulu-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6806,
+    "title": "Apdi Paakadhadi",
+    "artist": "Anirudh Ravichander, Swagatha S Krishnan",
+    "album": "Jada",
+    "duration": 236,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Apdi-Paakadhadi-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6807,
+    "title": "Arrival Of The Ruffian",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 48,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Arrival-Of-The-Ruffian-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6808,
+    "title": "Begining Of The War",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 131,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Begining-Of-The-War-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6809,
+    "title": "Bikki Likki",
+    "artist": "Nikhita Gandhi",
+    "album": "K13",
+    "duration": 187,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Bikki-Likki-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6810,
+    "title": "Bygones",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 119,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Bygones-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6811,
+    "title": "Dilli's Swag",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 50,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Dilli's-Swag-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6812,
+    "title": "Dreamy Chellamma",
+    "artist": "Saindhavi",
+    "album": "Lakshmi",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Dreamy-Chellamma-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6813,
+    "title": "Eternal Love Of Father",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 194,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Eternal-Love-Of-Father-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6814,
+    "title": "Gaandu Kannamma",
+    "artist": "Vivek Mervin",
+    "album": "Gaandu Kannamma",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Gaandu-Kannamma-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6815,
+    "title": "Ghetto Chase",
+    "artist": "Meghavarshini, Avantika, Monisha, Chennai Orchestra",
+    "album": "Vikram Vedha",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ghetto-Chase-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6816,
+    "title": "Ghetto Chase (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ghetto-Chase-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6817,
+    "title": "Gorilla Theme",
+    "artist": "Aishwarya, Anthony Daasan",
+    "album": "Gorilla",
+    "duration": 187,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Gorilla-Theme-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6818,
+    "title": "Grief Of Dilli",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 224,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Grief-Of-Dilli-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6819,
+    "title": "Hey Amaicha",
+    "artist": "Aravind Srinivas",
+    "album": "NOTA",
+    "duration": 63,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Hey-Amaicha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6820,
+    "title": "Idhu Emosion",
+    "artist": "Chennai Orchestra",
+    "album": "Vikram Vedha",
+    "duration": 101,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Idhu-Emosion-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6821,
+    "title": "Idhu Emosion (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 101,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Idhu-Emosion-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6822,
+    "title": "Iraiva Iraiva",
+    "artist": "C S Sam",
+    "album": "Lakshmi",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Iraiva-Iraiva-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6823,
+    "title": "Kaar Irul (Adanga Maru)",
+    "artist": "Sivam",
+    "album": "Adanga Maru",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kaar-Irul-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6824,
+    "title": "Kaithi Main Theme",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 28,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kaithi-Main-Theme-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6825,
+    "title": "Kallooliye",
+    "artist": "Sam CS, Swagatha S Krishnan",
+    "album": "Mr Chandramouli",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kallooliye-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6826,
+    "title": "Kandapadi",
+    "artist": "Guna",
+    "album": "Mr Chandramouli",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kandapadi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6827,
+    "title": "Kannadi Nenjan",
+    "artist": "Santhosh Narayanan",
+    "album": "Vanjagar Ulagam",
+    "duration": 221,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kannadi-Nenjan-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6828,
+    "title": "Kannamma (Ispade Rajavum Idhaya Raniyum)",
+    "artist": "Anirudh Ravichander",
+    "album": "Ispade Rajavum Idhaya Raniyum",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kannamma-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6829,
+    "title": "Kannanin Leelai",
+    "artist": "Swagatha S Krishnan",
+    "album": "Vanjagar Ulagam",
+    "duration": 213,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kannanin-Leelai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6830,
+    "title": "Kanne Kanne (Ayogya)",
+    "artist": "Anirudh Ravichander, C S Sam",
+    "album": "Ayogya",
+    "duration": 225,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kanne-Kanne-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6831,
+    "title": "Kannukkulla Vandhu",
+    "artist": "C S Sam, Nincy",
+    "album": "Kadalai",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kannukkulla-Vandhu.jpg"
+  },
+  {
+    "id": 6832,
+    "title": "Karuppu Vellai",
+    "artist": "Sivam, Sam CS",
+    "album": "Vikram Vedha",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Karuppu-Vellai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6833,
+    "title": "Karuve (Yaaro Yaaro Unnai)",
+    "artist": "K S Chithra",
+    "album": "Karu",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Karuve-(Yaaro-Yaaro-Unnai)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6834,
+    "title": "Kill And Destroy",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 198,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kill-And-Destroy-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6835,
+    "title": "Kirukkan",
+    "artist": "C S Sam",
+    "album": "Vanjagar Ulagam",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Kirukkan-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6836,
+    "title": "Konjali Konjali Ravellam Nee",
+    "artist": "D Sathyaprakash, Neha Venugopal, JKA Shalini",
+    "album": "Karu",
+    "duration": 167,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Konjali-Konjali-Ravellam-Nee-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6837,
+    "title": "Love Love Me",
+    "artist": "C S Sam",
+    "album": "Devi 2",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Love-Love-Me-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6838,
+    "title": "Maane Unna",
+    "artist": "C S Sam",
+    "album": "Rajavamsam",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Maane-Unna-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6839,
+    "title": "Mapila Vandha",
+    "artist": "Mukesh, C S Sam, Sindu Sampath",
+    "album": "Rajavamsam",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Mapila-Vandha-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6840,
+    "title": "Mayakkathe Maaya Kanna",
+    "artist": "Srinisha Jayaseelan",
+    "album": "Sabhaapathy",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Mayakkathe-Maaya-Kanna-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6841,
+    "title": "Morrakka Mattrakkaa",
+    "artist": "Uthara Unnikrishnan",
+    "album": "Lakshmi",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Morrakka-Mattrakkaa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6842,
+    "title": "Mr Chandramouli Theme",
+    "artist": "Sam CS, Brindha Sivakumar",
+    "album": "Mr Chandramouli",
+    "duration": 193,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Mr.-Chandramouli-Theme-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6843,
+    "title": "Naan Thozhum Deivame",
+    "artist": "Sathyaprakash D",
+    "album": "Carbon",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Naan-Thozhum-Deivame-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6844,
+    "title": "Nanba",
+    "artist": "C S Sam",
+    "album": "100",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Nanba-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6845,
+    "title": "Ne Eppa Varuva Appa",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 74,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ne-Eppa-Varuva-Appa-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6846,
+    "title": "Neel Iravu",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 81,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Neel-Iravu-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6847,
+    "title": "Nenjae Nenjae",
+    "artist": "Karthik, Jonita Gandhi",
+    "album": "Borrder",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Nenjae-Nenjae-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6848,
+    "title": "Nepolian Theme",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 144,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Nepolian-Theme-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6849,
+    "title": "Night Is Dark",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 113,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Night-Is-Dark-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6850,
+    "title": "Nights Of Neverland",
+    "artist": "C S Sam, Chennai Orchestra",
+    "album": "Iravukku Aayiram Kangal",
+    "duration": 138,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Nights-Of-Neverland-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6851,
+    "title": "Nilladhey Nilladhey",
+    "artist": "D Sathyaprakash",
+    "album": "Lakshmi",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Nilladhey-Nilladhey-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6852,
+    "title": "Olamikka",
+    "artist": "Sathya Prakash",
+    "album": "Jada",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Olamikka-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6853,
+    "title": "Oru Katha Sollatta",
+    "artist": "Sam CS, Sethu Thankachan, Kannan M, Ravikumar, Chennai Orchestra",
+    "album": "Vikram Vedha",
+    "duration": 84,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Oru-Katha-Sollatta-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6854,
+    "title": "Oru Katha Sollatta (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 84,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Oru-Katha-Sollatta-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6855,
+    "title": "Oru Saayangalam",
+    "artist": "C S Sam",
+    "album": "K13",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Oru-Saayangalam-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6856,
+    "title": "Otha Mazhaiyila",
+    "artist": "Hariharan",
+    "album": "Kadalai",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Otha-Mazhaiyila.jpg"
+  },
+  {
+    "id": 6857,
+    "title": "Pachai Dhrogangal",
+    "artist": "Haricharan",
+    "album": "Adanga Maru",
+    "duration": 225,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Pachai-Dhrogangal-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6858,
+    "title": "Pappara Pappaa",
+    "artist": "Praniti, Riyaz, Sri Vishnu, Pranav",
+    "album": "Lakshmi",
+    "duration": 165,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Pappara-Pappaa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6859,
+    "title": "Penne Penne (Sabhaapathy)",
+    "artist": "Pradeep Kumar",
+    "album": "Sabhaapathy",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Penne-Penne-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6860,
+    "title": "Pogatha Yennavittu",
+    "artist": "Pradeep Kumar, Neha Venugopal",
+    "album": "Vikram Vedha",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Pogatha-Yennavittu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6861,
+    "title": "Power Play",
+    "artist": "C S Sam",
+    "album": "NOTA",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Power-Play-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6862,
+    "title": "Raajadhi Raja",
+    "artist": "Ranjith, Mukesh Mohamed",
+    "album": "Mr Chandramouli",
+    "duration": 202,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Raajadhi-Raja-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6863,
+    "title": "Raja Raja Kula",
+    "artist": "Anirudh Ravichander, Swagatha S Krishnan",
+    "album": "NOTA",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Raja-Raja-Kula-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6864,
+    "title": "Ready Ready",
+    "artist": "Nincy Vincent",
+    "album": "Devi 2",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ready-Ready-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6865,
+    "title": "Rise Of Dilli",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 79,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Rise-Of-Dilli-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6866,
+    "title": "Saayaali",
+    "artist": "D Sathyaprakash, Chinmayi",
+    "album": "Adanga Maru",
+    "duration": 308,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Saayaali-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6867,
+    "title": "Sandaali",
+    "artist": "Paul Prakash",
+    "album": "Ispade Rajavum Idhaya Raniyum",
+    "duration": 226,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Sandaali-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6868,
+    "title": "Sangu Sattham",
+    "artist": "Sethu Thankachan, Kannan M, Ravikumar",
+    "album": "Vikram Vedha",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Sangu-Sattham-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6869,
+    "title": "Sangu Sattham (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Sangu-Sattham-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6870,
+    "title": "So Mitta",
+    "artist": "Mukesh Mohamed, Guna",
+    "album": "Gorilla",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/So-Mitta-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6871,
+    "title": "Sokkura Penne",
+    "artist": "Shankar Mahadevan",
+    "album": "Devi 2",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Sokkura-Penne-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6872,
+    "title": "Sound Of Revenge",
+    "artist": "Sam CS",
+    "album": "Karu",
+    "duration": 139,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Sound-Of-Revenge-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6873,
+    "title": "Tarrake Tararrake",
+    "artist": "Benny Dayal",
+    "album": "Jada",
+    "duration": 193,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Tarrake-Tararrake-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6874,
+    "title": "Tasakku Tasakku",
+    "artist": "Mukesh, M L R Karthikeyan, Guna",
+    "album": "Vikram Vedha",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Tasakku-Tasakku-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6875,
+    "title": "The Battle Of Cop And Killer",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 90,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Battle-Of-Cop-And-Killer-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6876,
+    "title": "The Divide",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 64,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Divide-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6877,
+    "title": "The Emotion Hustler",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 42,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Emotion-Hustler-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6878,
+    "title": "The Hot Biriyani",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 110,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Hot-Biriyani-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6879,
+    "title": "The Maze",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 58,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Maze-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6880,
+    "title": "The Phase Of Deathcall",
+    "artist": "Sam C S",
+    "album": "Kaithi (Original Sound Track)",
+    "duration": 34,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Phase-Of-Deathcall-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6881,
+    "title": "The Pursuit",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 151,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Pursuit-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6882,
+    "title": "The Rhythm of Dance",
+    "artist": "Jecin George",
+    "album": "Lakshmi",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Rhythm-of-Dance-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6883,
+    "title": "The Rise Of A Leader",
+    "artist": "C S Sam",
+    "album": "NOTA",
+    "duration": 167,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Rise-Of-A-Leader-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6884,
+    "title": "The Sorrow of Simon",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 75,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/The-Sorrow-of-Simon-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6885,
+    "title": "Thee Yazhini",
+    "artist": "Yuvan Shankar Raja",
+    "album": "Vanjagar Ulagam",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Thee-Yazhini-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6886,
+    "title": "Theeraadho Vali",
+    "artist": "Haricharan",
+    "album": "Mr Chandramouli",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Theeraadho-Vali-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6887,
+    "title": "Uyir Uruvaatha Uru",
+    "artist": "D Sathyaprakash, Chinmayi",
+    "album": "Iravukku Aayiram Kangal",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Uyir-Uruvaatha-Uru-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6888,
+    "title": "Vaane Vaane (Carbon)",
+    "artist": "Haricharan, Sam C S , Chinmayi Sripada",
+    "album": "Carbon",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vaane-Vaane-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6889,
+    "title": "Vedha's Angst",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 160,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vedha's-Angst-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6890,
+    "title": "Vedha's Swag",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 196,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vedha's-Swag-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6891,
+    "title": "Ver Varai",
+    "artist": "Haricharan",
+    "album": "Kadalai",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ver-Varai.jpg"
+  },
+  {
+    "id": 6892,
+    "title": "Vera Level U",
+    "artist": "Deepak, Pooja Vaidyanath, Thaman S",
+    "album": "Ayogya",
+    "duration": 307,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vera-Level-U-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6893,
+    "title": "Vikram's Angst",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 95,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vikram's-Angst-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6894,
+    "title": "Vikram + Vedha",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 40,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vikram-%2B-Vedha-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6895,
+    "title": "Vikram Deciphers",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 172,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vikram-Deciphers-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6896,
+    "title": "Vikram vs Vedha",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 191,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Vikram-vs.-Vedha-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6897,
+    "title": "Voice Of Karu",
+    "artist": "Sam CS",
+    "album": "Karu",
+    "duration": 197,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Voice-Of-Karu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6898,
+    "title": "Winds Of The Darkest Hour",
+    "artist": "Chennai Orchestra",
+    "album": "Iravukku Aayiram Kangal",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Winds-Of-The-Darkest-Hour-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6899,
+    "title": "Yaamam",
+    "artist": "Swagatha S Krishnan",
+    "album": "K13",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Yaamam-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6900,
+    "title": "Yaanji",
+    "artist": "Anirudh Ravichander, Shakthisree Gopalan",
+    "album": "Vikram Vedha",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Yaanji-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6901,
+    "title": "Yaar Kalikku",
+    "artist": "C S Sam",
+    "album": "NOTA",
+    "duration": 98,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Yaar-Kalikku-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6902,
+    "title": "Yaaradiyo",
+    "artist": "Sid Sriram, C S Sam",
+    "album": "Gorilla",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Yaaradiyo-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6903,
+    "title": "Ye Di Raasathi",
+    "artist": "C S Sam, Kavita Thomas",
+    "album": "100",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Ye-Di-Raasathi-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6904,
+    "title": "Yea Pa Yeppappa",
+    "artist": "C S Sam, Swagatha S Krishnan",
+    "album": "Iravukku Aayiram Kangal",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45@main/covers/Yea-Pa-Yeppappa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6905,
+    "title": "Yean Penne Neeyum",
+    "artist": "Haricharan",
+    "album": "Iravukku Aayiram Kangal",
+    "duration": 223,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yean-Penne-Neeyum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6906,
+    "title": "Yedhedho Aanene",
+    "artist": "Sam CS, Chinmayi Sripaada",
+    "album": "Mr Chandramouli",
+    "duration": 303,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yedhedho-Aanene-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6907,
+    "title": "Yei Kadavulae",
+    "artist": "Harish Kalyan, Vijay Sethupathi",
+    "album": "Ispade Rajavum Idhaya Raniyum",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yei-Kadavulae-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6908,
+    "title": "Yela Yela",
+    "artist": "Chinmayi Sripada",
+    "album": "Carbon",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yela-Yela-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6909,
+    "title": "Yenadi Penne",
+    "artist": "Abhijith Rao",
+    "album": "Yenni Thuniga",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yenadi-Penne-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 6910,
+    "title": "Yendi Raasathi",
+    "artist": "D Sathyaprakash, Roshini",
+    "album": "Ispade Rajavum Idhaya Raniyum",
+    "duration": 200,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yendi-Raasathi-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6911,
+    "title": "Yeno Pennae",
+    "artist": "D Sathyaprakash, Swagatha S Krishnan",
+    "album": "Ispade Rajavum Idhaya Raniyum",
+    "duration": 226,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yeno-Pennae-MassTamilan.org.jpg"
+  },
+  {
+    "id": 6912,
+    "title": "Yethikka Yethikka",
+    "artist": "Benny Dayal, Sunitha Sarathy",
+    "album": "NOTA",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethikka-Yethikka-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6913,
+    "title": "Yethu Dharmam",
+    "artist": "Chennai Orchestra",
+    "album": "Vikram Vedha",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethu-Dharmam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6914,
+    "title": "Yethu Dharmam (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethu-Dharmam-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6915,
+    "title": "Yethu Nyayam",
+    "artist": "Sam CS, Chennai Orchestra",
+    "album": "Vikram Vedha",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethu-Nyayam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 6916,
+    "title": "Yethu Nyayam (Vikram Vedha BGM Original Background Score)",
+    "artist": "Unknown",
+    "album": "Vikram Vedha BGM Original Background Score",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethu-Nyayam-MassTamilan.io.jpg"
   }
 ]
 

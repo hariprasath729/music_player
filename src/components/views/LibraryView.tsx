@@ -239,11 +239,21 @@ export const LibraryView: React.FC = () => {
 
             {filteredPlaylists.map((pl) => {
               const songs = TRACKS.filter((t) => pl.songIds.includes(t.id));
+              const playlistObj = {
+                id: pl.id,
+                title: pl.title,
+                description: 'Custom playlist',
+                coverGradient: songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)',
+                primaryColor: songs[0]?.color || '#282828',
+                tracks: songs,
+                likes: '0',
+                followers: 0
+              };
               return renderRow(
                 pl.title,
                 `Custom playlist • ${songs.length} songs`,
                 songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)',
-                () => songs.length && playTrack(songs[0], songs),
+                () => setView('playlist', playlistObj as any),
                 false,
                 <div className="flex items-center gap-1">
                   <button
@@ -266,16 +276,6 @@ export const LibraryView: React.FC = () => {
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
-              );
-            })}
-
-            {likedPublicPlaylists.map((pl) => {
-              return renderRow(
-                pl.title,
-                `Playlist • ${pl.tracks.length} songs`,
-                pl.coverGradient,
-                () => setView('playlist', pl),
-                currentTrack.id !== '' && pl.tracks.some((t) => t.id === currentTrack.id)
               );
             })}
           </>
@@ -335,43 +335,57 @@ export const LibraryView: React.FC = () => {
               </React.Fragment>
             )}
 
-        {filter === 'Albums' && albums.filter(a => savedAlbums.includes(a.album)).length === 0 && (
+        {filter === 'Albums' && albums.filter(a => savedAlbums.includes(a.album)).length === 0 && likedPublicPlaylists.length === 0 && (
           <div className="py-12 text-center text-[#b3b3b3]">
-            <p className="text-lg font-bold text-white">No saved albums</p>
-            <p className="mt-1 text-sm">Albums you save will appear here</p>
+            <p className="text-lg font-bold text-white">No saved albums or playlists</p>
+            <p className="mt-1 text-sm">Albums and playlists you save will appear here</p>
           </div>
         )}
 
-        {(filter === 'All' || filter === 'Albums') &&
-          albums
-            .filter((a) => a.album && savedAlbums.includes(a.album))
-            .filter((a) => (a.album || '').toLowerCase().includes(librarySearch.toLowerCase()))
-            .map((a) =>
-              <React.Fragment key={`album-${a.album}`}>
-                {renderRow(
-                a.album,
-                `Album • ${a.artist}`,
-                  a.cover || '#282828',
-                () => {
-                  const albumPlaylist = PLAYLISTS.find((p) => p.title === a.album);
-                    if (albumPlaylist) {
-                      setView('playlist', albumPlaylist);
-                    } else {
-                      setView('playlist', {
-                        id: `album-${a.album}`,
-                        title: a.album,
-                        description: `Album by ${a.artist}`,
-                        coverGradient: a.cover || '#282828',
-                        primaryColor: a.tracks[0]?.color || '#282828',
-                        tracks: a.tracks,
-                        likes: 0
-                      } as any);
+        {(filter === 'All' || filter === 'Albums') && (
+          <>
+            {albums
+              .filter((a) => a.album && savedAlbums.includes(a.album))
+              .filter((a) => (a.album || '').toLowerCase().includes(librarySearch.toLowerCase()))
+              .map((a) =>
+                <React.Fragment key={`album-${a.album}`}>
+                  {renderRow(
+                    a.album,
+                    `Album • ${a.artist}`,
+                    a.cover || '#282828',
+                    () => {
+                      const albumPlaylist = PLAYLISTS.find((p) => p.title === a.album);
+                      if (albumPlaylist) {
+                        setView('playlist', albumPlaylist);
+                      } else {
+                        setView('playlist', {
+                          id: `album-${a.album}`,
+                          title: a.album,
+                          description: `Album by ${a.artist}`,
+                          coverGradient: a.cover || '#282828',
+                          primaryColor: a.tracks[0]?.color || '#282828',
+                          tracks: a.tracks,
+                          likes: 0
+                        } as any);
+                      }
                     }
-                }
-              )
-                }
+                  )}
+                </React.Fragment>
+              )}
+
+            {likedPublicPlaylists.map((pl) => (
+              <React.Fragment key={`saved-playlist-${pl.id}`}>
+                {renderRow(
+                  pl.title,
+                  `Album • Playlist`,
+                  pl.coverGradient,
+                  () => setView('playlist', pl),
+                  currentTrack.id !== '' && pl.tracks.some((t) => t.id === currentTrack.id)
+                )}
               </React.Fragment>
-            )}
+            ))}
+          </>
+        )}
 
         {(filter === 'Downloaded') && (
           <div className="flex flex-col">
@@ -420,9 +434,19 @@ export const LibraryView: React.FC = () => {
                     .map((pl, idx) => {
                       const songs = ('tracks' in pl) ? (pl as any).tracks : TRACKS.filter(t => (pl as any).songIds.includes(t.id));
                       const cover = ('coverGradient' in pl) ? (pl as any).coverGradient : (songs[0]?.gradient || 'linear-gradient(135deg,#333,#111)');
+                      const playlistObj = ('tracks' in pl) ? pl : {
+                        id: pl.id,
+                        title: pl.title,
+                        description: 'Custom playlist',
+                        coverGradient: cover,
+                        primaryColor: songs[0]?.color || '#282828',
+                        tracks: songs,
+                        likes: '0',
+                        followers: 0
+                      };
                       return (
                         <React.Fragment key={`downloaded-pl-${pl.id}-${idx}`}>
-                          {renderRow(pl.title, `Playlist • ${songs.length} songs`, cover, () => setView('playlist', pl as any))}
+                          {renderRow(pl.title, `Playlist • ${songs.length} songs`, cover, () => setView('playlist', playlistObj as any))}
                         </React.Fragment>
                       );
                     })
