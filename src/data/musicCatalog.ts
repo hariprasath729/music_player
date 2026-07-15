@@ -53057,22 +53057,6 @@ const RAW_SONGS: RawSong[] = [
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Aane%20Wala%20Star.jpg"
   },
   {
-    "id": 6697,
-    "title": "Aarathi Kannukkulla",
-    "artist": "D Imman",
-    "album": "Arjunan Per Paththu",
-    "duration": 247,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Aarathi%20Kannukkulla.jpg"
-  },
-  {
-    "id": 6698,
-    "title": "Ain't Nobody",
-    "artist": "Anirudh Ravichander, Ram Kumar",
-    "album": "DC",
-    "duration": 70,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Ain't%20Nobody.jpg"
-  },
-  {
     "id": 6699,
     "title": "All About Narachi",
     "artist": "Instrumental",
@@ -53119,14 +53103,6 @@ const RAW_SONGS: RawSong[] = [
     "album": "KGF (Original Soundtrack) Vol 2",
     "duration": 22,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Blind-Man-Fight-MassTamilan.org.jpg"
-  },
-  {
-    "id": 6705,
-    "title": "Bloody Valentine",
-    "artist": "Anirudh Ravichander",
-    "album": "DC",
-    "duration": 101,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Bloody%20Valentine.jpg"
   },
   {
     "id": 6706,
@@ -53305,14 +53281,6 @@ const RAW_SONGS: RawSong[] = [
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Introduction-to-Narachi-Mines-MassTamilan.org.jpg"
   },
   {
-    "id": 6729,
-    "title": "Irulenbadhu",
-    "artist": "Yuvan Shankar Raja",
-    "album": "Dark",
-    "duration": 213,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Irulenbadhu-MassTamilan.dev.jpg"
-  },
-  {
     "id": 6730,
     "title": "Kaadhal Seiveer",
     "artist": "Pavithra Chari, Mahakavi Bharathiyar, Darbuka Siva, Vijay Prakash",
@@ -53465,14 +53433,6 @@ const RAW_SONGS: RawSong[] = [
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Mother-%26-Child-Killed-MassTamilan.org.jpg"
   },
   {
-    "id": 6749,
-    "title": "Muththam Kodu",
-    "artist": "MD Pallavi, Bharathidasan, Darbuka Siva",
-    "album": "Lakshmikanthan Kolai Vazhakku",
-    "duration": 282,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Muththam%20Kodu.jpg"
-  },
-  {
     "id": 6750,
     "title": "My Name is Rocky",
     "artist": "Instrumental",
@@ -53537,14 +53497,6 @@ const RAW_SONGS: RawSong[] = [
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/One-Name-MassTamilan.dev.jpg"
   },
   {
-    "id": 6758,
-    "title": "Oru Step Vacha",
-    "artist": "G V Prakash Kumar, Adviteeya Vojjala",
-    "album": "Dark",
-    "duration": 234,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Oru-Step-Vacha-MassTamilan.dev.jpg"
-  },
-  {
     "id": 6759,
     "title": "Petrol",
     "artist": "Instrumental",
@@ -53576,14 +53528,7 @@ const RAW_SONGS: RawSong[] = [
     "duration": 231,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Porvizhi%20Paarvaiyal.jpg"
   },
-  {
-    "id": 6763,
-    "title": "Raga of Revenge",
-    "artist": "Anirudh Ravichander",
-    "album": "DC",
-    "duration": 131,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Raga%20of%20Revenge.jpg"
-  },
+  
   {
     "id": 6764,
     "title": "Rebel Among Slave",
@@ -53592,14 +53537,7 @@ const RAW_SONGS: RawSong[] = [
     "duration": 55,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Rebel-Among-Slave-MassTamilan.org.jpg"
   },
-  {
-    "id": 6765,
-    "title": "Rise of Linga",
-    "artist": "V7h, G V Prakash Kumar",
-    "album": "Magudam",
-    "duration": 204,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Rise%20of%20Linga.jpg"
-  },
+  
   {
     "id": 6766,
     "title": "Rise of KGF",
@@ -53712,14 +53650,7 @@ const RAW_SONGS: RawSong[] = [
     "duration": 245,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Salaam-Rocky-Bhai-MassTamilan.org.jpg"
   },
-  {
-    "id": 6780,
-    "title": "Sambavakaari",
-    "artist": "Sean Roldan, Saindhavi",
-    "album": "Gatta Kusthi 2",
-    "duration": 239,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Sambavakaari.jpg"
-  },
+  
   {
     "id": 6781,
     "title": "Settai",
@@ -53735,14 +53666,6 @@ const RAW_SONGS: RawSong[] = [
     "album": "KGF (Original Soundtrack) Vol 1",
     "duration": 35,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Shetty-Confronts-Rocky-MassTamilan.org.jpg"
-  },
-  {
-    "id": 6783,
-    "title": "Tabaahi",
-    "artist": "Vishal Mishra",
-    "album": "Toxic",
-    "duration": 257,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Tabaahi.jpg"
   },
   {
     "id": 6784,
@@ -53791,14 +53714,6 @@ const RAW_SONGS: RawSong[] = [
     "album": "KGF (Original Soundtrack) Vol 1",
     "duration": 56,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/To-El-Dorado-MassTamilan.org.jpg"
-  },
-  {
-    "id": 6790,
-    "title": "Usurukku",
-    "artist": "Mathichiyam Bala, Dayal Padmanabhan, Darbuka Siva",
-    "album": "Lakshmikanthan Kolai Vazhakku",
-    "duration": 220,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_45/covers/Usurukku.jpg"
   },
   {
     "id": 6791,
