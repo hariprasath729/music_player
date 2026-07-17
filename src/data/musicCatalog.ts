@@ -54726,7 +54726,15 @@ const RAW_SONGS: RawSong[] = [
     "artist": "ARJN, RONN, KDS, FIFTY4",
     "album": "Kalyani (Indie)",
     "duration": 234,
-    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/KALYANI_320(KoshalWorld.Com).jpg"
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/KALYANI_320(KoshalWorld.Com).jpg"
+  },
+  {
+    "id": 6918,
+    "title": "KALYANI Remix",
+    "artist": "Shreya Ghoshal, Arjn, Kds, Fifty4",
+    "album": "Kalyani (Indie)",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/KALYANI_320(KoshalWorld.Com).jpg"
   }
 ]
 
