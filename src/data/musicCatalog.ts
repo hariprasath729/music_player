@@ -54719,6 +54719,14 @@ const RAW_SONGS: RawSong[] = [
     "album": "Vikram Vedha BGM Original Background Score",
     "duration": 177,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/Yethu-Nyayam-MassTamilan.io.jpg"
+  },
+  {
+    "id": 6917,
+    "title": "KALYANI",
+    "artist": "ARJN, RONN, KDS, FIFTY4",
+    "album": "Kalyani (Indie)",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/KALYANI_320(KoshalWorld.Com).jpg"
   }
 ]
 
