@@ -148,6 +148,43 @@ class AudioEngine {
     });
   }
 
+  /**
+   * Transition directly to the next track URL without calling pause() first.
+   * This preserves the autoplay permission granted by the browser inside the
+   * audio `ended` event — calling pause() would break that permission chain
+   * and cause mobile browsers to block the next play() call.
+   *
+   * Use this ONLY when advancing to the next track from within handleTrackEnd.
+   */
+  public playNext(fileUrl: string, duration: number) {
+    this.clearAllNodes();
+    const media = this.getOrCreateMedia();
+
+    // Change src directly — do NOT call pause() before this.
+    // The ended state grants autoplay permission; pause() revokes it.
+    media.src = fileUrl;
+    this.currentTrackDuration = duration || Number.POSITIVE_INFINITY;
+    this.mediaEnded = false;
+    this.pausedTime = 0;
+
+    media.playbackRate = this.playbackRate;
+    media.volume = this.masterGain?.gain.value ?? 0.7;
+
+    void media.play().then(() => {
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+    }).catch((err) => {
+      console.warn('[audioEngine] playNext blocked:', err);
+      // Autoplay was still blocked — fall back to a user-triggered play()
+      this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
+    });
+  }
+
   public pause() {
     if (this.media) {
       this.pausedTime = this.media.currentTime || 0;
