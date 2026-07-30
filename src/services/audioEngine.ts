@@ -301,6 +301,23 @@ class AudioEngine {
     return this.media ? this.media.ended || this.mediaEnded : false;
   }
 
+  /**
+   * Returns true only if the audio element is ACTUALLY playing audio right now.
+   * Unlike `this.isPlaying` (which is set optimistically), this checks the real
+   * HTMLAudioElement state. Used to detect stall / autoplay-blocked states so the
+   * notification card doesn't show fake progress.
+   */
+  public getActuallyPlaying(): boolean {
+    if (this.media) {
+      return (
+        !this.media.paused &&
+        !this.media.ended &&
+        this.media.readyState > 2 // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA
+      );
+    }
+    return false;
+  }
+
   public getFrequencyData(): Uint8Array {
     if (!this.analyser) {
       return new Uint8Array(64);

@@ -227,6 +227,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const volumeRef = useRef<number>(0.7);
   const isMutedRef = useRef<boolean>(false);
   const playbackRateRef = useRef<number>(1);
+  const isPlayingRef = useRef<boolean>(false);
+  const historyRef = useRef<Track[]>([]);
+  const durationRef = useRef<number>(0);
+  // Ref to the seek function so Media Session handlers always call the latest version
+  const seekRef = useRef<(time: number, force?: boolean) => void>(() => {});
 
   const lastClickPos = useRef<{ x: number; y: number } | null>(null);
   const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
@@ -434,10 +439,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => { volumeRef.current = volume; }, [volume]);
   useEffect(() => { isMutedRef.current = isMuted; }, [isMuted]);
   useEffect(() => { playbackRateRef.current = playbackRate; }, [playbackRate]);
+  useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
+  useEffect(() => { historyRef.current = history; }, [history]);
+  useEffect(() => { durationRef.current = duration; }, [duration]);
 
-  // Sync playback time
+  // Sync playback time — also detect audio stall and correct isPlaying state
   useEffect(() => {
     let interval: number;
+    let stallCount = 0;
+    let lastAudioTime = -1;
     if (isPlaying) {
       interval = window.setInterval(() => {
         const t = audioEngine.getCurrentTime();
@@ -445,15 +455,29 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         setCurrentTime(t);
         if (realDuration > 0 && Math.abs(realDuration - duration) > 0.5) {
           setDuration(realDuration);
-          // Update the track object globally so the real duration shows up everywhere else
           if (currentTrack) currentTrack.duration = realDuration;
         }
         if (audioEngine.hasEnded() || (realDuration > 0 && t >= realDuration - 0.15)) {
           handleTrackEnd();
+          return;
+        }
+        // Stall detection: if React says isPlaying=true but the audio element
+        // hasn't advanced in 3+ seconds, sync the actual state to prevent fake
+        // progress on the lock screen notification card.
+        const actuallyPlaying = audioEngine.getActuallyPlaying();
+        if (!actuallyPlaying) {
+          stallCount++;
+          if (stallCount >= 30) { // 3 seconds of stall
+            setIsPlaying(false);
+            stallCount = 0;
+          }
+        } else {
+          stallCount = 0;
+          lastAudioTime = t;
         }
       }, 100);
     }
-    return () => clearInterval(interval);
+    return () => { clearInterval(interval); stallCount = 0; lastAudioTime = -1; };
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
   // Prefetch stream URLs for the upcoming 2 tracks and cache the next track's audio after 3 seconds of playback
@@ -708,64 +732,71 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const togglePlay = useCallback((force: boolean = false, forceState?: boolean) => {
-    if (isPlaybackLocked && !force) return;
-    if (currentTrack.id === '') return;
-    
-    const nextState = forceState !== undefined ? forceState : !isPlaying;
+    // Always read from refs — never from stale closures.
+    // This is critical for notification card buttons when screen is locked.
+    const _isPlaybackLocked = isPlaybackLockedRef.current;
+    const _currentTrack = currentTrackRef.current;
+    const _isPlaying = isPlayingRef.current;
+    const _downloadedTracks = downloadedTracksRef.current;
+    const _volume = volumeRef.current;
+    const _isMuted = isMutedRef.current;
+    const _playbackRate = playbackRateRef.current;
+    const _currentTime = currentTimeRef.current;
+
+    if (_isPlaybackLocked && !force) return;
+    if (_currentTrack.id === '') return;
+
+    const nextState = forceState !== undefined ? forceState : !_isPlaying;
 
     if (!nextState) {
       audioEngine.pause();
       setIsPlaying(false);
     } else {
-      // Check if offline and trying to play a non-downloaded song
-      if (!navigator.onLine && !downloadedTracks.includes(currentTrack.id)) {
+      if (!navigator.onLine && !_downloadedTracks.includes(_currentTrack.id)) {
         showToast('You are offline. Only downloaded songs can be played.', 'error');
         audioEngine.pause();
         setIsPlaying(false);
         return;
       }
 
+      const applySettings = () => {
+        audioEngine.setVolume(_isMuted ? 0 : _volume);
+        if (typeof (audioEngine as any).setPlaybackRate === 'function') {
+          (audioEngine as any).setPlaybackRate(_playbackRate);
+        }
+      };
+
       const resumeOnline = () => {
-        streamService.getStreamUrl(currentTrack.id)
+        streamService.getStreamUrl(_currentTrack.id)
           .then((streamUrl) => {
-            currentTrack.fileUrl = streamUrl;
-            audioEngine.play(currentTrack.duration, currentTime, streamUrl);
-            audioEngine.setVolume(isMuted ? 0 : volume);
-            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-              (audioEngine as any).setPlaybackRate(playbackRate);
-            }
+            _currentTrack.fileUrl = streamUrl;
+            audioEngine.play(_currentTrack.duration, _currentTime, streamUrl);
+            applySettings();
           })
           .catch(() => {
-            // Fallback to old URL if getStreamUrl fails
-            audioEngine.play(currentTrack.duration, currentTime, currentTrack.fileUrl);
-            audioEngine.setVolume(isMuted ? 0 : volume);
-            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-              (audioEngine as any).setPlaybackRate(playbackRate);
+            // Fallback to last known URL
+            if (_currentTrack.fileUrl) {
+              audioEngine.play(_currentTrack.duration, _currentTime, _currentTrack.fileUrl);
+              applySettings();
             }
           });
       };
 
-      // If the song is already downloaded, check if it exists in local storage cache
-      const isDownloaded = downloadedTracks.includes(currentTrack.id);
+      const isDownloaded = _downloadedTracks.includes(_currentTrack.id);
       if (isDownloaded) {
-        downloadService.isCached(currentTrack.id).then((exists) => {
+        downloadService.isCached(_currentTrack.id).then((exists) => {
           if (!exists) {
             if (!navigator.onLine) {
-              // Cache gone + offline — block playback, keep download marker
               showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
               return;
             }
-            // Cache gone but online — silently re-download then play online
-            downloadService.downloadTrack({ id: currentTrack.id }).catch(() => {});
+            downloadService.downloadTrack({ id: _currentTrack.id }).catch(() => {});
             resumeOnline();
           } else {
-            const cachedUrl = `https://music-player.local/song/${currentTrack.id}`;
-            currentTrack.fileUrl = cachedUrl;
-            audioEngine.play(currentTrack.duration, currentTime, cachedUrl);
-            audioEngine.setVolume(isMuted ? 0 : volume);
-            if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-              (audioEngine as any).setPlaybackRate(playbackRate);
-            }
+            const cachedUrl = `https://music-player.local/song/${_currentTrack.id}`;
+            _currentTrack.fileUrl = cachedUrl;
+            audioEngine.play(_currentTrack.duration, _currentTime, cachedUrl);
+            applySettings();
             setIsPlaying(true);
           }
         });
@@ -774,7 +805,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       resumeOnline();
     }
-  }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime, downloadedTracks]);
+  }, []);
 
   const nextTrack = useCallback((force: boolean = false, fromTrackEnd: boolean = false) => {
     // ALWAYS read from refs, never from closed-over state.
@@ -845,26 +876,32 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const prevTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
-    if (currentTrack.id === '') return;
-    if (currentTime > 3) {
-          seek(0, force);
-        } else if (history.length > 1) {
-          const prev = history[1];
-          setHistory((h) => h.slice(2));
-      setQueue((q) => [currentTrack, ...q]);
-          playTrack(prev, undefined, force);
+    const _currentTrack = currentTrackRef.current;
+    const _currentTime = currentTimeRef.current;
+    const _history = historyRef.current;
+    if (_currentTrack.id === '') return;
+    if (_currentTime > 3) {
+      seek(0, force);
+    } else if (_history.length > 1) {
+      const prev = _history[1];
+      setHistory((h) => h.slice(2));
+      setQueue((q) => [_currentTrack, ...q]);
+      playTrack(prev, undefined, force);
     } else {
-          seek(0, force);
+      seek(0, force);
     }
-  }, [isPlaybackLocked, currentTrack.id, currentTime, history]);
+  }, [isPlaybackLocked]);
 
   const seek = (time: number, force: boolean = false) => {
-    if (isPlaybackLocked && !force) return;
-    if (currentTrack.id === '') return;
+    if (isPlaybackLockedRef.current && !force) return;
+    if (currentTrackRef.current.id === '') return;
     const clampedTime = Math.max(0, time);
     setCurrentTime(clampedTime);
+    currentTimeRef.current = clampedTime;
     audioEngine.seek(clampedTime);
   };
+  // Keep seekRef current so Media Session handlers always call the latest seek
+  seekRef.current = seek;
 
   const setVolume = (vol: number) => {
     const clamped = Math.max(0, Math.min(vol, 1));
@@ -1282,11 +1319,44 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     });
     audioEngine.setOnPlayStateChange((playing) => {
       setIsPlaying(playing);
+      isPlayingRef.current = playing;
     });
     return () => {
       audioEngine.setOnEnded(() => {});
       audioEngine.setOnPlayStateChange(() => {});
     };
+  }, []);
+
+  // Sync actual audio playing state when app comes back to foreground.
+  // This eliminates "fake progress" where notification shows playing but audio is paused.
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        const actuallyPlaying = audioEngine.getActuallyPlaying();
+        const reactIsPlaying = isPlayingRef.current;
+        if (reactIsPlaying !== actuallyPlaying) {
+          setIsPlaying(actuallyPlaying);
+          isPlayingRef.current = actuallyPlaying;
+        }
+        // Re-sync Media Session position state to clear any fake progress
+        const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
+        if (ms && currentTrackRef.current.id !== '') {
+          try {
+            ms.playbackState = actuallyPlaying ? 'playing' : 'paused';
+            const dur = durationRef.current > 0 ? durationRef.current : currentTrackRef.current.duration;
+            if (dur > 0) {
+              ms.setPositionState({
+                duration: dur,
+                playbackRate: actuallyPlaying ? audioEngine.getPlaybackRate() : 0,
+                position: Math.min(currentTimeRef.current, dur),
+              });
+            }
+          } catch { /* ignore */ }
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
   const mediaSessionActive = useRef<boolean>(false);
@@ -1312,18 +1382,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       ms.setActionHandler('pause', () => safe(() => togglePlayRef.current(false, false)));
       ms.setActionHandler('previoustrack', () => safe(() => prevTrackRef.current()));
       ms.setActionHandler('nexttrack', () => safe(() => nextTrackRef.current()));
-      // Allow seeking from lock screen / notification shade
+      // Seek handlers use seekRef so they always read the latest seek function
+      // and avoid errors from stale captured currentTime/duration values.
       try {
         ms.setActionHandler('seekto', (details) => {
           if (details.seekTime != null) {
-            seek(details.seekTime);
+            seekRef.current(details.seekTime);
           }
         });
         ms.setActionHandler('seekforward', (details) => {
-          seek(Math.min(currentTime + (details.seekOffset ?? 10), duration));
+          seekRef.current(Math.min(currentTimeRef.current + (details.seekOffset ?? 10), durationRef.current));
         });
         ms.setActionHandler('seekbackward', (details) => {
-          seek(Math.max(currentTime - (details.seekOffset ?? 10), 0));
+          seekRef.current(Math.max(currentTimeRef.current - (details.seekOffset ?? 10), 0));
         });
       } catch {
         // seekto not supported on this browser
