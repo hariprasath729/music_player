@@ -213,6 +213,21 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const toastIdRef = useRef<number>(0);
   const loadingTrackIdRef = useRef<string | null>(null);
 
+  // ── Live state refs (always current, safe to read from background callbacks) ──
+  // These prevent stale closure bugs when track ends while screen is locked.
+  const queueRef = useRef<Track[]>([]);
+  const repeatModeRef = useRef<RepeatMode>('off');
+  const isShuffleRef = useRef<boolean>(false);
+  const activePlaylistRef = useRef<Playlist | null>(null);
+  const currentTrackRef = useRef<Track>(EMPTY_TRACK);
+  const isPlaybackLockedRef = useRef<boolean>(false);
+  const isLoggedInRef = useRef<boolean>(false);
+  const currentTimeRef = useRef<number>(0);
+  const downloadedTracksRef = useRef<string[]>([]);
+  const volumeRef = useRef<number>(0.7);
+  const isMutedRef = useRef<boolean>(false);
+  const playbackRateRef = useRef<number>(1);
+
   const lastClickPos = useRef<{ x: number; y: number } | null>(null);
   const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
 
@@ -406,6 +421,20 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
 
 
+  // Keep live refs in sync with React state so background callbacks always see current values
+  useEffect(() => { queueRef.current = queue; }, [queue]);
+  useEffect(() => { repeatModeRef.current = repeatMode; }, [repeatMode]);
+  useEffect(() => { isShuffleRef.current = isShuffle; }, [isShuffle]);
+  useEffect(() => { activePlaylistRef.current = activePlaylist; }, [activePlaylist]);
+  useEffect(() => { currentTrackRef.current = currentTrack; }, [currentTrack]);
+  useEffect(() => { isPlaybackLockedRef.current = isPlaybackLocked; }, [isPlaybackLocked]);
+  useEffect(() => { isLoggedInRef.current = isLoggedIn; }, [isLoggedIn]);
+  useEffect(() => { currentTimeRef.current = currentTime; }, [currentTime]);
+  useEffect(() => { downloadedTracksRef.current = downloadedTracks; }, [downloadedTracks]);
+  useEffect(() => { volumeRef.current = volume; }, [volume]);
+  useEffect(() => { isMutedRef.current = isMuted; }, [isMuted]);
+  useEffect(() => { playbackRateRef.current = playbackRate; }, [playbackRate]);
+
   // Sync playback time
   useEffect(() => {
     let interval: number;
@@ -540,10 +569,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const playTrack = (track: Track, contextTracks?: Track[], force: boolean = false) => {
-    if (isPlaybackLocked && !force) return;
+    // Read live values from refs to avoid stale closures (critical for background/locked-screen)
+    const _isPlaybackLocked = isPlaybackLockedRef.current;
+    const _isShuffle = isShuffleRef.current;
+    const _downloadedTracks = downloadedTracksRef.current;
+    const _isLoggedIn = isLoggedInRef.current;
+    const _volume = volumeRef.current;
+    const _isMuted = isMutedRef.current;
+    const _playbackRate = playbackRateRef.current;
+
+    if (_isPlaybackLocked && !force) return;
 
     // Check if offline and trying to play a non-downloaded song
-    if (!navigator.onLine && !downloadedTracks.includes(track.id)) {
+    if (!navigator.onLine && !_downloadedTracks.includes(track.id)) {
       showToast('You are offline. Only downloaded songs can be played.', 'error');
       audioEngine.stop();
       setIsPlaying(false);
@@ -561,7 +599,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const trackIndex = contextTracks.findIndex((t) => t.id === track.id);
       if (trackIndex !== -1) {
         let upcoming = contextTracks.slice(trackIndex + 1);
-        if (isShuffle) upcoming = [...upcoming].sort(() => 0.5 - Math.random());
+        if (_isShuffle) upcoming = [...upcoming].sort(() => 0.5 - Math.random());
         setQueue(upcoming);
       }
     }
@@ -577,29 +615,34 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return [{ ...track, playedAt: now } as any, ...prev.filter((t) => t.id !== track.id)].slice(0, 20);
     });
     setCurrentTrack(track);
+    // Update ref immediately so subsequent background reads see this track
+    currentTrackRef.current = track;
     setDuration(track.duration);
     setCurrentTime(0);
+    currentTimeRef.current = 0;
 
     // Sync recently played & play count with backend
-    if (isLoggedIn) {
+    if (_isLoggedIn) {
       recentlyPlayedApi.add(track.id).catch(err => console.error('Failed to log play', err));
       playCountApi.increment(track.id).catch(err => console.error('Failed to increment count', err));
     }
 
     // If the song is already downloaded, check if it exists in local storage cache
     const checkAndPlayCache = async () => {
-      const isDownloaded = downloadedTracks.includes(track.id);
+      const isDownloaded = _downloadedTracks.includes(track.id);
       if (isDownloaded) {
         const exists = await downloadService.isCached(track.id);
         if (exists) {
           if (loadingTrackIdRef.current !== track.id) return true;
           const cachedUrl = `https://music-player.local/song/${track.id}`;
           track.fileUrl = cachedUrl;
+          // Set isPlaying BEFORE calling audioEngine.play so React state is ready
+          // for Media Session / lock screen to pick up immediately
           setIsPlaying(true);
           audioEngine.play(track.duration, 0, cachedUrl);
-          audioEngine.setVolume(isMuted ? 0 : volume);
+          audioEngine.setVolume(_isMuted ? 0 : _volume);
           if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-            (audioEngine as any).setPlaybackRate(playbackRate);
+            (audioEngine as any).setPlaybackRate(_playbackRate);
           }
           return true;
         } else if (!navigator.onLine) {
@@ -629,10 +672,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
         // Store the resolved temporary URL on the track object so togglePlay can resume it.
         track.fileUrl = streamUrl;
+        // Set isPlaying BEFORE audioEngine.play so Media Session / lock screen picks it up immediately.
+        // The audio element's onplay event will also set it again via onPlayStateChange.
+        setIsPlaying(true);
         audioEngine.play(track.duration, 0, streamUrl);
-        audioEngine.setVolume(isMuted ? 0 : volume);
+        audioEngine.setVolume(_isMuted ? 0 : _volume);
         if (typeof (audioEngine as any).setPlaybackRate === 'function') {
-          (audioEngine as any).setPlaybackRate(playbackRate);
+          (audioEngine as any).setPlaybackRate(_playbackRate);
         }
       })
       .catch((err) => {
@@ -714,58 +760,79 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [isPlaybackLocked, currentTrack.id, isPlaying, isMuted, volume, playbackRate, currentTime, downloadedTracks]);
 
   const nextTrack = useCallback((force: boolean = false) => {
-    if (isPlaybackLocked && !force) return;
+    // ALWAYS read from refs, never from closed-over state.
+    // This is the critical fix for the stale closure bug when screen is locked.
+    const _isPlaybackLocked = isPlaybackLockedRef.current;
+    const _queue = queueRef.current;
+    const _repeatMode = repeatModeRef.current;
+    const _isShuffle = isShuffleRef.current;
+    const _activePlaylist = activePlaylistRef.current;
+    const _currentTrack = currentTrackRef.current;
+    const _isLoggedIn = isLoggedInRef.current;
+    const _currentTime = currentTimeRef.current;
+
+    if (_isPlaybackLocked && !force) return;
 
     // Skip quickly tracking: user pressed Next/skip while played < 5s
-    if (isLoggedIn && currentTrack.id !== '' && currentTime < 5) {
+    if (_isLoggedIn && _currentTrack.id !== '' && _currentTime < 5) {
       homeApi
-        .recordSkipAvoid(currentTrack.id)
+        .recordSkipAvoid(_currentTrack.id)
         .catch(() => {
           // non-blocking / best-effort
         });
     }
 
-    if (queue.length > 0) {
-      const next = queue[0];
-      setQueue((prev) => prev.slice(1));
+    if (_queue.length > 0) {
+      const next = _queue[0];
+      // Update ref immediately so re-entrant background calls see empty queue
+      queueRef.current = _queue.slice(1);
+      setQueue(_queue.slice(1));
       playTrack(next, undefined, force);
-    } else if (repeatMode === 'all') {
-      const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS.filter(t => !isBgmOrScore(t));
+    } else if (_repeatMode === 'all') {
+      const sourceList = _activePlaylist ? _activePlaylist.tracks : TRACKS.filter(t => !isBgmOrScore(t));
       if (sourceList.length > 0) {
         let nextList = [...sourceList];
-        if (isShuffle) nextList = nextList.sort(() => 0.5 - Math.random());
+        if (_isShuffle) nextList = nextList.sort(() => 0.5 - Math.random());
         const next = nextList[0];
+        queueRef.current = nextList.slice(1);
         setQueue(nextList.slice(1));
         playTrack(next, undefined, force);
       }
     } else {
-      // Queue ended (queue empty).
-      // Requirement: never fall back to deterministic "top of list" order (id/title sorted).
-      // Even when repeatMode is 'off', pick a random next track and seed the remaining queue randomly.
-      const sourceList = activePlaylist ? activePlaylist.tracks : TRACKS;
+      // Queue ended — always play a random recommendation so notification card never disappears.
+      // Even when repeatMode is 'off', pick a random track from recommendations.
+      let sourceList = _activePlaylist ? _activePlaylist.tracks : TRACKS;
 
       // Exclude BGMs/score and the currently playing track (avoid immediate duplicates).
-      const validTracks = sourceList.filter((t) => !isBgmOrScore(t) && t.id !== currentTrack.id);
+      let validTracks = sourceList.filter((t) => !isBgmOrScore(t) && t.id !== _currentTrack.id);
+
+      // If active playlist ran out of valid tracks, fall back to global catalog for seamless autoplay
+      if (validTracks.length === 0 && _activePlaylist) {
+        sourceList = TRACKS;
+        validTracks = sourceList.filter((t) => !isBgmOrScore(t) && t.id !== _currentTrack.id);
+      }
 
       if (validTracks.length > 0) {
         // Always randomize for the "queue empty" fallback (independent of isShuffle).
-        // Use random index instead of taking first element.
         const randomIndex = Math.floor(Math.random() * validTracks.length);
         const next = validTracks[randomIndex];
 
         // Seed remaining queue: remove `next` then shuffle the rest and cap.
         const rest = validTracks.filter((t) => t.id !== next.id);
         const remaining = [...rest].sort(() => Math.random() - 0.5).slice(0, 19);
+        const newQueue = remaining.length > 0 ? remaining : [];
 
-        setQueue(remaining.length > 0 ? remaining : [next]); // ensures queue isn't empty in UI
+        queueRef.current = newQueue;
+        setQueue(newQueue);
         playTrack(next, undefined as any, force);
       } else {
-        audioEngine.stop();
+        // No tracks at all — just stop cleanly but keep notification card alive
+        audioEngine.pause();
         setIsPlaying(false);
         setCurrentTime(0);
       }
     }
-  }, [isPlaybackLocked, queue, repeatMode, isShuffle, activePlaylist, currentTrack.id, currentTime, playbackRate]);
+  }, []);
 
   const prevTrack = useCallback((force: boolean = false) => {
     if (isPlaybackLocked && !force) return;
@@ -1232,8 +1299,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         }
       };
 
-      ms.setActionHandler('play', () => safe(() => togglePlayRef.current()));
-      ms.setActionHandler('pause', () => safe(() => togglePlayRef.current()));
+      ms.setActionHandler('play', () => safe(() => togglePlayRef.current(false, true)));
+      ms.setActionHandler('pause', () => safe(() => togglePlayRef.current(false, false)));
       ms.setActionHandler('previoustrack', () => safe(() => prevTrackRef.current()));
       ms.setActionHandler('nexttrack', () => safe(() => nextTrackRef.current()));
       // Allow seeking from lock screen / notification shade
@@ -1303,7 +1370,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (dur > 0 && Number.isFinite(currentTime) && Number.isFinite(dur)) {
           ms.setPositionState({
             duration: dur,
-            playbackRate: 1,
+            playbackRate: isPlaying ? (audioEngine.getPlaybackRate() || 1) : 0,
             position: Math.min(currentTime, dur),
           });
         }

@@ -74,27 +74,50 @@ export function helmetMiddleware() {
   });
 }
 
+// Check if origin is a local network IP (e.g. 192.168.x.x, 10.x.x.x, 172.16-31.x.x, localhost)
+function isLocalNetworkOrigin(origin) {
+  if (!origin) return true;
+  try {
+    const url = new URL(origin);
+    const hostname = url.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') return true;
+    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(hostname)) return true;
+    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname)) return true;
+    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(hostname)) return true;
+  } catch {
+    return false;
+  }
+  return false;
+}
+
 // ── CORS Configuration ──
 export function corsMiddleware() {
   const allowedOrigins = getAllowedOrigins();
 
-  return cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, server-to-server)
-      if (!origin) return callback(null, true);
+  return (req, res, next) => {
+    // Support Chrome Private Network Access (PNA) for local device interaction
+    if (req.headers['access-control-request-private-network']) {
+      res.setHeader('Access-Control-Allow-Private-Network', 'true');
+    }
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+    const corsHandler = cors({
+      origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, curl, server-to-server) or local network origins
+        if (!origin || allowedOrigins.includes(origin) || isLocalNetworkOrigin(origin)) {
+          return callback(null, true);
+        }
 
-      return callback(new Error('Not allowed by CORS'), false);
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-CSRF-Token'],
-    exposedHeaders: ['X-Request-ID', 'Retry-After', 'X-RateLimit-Remaining'],
-    maxAge: 86400, // 24 hours preflight cache
-  });
+        return callback(new Error('Not allowed by CORS'), false);
+      },
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-CSRF-Token', 'Access-Control-Request-Private-Network'],
+      exposedHeaders: ['X-Request-ID', 'Retry-After', 'X-RateLimit-Remaining'],
+      maxAge: 86400, // 24 hours preflight cache
+    });
+
+    corsHandler(req, res, next);
+  };
 }
 
 /**
@@ -102,7 +125,13 @@ export function corsMiddleware() {
  */
 export function getSocketCorsOptions() {
   return {
-    origin: getAllowedOrigins(),
+    origin: (origin, callback) => {
+      const allowedOrigins = getAllowedOrigins();
+      if (!origin || allowedOrigins.includes(origin) || isLocalNetworkOrigin(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by Socket CORS'), false);
+    },
     methods: ['GET', 'POST'],
     credentials: true,
   };

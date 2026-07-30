@@ -54,7 +54,6 @@ class AudioEngine {
   private getOrCreateMedia(): HTMLAudioElement {
     if (!this.media) {
       this.media = new Audio();
-      this.media.crossOrigin = 'anonymous';
       this.media.preload = 'auto';
 
       this.media.onended = () => {
