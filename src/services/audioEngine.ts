@@ -45,76 +45,107 @@ class AudioEngine {
     }
   }
 
-  public play( duration: number, startFromTime: number = 0, fileUrl?: string, preloadedMedia?: HTMLAudioElement) {
+  private onPlayStateChangeCallback: ((isPlaying: boolean) => void) | null = null;
+
+  public setOnPlayStateChange(callback: (isPlaying: boolean) => void) {
+    this.onPlayStateChangeCallback = callback;
+  }
+
+  private getOrCreateMedia(): HTMLAudioElement {
+    if (!this.media) {
+      this.media = new Audio();
+      this.media.crossOrigin = 'anonymous';
+      this.media.preload = 'auto';
+
+      this.media.onended = () => {
+        this.mediaEnded = true;
+        this.isPlaying = false;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(false);
+        }
+        if (this.onEndedCallback) {
+          this.onEndedCallback();
+        }
+      };
+
+      this.media.onloadedmetadata = () => {
+        if (this.media && Number.isFinite(this.media.duration)) {
+          this.currentTrackDuration = this.media.duration;
+        }
+      };
+
+      this.media.onplay = () => {
+        this.isPlaying = true;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(true);
+        }
+      };
+
+      this.media.onpause = () => {
+        if (!this.mediaEnded) {
+          this.isPlaying = false;
+          if (this.onPlayStateChangeCallback) {
+            this.onPlayStateChangeCallback(false);
+          }
+        }
+      };
+
+      this.media.onerror = (e) => {
+        console.warn('[audioEngine] Audio playback error:', e);
+        this.isPlaying = false;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(false);
+        }
+      };
+    }
+    return this.media;
+  }
+
+  public play(duration: number, startFromTime: number = 0, fileUrl?: string, _preloadedMedia?: HTMLAudioElement) {
     if (fileUrl) {
-      this.playMedia(fileUrl, duration, startFromTime, preloadedMedia);
+      this.playMedia(fileUrl, duration, startFromTime);
       return;
     }
 
     console.warn('[AudioEngine] Play called without a valid file URL. Ignoring synth fallback.');
     this.isPlaying = false;
+    if (this.onPlayStateChangeCallback) {
+      this.onPlayStateChangeCallback(false);
+    }
   }
 
-  private playMedia(fileUrl: string, duration: number, startFromTime: number = 0, preloadedMedia?: HTMLAudioElement) {
+  private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
     this.clearAllNodes();
+    const media = this.getOrCreateMedia();
 
-    if (preloadedMedia && preloadedMedia.src === fileUrl) {
-      if (this.media && this.media !== preloadedMedia) {
-        this.media.pause();
-        this.media.onended = null;
-        this.media.onloadedmetadata = null;
-      }
-      this.media = preloadedMedia;
-      // Bind standard ended handlers for preloaded media
-      this.media.onended = () => {
-        this.mediaEnded = true;
-        if (this.onEndedCallback) {
-          this.onEndedCallback();
-        }
-      };
-      this.media.onloadedmetadata = () => {
-        if (this.media && Number.isFinite(this.media.duration)) {
-          this.currentTrackDuration = this.media.duration;
-        }
-      };
-    } else if (!this.media || this.media.src !== fileUrl) {
-      if (this.media) {
-        this.media.pause();
-        this.media.onended = null;
-        this.media.onloadedmetadata = null;
-      }
-      this.media = new Audio(fileUrl);
-      this.media.crossOrigin = 'anonymous';
-      this.media.preload = 'auto';
-      this.media.onloadedmetadata = () => {
-        if (this.media && Number.isFinite(this.media.duration)) {
-          this.currentTrackDuration = this.media.duration;
-        }
-      };
-      this.media.onended = () => {
-        this.mediaEnded = true;
-        if (this.onEndedCallback) {
-          this.onEndedCallback();
-        }
-      };
+    if (media.src !== fileUrl) {
+      media.src = fileUrl;
     }
 
     this.currentTrackDuration = duration || Number.POSITIVE_INFINITY;
-    this.isPlaying = true;
     this.mediaEnded = false;
     this.pausedTime = startFromTime;
 
     try {
-      this.media.currentTime = startFromTime;
+      media.currentTime = startFromTime;
     } catch {
       // Some CDNs may not allow seeking before metadata is ready.
     }
 
-    this.media.playbackRate = this.playbackRate;
-    this.media.volume = this.masterGain?.gain.value ?? 0.7;
-    void this.media.play().catch((err) => {
+    media.playbackRate = this.playbackRate;
+    media.volume = this.masterGain?.gain.value ?? 0.7;
+
+    void media.play().then(() => {
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+    }).catch((err) => {
       console.warn('[audioEngine] Media playback failed:', err);
       this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
     });
   }
 
@@ -123,6 +154,9 @@ class AudioEngine {
       this.pausedTime = this.media.currentTime || 0;
       this.media.pause();
       this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
       return;
     }
 
@@ -136,6 +170,9 @@ class AudioEngine {
     setTimeout(() => {
       this.clearAllNodes();
       this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
       if (this.ctx) {
         this.pausedTime = this.ctx.currentTime - this.startTime;
       }
@@ -151,6 +188,9 @@ class AudioEngine {
     }
     this.clearAllNodes();
     this.isPlaying = false;
+    if (this.onPlayStateChangeCallback) {
+      this.onPlayStateChangeCallback(false);
+    }
   }
 
   public seek(time: number) {

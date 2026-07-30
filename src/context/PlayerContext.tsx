@@ -211,7 +211,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const { isLoggedIn, user } = useAuth();
   const prevVolumeRef = useRef<number>(0.7);
   const toastIdRef = useRef<number>(0);
-  const preloadAudioRef = useRef<HTMLAudioElement | null>(null);
   const loadingTrackIdRef = useRef<string | null>(null);
 
   const lastClickPos = useRef<{ x: number; y: number } | null>(null);
@@ -428,52 +427,45 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => clearInterval(interval);
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
-  // Prefetch stream URLs for the next 2 tracks and preload audio bytes for the next 1 track for seamless transitions
-  // We delay the preload by 3 seconds to let the current song buffer and start playing instantly without network congestion.
+  // Prefetch stream URLs for the upcoming 2 tracks and cache the next track's audio after 3 seconds of playback
   useEffect(() => {
     const next = queue[0];
     const afterNext = queue[1];
 
-    if (!next?.id) {
-      preloadAudioRef.current = null;
-      return;
-    }
+    if (!next?.id || !isPlaying || currentTrack.id === '') return;
 
     let active = true;
 
-    const delayTimer = setTimeout(() => {
-      // 1. Prefetch the second next song's stream URL from the backend
+    // Delay prefetching by 3 seconds to let current song buffer and start playing smoothly
+    const timer = setTimeout(() => {
+      if (!active) return;
+
+      // 1. Prefetch stream URL for the 2nd upcoming song
       if (afterNext?.id) {
         streamService.prefetch(afterNext.id);
       }
 
-      // 2. Prefetch the next song's stream URL AND preload its audio bytes
+      // 2. Prefetch stream URL and cache audio stream for the next song
       streamService.getStreamUrl(next.id)
         .then((streamUrl) => {
           if (!active) return;
-          // Keep the resolved URL on the track object
           next.fileUrl = streamUrl;
 
-          // Preload audio bytes into browser cache
-          const audio = new Audio(streamUrl);
-          audio.preload = 'auto';
-          audio.onloadedmetadata = () => {
-            if (active && audio.duration && audio.duration > 0) {
-              next.duration = audio.duration;
-            }
-          };
-          preloadAudioRef.current = audio;
+          // Warm up browser HTTP cache for the next song's audio stream
+          fetch(streamUrl, { mode: 'cors' }).catch(() => {
+            // Non-critical background warmup
+          });
         })
         .catch((err) => {
-          console.warn('[PlayerContext] Preload next song failed:', err);
+          console.warn('[PlayerContext] Failed to prefetch next song:', err);
         });
-    }, 2500);
+    }, 3000);
 
     return () => {
       active = false;
-      clearTimeout(delayTimer);
+      clearTimeout(timer);
     };
-  }, [queue]);
+  }, [currentTrack.id, queue, isPlaying]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -637,12 +629,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
         // Store the resolved temporary URL on the track object so togglePlay can resume it.
         track.fileUrl = streamUrl;
-        setIsPlaying(true);
-        // Reuse preloaded audio element if it matches
-        const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
-          ? preloadAudioRef.current
-          : undefined;
-        audioEngine.play(track.duration, 0, streamUrl, preloadedElement);
+        audioEngine.play(track.duration, 0, streamUrl);
         audioEngine.setVolume(isMuted ? 0 : volume);
         if (typeof (audioEngine as any).setPlaybackRate === 'function') {
           (audioEngine as any).setPlaybackRate(playbackRate);
@@ -679,16 +666,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         streamService.getStreamUrl(currentTrack.id)
           .then((streamUrl) => {
             currentTrack.fileUrl = streamUrl;
-            // Reuse preloaded audio element if it matches
-            const preloadedElement = preloadAudioRef.current && preloadAudioRef.current.src === streamUrl
-              ? preloadAudioRef.current
-              : undefined;
-            audioEngine.play(currentTrack.duration, currentTime, streamUrl, preloadedElement);
+            audioEngine.play(currentTrack.duration, currentTime, streamUrl);
             audioEngine.setVolume(isMuted ? 0 : volume);
             if (typeof (audioEngine as any).setPlaybackRate === 'function') {
               (audioEngine as any).setPlaybackRate(playbackRate);
             }
-            setIsPlaying(true);
           })
           .catch(() => {
             // Fallback to old URL if getStreamUrl fails
@@ -697,7 +679,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             if (typeof (audioEngine as any).setPlaybackRate === 'function') {
               (audioEngine as any).setPlaybackRate(playbackRate);
             }
-            setIsPlaying(true);
           });
       };
 
@@ -1218,13 +1199,17 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   prevTrackRef.current = prevTrack;
   handleTrackEndRef.current = handleTrackEnd;
 
-  // Register native ended handler to support background playback transitions when device is locked/sleeping
+  // Register native ended and play state handlers to support background playback transitions when device is locked/sleeping
   useEffect(() => {
     audioEngine.setOnEnded(() => {
       handleTrackEndRef.current();
     });
+    audioEngine.setOnPlayStateChange((playing) => {
+      setIsPlaying(playing);
+    });
     return () => {
       audioEngine.setOnEnded(() => {});
+      audioEngine.setOnPlayStateChange(() => {});
     };
   }, []);
 
@@ -1255,14 +1240,14 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       try {
         ms.setActionHandler('seekto', (details) => {
           if (details.seekTime != null) {
-            seekTo(details.seekTime);
+            seek(details.seekTime);
           }
         });
         ms.setActionHandler('seekforward', (details) => {
-          seekTo(Math.min(currentTime + (details.seekOffset ?? 10), duration));
+          seek(Math.min(currentTime + (details.seekOffset ?? 10), duration));
         });
         ms.setActionHandler('seekbackward', (details) => {
-          seekTo(Math.max(currentTime - (details.seekOffset ?? 10), 0));
+          seek(Math.max(currentTime - (details.seekOffset ?? 10), 0));
         });
       } catch {
         // seekto not supported on this browser
