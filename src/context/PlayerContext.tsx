@@ -490,14 +490,33 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     let active = true;
 
+    const cacheQueuedTrack = (track: Track, streamUrl: string) => {
+      track.fileUrl = streamUrl;
+      queueRef.current = queueRef.current.map((queuedTrack) => (
+        queuedTrack.id === track.id ? { ...queuedTrack, fileUrl: streamUrl } : queuedTrack
+      ));
+      setQueue((prev) => {
+        let changed = false;
+        const updated = prev.map((queuedTrack) => {
+          if (queuedTrack.id !== track.id || queuedTrack.fileUrl === streamUrl) return queuedTrack;
+          changed = true;
+          return { ...queuedTrack, fileUrl: streamUrl };
+        });
+        return changed ? updated : prev;
+      });
+    };
+
     if (afterNext?.id) {
-      streamService.prefetch(afterNext.id);
+      streamService.prefetch(afterNext.id).then((streamUrl) => {
+        if (!active || !streamUrl) return;
+        cacheQueuedTrack(afterNext, streamUrl);
+      });
     }
 
-    streamService.getStreamUrl(next.id)
+    streamService.prefetch(next.id)
       .then((streamUrl) => {
-        if (!active) return;
-        next.fileUrl = streamUrl;
+        if (!active || !streamUrl) return;
+        cacheQueuedTrack(next, streamUrl);
 
         fetch(streamUrl, { mode: 'cors' }).catch(() => {});
       })
@@ -562,8 +581,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const _currentTrack = currentTrackRef.current;
     if (_isPlaybackLocked) return;
     if (_currentTrack.id === '') return;
-    if (trackEndTransitionRef.current) return;
-    trackEndTransitionRef.current = true;
     if (isSleepAtTrackEndRef.current) {
       audioEngine.pause();
       setIsPlaying(false);
@@ -571,6 +588,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       showToast('Sleeper ended playback', 'moon');
       return;
     }
+    if (trackEndTransitionRef.current) return;
+    trackEndTransitionRef.current = true;
     if (repeatModeRef.current === 'one') {
       // Re-fetch a fresh stream URL for repeat-one (current token might be near expiry)
       streamService.getStreamUrl(_currentTrack.id).then((streamUrl) => {

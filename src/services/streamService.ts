@@ -136,15 +136,17 @@ export async function getStreamUrl(songId: string | number): Promise<string> {
  * Fire-and-forget — errors are swallowed (non-critical).
  * Called by PlayerContext after playback starts to warm up the next track.
  */
-export function prefetch(songId: string | number | undefined): void {
-  if (!songId && songId !== 0) return;
+export async function prefetch(songId: string | number | undefined): Promise<string | undefined> {
+  if (!songId && songId !== 0) return undefined;
   const key = String(songId);
 
   // Skip if already cached and valid, or if already in flight
-  if ((cache.get(key) && isCacheValid(cache.get(key)!)) || inFlight.has(key)) return;
+  const cached = cache.get(key);
+  if (cached && isCacheValid(cached)) return cached.streamUrl;
 
-  fetchStreamUrl(key).catch(() => {
+  return fetchStreamUrl(key).catch(() => {
     // Prefetch errors are non-fatal — the getStreamUrl() call at play time handles retries
+    return undefined;
   });
 }
 
