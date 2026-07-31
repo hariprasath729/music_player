@@ -109,6 +109,19 @@ class AudioEngine {
     return media;
   }
 
+  private tryMutedPlayback(media: HTMLAudioElement): Promise<void> {
+    const wasMuted = media.muted;
+    media.muted = true;
+
+    return media.play().then(() => {
+      media.muted = wasMuted;
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+    });
+  }
+
   public preloadNext(fileUrl: string) {
     if (!fileUrl) return;
 
@@ -272,11 +285,16 @@ class AudioEngine {
       }
     }).catch((err) => {
       console.warn('[audioEngine] playNext blocked:', err);
-      // Autoplay was still blocked — fall back to a user-triggered play()
-      this.isPlaying = false;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(false);
-      }
+      // Some lock-screen / background transitions reject the first play()
+      // attempt even though the next track is already buffered. Retry muted,
+      // which browsers usually allow, then restore the previous mute state.
+      void this.tryMutedPlayback(media).catch((retryErr) => {
+        console.warn('[audioEngine] muted playNext retry blocked:', retryErr);
+        this.isPlaying = false;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(false);
+        }
+      });
     });
   }
 
