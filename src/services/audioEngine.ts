@@ -7,6 +7,7 @@ class AudioEngine {
   private media: HTMLAudioElement | null = null;
   private preloadMedia: HTMLAudioElement | null = null;
   private playbackStartWatchdog: number | null = null;
+  private playbackStartAttempts: number = 0;
   
   private isPlaying: boolean = false;
   private currentGenre: string = 'ambient';
@@ -37,6 +38,44 @@ class AudioEngine {
     }
   }
 
+  private forceRestartPlayback(fileUrl: string, duration: number, startFromTime: number = 0) {
+    const normalizedUrl = this.normalizeAudioUrl(fileUrl);
+    const retryMedia = new Audio();
+    retryMedia.crossOrigin = 'anonymous';
+    retryMedia.preload = 'auto';
+    retryMedia.muted = false;
+    retryMedia.src = normalizedUrl;
+    retryMedia.playbackRate = this.playbackRate;
+    retryMedia.volume = this.masterGain?.gain.value ?? 0.7;
+
+    this.attachMediaHandlers(retryMedia);
+    this.media?.pause();
+    this.media = retryMedia;
+    this.currentTrackDuration = duration || Number.POSITIVE_INFINITY;
+    this.mediaEnded = false;
+    this.pausedTime = startFromTime;
+
+    try {
+      retryMedia.currentTime = startFromTime;
+    } catch {
+      // Ignore until metadata is available.
+    }
+
+    void retryMedia.play().then(() => {
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+      this.armPlaybackStartWatchdog(retryMedia, normalizedUrl, startFromTime);
+    }).catch((err) => {
+      console.warn('[audioEngine] forced playback restart blocked:', err);
+      this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
+    });
+  }
+
   private armPlaybackStartWatchdog(media: HTMLAudioElement, fileUrl: string, startFromTime: number = 0) {
     this.clearPlaybackStartWatchdog();
     const watchedMedia = media;
@@ -50,32 +89,18 @@ class AudioEngine {
       const currentTime = watchedMedia.currentTime || 0;
       if (currentTime > startFromTime + 0.25) return;
 
-      console.warn('[audioEngine] stalled start detected, retrying with a fresh audio element');
-
-      const retryMedia = new Audio();
-      retryMedia.crossOrigin = 'anonymous';
-      retryMedia.preload = 'auto';
-      retryMedia.muted = false;
-      retryMedia.src = watchedUrl;
-      retryMedia.playbackRate = this.playbackRate;
-      retryMedia.volume = this.masterGain?.gain.value ?? 0.7;
-
-      this.attachMediaHandlers(retryMedia);
-      watchedMedia.pause();
-      this.media = retryMedia;
-
-      void retryMedia.play().then(() => {
-        this.isPlaying = true;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(true);
-        }
-      }).catch((err) => {
-        console.warn('[audioEngine] stalled playback retry blocked:', err);
+      if (this.playbackStartAttempts >= 2) {
+        console.warn('[audioEngine] stalled start detected but retry limit reached');
         this.isPlaying = false;
         if (this.onPlayStateChangeCallback) {
           this.onPlayStateChangeCallback(false);
         }
-      });
+        return;
+      }
+
+      this.playbackStartAttempts += 1;
+      console.warn('[audioEngine] stalled start detected, forcing playback restart', { attempt: this.playbackStartAttempts });
+      this.forceRestartPlayback(watchedUrl, this.currentTrackDuration, startFromTime);
     }, 2000);
   }
 
@@ -107,6 +132,19 @@ class AudioEngine {
   }
 
   private attachMediaHandlers(media: HTMLAudioElement) {
+    const maybeRecoverFromStartupStall = () => {
+      if (!this.media || this.media !== media) return;
+      if (this.mediaEnded) return;
+      if (this.playbackStartAttempts >= 2) return;
+      if ((media.currentTime || 0) > 0.25) return;
+      const src = media.currentSrc || media.src;
+      if (!src) return;
+
+      this.playbackStartAttempts += 1;
+      console.warn('[audioEngine] media stalled/waiting during startup, forcing restart', { attempt: this.playbackStartAttempts });
+      this.forceRestartPlayback(src, this.currentTrackDuration, this.pausedTime || 0);
+    };
+
     media.onended = () => {
       this.mediaEnded = true;
       this.isPlaying = false;
@@ -130,6 +168,18 @@ class AudioEngine {
         this.onPlayStateChangeCallback(true);
       }
     };
+
+    media.onplaying = () => {
+      this.playbackStartAttempts = 0;
+      this.clearPlaybackStartWatchdog();
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+    };
+
+    media.onwaiting = maybeRecoverFromStartupStall;
+    media.onstalled = maybeRecoverFromStartupStall;
 
     media.onpause = () => {
       if (!this.mediaEnded) {
@@ -259,6 +309,7 @@ class AudioEngine {
   private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
     this.clearAllNodes();
     this.clearPlaybackStartWatchdog();
+    this.playbackStartAttempts = 0;
     const normalizedUrl = this.normalizeAudioUrl(fileUrl);
     const preloadedMedia = startFromTime === 0 ? this.takePreloadedMedia(normalizedUrl) : null;
     const media = preloadedMedia || this.getOrCreateMedia();
@@ -286,10 +337,6 @@ class AudioEngine {
     media.volume = this.masterGain?.gain.value ?? 0.7;
 
     void media.play().then(() => {
-      this.isPlaying = true;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(true);
-      }
       this.armPlaybackStartWatchdog(media, normalizedUrl, startFromTime);
     }).catch((err) => {
       console.warn('[audioEngine] Media playback failed:', err);
@@ -311,6 +358,7 @@ class AudioEngine {
   public playNext(fileUrl: string, duration: number) {
     this.clearAllNodes();
     this.clearPlaybackStartWatchdog();
+    this.playbackStartAttempts = 0;
     const normalizedUrl = this.normalizeAudioUrl(fileUrl);
     const preloadedMedia = this.takePreloadedMedia(normalizedUrl);
     const media = preloadedMedia || this.getOrCreateMedia();
@@ -332,10 +380,6 @@ class AudioEngine {
     media.volume = this.masterGain?.gain.value ?? 0.7;
 
     void media.play().then(() => {
-      this.isPlaying = true;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(true);
-      }
       this.armPlaybackStartWatchdog(media, normalizedUrl, 0);
     }).catch((err) => {
       console.warn('[audioEngine] playNext blocked:', err);
@@ -354,6 +398,7 @@ class AudioEngine {
 
   public pause() {
     this.clearPlaybackStartWatchdog();
+    this.playbackStartAttempts = 0;
     if (this.media) {
       this.pausedTime = this.media.currentTime || 0;
       this.media.pause();
@@ -385,6 +430,7 @@ class AudioEngine {
 
   public stop() {
     this.clearPlaybackStartWatchdog();
+    this.playbackStartAttempts = 0;
     if (this.media) {
       this.media.pause();
       this.media.currentTime = 0;
