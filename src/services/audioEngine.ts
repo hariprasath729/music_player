@@ -5,6 +5,7 @@ class AudioEngine {
   private masterGain: GainNode | null = null;
   private analyser: AnalyserNode | null = null;
   private media: HTMLAudioElement | null = null;
+  private preloadMedia: HTMLAudioElement | null = null;
   
   private isPlaying: boolean = false;
   private currentGenre: string = 'ambient';
@@ -22,6 +23,10 @@ class AudioEngine {
 
   constructor() {
     // AudioContext will be initialized on first user interaction
+  }
+
+  private normalizeAudioUrl(fileUrl: string): string {
+    return new URL(fileUrl, window.location.href).href;
   }
 
   private initContext() {
@@ -51,9 +56,84 @@ class AudioEngine {
     this.onPlayStateChangeCallback = callback;
   }
 
+  private attachMediaHandlers(media: HTMLAudioElement) {
+    media.onended = () => {
+      this.mediaEnded = true;
+      this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
+      if (this.onEndedCallback) {
+        this.onEndedCallback();
+      }
+    };
+
+    media.onloadedmetadata = () => {
+      if (media === this.media && Number.isFinite(media.duration)) {
+        this.currentTrackDuration = media.duration;
+      }
+    };
+
+    media.onplay = () => {
+      this.isPlaying = true;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(true);
+      }
+    };
+
+    media.onpause = () => {
+      if (!this.mediaEnded) {
+        this.isPlaying = false;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(false);
+        }
+      }
+    };
+
+    media.onerror = (e) => {
+      console.warn('[audioEngine] Audio playback error:', e);
+      this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
+    };
+  }
+
+  private takePreloadedMedia(fileUrl: string): HTMLAudioElement | null {
+    const normalizedUrl = this.normalizeAudioUrl(fileUrl);
+    if (!this.preloadMedia || this.preloadMedia.currentSrc !== normalizedUrl) return null;
+    const media = this.preloadMedia;
+    this.preloadMedia = null;
+    media.muted = false;
+    this.attachMediaHandlers(media);
+    return media;
+  }
+
+  public preloadNext(fileUrl: string) {
+    if (!fileUrl) return;
+
+    const normalizedUrl = this.normalizeAudioUrl(fileUrl);
+    if (this.media?.currentSrc === normalizedUrl || this.preloadMedia?.currentSrc === normalizedUrl) return;
+
+    if (this.preloadMedia) {
+      this.preloadMedia.pause();
+      this.preloadMedia.removeAttribute('src');
+      this.preloadMedia.load();
+    }
+
+    const media = new Audio();
+    media.crossOrigin = 'anonymous';
+    media.preload = 'auto';
+    media.muted = true;
+    media.src = normalizedUrl;
+    this.preloadMedia = media;
+    media.load();
+  }
+
   private getOrCreateMedia(): HTMLAudioElement {
     if (!this.media) {
       this.media = new Audio();
+      this.media.crossOrigin = 'anonymous';
       this.media.preload = 'auto';
 
       this.media.onended = () => {
@@ -115,10 +195,17 @@ class AudioEngine {
 
   private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
     this.clearAllNodes();
-    const media = this.getOrCreateMedia();
+    const normalizedUrl = this.normalizeAudioUrl(fileUrl);
+    const preloadedMedia = startFromTime === 0 ? this.takePreloadedMedia(normalizedUrl) : null;
+    const media = preloadedMedia || this.getOrCreateMedia();
 
-    if (media.src !== fileUrl) {
-      media.src = fileUrl;
+    if (preloadedMedia) {
+      this.media?.pause();
+      this.media = preloadedMedia;
+    }
+
+    if (media.currentSrc !== normalizedUrl) {
+      media.src = normalizedUrl;
     }
 
     this.currentTrackDuration = duration || Number.POSITIVE_INFINITY;
@@ -158,11 +245,19 @@ class AudioEngine {
    */
   public playNext(fileUrl: string, duration: number) {
     this.clearAllNodes();
-    const media = this.getOrCreateMedia();
+    const normalizedUrl = this.normalizeAudioUrl(fileUrl);
+    const preloadedMedia = this.takePreloadedMedia(normalizedUrl);
+    const media = preloadedMedia || this.getOrCreateMedia();
+
+    if (preloadedMedia) {
+      this.media = preloadedMedia;
+    }
 
     // Change src directly — do NOT call pause() before this.
     // The ended state grants autoplay permission; pause() revokes it.
-    media.src = fileUrl;
+    if (media.currentSrc !== normalizedUrl) {
+      media.src = normalizedUrl;
+    }
     this.currentTrackDuration = duration || Number.POSITIVE_INFINITY;
     this.mediaEnded = false;
     this.pausedTime = 0;

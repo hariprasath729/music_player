@@ -518,7 +518,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (!active || !streamUrl) return;
         cacheQueuedTrack(next, streamUrl);
 
-        fetch(streamUrl, { mode: 'cors' }).catch(() => {});
+        audioEngine.preloadNext(streamUrl);
       })
       .catch((err) => {
         console.warn('[PlayerContext] Failed to prefetch next song:', err);
