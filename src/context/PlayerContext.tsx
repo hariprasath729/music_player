@@ -214,6 +214,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const loadingTrackIdRef = useRef<string | null>(null);
   const trackEndTransitionRef = useRef<boolean>(false);
   const trackEndUnlockTimerRef = useRef<number | null>(null);
+  const stalledStartRecoveryRef = useRef<{ trackId: string; attempted: boolean }>({ trackId: '', attempted: false });
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
   // These prevent stale closure bugs when track ends while screen is locked.
@@ -444,11 +445,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
   useEffect(() => { historyRef.current = history; }, [history]);
   useEffect(() => { durationRef.current = duration; }, [duration]);
+  useEffect(() => {
+    stalledStartRecoveryRef.current = { trackId: currentTrack.id, attempted: false };
+  }, [currentTrack.id]);
 
   // Sync playback time — also detect audio stall and correct isPlaying state
   useEffect(() => {
     let interval: number;
     let stallCount = 0;
+    let lastAudioTime = -1;
     if (isPlaying) {
       interval = window.setInterval(() => {
         const t = audioEngine.getCurrentTime();
@@ -473,11 +478,31 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             stallCount = 0;
           }
         } else {
-          stallCount = 0;
+          if (Math.abs(t - lastAudioTime) < 0.01) {
+            stallCount++;
+            if (stallCount >= 30) {
+              const recovery = stalledStartRecoveryRef.current;
+              const activeTrack = currentTrackRef.current;
+
+              if (!recovery.attempted && recovery.trackId === activeTrack.id && activeTrack.id !== '' && activeTrack.fileUrl) {
+                recovery.attempted = true;
+                stallCount = 0;
+                audioEngine.pause();
+                audioEngine.play(activeTrack.duration, 0, activeTrack.fileUrl);
+                return;
+              }
+
+              setIsPlaying(false);
+              stallCount = 0;
+            }
+          } else {
+            stallCount = 0;
+            lastAudioTime = t;
+          }
         }
       }, 100);
     }
-    return () => { clearInterval(interval); stallCount = 0; };
+    return () => { clearInterval(interval); stallCount = 0; lastAudioTime = -1; };
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
   // Prefetch stream URLs for upcoming tracks immediately so lock-screen timers do not delay autoplay handoff
