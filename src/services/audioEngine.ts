@@ -6,6 +6,7 @@ class AudioEngine {
   private analyser: AnalyserNode | null = null;
   private media: HTMLAudioElement | null = null;
   private preloadMedia: HTMLAudioElement | null = null;
+  private playbackStartWatchdog: number | null = null;
   
   private isPlaying: boolean = false;
   private currentGenre: string = 'ambient';
@@ -27,6 +28,55 @@ class AudioEngine {
 
   private normalizeAudioUrl(fileUrl: string): string {
     return new URL(fileUrl, window.location.href).href;
+  }
+
+  private clearPlaybackStartWatchdog() {
+    if (this.playbackStartWatchdog !== null) {
+      clearTimeout(this.playbackStartWatchdog);
+      this.playbackStartWatchdog = null;
+    }
+  }
+
+  private armPlaybackStartWatchdog(media: HTMLAudioElement, fileUrl: string, startFromTime: number = 0) {
+    this.clearPlaybackStartWatchdog();
+    const watchedMedia = media;
+    const watchedUrl = this.normalizeAudioUrl(fileUrl);
+
+    this.playbackStartWatchdog = window.setTimeout(() => {
+      this.playbackStartWatchdog = null;
+      if (this.media !== watchedMedia) return;
+      if (watchedMedia.paused || watchedMedia.ended) return;
+
+      const currentTime = watchedMedia.currentTime || 0;
+      if (currentTime > startFromTime + 0.25) return;
+
+      console.warn('[audioEngine] stalled start detected, retrying with a fresh audio element');
+
+      const retryMedia = new Audio();
+      retryMedia.crossOrigin = 'anonymous';
+      retryMedia.preload = 'auto';
+      retryMedia.muted = false;
+      retryMedia.src = watchedUrl;
+      retryMedia.playbackRate = this.playbackRate;
+      retryMedia.volume = this.masterGain?.gain.value ?? 0.7;
+
+      this.attachMediaHandlers(retryMedia);
+      watchedMedia.pause();
+      this.media = retryMedia;
+
+      void retryMedia.play().then(() => {
+        this.isPlaying = true;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(true);
+        }
+      }).catch((err) => {
+        console.warn('[audioEngine] stalled playback retry blocked:', err);
+        this.isPlaying = false;
+        if (this.onPlayStateChangeCallback) {
+          this.onPlayStateChangeCallback(false);
+        }
+      });
+    }, 2000);
   }
 
   private initContext() {
@@ -208,6 +258,7 @@ class AudioEngine {
 
   private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
     this.clearAllNodes();
+    this.clearPlaybackStartWatchdog();
     const normalizedUrl = this.normalizeAudioUrl(fileUrl);
     const preloadedMedia = startFromTime === 0 ? this.takePreloadedMedia(normalizedUrl) : null;
     const media = preloadedMedia || this.getOrCreateMedia();
@@ -239,6 +290,7 @@ class AudioEngine {
       if (this.onPlayStateChangeCallback) {
         this.onPlayStateChangeCallback(true);
       }
+      this.armPlaybackStartWatchdog(media, normalizedUrl, startFromTime);
     }).catch((err) => {
       console.warn('[audioEngine] Media playback failed:', err);
       this.isPlaying = false;
@@ -258,6 +310,7 @@ class AudioEngine {
    */
   public playNext(fileUrl: string, duration: number) {
     this.clearAllNodes();
+    this.clearPlaybackStartWatchdog();
     const normalizedUrl = this.normalizeAudioUrl(fileUrl);
     const preloadedMedia = this.takePreloadedMedia(normalizedUrl);
     const media = preloadedMedia || this.getOrCreateMedia();
@@ -283,6 +336,7 @@ class AudioEngine {
       if (this.onPlayStateChangeCallback) {
         this.onPlayStateChangeCallback(true);
       }
+      this.armPlaybackStartWatchdog(media, normalizedUrl, 0);
     }).catch((err) => {
       console.warn('[audioEngine] playNext blocked:', err);
       // Some lock-screen / background transitions reject the first play()
@@ -299,6 +353,7 @@ class AudioEngine {
   }
 
   public pause() {
+    this.clearPlaybackStartWatchdog();
     if (this.media) {
       this.pausedTime = this.media.currentTime || 0;
       this.media.pause();
@@ -329,6 +384,7 @@ class AudioEngine {
   }
 
   public stop() {
+    this.clearPlaybackStartWatchdog();
     if (this.media) {
       this.media.pause();
       this.media.currentTime = 0;
