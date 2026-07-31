@@ -22,6 +22,7 @@ import {
   Album,
   Zap,
   Moon,
+  Check,
 } from 'lucide-react';
 import { CircularDownloadButton } from './CircularDownloadButton';
 import { usePlayer } from '../context/PlayerContext';
@@ -74,9 +75,13 @@ export const FullScreenPlayer: React.FC = () => {
   } = usePlayer();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [showSpeedDropdown, setShowSpeedDropdown] = useState(false);
+  const [showSleepDropdown, setShowSleepDropdown] = useState(false);
   const [isCustomSpeed, setIsCustomSpeed] = useState(() => {
     return ![0.5, 0.75, 1, 1.25, 1.5, 2].includes(playbackRate);
   });
+  const [isCustomSleep, setIsCustomSleep] = useState(false);
+  const [customSleepMinutes, setCustomSleepMinutes] = useState('30');
   const isClosingMenuRef = useRef(false);
   const isClosingQueueRef = useRef(false);
   const [isLargeScreen, setIsLargeScreen] = useState(() => {
@@ -105,6 +110,9 @@ export const FullScreenPlayer: React.FC = () => {
   const closeMenuSafe = () => {
     isClosingMenuRef.current = true;
     setShowMenu(false);
+    setShowSpeedDropdown(false);
+    setShowSleepDropdown(false);
+    setIsCustomSleep(false);
     setTimeout(() => {
       isClosingMenuRef.current = false;
     }, 200);
@@ -381,35 +389,59 @@ export const FullScreenPlayer: React.FC = () => {
               <span>Share</span>
             </button>
             <div className="flex flex-col w-full border-b border-white/5 pb-2">
-              <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSpeedDropdown(!showSpeedDropdown);
+                  setShowSleepDropdown(false);
+                }}
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
+              >
                 <div className="flex items-center gap-3 min-w-0 flex-1">
                   <Zap className="h-4 w-4 shrink-0 text-white/70" />
-                  <span className="truncate">Song Speed</span>
+                  <span className="truncate">Song Speed ({playbackRate}x)</span>
                 </div>
-                <select 
-                  value={isCustomSpeed ? 'custom' : playbackRate}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    const val = e.target.value;
-                    if (val === 'custom') {
-                      setIsCustomSpeed(true);
-                    } else {
-                      setIsCustomSpeed(false);
-                      setPlaybackRate(Number(val));
-                    }
-                  }}
-                  className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[90px]"
-                >
-                  <option value={0.5}>0.5x</option>
-                  <option value={0.75}>0.75x</option>
-                  <option value={1}>Normal</option>
-                  <option value={1.25}>1.25x</option>
-                  <option value={1.5}>1.5x</option>
-                  <option value={2}>2x</option>
-                  <option value="custom">Custom...</option>
-                </select>
-              </div>
+                <ChevronDown className={`h-4 w-4 text-white/50 transition-transform ${showSpeedDropdown ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {showSpeedDropdown && (
+                <div className="px-4 py-1 flex flex-col gap-1 bg-black/25">
+                  {[
+                    { label: '0.5x', value: '0.5' },
+                    { label: '0.75x', value: '0.75' },
+                    { label: 'Normal', value: '1' },
+                    { label: '1.25x', value: '1.25' },
+                    { label: '1.5x', value: '1.5' },
+                    { label: '2x', value: '2' },
+                    { label: 'Custom...', value: 'custom' },
+                  ].map((opt) => {
+                    const active = (opt.value === 'custom' && isCustomSpeed) || 
+                                   (!isCustomSpeed && Math.abs(playbackRate - Number(opt.value)) < 0.01);
+                    return (
+                      <button
+                        key={opt.value}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (opt.value === 'custom') {
+                            setIsCustomSpeed(true);
+                          } else {
+                            setIsCustomSpeed(false);
+                            setPlaybackRate(Number(opt.value));
+                          }
+                          setShowSpeedDropdown(false);
+                        }}
+                        className={`flex items-center justify-between px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
+                          active ? 'bg-[#1db954] text-black' : 'text-white/80 hover:bg-white/5'
+                        }`}
+                      >
+                        <span>{opt.label}</span>
+                        {active && <Check className="h-3.5 w-3.5" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
               {isCustomSpeed && (
                 <div className="px-4 py-2 flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center justify-between text-xs text-white/60">
@@ -458,43 +490,103 @@ export const FullScreenPlayer: React.FC = () => {
                 </div>
               )}
             </div>
-            <div className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10">
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                <Moon className="h-4 w-4 shrink-0 text-white/70" />
-                <span className="truncate">
-                  Sleep Timer{isSleepAtTrackEnd ? ' (End of track)' : sleepTimerRemaining ? ` (${sleepTimerRemaining}m)` : ''}
-                </span>
-              </div>
-              <select 
-                value={isSleepAtTrackEnd ? "track-end" : sleepTimerRemaining ? "active" : "off"}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
+
+            <div className="flex flex-col w-full border-b border-white/5 pb-2">
+              <button 
+                onClick={(e) => {
                   e.stopPropagation();
-                  const val = e.target.value;
-                  if (val === 'custom') {
-                    const input = window.prompt('Enter sleep timer in minutes (e.g. 45):', '30');
-                    const parsed = parseInt(input || '', 10);
-                    if (!isNaN(parsed) && parsed > 0) {
-                      setSleepTimer(parsed);
-                    }
-                  } else if (val === 'track-end') {
-                    setSleepTimer('track-end');
-                  } else {
-                    setSleepTimer(val === "off" ? null : Number(val));
-                  }
-                  closeMenuSafe();
+                  setShowSleepDropdown(!showSleepDropdown);
+                  setShowSpeedDropdown(false);
                 }}
-                className="bg-black/50 text-white text-xs rounded border border-white/20 px-2 py-1 outline-none cursor-pointer shrink-0 max-w-[100px]"
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-white transition-colors hover:bg-white/10"
               >
-                <option value="off">Off</option>
-                <option value="track-end">End of track</option>
-                <option value={5}>5 mins</option>
-                <option value={15}>15 mins</option>
-                <option value={30}>30 mins</option>
-                <option value={60}>1 hour</option>
-                <option value="custom">Custom...</option>
-                {sleepTimerRemaining && <option value="active" hidden>{sleepTimerRemaining}m left</option>}
-              </select>
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <Moon className="h-4 w-4 shrink-0 text-white/70" />
+                  <span className="truncate">
+                    Sleep Timer{isSleepAtTrackEnd ? ' (End)' : sleepTimerRemaining ? ` (${sleepTimerRemaining}m)` : ''}
+                  </span>
+                </div>
+                <ChevronDown className={`h-4 w-4 text-white/50 transition-transform ${showSleepDropdown ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {showSleepDropdown && (
+                <div className="px-4 py-1 flex flex-col gap-1 bg-black/25">
+                  {[
+                    { label: 'Off', value: 'off' },
+                    { label: 'End of track', value: 'track-end' },
+                    { label: '5 mins', value: '5' },
+                    { label: '15 mins', value: '15' },
+                    { label: '30 mins', value: '30' },
+                    { label: '1 hour', value: '60' },
+                    { label: 'Custom...', value: 'custom' },
+                  ].map((opt) => {
+                    const active = (opt.value === 'off' && !isSleepAtTrackEnd && !sleepTimerRemaining) ||
+                                   (opt.value === 'track-end' && isSleepAtTrackEnd) ||
+                                   (opt.value === 'custom' && sleepTimerRemaining && !isSleepAtTrackEnd && ![5, 15, 30, 60].includes(sleepTimerRemaining)) ||
+                                   (!isSleepAtTrackEnd && sleepTimerRemaining === Number(opt.value));
+                    return (
+                      <button
+                        key={opt.value}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const val = opt.value;
+                          if (val === 'custom') {
+                            setIsCustomSleep(true);
+                          } else {
+                            if (val === 'track-end') {
+                              setSleepTimer('track-end');
+                            } else if (val === 'off') {
+                              setSleepTimer(null);
+                            } else {
+                              setSleepTimer(Number(val));
+                            }
+                            setIsCustomSleep(false);
+                            setShowSleepDropdown(false);
+                            closeMenuSafe();
+                          }
+                        }}
+                        className={`flex items-center justify-between px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
+                          active ? 'bg-[#1db954] text-black' : 'text-white/80 hover:bg-white/5'
+                        }`}
+                      >
+                        <span>{opt.label}</span>
+                        {active && <Check className="h-3.5 w-3.5" />}
+                      </button>
+                    );
+                  })}
+
+                  {isCustomSleep && (
+                    <div className="mt-1.5 flex flex-col gap-1.5 border-t border-white/5 pt-2 pb-1" onClick={(e) => e.stopPropagation()}>
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Minutes to sleep</label>
+                      <div className="flex items-center gap-1.5">
+                        <input
+                          type="number"
+                          min="1"
+                          max="1440"
+                          value={customSleepMinutes}
+                          onChange={(e) => setCustomSleepMinutes(e.target.value)}
+                          placeholder="30"
+                          className="w-full min-w-0 bg-white/5 text-white text-xs rounded border border-white/10 px-2.5 py-1 outline-none focus:border-[#1db954]"
+                        />
+                        <button
+                          onClick={() => {
+                            const parsed = parseInt(customSleepMinutes, 10);
+                            if (!isNaN(parsed) && parsed > 0) {
+                              setSleepTimer(parsed);
+                              setIsCustomSleep(false);
+                              setShowSleepDropdown(false);
+                              closeMenuSafe();
+                            }
+                          }}
+                          className="bg-[#1db954] text-black text-xs font-bold px-2.5 py-1 rounded hover:scale-105 active:scale-95 transition shrink-0"
+                        >
+                          Set
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             {currentTrack.artist.split(',').map((a) => {
               const artistName = a.trim();
