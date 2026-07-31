@@ -212,6 +212,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const prevVolumeRef = useRef<number>(0.7);
   const toastIdRef = useRef<number>(0);
   const loadingTrackIdRef = useRef<string | null>(null);
+  const trackEndTransitionRef = useRef<boolean>(false);
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
   // These prevent stale closure bugs when track ends while screen is locked.
@@ -480,7 +481,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => { clearInterval(interval); stallCount = 0; lastAudioTime = -1; };
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
-  // Prefetch stream URLs for the upcoming 2 tracks and cache the next track's audio after 3 seconds of playback
+  // Prefetch stream URLs for upcoming tracks immediately so lock-screen timers do not delay autoplay handoff
   useEffect(() => {
     const next = queue[0];
     const afterNext = queue[1];
@@ -489,34 +490,23 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     let active = true;
 
-    // Delay prefetching by 3 seconds to let current song buffer and start playing smoothly
-    const timer = setTimeout(() => {
-      if (!active) return;
+    if (afterNext?.id) {
+      streamService.prefetch(afterNext.id);
+    }
 
-      // 1. Prefetch stream URL for the 2nd upcoming song
-      if (afterNext?.id) {
-        streamService.prefetch(afterNext.id);
-      }
+    streamService.getStreamUrl(next.id)
+      .then((streamUrl) => {
+        if (!active) return;
+        next.fileUrl = streamUrl;
 
-      // 2. Prefetch stream URL and cache audio stream for the next song
-      streamService.getStreamUrl(next.id)
-        .then((streamUrl) => {
-          if (!active) return;
-          next.fileUrl = streamUrl;
-
-          // Warm up browser HTTP cache for the next song's audio stream
-          fetch(streamUrl, { mode: 'cors' }).catch(() => {
-            // Non-critical background warmup
-          });
-        })
-        .catch((err) => {
-          console.warn('[PlayerContext] Failed to prefetch next song:', err);
-        });
-    }, 3000);
+        fetch(streamUrl, { mode: 'cors' }).catch(() => {});
+      })
+      .catch((err) => {
+        console.warn('[PlayerContext] Failed to prefetch next song:', err);
+      });
 
     return () => {
       active = false;
-      clearTimeout(timer);
     };
   }, [currentTrack.id, queue, isPlaying]);
 
@@ -572,6 +562,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const _currentTrack = currentTrackRef.current;
     if (_isPlaybackLocked) return;
     if (_currentTrack.id === '') return;
+    if (trackEndTransitionRef.current) return;
+    trackEndTransitionRef.current = true;
     if (isSleepAtTrackEndRef.current) {
       audioEngine.pause();
       setIsPlaying(false);
@@ -1318,6 +1310,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       handleTrackEndRef.current();
     });
     audioEngine.setOnPlayStateChange((playing) => {
+      if (playing) trackEndTransitionRef.current = false;
       setIsPlaying(playing);
       isPlayingRef.current = playing;
     });
