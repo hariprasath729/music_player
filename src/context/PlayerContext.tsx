@@ -277,7 +277,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const actualPlaying = audioEngine.getActuallyPlaying();
       const currentTime = audioEngine.getCurrentTime();
 
-      if (actualPlaying && currentTime > 0.15 && currentTime > lastProgress + 0.02) {
+      if (currentTime > 0.15 && currentTime > lastProgress + 0.02) {
         playbackStartRecoveryRef.current = { trackId, attempts: 0 };
         clearPlaybackStartMonitor();
         return;
@@ -305,7 +305,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       recovery.attempts += 1;
       lastProgress = -1;
       checkStart = Date.now();
-      console.warn('[PlayerContext] playback still stalled, forcing restart', { trackId, attempt: recovery.attempts });
+      console.warn('[PlayerContext] playback failed to advance, forcing restart', { trackId, attempt: recovery.attempts, actualPlaying, currentTime });
       restartActiveTrackPlayback(fromTrackEnd);
     }, 250);
   }, [clearPlaybackStartMonitor, restartActiveTrackPlayback]);
