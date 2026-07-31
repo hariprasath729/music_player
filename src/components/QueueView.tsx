@@ -217,7 +217,7 @@ export const QueueView: React.FC = () => {
                       e.stopPropagation();
                       removeFromQueue(idx);
                     }}
-                    className="ml-auto p-1 text-[#b3b3b3] opacity-0 transition-all hover:text-red-400 group-hover:opacity-100"
+                    className="ml-auto p-2 md:p-1 text-[#b3b3b3] transition-all hover:text-red-400 md:opacity-0 md:group-hover:opacity-100"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>

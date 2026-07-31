@@ -19,6 +19,7 @@ export const EqualizerSlider: React.FC<EqualizerSliderProps> = ({ label, value, 
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
           className="eq-slider absolute h-8 w-[160px] rotate-[-90deg] appearance-none rounded-full bg-transparent"
+          style={{ touchAction: 'none' }}
           aria-label={`${label} band`}
         />
       </div>
