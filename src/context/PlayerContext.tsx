@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Track, Playlist, TRACKS } from '../data/musicCatalog';
 import { audioEngine } from '../services/audioEngine';
-import { playlistApi, likeApi, recentlyPlayedApi, playCountApi, libraryApi, mapSongToTrack, homeApi } from '../services/apiClient';
+import { playlistApi, likeApi, historyApi, playCountApi, libraryApi, homeApi } from '../services/apiClient';
 import { useAuth } from './AuthContext';
 import { downloadService } from '../services/downloadService';
 import streamService from '../services/streamService';
@@ -217,6 +217,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const stalledStartRecoveryRef = useRef<{ trackId: string; attempted: boolean }>({ trackId: '', attempted: false });
   const playbackStartMonitorRef = useRef<number | null>(null);
   const playbackStartRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
+  const playbackHistoryQueuedRef = useRef<{ trackId: string; recorded: boolean }>({ trackId: '', recorded: false });
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
   // These prevent stale closure bugs when track ends while screen is locked.
@@ -263,6 +264,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const armPlaybackStartMonitor = useCallback((trackId: string, fromTrackEnd: boolean) => {
     clearPlaybackStartMonitor();
     playbackStartRecoveryRef.current = { trackId, attempts: 0 };
+    playbackHistoryQueuedRef.current = { trackId, recorded: false };
 
     let checkStart = Date.now();
     let lastProgress = -1;
@@ -278,6 +280,17 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const currentTime = audioEngine.getCurrentTime();
 
       if (currentTime > 0.15 && currentTime > lastProgress + 0.02) {
+        if (!playbackHistoryQueuedRef.current.recorded) {
+          playbackHistoryQueuedRef.current = { trackId, recorded: true };
+          const playedAt = new Date().toISOString();
+          void historyApi.add(trackId, playedAt).then((added) => {
+            window.dispatchEvent(new CustomEvent('music-player:history-added', { detail: added.data }));
+          }).catch(() => {
+            const pending = JSON.parse(localStorage.getItem('music_player_pending_history') || '[]') as Array<{ songId: string; playedAt: string }>;
+            pending.push({ songId: trackId, playedAt });
+            localStorage.setItem('music_player_pending_history', JSON.stringify(pending));
+          });
+        }
         playbackStartRecoveryRef.current = { trackId, attempts: 0 };
         clearPlaybackStartMonitor();
         return;
@@ -340,6 +353,33 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     window.addEventListener('online', handleOnline);
     return () => window.removeEventListener('online', handleOnline);
   }, []);
+
+  useEffect(() => {
+    const flushPendingHistory = async () => {
+      if (!isLoggedIn) return;
+      try {
+        const raw = localStorage.getItem('music_player_pending_history');
+        const pending = raw ? (JSON.parse(raw) as Array<{ songId: string; playedAt: string }>) : [];
+        if (pending.length === 0) return;
+
+        const remaining: Array<{ songId: string; playedAt: string }> = [];
+        for (const entry of pending) {
+          try {
+            const added = await historyApi.add(entry.songId, entry.playedAt);
+            window.dispatchEvent(new CustomEvent('music-player:history-added', { detail: added.data }));
+          } catch {
+            remaining.push(entry);
+          }
+        }
+
+        localStorage.setItem('music_player_pending_history', JSON.stringify(remaining));
+      } catch {
+        // ignore pending history sync errors
+      }
+    };
+
+    flushPendingHistory();
+  }, [isLoggedIn]);
 
   // Global input tracker for popup positioning
   useEffect(() => {
@@ -443,15 +483,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             songIds: p.songs?.map((s: any) => String(s._id || s.id)) || [],
             createdAt: p.createdAt,
           })));
-          setHistory(res.data.recentlyPlayed?.map((s: any) => ({ ...mapSongToTrack(s), playedAt: s.playedAt })) || []);
           setFollowedArtists(res.data.followedArtists || []);
           setSavedAlbums(res.data.savedAlbums || []);
-
-          // Resume the user's last listened song if one exists
-          if (res.data.recentlyPlayed.length > 0) {
-            const mappedRecent = { ...mapSongToTrack(res.data.recentlyPlayed[0]), playedAt: res.data.recentlyPlayed[0].playedAt };
-            setCurrentTrack(prev => prev.id === '' ? (mappedRecent as Track) : prev);
-          }
         }
       }).catch(err => console.error("Library sync failed", err));
     } else {
@@ -768,9 +801,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCurrentTime(0);
     currentTimeRef.current = 0;
 
-    // Sync recently played & play count with backend
+    // Sync play count with backend
     if (_isLoggedIn) {
-      recentlyPlayedApi.add(track.id).catch(err => console.error('Failed to log play', err));
       playCountApi.increment(track.id).catch(err => console.error('Failed to increment count', err));
     }
 

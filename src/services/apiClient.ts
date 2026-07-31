@@ -177,14 +177,44 @@ export const likeApi = {
 // ── Recently Played APIs ──
 export const recentlyPlayedApi = {
   add: (songId: string) =>
-    request<{ success: boolean; message: string }>('/api/recently-played/add', {
+    request<{ success: boolean; message: string }>('/api/history', {
       method: 'POST',
       body: JSON.stringify({ songId }),
     }),
   get: () =>
-    request<{ success: boolean; data: { songId: string; playedAt?: string }[] }>('/api/recently-played'),
+    request<{ success: boolean; data: { id: string; songId: string; playedAt: string; date: string; day: string; time: string }[]; meta?: { page: number; limit: number; total: number; hasMore: boolean } }>('/api/history'),
   clear: () =>
-    request<{ success: boolean; message: string }>('/api/recently-played', { method: 'DELETE' }),
+    request<{ success: boolean; message: string }>('/api/history', { method: 'DELETE' }),
+};
+
+// ── Listening History APIs ──
+export interface ListeningHistoryEntry {
+  id: string;
+  songId: string;
+  playedAt: string;
+  date: string;
+  day: string;
+  time: string;
+}
+
+export const historyApi = {
+  list: (params?: { page?: number; limit?: number; sort?: 'newest' | 'oldest' }) => {
+    const query = new URLSearchParams();
+    if (params?.page) query.set('page', String(params.page));
+    if (params?.limit) query.set('limit', String(params.limit));
+    if (params?.sort) query.set('sort', params.sort);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return request<{ success: boolean; data: ListeningHistoryEntry[]; meta: { page: number; limit: number; total: number; hasMore: boolean } }>(`/api/history${suffix}`);
+  },
+  add: (songId: string, playedAt?: string) =>
+    request<{ success: boolean; message: string; data: ListeningHistoryEntry }>('/api/history', {
+      method: 'POST',
+      body: JSON.stringify({ songId, ...(playedAt ? { playedAt } : {}) }),
+    }),
+  remove: (id: string) =>
+    request<{ success: boolean; message: string }>(`/api/history/${id}`, { method: 'DELETE' }),
+  clear: () =>
+    request<{ success: boolean; message: string }>('/api/history', { method: 'DELETE' }),
 };
 
 // ── Play Count APIs ──

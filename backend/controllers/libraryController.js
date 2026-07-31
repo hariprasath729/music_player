@@ -1,6 +1,6 @@
 import Like from '../models/Like.js';
 import Playlist from '../models/Playlist.js';
-import RecentlyPlayed from '../models/RecentlyPlayed.js';
+import ListeningHistory from '../models/ListeningHistory.js';
 import Download from '../models/Download.js';
 import FollowedArtist from '../models/FollowedArtist.js';
 import SavedAlbum from '../models/SavedAlbum.js';
@@ -32,7 +32,7 @@ export const getLibrary = async (req, res) => {
     const [likes, playlists, recentlyPlayed, downloads, followed, saved] = await Promise.all([
       Like.find({ userId }).sort({ createdAt: -1 }).limit(500),
       Playlist.find({ userId }).sort({ createdAt: -1 }).limit(50),
-      RecentlyPlayed.findOne({ userId }),
+      ListeningHistory.find({ userId }).sort({ playedAt: -1 }).limit(100),
       Download.findOne({ userId }),
       FollowedArtist.find({ userId }).sort({ createdAt: -1 }).limit(200),
       SavedAlbum.find({ userId }).sort({ createdAt: -1 }).limit(200)
@@ -46,7 +46,7 @@ export const getLibrary = async (req, res) => {
       songs: p.songs.map(getFullSong).filter(Boolean)
     }));
 
-    const recentSongs = (recentlyPlayed?.songs || []).map((r) => {
+    const recentSongs = (recentlyPlayed || []).map((r) => {
       const song = getFullSong(r.songId);
       return song ? { ...song, playedAt: r.playedAt } : null;
     }).filter(Boolean);

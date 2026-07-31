@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Search, Bell, User, Settings, X, Radio,
+  Search, Bell, User, Settings, X, Radio, SlidersHorizontal,
 } from 'lucide-react';
 import { usePlayer } from '../context/PlayerContext';
 import { useAuth } from '../context/AuthContext'; // Replace with real toast in production
 import { notificationsApi, InAppNotification } from '../services/apiClient';
+import { EqualizerPanel } from './EqualizerPanel';
 
 /* Filter pills shown on mobile home/library */
 const MobileFilterPills: React.FC = () => {
@@ -68,6 +69,7 @@ export const Navbar: React.FC = () => {
 
   const [notifications, setNotifications] = useState<InAppNotification[]>([]);
   const [showContactModal, setShowContactModal] = useState(false);
+  const [showEqualizerModal, setShowEqualizerModal] = useState(false);
   const [contactSubject, setContactSubject] = useState('');
   const [contactMessage, setContactMessage] = useState('');
   const [contactSending, setContactSending] = useState(false);
@@ -403,6 +405,14 @@ export const Navbar: React.FC = () => {
               <span>Install App</span>
             </button>
           )}
+          <button
+            onClick={() => setShowEqualizerModal(true)}
+            className="flex items-center gap-1 rounded-full bg-black px-4 py-1.5 text-xs text-[#a7a7a7] transition-transform hover:scale-[1.04] hover:text-white"
+            title="Open equalizer"
+          >
+            <SlidersHorizontal className="h-4 w-4" />
+            <span>Equalizer</span>
+          </button>
           <button 
           onClick={() => setView('play-area')}
           className="flex items-center gap-1 rounded-full bg-black px-4 py-1.5 text-xs text-[#a7a7a7] transition-transform hover:scale-[1.04]"
@@ -541,6 +551,15 @@ export const Navbar: React.FC = () => {
               )}
               <button
                 onClick={() => {
+                  setShowEqualizerModal(true);
+                  setActiveDropdown(null);
+                }}
+                className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
+                Equalizer
+              </button>
+              <button
+                onClick={() => {
                   setActiveDropdown(null);
                   setView('request-song' as any);
                 }}
@@ -577,6 +596,8 @@ export const Navbar: React.FC = () => {
         </>
       )}
     </header>
+
+      {showEqualizerModal && <EqualizerPanel onClose={() => setShowEqualizerModal(false)} />}
 
       {/* Contact Admin Modal */}
       {showContactModal && (

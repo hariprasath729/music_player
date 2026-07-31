@@ -3,6 +3,7 @@ import { Plus, Search, ArrowDownUp, X, Trash2, Pencil } from 'lucide-react';
 import { usePlayer, isBgmOrScore } from '../../context/PlayerContext';
 import { TRACKS, PLAYLISTS } from '../../data/musicCatalog';
 import artistsData from '../../data/artists.json';
+import { RecentlyPlayedTimeline } from './RecentlyPlayedTimeline';
 
 type SortMode = 'Recents' | 'A-Z' | 'Creator';
 type FilterMode = 'All' | 'Playlists' | 'Artists' | 'Albums' | 'Downloaded' | 'Recently Played';
@@ -13,15 +14,12 @@ export const LibraryView: React.FC = () => {
     playTrack,
     setView,
     currentTrack,
-    isPlaying,
     customPlaylists,
     createPlaylist,
     deletePlaylist,
     renamePlaylist,
     setSearchQuery,
-    history,
     downloadedTracks,
-    toggleDownload,
     downloadedPlaylists,
     likedPlaylists,
     followedArtists,
@@ -281,30 +279,7 @@ export const LibraryView: React.FC = () => {
           </>
         )}
 
-        {filter === 'Recently Played' && (
-          history.length > 0 ? (history as any[])
-            .filter((t) =>
-              (t.title || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
-              (t.artist || '').toLowerCase().includes(librarySearch.toLowerCase()) ||
-              (t.album || '').toLowerCase().includes(librarySearch.toLowerCase())
-            )
-            .map((t, idx) => {
-              const dateStr = t.playedAt 
-                ? new Date(t.playedAt).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' }) 
-                : '';
-              const subtitle = `${t.artist} • ${t.album}${dateStr ? ` • ${dateStr}` : ''}`;
-              return (
-                <React.Fragment key={`recent-${t.id}-${idx}`}>
-                  {renderRow(t.title, subtitle, t.gradient || '#282828', () => playTrack(t, history), t.id === currentTrack.id)}
-                </React.Fragment>
-              );
-            }) : (
-            <div className="py-12 text-center text-[#b3b3b3]">
-              <p className="text-lg font-bold text-white">No recent activity</p>
-              <p className="mt-1 text-sm">Songs you play will appear here</p>
-            </div>
-          )
-        )}
+        {filter === 'Recently Played' && <RecentlyPlayedTimeline />}
 
         {filter === 'Artists' && artists.filter(a => followedArtists.includes(a.artist)).length === 0 && (
           <div className="py-12 text-center text-[#b3b3b3]">

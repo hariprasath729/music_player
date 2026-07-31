@@ -259,8 +259,8 @@ export const HomeView: React.FC = () => {
           <section className="flex flex-col gap-3">
             <h2 className="text-lg font-bold text-white sm:text-2xl">Recently Played</h2>
             <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
-              {recentlyPlayed.map((t: Track) => (
-                <TrackCard key={`recent-${t.id}`} track={t} list={recentlyPlayed} onPlay={playAnyTrack} />
+              {recentlyPlayed.map((t: Track, index: number) => (
+                <TrackCard key={`recent-${t.id}-${index}`} track={t} list={recentlyPlayed} onPlay={playAnyTrack} />
               ))}
             </div>
           </section>

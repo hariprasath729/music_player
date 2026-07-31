@@ -1,6 +1,6 @@
 import Like from '../models/Like.js';
 import Playlist from '../models/Playlist.js';
-import RecentlyPlayed from '../models/RecentlyPlayed.js';
+import ListeningHistory from '../models/ListeningHistory.js';
 import PlayCount from '../models/PlayCount.js';
 import FollowedArtist from '../models/FollowedArtist.js';
 import SkipAvoid from '../models/SkipAvoid.js';
@@ -86,14 +86,14 @@ export const getHomeData = async (req, res) => {
     const [likes, playlists, recentlyPlayed, playCounts, followedArtists, skipAvoid] = await Promise.all([
       Like.find({ userId }),
       Playlist.find({ userId }).sort({ createdAt: -1 }).limit(10),
-      RecentlyPlayed.findOne({ userId }),
+      ListeningHistory.find({ userId }).sort({ playedAt: -1 }).limit(50),
       PlayCount.find().sort({ count: -1 }).limit(20),
       FollowedArtist.find({ userId }),
       SkipAvoid.find({ userId })
     ]);
 
     // 1. Recently Played (Limit to 10)
-    const recentSongs = (recentlyPlayed?.songs || [])
+    const recentSongs = (recentlyPlayed || [])
       .slice(0, 10)
       .map(r => getFullSong(r.songId))
       .filter(Boolean);
@@ -108,9 +108,7 @@ export const getHomeData = async (req, res) => {
     const likedIds = likes.map(l => String(l.songId));
     
     // Use all available recently played songs to get a better idea of their listening habits
-    const allRecentSongs = (recentlyPlayed?.songs || [])
-      .map(r => getFullSong(r.songId))
-      .filter(Boolean);
+    const allRecentSongs = (recentlyPlayed || []).map(r => getFullSong(r.songId)).filter(Boolean);
     const recentIds = allRecentSongs.map(s => String(s.id));
     
     const baseIds = new Set([...likedIds, ...recentIds]);

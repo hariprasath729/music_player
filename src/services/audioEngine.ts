@@ -1,13 +1,29 @@
 // Web Audio API Procedural Synth & Playback Engine
 
+import {
+  EQ_BANDS,
+  EQ_Q_FACTOR,
+  bandsFromPreset,
+  cloneBands,
+  type EqualizerBandFrequency,
+  type EqualizerPresetName,
+  type EqualizerState,
+} from '../equalizer/presets';
+import { loadEqualizerState, saveEqualizerState } from '../equalizer/storage';
+
 class AudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
+  private preampGain: GainNode | null = null;
   private analyser: AnalyserNode | null = null;
   private media: HTMLAudioElement | null = null;
   private preloadMedia: HTMLAudioElement | null = null;
   private playbackStartWatchdog: number | null = null;
   private playbackStartAttempts: number = 0;
+  private mediaSourceNode: MediaElementAudioSourceNode | null = null;
+  private mediaSourceMedia: HTMLAudioElement | null = null;
+  private equalizerFilters: BiquadFilterNode[] = [];
+  private equalizerState: EqualizerState = loadEqualizerState();
   
   private isPlaying: boolean = false;
   private currentGenre: string = 'ambient';
@@ -29,6 +45,102 @@ class AudioEngine {
 
   private normalizeAudioUrl(fileUrl: string): string {
     return new URL(fileUrl, window.location.href).href;
+  }
+
+  private dbToGain(db: number): number {
+    return Math.pow(10, db / 20);
+  }
+
+  private emitEqualizerChange() {
+    saveEqualizerState(this.equalizerState);
+    window.dispatchEvent(new CustomEvent('music-player:equalizer-changed'));
+  }
+
+  private ensureEqualizerNodes() {
+    if (!this.ctx) return;
+
+    if (!this.preampGain) {
+      this.preampGain = this.ctx.createGain();
+    }
+
+    if (this.equalizerFilters.length === 0) {
+      this.equalizerFilters = EQ_BANDS.map((frequency) => {
+        const filter = this.ctx!.createBiquadFilter();
+        filter.type = 'peaking';
+        filter.frequency.value = frequency;
+        filter.Q.value = EQ_Q_FACTOR;
+        filter.gain.value = this.equalizerState.bands[frequency] ?? 0;
+        return filter;
+      });
+    }
+
+    if (this.preampGain) {
+      this.preampGain.gain.setValueAtTime(this.dbToGain(this.equalizerState.preamp), this.ctx.currentTime);
+    }
+
+    this.equalizerFilters.forEach((filter, index) => {
+      const frequency = EQ_BANDS[index];
+      filter.frequency.setValueAtTime(frequency, this.ctx!.currentTime);
+      filter.Q.setValueAtTime(EQ_Q_FACTOR, this.ctx!.currentTime);
+      filter.gain.setValueAtTime(this.equalizerState.bands[frequency] ?? 0, this.ctx!.currentTime);
+    });
+  }
+
+  private disconnectNode(node: AudioNode | null | undefined) {
+    if (!node) return;
+    try {
+      node.disconnect();
+    } catch {
+      // ignore repeated disconnects
+    }
+  }
+
+  private attachMediaSource(media: HTMLAudioElement) {
+    if (!this.ctx) return;
+    if (this.mediaSourceMedia === media && this.mediaSourceNode) return;
+
+    this.disconnectNode(this.mediaSourceNode);
+    this.mediaSourceNode = this.ctx.createMediaElementSource(media);
+    this.mediaSourceMedia = media;
+  }
+
+  private rebuildAudioGraph() {
+    if (!this.ctx || !this.mediaSourceNode || !this.masterGain || !this.analyser) return;
+
+    this.ensureEqualizerNodes();
+
+    this.disconnectNode(this.mediaSourceNode);
+    this.equalizerFilters.forEach((filter) => this.disconnectNode(filter));
+    this.disconnectNode(this.preampGain);
+    this.disconnectNode(this.masterGain);
+    this.disconnectNode(this.analyser);
+
+    let currentNode: AudioNode = this.mediaSourceNode;
+
+    if (this.equalizerState.enabled && this.equalizerFilters.length > 0 && this.preampGain) {
+      this.equalizerFilters.forEach((filter) => {
+        currentNode.connect(filter);
+        currentNode = filter;
+      });
+      currentNode.connect(this.preampGain);
+      currentNode = this.preampGain;
+    }
+
+    currentNode.connect(this.masterGain);
+    this.masterGain.connect(this.analyser);
+    this.analyser.connect(this.ctx.destination);
+  }
+
+  private syncEqualizerBands() {
+    if (!this.ctx) return;
+    this.ensureEqualizerNodes();
+    this.equalizerFilters.forEach((filter, index) => {
+      const frequency = EQ_BANDS[index];
+      filter.gain.setValueAtTime(this.equalizerState.bands[frequency] ?? 0, this.ctx!.currentTime);
+    });
+    if (this.preampGain) {
+      this.preampGain.gain.setValueAtTime(this.dbToGain(this.equalizerState.preamp), this.ctx.currentTime);
+    }
   }
 
   private clearPlaybackStartWatchdog() {
@@ -115,9 +227,8 @@ class AudioEngine {
       this.analyser = this.ctx.createAnalyser();
       this.analyser.fftSize = 128;
       this.analyser.smoothingTimeConstant = 0.8;
-      
-      this.masterGain.connect(this.analyser);
-      this.analyser.connect(this.ctx.destination);
+
+      this.ensureEqualizerNodes();
     }
     
     if (this.ctx.state === 'suspended') {
@@ -129,6 +240,56 @@ class AudioEngine {
 
   public setOnPlayStateChange(callback: (isPlaying: boolean) => void) {
     this.onPlayStateChangeCallback = callback;
+  }
+
+  public getEqualizerState(): EqualizerState {
+    return {
+      ...this.equalizerState,
+      bands: cloneBands(this.equalizerState.bands),
+    };
+  }
+
+  public setEqualizerEnabled(enabled: boolean) {
+    this.initContext();
+    this.equalizerState = { ...this.equalizerState, enabled };
+    this.rebuildAudioGraph();
+    this.emitEqualizerChange();
+  }
+
+  public setEqualizerPreset(preset: EqualizerPresetName) {
+    this.initContext();
+    const bands = preset === 'Custom' ? this.equalizerState.bands : bandsFromPreset(preset);
+    this.equalizerState = {
+      ...this.equalizerState,
+      preset,
+      bands: cloneBands(bands),
+    };
+    this.syncEqualizerBands();
+    this.rebuildAudioGraph();
+    this.emitEqualizerChange();
+  }
+
+  public setEqualizerBandGain(band: EqualizerBandFrequency, gain: number) {
+    this.initContext();
+    const clamped = Math.max(-12, Math.min(12, gain));
+    this.equalizerState = {
+      ...this.equalizerState,
+      preset: 'Custom',
+      bands: {
+        ...this.equalizerState.bands,
+        [band]: clamped,
+      },
+    };
+    this.syncEqualizerBands();
+    this.emitEqualizerChange();
+  }
+
+  public setEqualizerPreamp(value: number) {
+    this.initContext();
+    const clamped = Math.max(-12, Math.min(12, value));
+    this.equalizerState = { ...this.equalizerState, preamp: clamped };
+    this.syncEqualizerBands();
+    this.emitEqualizerChange();
   }
 
   private attachMediaHandlers(media: HTMLAudioElement) {
@@ -225,6 +386,8 @@ class AudioEngine {
   public preloadNext(fileUrl: string) {
     if (!fileUrl) return;
 
+    this.initContext();
+
     const normalizedUrl = this.normalizeAudioUrl(fileUrl);
     if (this.media?.currentSrc === normalizedUrl || this.preloadMedia?.currentSrc === normalizedUrl) return;
 
@@ -307,6 +470,7 @@ class AudioEngine {
   }
 
   private playMedia(fileUrl: string, duration: number, startFromTime: number = 0) {
+    this.initContext();
     this.clearAllNodes();
     this.clearPlaybackStartWatchdog();
     this.playbackStartAttempts = 0;
@@ -318,6 +482,9 @@ class AudioEngine {
       this.media?.pause();
       this.media = preloadedMedia;
     }
+
+    this.attachMediaSource(media);
+    this.rebuildAudioGraph();
 
     if (media.currentSrc !== normalizedUrl) {
       media.src = normalizedUrl;
@@ -356,6 +523,7 @@ class AudioEngine {
    * Use this ONLY when advancing to the next track from within handleTrackEnd.
    */
   public playNext(fileUrl: string, duration: number) {
+    this.initContext();
     this.clearAllNodes();
     this.clearPlaybackStartWatchdog();
     this.playbackStartAttempts = 0;
@@ -366,6 +534,9 @@ class AudioEngine {
     if (preloadedMedia) {
       this.media = preloadedMedia;
     }
+
+    this.attachMediaSource(media);
+    this.rebuildAudioGraph();
 
     // Change src directly — do NOT call pause() before this.
     // The ended state grants autoplay permission; pause() revokes it.
@@ -397,6 +568,7 @@ class AudioEngine {
   }
 
   public pause() {
+    this.initContext();
     this.clearPlaybackStartWatchdog();
     this.playbackStartAttempts = 0;
     if (this.media) {
@@ -429,6 +601,7 @@ class AudioEngine {
   }
 
   public stop() {
+    this.initContext();
     this.clearPlaybackStartWatchdog();
     this.playbackStartAttempts = 0;
     if (this.media) {
@@ -465,6 +638,7 @@ class AudioEngine {
   }
 
   public setVolume(volume: number) {
+    this.initContext();
     if (this.media) {
       this.media.volume = Math.max(0, Math.min(1, volume));
     }
@@ -476,6 +650,7 @@ class AudioEngine {
   }
 
   public setPlaybackRate(rate: number) {
+    this.initContext();
     this.playbackRate = rate;
     if (this.media) {
       this.media.playbackRate = rate;
