@@ -215,6 +215,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const trackEndTransitionRef = useRef<boolean>(false);
   const trackEndUnlockTimerRef = useRef<number | null>(null);
   const stalledStartRecoveryRef = useRef<{ trackId: string; attempted: boolean }>({ trackId: '', attempted: false });
+  const playbackStartMonitorRef = useRef<number | null>(null);
+  const playbackStartRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
   // These prevent stale closure bugs when track ends while screen is locked.
@@ -238,6 +240,75 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const lastClickPos = useRef<{ x: number; y: number } | null>(null);
   const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
+
+  const clearPlaybackStartMonitor = useCallback(() => {
+    if (playbackStartMonitorRef.current !== null) {
+      window.clearInterval(playbackStartMonitorRef.current);
+      playbackStartMonitorRef.current = null;
+    }
+  }, []);
+
+  const restartActiveTrackPlayback = useCallback((fromTrackEnd: boolean) => {
+    const activeTrack = currentTrackRef.current;
+    if (activeTrack.id === '' || !activeTrack.fileUrl) return false;
+
+    if (fromTrackEnd) {
+      audioEngine.playNext(activeTrack.fileUrl, activeTrack.duration);
+    } else {
+      audioEngine.play(activeTrack.duration, currentTimeRef.current, activeTrack.fileUrl);
+    }
+    return true;
+  }, []);
+
+  const armPlaybackStartMonitor = useCallback((trackId: string, fromTrackEnd: boolean) => {
+    clearPlaybackStartMonitor();
+    playbackStartRecoveryRef.current = { trackId, attempts: 0 };
+
+    let checkStart = Date.now();
+    let lastProgress = -1;
+
+    playbackStartMonitorRef.current = window.setInterval(() => {
+      const activeTrack = currentTrackRef.current;
+      if (activeTrack.id !== trackId) {
+        clearPlaybackStartMonitor();
+        return;
+      }
+
+      const actualPlaying = audioEngine.getActuallyPlaying();
+      const currentTime = audioEngine.getCurrentTime();
+
+      if (actualPlaying && currentTime > 0.15 && currentTime > lastProgress + 0.02) {
+        playbackStartRecoveryRef.current = { trackId, attempts: 0 };
+        clearPlaybackStartMonitor();
+        return;
+      }
+
+      if (currentTime > lastProgress + 0.02) {
+        lastProgress = currentTime;
+      }
+
+      if (Date.now() - checkStart < 2250) return;
+
+      const recovery = playbackStartRecoveryRef.current;
+      if (recovery.trackId !== trackId) {
+        clearPlaybackStartMonitor();
+        return;
+      }
+
+      if (recovery.attempts >= 2) {
+        clearPlaybackStartMonitor();
+        setIsPlaying(false);
+        audioEngine.stop();
+        return;
+      }
+
+      recovery.attempts += 1;
+      lastProgress = -1;
+      checkStart = Date.now();
+      console.warn('[PlayerContext] playback still stalled, forcing restart', { trackId, attempt: recovery.attempts });
+      restartActiveTrackPlayback(fromTrackEnd);
+    }, 250);
+  }, [clearPlaybackStartMonitor, restartActiveTrackPlayback]);
 
   // Stop any active media when the player shell unmounts (for example on logout).
   useEffect(() => {
@@ -626,10 +697,14 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       streamService.getStreamUrl(_currentTrack.id).then((streamUrl) => {
         _currentTrack.fileUrl = streamUrl;
         audioEngine.playNext(streamUrl, _currentTrack.duration);
+        armPlaybackStartMonitor(_currentTrack.id, true);
         setCurrentTime(0);
       }).catch(() => {
         // On failure just try with whatever fileUrl is stored
-        if (_currentTrack.fileUrl) audioEngine.playNext(_currentTrack.fileUrl, _currentTrack.duration);
+        if (_currentTrack.fileUrl) {
+          audioEngine.playNext(_currentTrack.fileUrl, _currentTrack.duration);
+          armPlaybackStartMonitor(_currentTrack.id, true);
+        }
         setCurrentTime(0);
       });
     } else {
@@ -716,12 +791,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           if (loadingTrackIdRef.current !== track.id) return true;
           const cachedUrl = `https://music-player.local/song/${track.id}`;
           track.fileUrl = cachedUrl;
-          setIsPlaying(true);
           if (fromTrackEnd) {
             audioEngine.playNext(cachedUrl, track.duration);
           } else {
             audioEngine.play(track.duration, 0, cachedUrl);
           }
+            armPlaybackStartMonitor(track.id, fromTrackEnd);
           applyAudioSettings();
           return true;
         } else if (!navigator.onLine) {
@@ -740,8 +815,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     // This is the KEY fix for autoplay on locked screen — no async gap at all.
     if (fromTrackEnd && track.fileUrl) {
       if (loadingTrackIdRef.current !== track.id) return;
-      setIsPlaying(true);
       audioEngine.playNext(track.fileUrl, track.duration);
+      armPlaybackStartMonitor(track.id, true);
       applyAudioSettings();
       // Refresh the stream URL in background for the next play/pause cycle
       streamService.getStreamUrl(track.id).then(url => { track.fileUrl = url; }).catch(() => {});
@@ -756,12 +831,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       .then((streamUrl) => {
         if (loadingTrackIdRef.current !== track.id) return;
         track.fileUrl = streamUrl;
-        setIsPlaying(true);
         if (fromTrackEnd) {
           audioEngine.playNext(streamUrl, track.duration);
         } else {
           audioEngine.play(track.duration, 0, streamUrl);
         }
+        armPlaybackStartMonitor(track.id, fromTrackEnd);
         applyAudioSettings();
       })
       .catch((err) => {
