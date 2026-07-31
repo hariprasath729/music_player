@@ -213,6 +213,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const toastIdRef = useRef<number>(0);
   const loadingTrackIdRef = useRef<string | null>(null);
   const trackEndTransitionRef = useRef<boolean>(false);
+  const trackEndUnlockTimerRef = useRef<number | null>(null);
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
   // These prevent stale closure bugs when track ends while screen is locked.
@@ -448,7 +449,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     let interval: number;
     let stallCount = 0;
-    let lastAudioTime = -1;
     if (isPlaying) {
       interval = window.setInterval(() => {
         const t = audioEngine.getCurrentTime();
@@ -474,11 +474,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           }
         } else {
           stallCount = 0;
-          lastAudioTime = t;
         }
       }, 100);
     }
-    return () => { clearInterval(interval); stallCount = 0; lastAudioTime = -1; };
+    return () => { clearInterval(interval); stallCount = 0; };
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
   // Prefetch stream URLs for upcoming tracks immediately so lock-screen timers do not delay autoplay handoff
@@ -581,6 +580,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const _currentTrack = currentTrackRef.current;
     if (_isPlaybackLocked) return;
     if (_currentTrack.id === '') return;
+    if (trackEndTransitionRef.current) return;
+    trackEndTransitionRef.current = true;
+    if (trackEndUnlockTimerRef.current !== null) {
+      window.clearTimeout(trackEndUnlockTimerRef.current);
+    }
+    trackEndUnlockTimerRef.current = window.setTimeout(() => {
+      trackEndTransitionRef.current = false;
+      trackEndUnlockTimerRef.current = null;
+    }, 3000);
     if (isSleepAtTrackEndRef.current) {
       audioEngine.pause();
       setIsPlaying(false);
@@ -588,8 +596,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       showToast('Sleeper ended playback', 'moon');
       return;
     }
-    if (trackEndTransitionRef.current) return;
-    trackEndTransitionRef.current = true;
     if (repeatModeRef.current === 'one') {
       // Re-fetch a fresh stream URL for repeat-one (current token might be near expiry)
       streamService.getStreamUrl(_currentTrack.id).then((streamUrl) => {
@@ -1329,13 +1335,16 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       handleTrackEndRef.current();
     });
     audioEngine.setOnPlayStateChange((playing) => {
-      if (playing) trackEndTransitionRef.current = false;
       setIsPlaying(playing);
       isPlayingRef.current = playing;
     });
     return () => {
       audioEngine.setOnEnded(() => {});
       audioEngine.setOnPlayStateChange(() => {});
+      if (trackEndUnlockTimerRef.current !== null) {
+        window.clearTimeout(trackEndUnlockTimerRef.current);
+        trackEndUnlockTimerRef.current = null;
+      }
     };
   }, []);
 
