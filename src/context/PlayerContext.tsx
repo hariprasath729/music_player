@@ -60,6 +60,7 @@ interface PlayerContextType {
   duration: number;
   volume: number;
   isMuted: boolean;
+  soundBoostEnabled: boolean;
   queue: Track[];
   history: Track[];
   isShuffle: boolean;
@@ -94,6 +95,7 @@ interface PlayerContextType {
   seek: (time: number, force?: boolean) => void;
   setVolume: (vol: number) => void;
   toggleMute: () => void;
+  toggleSoundBoost: () => void;
   addToQueue: (track: Track) => void;
   removeFromQueue: (index: number) => void;
   clearQueue: () => void;
@@ -155,6 +157,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [duration, setDuration] = useState<number>(0);
   const [volume, setVolumeState] = useState<number>(0.7);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [soundBoostEnabled, setSoundBoostEnabled] = useState<boolean>(false);
 
   const [queue, setQueue] = useState<Track[]>([]);
   const [history, setHistory] = useState<Track[]>(() => {
@@ -217,6 +220,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const stalledStartRecoveryRef = useRef<{ trackId: string; attempted: boolean }>({ trackId: '', attempted: false });
   const playbackStartMonitorRef = useRef<number | null>(null);
   const playbackStartRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
+  const streamErrorRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
   const playbackHistoryQueuedRef = useRef<{ trackId: string; recorded: boolean }>({ trackId: '', recorded: false });
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
@@ -797,6 +801,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     });
     setCurrentTrack(track);
     currentTrackRef.current = track;
+    streamErrorRecoveryRef.current = { trackId: track.id, attempts: 0 };
     setDuration(track.duration);
     setCurrentTime(0);
     currentTimeRef.current = 0;
@@ -1467,12 +1472,43 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       handleTrackEndRef.current();
     });
     audioEngine.setOnPlayStateChange((playing) => {
+      console.debug('[PlayerContext] audioEngine play state ->', playing);
       setIsPlaying(playing);
       isPlayingRef.current = playing;
+    });
+    audioEngine.setOnPlaybackError(({ currentTime }) => {
+      const activeTrack = currentTrackRef.current;
+      if (!activeTrack.id) return;
+
+      const recovery = streamErrorRecoveryRef.current;
+      if (recovery.trackId !== activeTrack.id) {
+        streamErrorRecoveryRef.current = { trackId: activeTrack.id, attempts: 0 };
+      }
+
+      if (streamErrorRecoveryRef.current.attempts >= 1) return;
+      streamErrorRecoveryRef.current.attempts += 1;
+
+      streamService.invalidateStreamUrl(activeTrack.id);
+      activeTrack.fileUrl = '';
+
+      streamService.getStreamUrl(activeTrack.id)
+        .then((streamUrl) => {
+          if (currentTrackRef.current.id !== activeTrack.id) return;
+          activeTrack.fileUrl = streamUrl;
+          setCurrentTrack((prev) => prev.id === activeTrack.id ? { ...prev, fileUrl: streamUrl } : prev);
+          setIsPlaying(true);
+          isPlayingRef.current = true;
+          audioEngine.play(activeTrack.duration, currentTime, streamUrl);
+        })
+        .catch((err) => {
+          console.error('[PlayerContext] stream recovery failed:', err);
+          showToast('Could not refresh stream. Please try again.', 'error');
+        });
     });
     return () => {
       audioEngine.setOnEnded(() => {});
       audioEngine.setOnPlayStateChange(() => {});
+      audioEngine.setOnPlaybackError(() => {});
       if (trackEndUnlockTimerRef.current !== null) {
         window.clearTimeout(trackEndUnlockTimerRef.current);
         trackEndUnlockTimerRef.current = null;

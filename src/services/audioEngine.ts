@@ -14,6 +14,7 @@ import { loadEqualizerState, saveEqualizerState } from '../equalizer/storage';
 class AudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
+  private soundBoostGain: GainNode | null = null;
   private preampGain: GainNode | null = null;
   private analyser: AnalyserNode | null = null;
   private media: HTMLAudioElement | null = null;
@@ -22,6 +23,8 @@ class AudioEngine {
   private playbackStartAttempts: number = 0;
   private mediaSourceNode: MediaElementAudioSourceNode | null = null;
   private mediaSourceMedia: HTMLAudioElement | null = null;
+  // Keep track of attached event listeners so we can remove them when media changes
+  private mediaEventListeners: WeakMap<HTMLAudioElement, Array<{ type: string; handler: EventListenerOrEventListenerObject }>> = new WeakMap();
   private equalizerFilters: BiquadFilterNode[] = [];
   private equalizerState: EqualizerState = loadEqualizerState();
   
@@ -34,7 +37,9 @@ class AudioEngine {
   private currentTrackDuration: number = 200;
   private mediaEnded: boolean = false;
   private playbackRate: number = 1;
+  private soundBoostEnabled: boolean = false;
   private onEndedCallback: (() => void) | null = null;
+  private onPlaybackErrorCallback: ((details: { src: string; currentTime: number }) => void) | null = null;
 
   // Pattern loop timers
   private loopInterval: number | null = null;
@@ -63,6 +68,10 @@ class AudioEngine {
       this.preampGain = this.ctx.createGain();
     }
 
+    if (!this.soundBoostGain) {
+      this.soundBoostGain = this.ctx.createGain();
+    }
+
     if (this.equalizerFilters.length === 0) {
       this.equalizerFilters = EQ_BANDS.map((frequency) => {
         const filter = this.ctx!.createBiquadFilter();
@@ -76,6 +85,10 @@ class AudioEngine {
 
     if (this.preampGain) {
       this.preampGain.gain.setValueAtTime(this.dbToGain(this.equalizerState.preamp), this.ctx.currentTime);
+    }
+
+    if (this.soundBoostGain) {
+      this.soundBoostGain.gain.setValueAtTime(this.soundBoostEnabled ? 1.6 : 1, this.ctx.currentTime);
     }
 
     this.equalizerFilters.forEach((filter, index) => {
@@ -99,9 +112,29 @@ class AudioEngine {
     if (!this.ctx) return;
     if (this.mediaSourceMedia === media && this.mediaSourceNode) return;
 
+    // If we previously had a different media element, clean up its listeners
+    try {
+      if (this.mediaSourceMedia && this.mediaSourceMedia !== media) {
+        const prev = this.mediaSourceMedia;
+        const prevListeners = this.mediaEventListeners.get(prev) || [];
+        prevListeners.forEach(({ type, handler }) => prev.removeEventListener(type, handler));
+        this.mediaEventListeners.delete(prev);
+      }
+    } catch (err) {
+      console.warn('[audioEngine] failed to cleanup previous media listeners', err);
+    }
+
     this.disconnectNode(this.mediaSourceNode);
-    this.mediaSourceNode = this.ctx.createMediaElementSource(media);
-    this.mediaSourceMedia = media;
+    try {
+      this.mediaSourceNode = this.ctx.createMediaElementSource(media);
+      this.mediaSourceMedia = media;
+    } catch (err) {
+      // Some browsers/contexts can throw if the element already has a source node.
+      // Log and continue — we'll still try to rebuild the graph using the existing node if available.
+      console.warn('[audioEngine] createMediaElementSource failed:', err);
+      this.mediaSourceNode = null;
+      this.mediaSourceMedia = media;
+    }
   }
 
   private rebuildAudioGraph() {
@@ -112,6 +145,7 @@ class AudioEngine {
     this.disconnectNode(this.mediaSourceNode);
     this.equalizerFilters.forEach((filter) => this.disconnectNode(filter));
     this.disconnectNode(this.preampGain);
+    this.disconnectNode(this.soundBoostGain);
     this.disconnectNode(this.masterGain);
     this.disconnectNode(this.analyser);
 
@@ -124,6 +158,11 @@ class AudioEngine {
       });
       currentNode.connect(this.preampGain);
       currentNode = this.preampGain;
+    }
+
+    if (this.soundBoostGain) {
+      currentNode.connect(this.soundBoostGain);
+      currentNode = this.soundBoostGain;
     }
 
     currentNode.connect(this.masterGain);
@@ -148,6 +187,14 @@ class AudioEngine {
       clearTimeout(this.playbackStartWatchdog);
       this.playbackStartWatchdog = null;
     }
+  }
+
+  private silenceMedia(media: HTMLAudioElement | null) {
+    if (!media) return;
+    media.pause();
+    media.muted = true;
+    media.removeAttribute('src');
+    media.load();
   }
 
   private forceRestartPlayback(fileUrl: string, duration: number, startFromTime: number = 0) {
@@ -242,6 +289,10 @@ class AudioEngine {
     this.onPlayStateChangeCallback = callback;
   }
 
+  public setOnPlaybackError(callback: (details: { src: string; currentTime: number }) => void) {
+    this.onPlaybackErrorCallback = callback;
+  }
+
   public getEqualizerState(): EqualizerState {
     return {
       ...this.equalizerState,
@@ -292,6 +343,14 @@ class AudioEngine {
     this.emitEqualizerChange();
   }
 
+  public setSoundBoostEnabled(enabled: boolean) {
+    this.initContext();
+    this.soundBoostEnabled = enabled;
+    if (this.soundBoostGain && this.ctx) {
+      this.soundBoostGain.gain.setTargetAtTime(enabled ? 1.6 : 1, this.ctx.currentTime, 0.02);
+    }
+  }
+
   private attachMediaHandlers(media: HTMLAudioElement) {
     const maybeRecoverFromStartupStall = () => {
       if (!this.media || this.media !== media) return;
@@ -306,58 +365,79 @@ class AudioEngine {
       this.forceRestartPlayback(src, this.currentTrackDuration, this.pausedTime || 0);
     };
 
-    media.onended = () => {
+    // Use addEventListener so we don't clobber other handlers; store listeners for cleanup
+    const listeners: Array<{ type: string; handler: EventListenerOrEventListenerObject }> = [];
+
+    const onEnded = () => {
+      if (media !== this.media) return;
+      console.debug('[audioEngine] media ended event');
       this.mediaEnded = true;
       this.isPlaying = false;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(false);
-      }
-      if (this.onEndedCallback) {
-        this.onEndedCallback();
-      }
+      if (this.onPlayStateChangeCallback) this.onPlayStateChangeCallback(false);
+      if (this.onEndedCallback) this.onEndedCallback();
     };
+    media.addEventListener('ended', onEnded);
+    listeners.push({ type: 'ended', handler: onEnded });
 
-    media.onloadedmetadata = () => {
+    const onLoaded = () => {
       if (media === this.media && Number.isFinite(media.duration)) {
         this.currentTrackDuration = media.duration;
       }
     };
+    media.addEventListener('loadedmetadata', onLoaded);
+    listeners.push({ type: 'loadedmetadata', handler: onLoaded });
 
-    media.onplay = () => {
+    const onPlay = () => {
+      if (media !== this.media) return;
+      console.debug('[audioEngine] media play event');
       this.isPlaying = true;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(true);
-      }
+      if (this.onPlayStateChangeCallback) this.onPlayStateChangeCallback(true);
     };
+    media.addEventListener('play', onPlay);
+    listeners.push({ type: 'play', handler: onPlay });
 
-    media.onplaying = () => {
+    const onPlaying = () => {
+      if (media !== this.media) return;
+      console.debug('[audioEngine] media playing event');
       this.playbackStartAttempts = 0;
       this.clearPlaybackStartWatchdog();
       this.isPlaying = true;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(true);
-      }
+      if (this.onPlayStateChangeCallback) this.onPlayStateChangeCallback(true);
     };
+    media.addEventListener('playing', onPlaying);
+    listeners.push({ type: 'playing', handler: onPlaying });
 
-    media.onwaiting = maybeRecoverFromStartupStall;
-    media.onstalled = maybeRecoverFromStartupStall;
+    media.addEventListener('waiting', maybeRecoverFromStartupStall);
+    listeners.push({ type: 'waiting', handler: maybeRecoverFromStartupStall });
+    media.addEventListener('stalled', maybeRecoverFromStartupStall);
+    listeners.push({ type: 'stalled', handler: maybeRecoverFromStartupStall });
 
-    media.onpause = () => {
+    const onPause = () => {
+      if (media !== this.media) return;
+      console.debug('[audioEngine] media pause event');
       if (!this.mediaEnded) {
         this.isPlaying = false;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(false);
-        }
+        if (this.onPlayStateChangeCallback) this.onPlayStateChangeCallback(false);
       }
     };
+    media.addEventListener('pause', onPause);
+    listeners.push({ type: 'pause', handler: onPause });
 
-    media.onerror = (e) => {
+    const onError = (e: Event) => {
+      if (media !== this.media) return;
       console.warn('[audioEngine] Audio playback error:', e);
+      const src = media.currentSrc || media.src;
+      const currentTime = media.currentTime || this.pausedTime || 0;
       this.isPlaying = false;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(false);
+      if (this.onPlayStateChangeCallback) this.onPlayStateChangeCallback(false);
+      if (src && this.onPlaybackErrorCallback) {
+        this.onPlaybackErrorCallback({ src, currentTime });
       }
     };
+    media.addEventListener('error', onError);
+    listeners.push({ type: 'error', handler: onError });
+
+    this.mediaEventListeners.set(media, listeners);
   }
 
   private takePreloadedMedia(fileUrl: string): HTMLAudioElement | null {
@@ -370,19 +450,6 @@ class AudioEngine {
     return media;
   }
 
-  private tryMutedPlayback(media: HTMLAudioElement): Promise<void> {
-    const wasMuted = media.muted;
-    media.muted = true;
-
-    return media.play().then(() => {
-      media.muted = wasMuted;
-      this.isPlaying = true;
-      if (this.onPlayStateChangeCallback) {
-        this.onPlayStateChangeCallback(true);
-      }
-    });
-  }
-
   public preloadNext(fileUrl: string) {
     if (!fileUrl) return;
 
@@ -392,9 +459,7 @@ class AudioEngine {
     if (this.media?.currentSrc === normalizedUrl || this.preloadMedia?.currentSrc === normalizedUrl) return;
 
     if (this.preloadMedia) {
-      this.preloadMedia.pause();
-      this.preloadMedia.removeAttribute('src');
-      this.preloadMedia.load();
+      this.silenceMedia(this.preloadMedia);
     }
 
     const media = new Audio();
@@ -411,47 +476,7 @@ class AudioEngine {
       this.media = new Audio();
       this.media.crossOrigin = 'anonymous';
       this.media.preload = 'auto';
-
-      this.media.onended = () => {
-        this.mediaEnded = true;
-        this.isPlaying = false;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(false);
-        }
-        if (this.onEndedCallback) {
-          this.onEndedCallback();
-        }
-      };
-
-      this.media.onloadedmetadata = () => {
-        if (this.media && Number.isFinite(this.media.duration)) {
-          this.currentTrackDuration = this.media.duration;
-        }
-      };
-
-      this.media.onplay = () => {
-        this.isPlaying = true;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(true);
-        }
-      };
-
-      this.media.onpause = () => {
-        if (!this.mediaEnded) {
-          this.isPlaying = false;
-          if (this.onPlayStateChangeCallback) {
-            this.onPlayStateChangeCallback(false);
-          }
-        }
-      };
-
-      this.media.onerror = (e) => {
-        console.warn('[audioEngine] Audio playback error:', e);
-        this.isPlaying = false;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(false);
-        }
-      };
+      this.attachMediaHandlers(this.media);
     }
     return this.media;
   }
@@ -479,8 +504,9 @@ class AudioEngine {
     const media = preloadedMedia || this.getOrCreateMedia();
 
     if (preloadedMedia) {
-      this.media?.pause();
+      const previousMedia = this.media;
       this.media = preloadedMedia;
+      this.silenceMedia(previousMedia);
     }
 
     this.attachMediaSource(media);
@@ -532,7 +558,9 @@ class AudioEngine {
     const media = preloadedMedia || this.getOrCreateMedia();
 
     if (preloadedMedia) {
+      const previousMedia = this.media;
       this.media = preloadedMedia;
+      this.silenceMedia(previousMedia);
     }
 
     this.attachMediaSource(media);
@@ -554,16 +582,10 @@ class AudioEngine {
       this.armPlaybackStartWatchdog(media, normalizedUrl, 0);
     }).catch((err) => {
       console.warn('[audioEngine] playNext blocked:', err);
-      // Some lock-screen / background transitions reject the first play()
-      // attempt even though the next track is already buffered. Retry muted,
-      // which browsers usually allow, then restore the previous mute state.
-      void this.tryMutedPlayback(media).catch((retryErr) => {
-        console.warn('[audioEngine] muted playNext retry blocked:', retryErr);
-        this.isPlaying = false;
-        if (this.onPlayStateChangeCallback) {
-          this.onPlayStateChangeCallback(false);
-        }
-      });
+      this.isPlaying = false;
+      if (this.onPlayStateChangeCallback) {
+        this.onPlayStateChangeCallback(false);
+      }
     });
   }
 
@@ -574,6 +596,7 @@ class AudioEngine {
     if (this.media) {
       this.pausedTime = this.media.currentTime || 0;
       this.media.pause();
+      this.preloadMedia?.pause();
       this.isPlaying = false;
       if (this.onPlayStateChangeCallback) {
         this.onPlayStateChangeCallback(false);

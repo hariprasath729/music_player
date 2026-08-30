@@ -28,7 +28,7 @@ app.use(helmet({
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://music-player-psi-sepia.vercel.app',
+  'https://music-player-hp.vercel.app',
 ];
 app.use(cors({
   origin: (origin, callback) => {

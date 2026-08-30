@@ -150,6 +150,11 @@ export async function prefetch(songId: string | number | undefined): Promise<str
   });
 }
 
+export function invalidateStreamUrl(songId: string | number | undefined): void {
+  if (!songId && songId !== 0) return;
+  cache.delete(String(songId));
+}
+
 /**
  * Clears the entire URL cache.
  * Must be called on logout to prevent stale tokens from lingering in memory.
@@ -160,5 +165,5 @@ export function clearStreamCache(): void {
 }
 
 // Exported as a namespace for convenience
-const streamService = { getStreamUrl, prefetch, clearStreamCache };
+const streamService = { getStreamUrl, prefetch, invalidateStreamUrl, clearStreamCache };
 export default streamService;
