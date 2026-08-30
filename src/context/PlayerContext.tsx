@@ -459,13 +459,17 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       const storedSettings = localStorage.getItem(PLAYER_SETTINGS_KEY);
       if (storedSettings) {
-        const parsed = JSON.parse(storedSettings) as { volume?: number; isShuffle?: boolean; repeatMode?: RepeatMode; playbackRate?: number };
+        const parsed = JSON.parse(storedSettings) as { volume?: number; isShuffle?: boolean; repeatMode?: RepeatMode; playbackRate?: number; soundBoostEnabled?: boolean };
         if (typeof parsed.volume === 'number') setVolumeState(parsed.volume);
         if (typeof parsed.isShuffle === 'boolean') setIsShuffle(parsed.isShuffle);
         if (parsed.repeatMode) setRepeatMode(parsed.repeatMode);
         if (typeof parsed.playbackRate === 'number') {
           setPlaybackRateState(parsed.playbackRate);
           if (typeof (audioEngine as any).setPlaybackRate === 'function') (audioEngine as any).setPlaybackRate(parsed.playbackRate);
+        }
+        if (typeof parsed.soundBoostEnabled === 'boolean') {
+          setSoundBoostEnabled(parsed.soundBoostEnabled);
+          audioEngine.setSoundBoostEnabled(parsed.soundBoostEnabled);
         }
       }
     } catch (err) {
@@ -1098,6 +1102,18 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const toggleRepeat = () => {
     setRepeatMode((prev) => (prev === 'off' ? 'all' : prev === 'all' ? 'one' : 'off'));
+  };
+
+  const toggleSoundBoost = () => {
+    setSoundBoostEnabled((prev) => {
+      const next = !prev;
+      audioEngine.setSoundBoostEnabled(next);
+      try {
+        const stored = JSON.parse(localStorage.getItem(PLAYER_SETTINGS_KEY) || '{}');
+        localStorage.setItem(PLAYER_SETTINGS_KEY, JSON.stringify({ ...stored, soundBoostEnabled: next }));
+      } catch {}
+      return next;
+    });
   };
 
   const toggleLike = async (trackId: string) => {
@@ -1766,6 +1782,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       isProfileModalOpen,
       setIsProfileModalOpen,
       downloadProgress,
+      soundBoostEnabled,
+      toggleSoundBoost,
     }),
     [
       currentTrack,
@@ -1801,6 +1819,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       addToPlaylistTrack,
       isProfileModalOpen,
       downloadProgress,
+      soundBoostEnabled,
     ]
   );
 

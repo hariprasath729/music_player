@@ -33,7 +33,7 @@ const MobileFilterPills: React.FC = () => {
 export const Navbar: React.FC = () => {
   const {
     currentView, setView, searchQuery, setSearchQuery, showToast,
-    setIsProfileModalOpen,
+    setIsProfileModalOpen, soundBoostEnabled, toggleSoundBoost,
   } = usePlayer();
   const { user, logout } = useAuth(); // Replace with real toast in production
 
@@ -413,6 +413,13 @@ export const Navbar: React.FC = () => {
             <SlidersHorizontal className="h-4 w-4" />
             <span>Equalizer</span>
           </button>
+          <button
+            onClick={() => toggleSoundBoost()}
+            className={`flex items-center gap-1 rounded-full px-4 py-1.5 text-xs transition-transform hover:scale-[1.04] ${soundBoostEnabled ? 'bg-[#1db954] text-black font-bold' : 'bg-black text-[#a7a7a7] hover:text-white'}`}
+            title={soundBoostEnabled ? 'Disable sound boost' : 'Enable sound boost'}
+          >
+            <span>⚡ Sound Boost</span>
+          </button>
           <button 
           onClick={() => setView('play-area')}
           className="flex items-center gap-1 rounded-full bg-black px-4 py-1.5 text-xs text-[#a7a7a7] transition-transform hover:scale-[1.04]"
@@ -557,6 +564,18 @@ export const Navbar: React.FC = () => {
                 className="w-full px-4 py-3 text-left text-sm font-bold text-[#1db954] transition-colors hover:bg-[#3d3d3d] hover:text-white"
               >
                 Equalizer
+              </button>
+              <button
+                onClick={() => {
+                  toggleSoundBoost();
+                  setActiveDropdown(null);
+                }}
+                className="w-full flex items-center justify-between px-4 py-3 text-left text-sm transition-colors hover:bg-[#3d3d3d] hover:text-white"
+              >
+                <span className="font-bold text-[#1db954]">Sound Boost</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${soundBoostEnabled ? 'bg-[#1db954] text-black' : 'bg-white/15 text-[#b3b3b3]'}`}>
+                  {soundBoostEnabled ? 'ON' : 'OFF'}
+                </span>
               </button>
               <button
                 onClick={() => {

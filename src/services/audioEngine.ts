@@ -15,6 +15,7 @@ class AudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
   private soundBoostGain: GainNode | null = null;
+  private soundBoostCompressor: DynamicsCompressorNode | null = null;
   private preampGain: GainNode | null = null;
   private analyser: AnalyserNode | null = null;
   private media: HTMLAudioElement | null = null;
@@ -71,6 +72,14 @@ class AudioEngine {
     if (!this.soundBoostGain) {
       this.soundBoostGain = this.ctx.createGain();
     }
+    if (!this.soundBoostCompressor) {
+      this.soundBoostCompressor = this.ctx.createDynamicsCompressor();
+      this.soundBoostCompressor.threshold.setValueAtTime(-1, this.ctx.currentTime);
+      this.soundBoostCompressor.knee.setValueAtTime(6, this.ctx.currentTime);
+      this.soundBoostCompressor.ratio.setValueAtTime(12, this.ctx.currentTime);
+      this.soundBoostCompressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
+      this.soundBoostCompressor.release.setValueAtTime(0.15, this.ctx.currentTime);
+    }
 
     if (this.equalizerFilters.length === 0) {
       this.equalizerFilters = EQ_BANDS.map((frequency) => {
@@ -88,7 +97,7 @@ class AudioEngine {
     }
 
     if (this.soundBoostGain) {
-      this.soundBoostGain.gain.setValueAtTime(this.soundBoostEnabled ? 1.6 : 1, this.ctx.currentTime);
+      this.soundBoostGain.gain.setValueAtTime(this.soundBoostEnabled ? 1.8 : 1, this.ctx.currentTime);
     }
 
     this.equalizerFilters.forEach((filter, index) => {
@@ -146,6 +155,7 @@ class AudioEngine {
     this.equalizerFilters.forEach((filter) => this.disconnectNode(filter));
     this.disconnectNode(this.preampGain);
     this.disconnectNode(this.soundBoostGain);
+    this.disconnectNode(this.soundBoostCompressor);
     this.disconnectNode(this.masterGain);
     this.disconnectNode(this.analyser);
 
@@ -160,9 +170,13 @@ class AudioEngine {
       currentNode = this.preampGain;
     }
 
-    if (this.soundBoostGain) {
+    if (this.soundBoostEnabled && this.soundBoostGain) {
       currentNode.connect(this.soundBoostGain);
       currentNode = this.soundBoostGain;
+      if (this.soundBoostCompressor) {
+        currentNode.connect(this.soundBoostCompressor);
+        currentNode = this.soundBoostCompressor;
+      }
     }
 
     currentNode.connect(this.masterGain);
@@ -346,9 +360,7 @@ class AudioEngine {
   public setSoundBoostEnabled(enabled: boolean) {
     this.initContext();
     this.soundBoostEnabled = enabled;
-    if (this.soundBoostGain && this.ctx) {
-      this.soundBoostGain.gain.setTargetAtTime(enabled ? 1.6 : 1, this.ctx.currentTime, 0.02);
-    }
+    this.rebuildAudioGraph();
   }
 
   private attachMediaHandlers(media: HTMLAudioElement) {
