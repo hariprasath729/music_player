@@ -4,6 +4,8 @@ import { Eye, EyeOff } from 'lucide-react';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import { authApi } from '../services/apiClient';
 import { useBackButton } from '../hooks/useBackButton';
+import { Capacitor } from '@capacitor/core';
+import { nativeGoogleAuth } from '../services/nativeGoogleAuth';
 
 const GOOGLE_CLIENT_ID =
   (import.meta as unknown as { env?: { VITE_GOOGLE_CLIENT_ID?: string } }).env?.VITE_GOOGLE_CLIENT_ID ||
@@ -53,7 +55,7 @@ const GoogleLoginButton: React.FC<{ onSuccess: (credential?: string) => void }> 
       onSuccess(tokenResponse.access_token);
     },
     onError: () => {
-      onSuccess(); // fallback
+      onSuccess();
     },
   });
 
@@ -64,6 +66,15 @@ const GoogleLoginButton: React.FC<{ onSuccess: (credential?: string) => void }> 
     </button>
   );
 };
+
+const NativeGoogleLoginButton: React.FC<{ onSuccess: (credential: string) => void; onError: (error: unknown) => void }> = ({ onSuccess, onError }) => (
+  <button className="social-btn" type="button" onClick={() => {
+    void nativeGoogleAuth.signIn().then(({ idToken }) => onSuccess(idToken)).catch(onError);
+  }}>
+    <GoogleIcon />
+    Continue with Google
+  </button>
+);
 
 export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitchToSignup }) => {
   const { login, loginWithEmail, contactAdmin, clearError, error, isPendingApproval, setIsPendingApproval } = useAuth();
@@ -168,10 +179,16 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
 
   useEffect(() => {
     try {
+      const unauthorized = localStorage.getItem('auth_session_unauthorized_toast');
+      if (unauthorized === 'true') {
+        localStorage.removeItem('auth_session_unauthorized_toast');
+        setErrorMsg('Unauthorized user');
+        return;
+      }
       const expired = localStorage.getItem('auth_session_expired_toast');
       if (expired === 'true') {
         localStorage.removeItem('auth_session_expired_toast');
-        showToast('Session expired. Please log in again.');
+        setErrorMsg('Unauthorized user');
       }
     } catch {}
   }, []);
@@ -193,7 +210,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
     });
   };
 
-  const handleGoogleSuccess = async (credential?: string) => {
+  const handleGoogleSuccess = async (credential?: string, tokenType: 'access_token' | 'id_token' = 'access_token') => {
     if (!credential) {
       handleQuickLogin({ name: 'Google User', email: 'google_user@gmail.com' });
       return;
@@ -201,7 +218,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
     setLoading(true);
     setErrorMsg('');
     try {
-      const res = await authApi.googleLogin(credential);
+      const res = await authApi.googleLogin(credential, tokenType);
       const responseUser = (res as any).data?.user || (res as any).user;
       const responseToken = (res as any).data?.token || (res as any).token;
 
@@ -221,6 +238,15 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
       
       if (err instanceof Error && err.message.includes('Waiting for admin approval')) {
         setIsPendingApproval(true);
+        setLoading(false);
+        return;
+      }
+
+      // Never create a mock session for native OAuth failures. The native app
+      // must keep the real error visible instead of storing an unverifiable
+      // token that later appears as an expired session.
+      if (Capacitor.isNativePlatform()) {
+        setErrorMsg(err instanceof Error ? err.message : 'Google sign-in failed. Please try again.');
         setLoading(false);
         return;
       }
@@ -289,8 +315,7 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
     }
   };
 
-  return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+  const loginContent = (
       <div className="music-player-login-page">
         <style>{`
           .music-player-login-page *,.music-player-login-page *::before,.music-player-login-page *::after{box-sizing:border-box;margin:0;padding:0}
@@ -338,7 +363,14 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
             {/* Hint pill for easy testing */}
            
 
-            <GoogleLoginButton onSuccess={handleGoogleSuccess} />
+            {Capacitor.isNativePlatform() ? (
+              <NativeGoogleLoginButton
+                onSuccess={(idToken) => { void handleGoogleSuccess(idToken, 'id_token'); }}
+                onError={(err) => setErrorMsg(err instanceof Error ? err.message : 'Google sign-in failed')}
+              />
+            ) : (
+              <GoogleLoginButton onSuccess={handleGoogleSuccess} />
+            )}
 
             <button className="social-btn" onClick={() => showToast('Facebook login will be added in future updates')}><FacebookIcon />Continue with Facebook</button>
             <button className="social-btn" onClick={() => showToast('Apple login will be added in future updates')}><AppleIcon />Continue with Apple</button>
@@ -508,6 +540,9 @@ export const LoginPage: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
           </div>
         )}
       </div>
-    </GoogleOAuthProvider>
   );
+
+  return Capacitor.isNativePlatform()
+    ? loginContent
+    : <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>{loginContent}</GoogleOAuthProvider>;
 };

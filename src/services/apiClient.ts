@@ -7,9 +7,9 @@
 
 import type { Track } from './dataService';
 import { AuthUser } from '../context/AuthContext';
+import { BACKEND_URL } from '../config/backend';
 
-// @ts-ignore
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const API_URL = BACKEND_URL;
 
 export interface BackendSong {
   id?: number | string;
@@ -106,10 +106,10 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
 // ── Auth APIs ──
 export const authApi = {
-  googleLogin: (credential: string) =>
+  googleLogin: (credential: string, tokenType: 'access_token' | 'id_token' = 'access_token') =>
     request<{ success: boolean; token: string; user: { id: string; name: string; email: string; profilePic: string } }>('/api/auth/google', {
       method: 'POST',
-      body: JSON.stringify({ credential }),
+      body: JSON.stringify({ credential, tokenType }),
     }),
   getMe: () =>
     request<{ success: boolean; user: { id: string; name: string; email: string; profilePic: string } }>('/api/auth/me'),

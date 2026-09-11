@@ -15,6 +15,7 @@ import { validatePasswordStrength } from '../middleware/validate.js';
 import { recordFailedAttempt, resetAttempts } from '../middleware/bruteForce.js';
 import { addThreatScore } from '../middleware/ipBlacklist.js';
 import { getClientIP } from '../utils/logger.js';
+import { OAuth2Client } from 'google-auth-library';
 import {
   sendOtpEmail,
   sendAdminApprovalEmail,
@@ -26,6 +27,12 @@ import {
 } from '../utils/sendEmail.js';
 
 const BCRYPT_ROUNDS = parseInt(process.env.BCRYPT_ROUNDS) || 12;
+const GOOGLE_SERVER_CLIENT_ID =
+  process.env.GOOGLE_SERVER_CLIENT_ID ||
+  '711494761481-2r3hdi3cdesd3qa7b5cetgr2kudnqj6m.apps.googleusercontent.com';
+const GOOGLE_ANDROID_CLIENT_ID =
+  process.env.GOOGLE_ANDROID_CLIENT_ID ||
+  '711494761481-rsvkd7q6jcoc33mdfnok0fhlnk0pjb94.apps.googleusercontent.com';
 
 const generateToken = (user) => {
   return jwt.sign(
@@ -139,13 +146,29 @@ export const verifyOtpAndSignup = async (req, res) => {
 
 export const googleLogin = async (req, res) => {
   try {
-    const { credential } = req.body;
-    // Decode Google JWT via Google's userinfo endpoint
-    const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: `Bearer ${credential}` }
-    });
-    const userInfo = await userInfoRes.json();
-    if (!userInfo.email) {
+    const { credential, tokenType = 'access_token' } = req.body;
+    let userInfo;
+
+    if (tokenType === 'id_token') {
+      const client = new OAuth2Client();
+      const ticket = await client.verifyIdToken({
+        idToken: credential,
+        audience: [GOOGLE_SERVER_CLIENT_ID, GOOGLE_ANDROID_CLIENT_ID],
+      });
+      const payload = ticket.getPayload();
+      userInfo = payload ? {
+        email: payload.email,
+        name: payload.name,
+        picture: payload.picture,
+      } : null;
+    } else {
+      // Existing web flow: validate the OAuth access token through userinfo.
+      const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${credential}` }
+      });
+      userInfo = await userInfoRes.json();
+    }
+    if (!userInfo?.email) {
       securityEvent(SECURITY_EVENTS.AUTH_FAILURE, req, { details: 'Invalid Google token' });
       return res.status(400).json({ success: false, error: 'Invalid Google Token' });
     }
@@ -432,6 +455,9 @@ export const getMe = async (req, res) => {
     const user = await User.findById(req.user.id).select('-password -resetToken -resetTokenExpiry -tokenVersion -failedLoginAttempts -lockUntil -__v');
     if (!user) {
       return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    if (!user.isVerified || !user.isApproved) {
+      return res.status(403).json({ success: false, error: 'Unauthorized user' });
     }
     res.json({ success: true, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
   } catch (error) {
