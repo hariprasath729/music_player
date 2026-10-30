@@ -5,15 +5,15 @@ import { MarqueeText } from './MarqueeText';
 
 export const MiniPlayer: React.FC = () => {
   const {
-    currentTrack, isPlaying, togglePlay, toggleFullScreen,
-    currentTime, duration, nextTrack,
+    currentTrack, isPlaying, isLoadingTrack, togglePlay, toggleFullScreen,
+    currentTime, duration, nextTrack, seek,
     setView, setSearchQuery
   } = usePlayer();
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="mx-2 mb-1 md:hidden">
+    <div className="mx-2 mb-1 shrink-0 md:hidden">
       <div
         className="relative overflow-hidden rounded-xl shadow-lg"
         style={{ backgroundColor: currentTrack.color + '55', backdropFilter: 'blur(24px)' }}
@@ -25,6 +25,16 @@ export const MiniPlayer: React.FC = () => {
             style={{ width: `${progress}%` }}
           />
         </div>
+
+        <input
+          aria-label="Seek through the current song"
+          type="range"
+          min={0}
+          max={duration || 1}
+          value={Math.min(currentTime, duration || 1)}
+          onChange={(event) => seek(Number(event.target.value))}
+          className="absolute bottom-0 left-0 z-10 h-4 w-full cursor-pointer appearance-none opacity-0"
+        />
 
         <div className="flex items-center gap-3 px-3 py-2.5">
           {/* Album art → tap opens fullscreen */}
@@ -61,9 +71,12 @@ export const MiniPlayer: React.FC = () => {
           {/* Play / Pause */}
           <button
             onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-            className="shrink-0 rounded-full p-1.5 text-white transition active:scale-90"
+            disabled={isLoadingTrack}
+            aria-label={isLoadingTrack ? 'Loading song' : isPlaying ? 'Pause' : 'Play'}
+            className={`relative shrink-0 rounded-full p-1.5 text-white transition ${isLoadingTrack ? 'cursor-wait opacity-50' : 'opacity-100 active:scale-90'}`}
           >
-            {isPlaying
+            {isLoadingTrack && <span className="absolute -inset-0.5 animate-spin rounded-full border-2 border-transparent border-r-[#1db954] border-t-[#1db954]" />}
+            {isPlaying && !isLoadingTrack
               ? <Pause className="h-7 w-7 fill-white" />
               : <Play className="h-7 w-7 fill-white translate-x-0.5" />}
           </button>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { App as CapacitorApp } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './components/LoginPage';
 import { SignupPage } from './components/SignupPage';
@@ -16,15 +18,54 @@ import { MiniPlayer } from './components/MiniPlayer';
 import { Toast } from './components/Toast';
 import { useBackHandler } from './hooks/useBackHandler';
 import { ProfileView } from './components/views/ProfileView';
+import { usePlayer } from './context/PlayerContext';
 
 import { ForgotPasswordPage } from './components/auth/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/auth/ResetPasswordPage';
 import { MagicLoginPage } from './components/auth/MagicLoginPage';
 
-const PlayerShell: React.FC = () => (
-  // No changes needed here
-  <PlayerProvider>
-    <div className="flex h-[100dvh] w-screen flex-col overflow-hidden bg-black font-sans antialiased select-none">
+const PlayerShellContent: React.FC = () => {
+  const {
+    isFullScreen,
+    isQueueOpen,
+    toggleFullScreen,
+    toggleQueue,
+    canGoBack,
+    goBack,
+    showToast,
+  } = usePlayer();
+
+  React.useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+
+    let listener: { remove: () => Promise<void> } | null = null;
+    CapacitorApp.addListener('backButton', ({ canGoBack: webViewCanGoBack }) => {
+      if (isFullScreen) {
+        toggleFullScreen();
+        return;
+      }
+      if (isQueueOpen) {
+        toggleQueue();
+        return;
+      }
+      if (canGoBack) {
+        goBack();
+        return;
+      }
+      if (!webViewCanGoBack) {
+        void CapacitorApp.exitApp();
+      } else {
+        showToast('Press back again to exit', 'info');
+      }
+    }).then((handle) => { listener = handle; });
+
+    return () => {
+      if (listener) void listener.remove();
+    };
+  }, [isFullScreen, isQueueOpen, canGoBack, goBack, showToast, toggleFullScreen, toggleQueue]);
+
+  return (
+    <div className="flex h-full min-h-0 w-screen flex-col overflow-hidden bg-black font-sans antialiased select-none">
       <div className="relative flex flex-1 overflow-hidden">
         <Sidebar />
         <div className="relative flex flex-1 flex-col overflow-hidden bg-[#121212] md:my-2 md:mr-2 md:rounded-lg">
@@ -42,6 +83,12 @@ const PlayerShell: React.FC = () => (
       <ProfileView />
       <Toast />
     </div>
+  );
+};
+
+const PlayerShell: React.FC = () => (
+  <PlayerProvider>
+    <PlayerShellContent />
   </PlayerProvider>
 );
 

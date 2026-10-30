@@ -1,19 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Capacitor } from "@capacitor/core";
 import "./index.css";
 import App from "./App";
 import { Analytics } from "@vercel/analytics/react";
-if ('serviceWorker' in navigator) {
+// Capacitor ships the compiled web app inside the native bundle. Service-worker
+// update/reload logic is for browser/PWA deployments only.
+if (!Capacitor.isNativePlatform() && 'serviceWorker' in navigator) {
   const isAlreadyControlled = !!navigator.serviceWorker.controller;
-  // This variable will be used to store the version of the new service worker.
-  // The 'pwa-update-available' event will set this, and the 'controllerchange'
-  // event will read it to know which version was just activated.
-  let newWorkerVersion: string | undefined;
-
-  window.addEventListener('pwa-update-available', (e) => {
-    newWorkerVersion = (e as CustomEvent).detail?.version;
-  });
-
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then((registration) => {
       console.log('[PWA] Service Worker Registered');

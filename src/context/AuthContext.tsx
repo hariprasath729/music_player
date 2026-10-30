@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import { Capacitor } from '@capacitor/core';
+import { BACKEND_URL } from '../config/backend';
 
 /* ─── Types ─────────────────────────────────────────────────── */
 export type AuthStatus = 'idle' | 'checking' | 'authenticated' | 'unauthenticated' | 'timeout';
@@ -37,7 +39,7 @@ interface AuthContextType {
   setIsPendingApproval: (val: boolean) => void;
 }
 
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '') + '/api';
+const API_URL = `${BACKEND_URL}/api`;
 const AUTH_USER_KEY = 'music_player_auth_user';
 const AUTH_TOKEN_KEY = 'music_player_token';
 
@@ -140,6 +142,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
 
+    // Older native builds could store a demo token when OAuth failed. Remove
+    // it without showing an expired-session message; real native OAuth errors
+    // are now surfaced directly on the login screen.
+    if (Capacitor.isNativePlatform() && (storedToken === 'mock-token' || storedToken === 'mock-jwt-token-12345')) {
+      clearSession();
+      setAuthStatus('unauthenticated');
+      return;
+    }
+
     // Temporary test user bypass — no backend to verify against
     if (storedToken === 'temporary-test-token') {
       setAuthStatus('authenticated');
@@ -176,11 +187,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       signal.addEventListener('abort', onExternalAbort);
     }
 
-    // Set up a local timeout of 2.5 seconds to race the fetch
-    const timeoutId = setTimeout(() => {
-      localAbortController.abort();
-    }, 2500);
-
     try {
       const res = await fetch(`${API_URL}/auth/me`, {
         method: 'GET',
@@ -191,7 +197,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         signal: localAbortController.signal,
       });
 
-      clearTimeout(timeoutId);
       if (signal) {
         signal.removeEventListener('abort', onExternalAbort);
       }
@@ -203,7 +208,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // In these cases, we must clear the session.
       if (res.status === 401 || res.status === 403 || res.status === 404) {
         try {
-          localStorage.setItem('auth_session_expired_toast', 'true');
+          localStorage.setItem('auth_session_unauthorized_toast', 'true');
         } catch { }
         clearSession();
         setAuthStatus('unauthenticated');
@@ -233,7 +238,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       setAuthStatus('authenticated');
     } catch (err: unknown) {
-      clearTimeout(timeoutId);
       if (signal) {
         signal.removeEventListener('abort', onExternalAbort);
       }
@@ -243,21 +247,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return;
       }
 
-      // Distinguish a local timeout abort from external abort
-      const isTimeout = err instanceof DOMException && err.name === 'AbortError' && !signal?.aborted;
-
       // Trust cached session on network error, server error (500), or timeout since the local token is valid and unexpired
       const isNetworkError =
-        isTimeout ||
         !navigator.onLine ||
         (err instanceof TypeError) ||
         (err instanceof Error && err.message.includes('Server returned'));
 
       if (isNetworkError) {
         console.warn(
-          isTimeout
-            ? 'Session verification timed out. Trusting cached session.'
-            : 'Network/Server error verifying session. Trusting cached session.',
+          'Network/Server error verifying session. Trusting cached session.',
           err
         );
         setAuthStatus('authenticated');

@@ -42,3 +42,31 @@ A full-stack music player application inspired by modern streaming platforms.
    # Copy .env.example to .env and fill in your credentials
    npm run dev
    ```
+
+## Native Mobile App
+
+The frontend is packaged as a native Capacitor app in addition to the browser version.
+
+### Android
+
+Prerequisites: Android Studio, Android SDK, and a configured `ANDROID_HOME`.
+
+```bash
+npm install
+npm run mobile:build
+npm run android:open
+```
+
+Use Android Studio to select an emulator or connected device and run the `app` configuration.
+
+### iOS
+
+Run the following on macOS with Xcode installed:
+
+```bash
+npx cap add ios
+npm run mobile:build
+npm run ios:open
+```
+
+The native app uses the same authenticated player UI and backend as the web client, while Capacitor provides the mobile application container and native lifecycle.

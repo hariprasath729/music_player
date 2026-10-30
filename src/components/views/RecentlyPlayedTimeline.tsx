@@ -166,7 +166,8 @@ export const RecentlyPlayedTimeline: React.FC = () => {
   const groupedEntries = useMemo(() => {
     const groups = new Map<string, Array<{ entry: ListeningHistoryEntry; track: Track }>>();
     for (const item of enrichedEntries) {
-      const key = item.entry.date;
+      const localDate = new Date(item.entry.playedAt);
+      const key = `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key)!.push(item);
     }

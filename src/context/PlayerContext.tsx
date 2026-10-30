@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { Track, Playlist, TRACKS } from '../data/musicCatalog';
 import { audioEngine } from '../services/audioEngine';
 import { playlistApi, likeApi, historyApi, playCountApi, libraryApi, homeApi } from '../services/apiClient';
@@ -6,6 +7,7 @@ import { useAuth } from './AuthContext';
 import { downloadService } from '../services/downloadService';
 import streamService from '../services/streamService';
 import { X, Check, Plus, Heart, ListMusic } from 'lucide-react';
+import { nativeMediaSession } from '../services/nativeMediaSession';
 
 export type RepeatMode = 'off' | 'all' | 'one';
 export type ViewType =
@@ -80,6 +82,7 @@ interface PlayerContextType {
   activeFilter: string;
   customPlaylists: CustomPlaylist[];
   isPlaybackLocked: boolean;
+  isLoadingTrack: boolean;
 
   playbackRate: number;
   setPlaybackRate: (rate: number) => void;
@@ -182,6 +185,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [customPlaylists, setCustomPlaylists] = useState<CustomPlaylist[]>([]);
   const [isPlaybackLocked, setIsPlaybackLocked] = useState<boolean>(false);
+  const [isLoadingTrack, setIsLoadingTrack] = useState<boolean>(false);
   const [playbackRate, setPlaybackRateState] = useState<number>(1);
   const [sleepTimerEnd, setSleepTimerEnd] = useState<number | null>(null);
   const [sleepTimerRemaining, setSleepTimerRemaining] = useState<number | null>(null);
@@ -219,8 +223,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const trackEndUnlockTimerRef = useRef<number | null>(null);
   const stalledStartRecoveryRef = useRef<{ trackId: string; attempted: boolean }>({ trackId: '', attempted: false });
   const playbackStartMonitorRef = useRef<number | null>(null);
-  const playbackStartRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
   const streamErrorRecoveryRef = useRef<{ trackId: string; attempts: number }>({ trackId: '', attempts: 0 });
+  const failedTrackRef = useRef<string>('');
+  const preloadedCoverUrlsRef = useRef<Set<string>>(new Set());
   const playbackHistoryQueuedRef = useRef<{ trackId: string; recorded: boolean }>({ trackId: '', recorded: false });
 
   // ── Live state refs (always current, safe to read from background callbacks) ──
@@ -240,6 +245,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const isPlayingRef = useRef<boolean>(false);
   const historyRef = useRef<Track[]>([]);
   const durationRef = useRef<number>(0);
+  const nextTrackRef = useRef<(force?: boolean, fromTrackEnd?: boolean) => void>(() => {});
   // Ref to the seek function so Media Session handlers always call the latest version
   const seekRef = useRef<(time: number, force?: boolean) => void>(() => {});
 
@@ -253,24 +259,23 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, []);
 
-  const restartActiveTrackPlayback = useCallback((fromTrackEnd: boolean) => {
+  const skipFailedTrack = useCallback((trackId: string, fromTrackEnd: boolean = false) => {
     const activeTrack = currentTrackRef.current;
-    if (activeTrack.id === '' || !activeTrack.fileUrl) return false;
+    if (activeTrack.id !== trackId || failedTrackRef.current === trackId) return;
 
-    if (fromTrackEnd) {
-      audioEngine.playNext(activeTrack.fileUrl, activeTrack.duration);
-    } else {
-      audioEngine.play(activeTrack.duration, currentTimeRef.current, activeTrack.fileUrl);
-    }
-    return true;
-  }, []);
-
-  const armPlaybackStartMonitor = useCallback((trackId: string, fromTrackEnd: boolean) => {
+    failedTrackRef.current = trackId;
     clearPlaybackStartMonitor();
-    playbackStartRecoveryRef.current = { trackId, attempts: 0 };
+    audioEngine.stop();
+    setIsPlaying(false);
+    setIsLoadingTrack(false);
+    showToast(`Failed to fetch "${activeTrack.title}". Skipping to next song.`, 'error');
+    nextTrackRef.current(true, fromTrackEnd);
+  }, [clearPlaybackStartMonitor]);
+
+  const armPlaybackStartMonitor = useCallback((trackId: string, _fromTrackEnd: boolean) => {
+    clearPlaybackStartMonitor();
     playbackHistoryQueuedRef.current = { trackId, recorded: false };
 
-    let checkStart = Date.now();
     let lastProgress = -1;
 
     playbackStartMonitorRef.current = window.setInterval(() => {
@@ -283,7 +288,14 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const actualPlaying = audioEngine.getActuallyPlaying();
       const currentTime = audioEngine.getCurrentTime();
 
+      if (actualPlaying && loadingTrackIdRef.current === trackId) {
+        setIsLoadingTrack(false);
+      }
+
       if (currentTime > 0.15 && currentTime > lastProgress + 0.02) {
+        if (loadingTrackIdRef.current === trackId) {
+          setIsLoadingTrack(false);
+        }
         if (!playbackHistoryQueuedRef.current.recorded) {
           playbackHistoryQueuedRef.current = { trackId, recorded: true };
           const playedAt = new Date().toISOString();
@@ -295,7 +307,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             localStorage.setItem('music_player_pending_history', JSON.stringify(pending));
           });
         }
-        playbackStartRecoveryRef.current = { trackId, attempts: 0 };
         clearPlaybackStartMonitor();
         return;
       }
@@ -304,28 +315,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         lastProgress = currentTime;
       }
 
-      if (Date.now() - checkStart < 2250) return;
-
-      const recovery = playbackStartRecoveryRef.current;
-      if (recovery.trackId !== trackId) {
-        clearPlaybackStartMonitor();
-        return;
-      }
-
-      if (recovery.attempts >= 2) {
-        clearPlaybackStartMonitor();
-        setIsPlaying(false);
-        audioEngine.stop();
-        return;
-      }
-
-      recovery.attempts += 1;
-      lastProgress = -1;
-      checkStart = Date.now();
-      console.warn('[PlayerContext] playback failed to advance, forcing restart', { trackId, attempt: recovery.attempts, actualPlaying, currentTime });
-      restartActiveTrackPlayback(fromTrackEnd);
     }, 250);
-  }, [clearPlaybackStartMonitor, restartActiveTrackPlayback]);
+  }, [clearPlaybackStartMonitor]);
 
   // Stop any active media when the player shell unmounts (for example on logout).
   useEffect(() => {
@@ -561,11 +552,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     stalledStartRecoveryRef.current = { trackId: currentTrack.id, attempted: false };
   }, [currentTrack.id]);
 
-  // Sync playback time — also detect audio stall and correct isPlaying state
+  // Sync playback time
   useEffect(() => {
     let interval: number;
     let stallCount = 0;
     let lastAudioTime = -1;
+    let playbackHasStarted = false;
     if (isPlaying) {
       interval = window.setInterval(() => {
         const t = audioEngine.getCurrentTime();
@@ -575,41 +567,45 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           setDuration(realDuration);
           if (currentTrack) currentTrack.duration = realDuration;
         }
-        if (audioEngine.hasEnded() || (realDuration > 0 && t >= realDuration - 0.15)) {
-          handleTrackEnd();
-          return;
-        }
-        // Stall detection: if React says isPlaying=true but the audio element
-        // hasn't advanced in 3+ seconds, sync the actual state to prevent fake
-        // progress on the lock screen notification card.
+
+        // Stall detection: only active when app is in foreground.
+        // In background or locked screen, timers are throttled by OS and must not pause playback.
         const actuallyPlaying = audioEngine.getActuallyPlaying();
-        if (!actuallyPlaying) {
-          stallCount++;
-          if (stallCount >= 30) { // 3 seconds of stall
-            setIsPlaying(false);
-            stallCount = 0;
-          }
-        } else {
-          if (Math.abs(t - lastAudioTime) < 0.01) {
+        if (actuallyPlaying || t > 0.02) {
+          playbackHasStarted = true;
+        }
+        if (!document.hidden) {
+          if (!actuallyPlaying) {
+            if (!playbackHasStarted) {
+              stallCount = 0;
+              return;
+            }
             stallCount++;
-            if (stallCount >= 30) {
-              const recovery = stalledStartRecoveryRef.current;
-              const activeTrack = currentTrackRef.current;
-
-              if (!recovery.attempted && recovery.trackId === activeTrack.id && activeTrack.id !== '' && activeTrack.fileUrl) {
-                recovery.attempted = true;
-                stallCount = 0;
-                audioEngine.pause();
-                audioEngine.play(activeTrack.duration, 0, activeTrack.fileUrl);
-                return;
-              }
-
+            if (stallCount >= 60) { // 6 seconds of genuine stall in foreground
               setIsPlaying(false);
               stallCount = 0;
             }
           } else {
-            stallCount = 0;
-            lastAudioTime = t;
+            if (playbackHasStarted && Math.abs(t - lastAudioTime) < 0.01) {
+              stallCount++;
+              if (stallCount >= 60) {
+                const recovery = stalledStartRecoveryRef.current;
+                const activeTrack = currentTrackRef.current;
+
+                if (!recovery.attempted && recovery.trackId === activeTrack.id && activeTrack.id !== '' && activeTrack.fileUrl) {
+                  recovery.attempted = true;
+                  stallCount = 0;
+                  audioEngine.play(activeTrack.duration, 0, activeTrack.fileUrl);
+                  return;
+                }
+
+                setIsPlaying(false);
+                stallCount = 0;
+              }
+            } else {
+              stallCount = 0;
+              lastAudioTime = t;
+            }
           }
         }
       }, 100);
@@ -617,12 +613,42 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => { clearInterval(interval); stallCount = 0; lastAudioTime = -1; };
   }, [isPlaying, currentTrack, duration, queue, repeatMode]);
 
+  // Start loading queued artwork immediately in both browser and Capacitor WebView.
+  useEffect(() => {
+    queue.forEach((track) => {
+      const coverUrl = track.coverUrl;
+      if (!coverUrl || preloadedCoverUrlsRef.current.has(coverUrl)) return;
+
+      preloadedCoverUrlsRef.current.add(coverUrl);
+      const image = new Image();
+      image.decoding = 'async';
+      image.src = coverUrl;
+    });
+  }, [queue]);
+
+  // Auto-replenish queue if it runs low while playing so the next track is always queued & prefetched
+  useEffect(() => {
+    if (!isPlaying || currentTrack.id === '' || queue.length >= 4) return;
+
+    let sourceList = activePlaylistRef.current ? activePlaylistRef.current.tracks : TRACKS;
+    let validTracks = sourceList.filter((t) => !isBgmOrScore(t) && t.id !== currentTrack.id && !queue.some((q) => q.id === t.id));
+    if (validTracks.length === 0) {
+      validTracks = TRACKS.filter((t) => !isBgmOrScore(t) && t.id !== currentTrack.id && !queue.some((q) => q.id === t.id));
+    }
+    if (validTracks.length > 0) {
+      const candidates = [...validTracks].sort(() => Math.random() - 0.5).slice(0, 5);
+      queueRef.current = [...queueRef.current, ...candidates];
+      setQueue((prev) => [...prev, ...candidates]);
+    }
+  }, [isPlaying, currentTrack.id, queue.length]);
+
   // Prefetch stream URLs for upcoming tracks immediately so lock-screen timers do not delay autoplay handoff
   useEffect(() => {
     const next = queue[0];
     const afterNext = queue[1];
+    const thirdNext = queue[2];
 
-    if (!next?.id || !isPlaying || currentTrack.id === '') return;
+    if (currentTrack.id === '') return;
 
     let active = true;
 
@@ -642,23 +668,28 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       });
     };
 
-    if (afterNext?.id) {
-      streamService.prefetch(afterNext.id).then((streamUrl) => {
-        if (!active || !streamUrl) return;
-        cacheQueuedTrack(afterNext, streamUrl);
-      });
-    }
+    const prepareQueuedTrack = async (track: Track, preloadAudio: boolean) => {
+      try {
+        if (await downloadService.isCached(track.id)) {
+          const cachedUrl = await downloadService.getLocalUrl(track.id);
+          if (!active) return;
+          cacheQueuedTrack(track, cachedUrl);
+          if (preloadAudio) audioEngine.preloadNext(cachedUrl);
+          return;
+        }
 
-    streamService.prefetch(next.id)
-      .then((streamUrl) => {
+        const streamUrl = await streamService.prefetch(track.id);
         if (!active || !streamUrl) return;
-        cacheQueuedTrack(next, streamUrl);
+        cacheQueuedTrack(track, streamUrl);
+        if (preloadAudio) audioEngine.preloadNext(streamUrl);
+      } catch (err) {
+        console.warn('[PlayerContext] Failed to prepare queued song:', err);
+      }
+    };
 
-        audioEngine.preloadNext(streamUrl);
-      })
-      .catch((err) => {
-        console.warn('[PlayerContext] Failed to prefetch next song:', err);
-      });
+    if (next?.id) void prepareQueuedTrack(next, true);
+    if (afterNext?.id) void prepareQueuedTrack(afterNext, false);
+    if (thirdNext?.id) void prepareQueuedTrack(thirdNext, false);
 
     return () => {
       active = false;
@@ -717,6 +748,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const _currentTrack = currentTrackRef.current;
     if (_isPlaybackLocked) return;
     if (_currentTrack.id === '') return;
+    console.warn('[PlayerContext:diag]', JSON.stringify({ event: 'track-end',
+      currentTrackId: _currentTrack.id,
+      nextTrackId: queueRef.current[0]?.id ?? null,
+      queueLength: queueRef.current.length,
+      hidden: document.hidden,
+      visibility: document.visibilityState,
+    }));
     if (trackEndTransitionRef.current) return;
     trackEndTransitionRef.current = true;
     if (trackEndUnlockTimerRef.current !== null) {
@@ -734,20 +772,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
     if (repeatModeRef.current === 'one') {
-      // Re-fetch a fresh stream URL for repeat-one (current token might be near expiry)
-      streamService.getStreamUrl(_currentTrack.id).then((streamUrl) => {
-        _currentTrack.fileUrl = streamUrl;
-        audioEngine.playNext(streamUrl, _currentTrack.duration);
+      const urlToPlay = _currentTrack.fileUrl || streamService.getCachedStreamUrl(_currentTrack.id);
+      if (urlToPlay) {
+        audioEngine.playNext(urlToPlay, _currentTrack.duration);
         armPlaybackStartMonitor(_currentTrack.id, true);
         setCurrentTime(0);
-      }).catch(() => {
-        // On failure just try with whatever fileUrl is stored
-        if (_currentTrack.fileUrl) {
-          audioEngine.playNext(_currentTrack.fileUrl, _currentTrack.duration);
+        streamService.getStreamUrl(_currentTrack.id).then((freshUrl) => {
+          _currentTrack.fileUrl = freshUrl;
+        }).catch(() => {});
+      } else {
+        streamService.getStreamUrl(_currentTrack.id).then((streamUrl) => {
+          _currentTrack.fileUrl = streamUrl;
+          audioEngine.playNext(streamUrl, _currentTrack.duration);
           armPlaybackStartMonitor(_currentTrack.id, true);
-        }
-        setCurrentTime(0);
-      });
+          setCurrentTime(0);
+        }).catch(() => {});
+      }
     } else {
       nextTrack(false, true); // fromTrackEnd=true → use playNext to preserve autoplay
     }
@@ -784,6 +824,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     // Track the latest requested song ID to prevent race conditions
     loadingTrackIdRef.current = track.id;
+    setIsLoadingTrack(true);
 
     if (contextTracks) {
       const trackIndex = contextTracks.findIndex((t) => t.id === track.id);
@@ -805,6 +846,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     });
     setCurrentTrack(track);
     currentTrackRef.current = track;
+    failedTrackRef.current = '';
     streamErrorRecoveryRef.current = { trackId: track.id, attempts: 0 };
     setDuration(track.duration);
     setCurrentTime(0);
@@ -826,41 +868,83 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     // If the song is already downloaded, play from cache
     const checkAndPlayCache = async () => {
       const isDownloaded = _downloadedTracks.includes(track.id);
-      if (isDownloaded) {
-        const exists = await downloadService.isCached(track.id);
-        if (exists) {
-          if (loadingTrackIdRef.current !== track.id) return true;
-          const cachedUrl = `https://music-player.local/song/${track.id}`;
-          track.fileUrl = cachedUrl;
-          if (fromTrackEnd) {
-            audioEngine.playNext(cachedUrl, track.duration);
-          } else {
-            audioEngine.play(track.duration, 0, cachedUrl);
-          }
-            armPlaybackStartMonitor(track.id, fromTrackEnd);
-          applyAudioSettings();
-          return true;
-        } else if (!navigator.onLine) {
-          showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
-          audioEngine.stop();
-          setIsPlaying(false);
-          return true;
+      const exists = await downloadService.isCached(track.id);
+      if (exists) {
+        if (loadingTrackIdRef.current !== track.id) return true;
+        const cachedUrl = await downloadService.getLocalUrl(track.id);
+        track.fileUrl = cachedUrl;
+        if (fromTrackEnd) {
+          audioEngine.playNext(cachedUrl, track.duration);
         } else {
-          downloadService.downloadTrack({ id: track.id }).catch(() => {});
+          audioEngine.play(track.duration, 0, cachedUrl);
         }
+        armPlaybackStartMonitor(track.id, fromTrackEnd);
+        applyAudioSettings();
+        return true;
+      }
+
+      if (!navigator.onLine && isDownloaded) {
+        showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
+        audioEngine.stop();
+        setIsPlaying(false);
+        setIsLoadingTrack(false);
+        return true;
+      }
+
+      if (isDownloaded) {
+        downloadService.downloadTrack({ id: track.id }).catch(() => {});
       }
       return false;
     };
 
-    // Fast path: if the URL was already prefetched onto track.fileUrl, use it immediately.
+    // 1. Resolve synchronous streamUrl if already in memory or cached
+    let synchronousUrl = track.fileUrl;
+    if (!synchronousUrl) {
+      const cached = streamService.getCachedStreamUrl(track.id);
+      if (cached) {
+        synchronousUrl = cached;
+        track.fileUrl = cached;
+      }
+    }
+    if (!synchronousUrl && _downloadedTracks.includes(track.id)) {
+      if (!Capacitor.isNativePlatform()) {
+        synchronousUrl = `https://music-player.local/song/${track.id}`;
+        track.fileUrl = synchronousUrl;
+      }
+    }
+
+    // Fast path: if the URL was already prefetched or cached, use it immediately.
     // This is the KEY fix for autoplay on locked screen — no async gap at all.
-    if (fromTrackEnd && track.fileUrl) {
+    if (fromTrackEnd && synchronousUrl) {
       if (loadingTrackIdRef.current !== track.id) return;
-      audioEngine.playNext(track.fileUrl, track.duration);
+      console.warn('[PlayerContext:diag]', JSON.stringify({ event: 'automatic-playNext',
+        currentTrackId: currentTrackRef.current.id,
+        nextTrackId: track.id,
+        hasPreparedUrl: true,
+        hidden: document.hidden,
+        visibility: document.visibilityState,
+      }));
+      audioEngine.playNext(synchronousUrl, track.duration);
       armPlaybackStartMonitor(track.id, true);
       applyAudioSettings();
-      // Refresh the stream URL in background for the next play/pause cycle
-      streamService.getStreamUrl(track.id).then(url => { track.fileUrl = url; }).catch(() => {});
+      return;
+    }
+
+    if (fromTrackEnd) {
+      streamService.getStreamUrl(track.id)
+        .then((streamUrl) => {
+          if (loadingTrackIdRef.current !== track.id) return;
+          track.fileUrl = streamUrl;
+          audioEngine.playNext(streamUrl, track.duration);
+          armPlaybackStartMonitor(track.id, true);
+          applyAudioSettings();
+        })
+        .catch((err) => {
+          if (loadingTrackIdRef.current !== track.id) return;
+          console.error('[playTrack] Background stream URL fetch failed:', err);
+          setIsLoadingTrack(false);
+          skipFailedTrack(track.id, fromTrackEnd);
+        });
       return;
     }
 
@@ -872,19 +956,15 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       .then((streamUrl) => {
         if (loadingTrackIdRef.current !== track.id) return;
         track.fileUrl = streamUrl;
-        if (fromTrackEnd) {
-          audioEngine.playNext(streamUrl, track.duration);
-        } else {
-          audioEngine.play(track.duration, 0, streamUrl);
-        }
-        armPlaybackStartMonitor(track.id, fromTrackEnd);
+        audioEngine.play(track.duration, 0, streamUrl);
+        armPlaybackStartMonitor(track.id, false);
         applyAudioSettings();
       })
       .catch((err) => {
         if (loadingTrackIdRef.current !== track.id) return;
         console.error('[playTrack] Stream URL fetch failed:', err);
-        showToast('Could not load song. Please try again.', 'error');
-        setIsPlaying(false);
+        setIsLoadingTrack(false);
+        skipFailedTrack(track.id, fromTrackEnd);
       });
     });
   };
@@ -903,6 +983,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     if (_isPlaybackLocked && !force) return;
     if (_currentTrack.id === '') return;
+    if (isLoadingTrack && !force) return;
 
     const nextState = forceState !== undefined ? forceState : !_isPlaying;
 
@@ -936,22 +1017,27 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             if (_currentTrack.fileUrl) {
               audioEngine.play(_currentTrack.duration, _currentTime, _currentTrack.fileUrl);
               applySettings();
+              setIsLoadingTrack(false);
+            } else {
+              setIsLoadingTrack(false);
+              skipFailedTrack(_currentTrack.id);
             }
           });
       };
 
       const isDownloaded = _downloadedTracks.includes(_currentTrack.id);
       if (isDownloaded) {
-        downloadService.isCached(_currentTrack.id).then((exists) => {
+        downloadService.isCached(_currentTrack.id).then(async (exists) => {
           if (!exists) {
             if (!navigator.onLine) {
               showToast('This song is unavailable offline. It will re-download when you reconnect.', 'error');
+              setIsLoadingTrack(false);
               return;
             }
             downloadService.downloadTrack({ id: _currentTrack.id }).catch(() => {});
             resumeOnline();
           } else {
-            const cachedUrl = `https://music-player.local/song/${_currentTrack.id}`;
+            const cachedUrl = await downloadService.getLocalUrl(_currentTrack.id);
             _currentTrack.fileUrl = cachedUrl;
             audioEngine.play(_currentTrack.duration, _currentTime, cachedUrl);
             applySettings();
@@ -963,7 +1049,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       resumeOnline();
     }
-  }, []);
+  }, [isLoadingTrack, skipFailedTrack]);
 
   const nextTrack = useCallback((force: boolean = false, fromTrackEnd: boolean = false) => {
     // ALWAYS read from refs, never from closed-over state.
@@ -1397,6 +1483,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     
     if (isDownloaded) {
       setDownloadedTracks((prev) => prev.filter((id) => id !== track.id));
+      if (currentTrackRef.current.id === track.id) {
+        showToast('Removed from downloads. Current song remains cached.', 'minus');
+        return;
+      }
       const success = await downloadService.removeTrack(track);
       if (success) {
         showToast('Removed from downloads', 'minus');
@@ -1472,7 +1562,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // Centralized here so it stays tightly coupled with global player state.
   // ─────────────────────────────────────────────────────────────────────────────
   const togglePlayRef = useRef(togglePlay);
-  const nextTrackRef = useRef(nextTrack);
   const prevTrackRef = useRef(prevTrack);
   const handleTrackEndRef = useRef(handleTrackEnd);
 
@@ -1501,7 +1590,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         streamErrorRecoveryRef.current = { trackId: activeTrack.id, attempts: 0 };
       }
 
-      if (streamErrorRecoveryRef.current.attempts >= 1) return;
+      if (streamErrorRecoveryRef.current.attempts >= 1) {
+        skipFailedTrack(activeTrack.id);
+        return;
+      }
       streamErrorRecoveryRef.current.attempts += 1;
 
       streamService.invalidateStreamUrl(activeTrack.id);
@@ -1518,7 +1610,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         })
         .catch((err) => {
           console.error('[PlayerContext] stream recovery failed:', err);
-          showToast('Could not refresh stream. Please try again.', 'error');
+          skipFailedTrack(activeTrack.id);
         });
     });
     return () => {
@@ -1530,18 +1622,27 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         trackEndUnlockTimerRef.current = null;
       }
     };
-  }, []);
+  }, [skipFailedTrack]);
 
   // Sync actual audio playing state when app comes back to foreground.
-  // This eliminates "fake progress" where notification shows playing but audio is paused.
+  // If playback was stalled/suspended in background, auto-resume now that user returned.
   useEffect(() => {
     const handleVisibilityChange = () => {
+      console.warn('[PlayerContext:diag]', JSON.stringify({ event: 'visibility-change',
+        hidden: document.hidden,
+        visibility: document.visibilityState,
+        currentTrackId: currentTrackRef.current.id,
+        isPlaying: isPlayingRef.current,
+      }));
       if (!document.hidden) {
         const actuallyPlaying = audioEngine.getActuallyPlaying();
         const reactIsPlaying = isPlayingRef.current;
-        if (reactIsPlaying !== actuallyPlaying) {
-          setIsPlaying(actuallyPlaying);
-          isPlayingRef.current = actuallyPlaying;
+        if (reactIsPlaying && !actuallyPlaying && currentTrackRef.current.id !== '') {
+          // Supposed to be playing, but stalled/paused in background — resume now that user returned!
+          audioEngine.resume();
+        } else if (!reactIsPlaying && actuallyPlaying) {
+          setIsPlaying(true);
+          isPlayingRef.current = true;
         }
         // Re-sync Media Session position state to clear any fake progress
         const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
@@ -1667,6 +1768,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [isPlaying, currentTime, duration, currentTrack.id]);
 
+  // Capacitor Android uses a native MediaSession notification because the
+  // browser Media Session API is not consistently exposed by WebView.
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform() || !currentTrack.id) return;
+    void nativeMediaSession.updatePlayback({
+      playing: isPlaying,
+      position: currentTime,
+      duration: duration || currentTrack.duration || 0,
+      rate: audioEngine.getPlaybackRate() || 1,
+      transitioning: isLoadingTrack,
+    }).catch(() => {});
+  }, [isPlaying, isLoadingTrack, currentTime, duration, currentTrack.id, currentTrack.duration]);
+
   // Update Media Session metadata when track changes
   useEffect(() => {
     const ms = (navigator as any)?.mediaSession as MediaSession | undefined;
@@ -1708,6 +1822,33 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [currentTrack]);
 
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform() || !currentTrack.id) return;
+    void nativeMediaSession.requestNotifications().catch(() => {});
+    void nativeMediaSession.updateMetadata({
+      title: currentTrack.title || 'Music Player',
+      artist: currentTrack.artist || '',
+      album: currentTrack.album || '',
+      artwork: currentTrack.coverUrl || '',
+      duration: duration || currentTrack.duration || 0,
+    }).catch(() => {});
+  }, [currentTrack, duration]);
+
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    let listener: { remove: () => Promise<void> } | null = null;
+    nativeMediaSession.addListener('mediaAction', ({ action, position }) => {
+      if (action === 'play') togglePlayRef.current(false, true);
+      if (action === 'pause') togglePlayRef.current(false, false);
+      if (action === 'next') nextTrackRef.current(true);
+      if (action === 'previous') prevTrackRef.current(true);
+      if (action === 'seek' && position !== undefined) seekRef.current(position, true);
+    }).then((handle) => { listener = handle; }).catch(() => {});
+    return () => {
+      if (listener) void listener.remove();
+    };
+  }, []);
+
   const value = useMemo(
     () => ({
       currentTrack,
@@ -1725,6 +1866,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       likedTracks,
       isFullScreen,
       isPlaybackLocked,
+      isLoadingTrack,
       setIsPlaybackLocked,
       playTrack,
       togglePlay,
@@ -1811,6 +1953,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       isSleepAtTrackEnd,
       customPlaylists,
       isPlaybackLocked,
+      isLoadingTrack,
       downloadedTracks,
       downloadedPlaylists,
       likedPlaylists,

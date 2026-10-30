@@ -37,6 +37,7 @@ export const FullScreenPlayer: React.FC = () => {
   const {
     currentTrack,
     isPlaying,
+    isLoadingTrack,
     currentTime,
     duration,
     volume,
@@ -307,9 +308,12 @@ export const FullScreenPlayer: React.FC = () => {
           </button>
           <button
             onClick={() => togglePlay()}
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-white active:scale-95 sm:h-[72px] sm:w-[72px]"
+            disabled={isLoadingTrack}
+            aria-label={isLoadingTrack ? 'Loading song' : isPlaying ? 'Pause' : 'Play'}
+            className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-white sm:h-[72px] sm:w-[72px] ${isLoadingTrack ? 'cursor-wait opacity-50' : 'opacity-100 active:scale-95'}`}
           >
-            {isPlaying ? (
+            {isLoadingTrack && <span className="absolute -inset-1.5 animate-spin rounded-full border-2 border-transparent border-r-[#1db954] border-t-[#1db954]" />}
+            {isPlaying && !isLoadingTrack ? (
               <Pause className="h-9 w-9 fill-black text-black sm:h-10 sm:w-10" />
             ) : (
               <Play className="h-9 w-9 translate-x-[2px] fill-black text-black sm:h-10 sm:w-10" />

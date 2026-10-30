@@ -12,7 +12,7 @@ export const MobileNav: React.FC = () => {
   ];
 
   return (
-    <nav className="flex border-t border-[#282828] bg-gradient-to-t from-black to-[#121212] md:hidden">
+    <nav className="flex min-h-[64px] shrink-0 border-t border-[#282828] bg-gradient-to-t from-black to-[#121212] md:hidden">
       {items.map(({ label, icon: Icon, view }) => {
         const active =
           currentView === view ||

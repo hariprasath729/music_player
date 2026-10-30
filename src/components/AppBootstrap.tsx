@@ -84,14 +84,9 @@ export const AppBootstrap: React.FC<AppBootstrapProps> = ({ children, loginFallb
     timeoutTimerRef.current = setTimeout(() => {
       if (!mountedRef.current) return;
 
-      // Abort any still-running fetch
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-        abortControllerRef.current = null;
-      }
-
-      // Trust the cached session on timeout instead of logging out
-      console.warn('Backup timeout triggered in AppBootstrap. Trusting cached session.');
+      // Keep the verification request alive. A timeout only controls startup
+      // rendering; a later 401/403 must still be able to invalidate the cache.
+      console.warn('Backup timeout triggered in AppBootstrap. Continuing with cached session while verification finishes.');
       setPendingAuthResult('authenticated');
     }, STARTUP_CONFIG.authTimeout);
 

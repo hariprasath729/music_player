@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { User, LogOut, Loader2, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { BACKEND_URL } from '../../config/backend';
 import ElectricBorder from '../ElectricBorder';
 import { usePlayer } from '../../context/PlayerContext';
 
@@ -24,18 +25,13 @@ export const ProfileView: React.FC = () => {
       if (!token) return;
 
       try {
-        const baseUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
-        let targetUrl = baseUrl ? `${baseUrl}/api/auth/me` : `http://localhost:5000/api/auth/me`;
+        let targetUrl = `${BACKEND_URL}/api/auth/me`;
 
         if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
           targetUrl = targetUrl.replace(/^http:/, 'https:');
           if (targetUrl.includes('vercel.app')) {
             targetUrl = targetUrl.replace(/:5000$/, '').replace(/:5000\/$/, '');
           }
-        }
-
-        if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !baseUrl) {
-          targetUrl = `${window.location.origin}/api/auth/me`;
         }
 
         const res = await fetch(targetUrl, {

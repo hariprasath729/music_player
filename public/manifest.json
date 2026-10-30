@@ -1,12 +1,14 @@
 {
   "name": "Music Player",
   "short_name": "Music",
-  "description": "Full-featured music streaming application",
+  "description": "A full-featured music player for your favorite tracks",
   "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#121212",
   "background_color": "#121212",
-  "version": "1.0.0",
+  "categories": ["music", "entertainment"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/logo.png",

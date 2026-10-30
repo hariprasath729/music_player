@@ -2,9 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
     <title>Music Player</title>
+    <meta name="theme-color" content="#121212" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Music" />
     <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo_maskable.png" />
     <link rel="manifest" href="/manifest.json" />
     <script>
       /* Frame-busting clickjacking protection */
@@ -26,22 +32,10 @@
         window.dispatchEvent(new CustomEvent('pwa-app-installed'));
       });
 
-      // PWA Auto-Recovery: Disabled during development to prevent infinite reload loops.
-      if (location.port !== '5173') {
-        window.addEventListener('error', function(e) {
-          var target = e.target || e.srcElement;
-          var isScriptOrLink = target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK');
-          if (isScriptOrLink && navigator.serviceWorker) {
-            console.warn('Asset load failed. Attempting PWA auto-recovery...');
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-              for (var i = 0; i < registrations.length; i++) {
-                registrations[i].unregister();
-              }
-              window.location.reload(true);
-            });
-          }
-        }, true);
-      }
+      // Do not reload automatically on asset errors. This page is also bundled
+      // into Capacitor, where a transient WebView asset event must not restart
+      // the entire native app. Browser/PWA updates are handled by the service
+      // worker in src/main.tsx.
     </script>
     <style>
  /* Full-screen splash (covers everything immediately) */
@@ -159,8 +153,7 @@
         }, 400);
       };
 
-      // Splash dismissal is now managed by AppBootstrap in React.
-      // No fallback auto-hide timer — AppBootstrap enforces the 2500ms deadline.
+      // Splash dismissal is managed by AppBootstrap.
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>

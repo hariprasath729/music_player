@@ -6,6 +6,7 @@ import { usePlayer } from '../context/PlayerContext';
 import { useAuth } from '../context/AuthContext'; // Replace with real toast in production
 import { notificationsApi, InAppNotification } from '../services/apiClient';
 import { EqualizerPanel } from './EqualizerPanel';
+import { BACKEND_URL } from '../config/backend';
 
 /* Filter pills shown on mobile home/library */
 const MobileFilterPills: React.FC = () => {
@@ -107,7 +108,7 @@ export const Navbar: React.FC = () => {
     }
     setContactSending(true);
     try {
-      const apiBase = (import.meta.env.VITE_API_URL || 'https://music-player-z1db.onrender.com').replace(/\/$/, '');
+      const apiBase = BACKEND_URL;
       const userEmail = user?.email || 'unknown@user.com';
       const res = await fetch(`${apiBase}/api/auth/contact-admin`, {
         method: 'POST',

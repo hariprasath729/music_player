@@ -3,11 +3,12 @@ import { X, Users, Copy, Check, Radio, Activity } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 import { useAuth } from '../../context/AuthContext';
 import { io, Socket } from 'socket.io-client';
+import { BACKEND_URL } from '../../config/backend';
 import { TRACKS } from '../../data/musicCatalog';
 import { audioEngine } from '../../services/audioEngine';
 
 // @ts-ignore
-const SOCKET_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const SOCKET_URL = BACKEND_URL;
 
 // ─── Sync Constants ──────────────────────────────────────────────────────────
 const CLOCK_SYNC_EXCHANGES = 3;

@@ -22,14 +22,15 @@ interface CacheEntry {
   expiresAt: number; // Unix ms timestamp
 }
 
+import { BACKEND_URL } from '../config/backend';
+
 // ── Configuration ──────────────────────────────────────────────────────────
 
 /** Refresh a token this many ms before it expires (30 seconds buffer). */
 const REFRESH_BUFFER_MS = 30_000;
 
 /** Backend base URL (resolves to the Express backend port). */
-// @ts-ignore
-const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const API_BASE = BACKEND_URL;
 
 // ── In-Memory Cache ────────────────────────────────────────────────────────
 
@@ -150,6 +151,16 @@ export async function prefetch(songId: string | number | undefined): Promise<str
   });
 }
 
+export function getCachedStreamUrl(songId: string | number | undefined): string | null {
+  if (!songId && songId !== 0) return null;
+  const key = String(songId);
+  const cached = cache.get(key);
+  if (cached && isCacheValid(cached)) {
+    return cached.streamUrl;
+  }
+  return null;
+}
+
 export function invalidateStreamUrl(songId: string | number | undefined): void {
   if (!songId && songId !== 0) return;
   cache.delete(String(songId));
@@ -165,5 +176,5 @@ export function clearStreamCache(): void {
 }
 
 // Exported as a namespace for convenience
-const streamService = { getStreamUrl, prefetch, invalidateStreamUrl, clearStreamCache };
+const streamService = { getStreamUrl, getCachedStreamUrl, prefetch, invalidateStreamUrl, clearStreamCache };
 export default streamService;

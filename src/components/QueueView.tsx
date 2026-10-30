@@ -37,7 +37,7 @@ export const QueueView: React.FC = () => {
     e.dataTransfer.effectAllowed = 'move';
   };
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
@@ -76,7 +76,7 @@ export const QueueView: React.FC = () => {
   };
 
   return (
-    <aside className={`fixed inset-y-0 right-0 flex w-80 flex-col border-l border-[#282828] bg-[#121212] text-white select-none ${isFullScreen ? 'z-[60]' : 'z-40 md:relative'}`}>
+    <aside className={`fixed bottom-0 right-0 top-[24px] flex w-80 flex-col border-l border-[#282828] bg-[#121212] text-white select-none md:inset-y-0 ${isFullScreen ? 'z-[60]' : 'z-40 md:relative'}`}>
       {/* Backdrop for mobile (and desktop when in fullscreen) */}
       <div 
         className={`fixed inset-0 bg-black/50 ${isFullScreen ? '' : 'md:hidden'}`}
@@ -167,7 +167,7 @@ export const QueueView: React.FC = () => {
                   data-queue-idx={idx}
                   draggable
                   onDragStart={(e) => handleDragStart(e, idx)}
-                  onDragOver={(e) => handleDragOver(e, idx)}
+                  onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, idx)}
                   onDragEnd={handleDragEnd}
                   className={`group flex items-center gap-2.5 rounded-md p-2 transition-colors hover:bg-[#232323] ${draggedIndex === idx ? 'opacity-50 bg-white/5' : ''}`}

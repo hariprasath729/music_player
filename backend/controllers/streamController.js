@@ -14,8 +14,8 @@ import jwt from 'jsonwebtoken';
 import { getStorageLocation } from '../services/songStorageService.js';
 import { log, securityEvent, SECURITY_EVENTS } from '../utils/logger.js';
 
-// Stream token TTL: 5 minutes. Short enough to prevent sharing/scraping.
-const STREAM_TOKEN_TTL_SECONDS = 5 * 60;
+// Stream token TTL: 2 hours. Sufficient so prefetched upcoming tracks never expire mid-queue or in background.
+const STREAM_TOKEN_TTL_SECONDS = 2 * 60 * 60;
 
 /**
  * POST /api/stream/request

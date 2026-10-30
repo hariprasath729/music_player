@@ -35,6 +35,7 @@ export const PlayerControls: React.FC = () => {
     likedTracks,
     isQueueOpen,
     togglePlay,
+    isLoadingTrack,
     nextTrack,
     prevTrack,
     seek,
@@ -130,9 +131,12 @@ export const PlayerControls: React.FC = () => {
           </button>
           <button
             onClick={() => togglePlay()}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white transition-transform hover:scale-105"
+            disabled={isLoadingTrack}
+            aria-label={isLoadingTrack ? 'Loading song' : isPlaying ? 'Pause' : 'Play'}
+            className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-white transition-transform ${isLoadingTrack ? 'cursor-wait opacity-50' : 'opacity-100 hover:scale-105'}`}
           >
-            {isPlaying ? (
+            {isLoadingTrack && <span className="absolute -inset-1 animate-spin rounded-full border-2 border-transparent border-r-[#1db954] border-t-[#1db954]" />}
+            {isPlaying && !isLoadingTrack ? (
               <Pause className="h-4 w-4 fill-black text-black" />
             ) : (
               <Play className="h-4 w-4 translate-x-[1px] fill-black text-black" />
