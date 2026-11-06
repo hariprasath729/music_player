@@ -6899,7 +6899,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 857,
     "title": "Oru Pere Varalaaru",
-    "artist": "",
+    "artist": "Anirudh Ravichander",
     "album": "Jana Nayagan",
     "duration": 234,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_5@main/covers/Oru-Pere-Varalaaru-MassTamilan.dev.jpg"
@@ -10739,7 +10739,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 1340,
     "title": "Muththa Mazhai (Chinmayi Version)",
-    "artist": "",
+    "artist": "Chinmayi",
     "album": "Thug Life",
     "duration": 226,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_8@main/covers/Muththa-Mazhai-(Chinmayi-Version)-MassTamilan.dev.jpg"
@@ -16907,7 +16907,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 2116,
     "title": "Rakkayie (Teaser Theme)",
-    "artist": "",
+    "artist": "Govind Vasantha",
     "album": "Rakkayie",
     "duration": 154,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_12@main/covers/Rakkayie-(Teaser-Theme)-MassTamilan.dev.jpg"
@@ -44531,7 +44531,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5617,
     "title": "Anbenum Paravai",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 73,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Anbenum-Paravai-MassTamilan.io.jpg"
@@ -44600,10 +44600,10 @@ const RAW_SONGS: RawSong[] = [
     "duration": 186,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Arali-Vedayil.jpg"
   },
-  {
+  { 
     "id": 5626,
     "title": "Arasiyal Balam",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 90,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Arasiyal-Balam-MassTamilan.io.jpg"
@@ -44947,7 +44947,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5669,
     "title": "Da Pottu Koopta",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 68,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Da-Pottu-Koopta-MassTamilan.io.jpg"
@@ -45451,7 +45451,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5732,
     "title": "Field Work",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 78,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Field-Work-MassTamilan.io.jpg"
@@ -45467,7 +45467,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5734,
     "title": "Gaavu",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 40,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Gaavu-MassTamilan.io.jpg"
@@ -45915,7 +45915,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5790,
     "title": "Jhonny",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 188,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Jhonny-MassTamilan.io.jpg"
@@ -46003,7 +46003,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5801,
     "title": "Kaal Pandhu Sanda",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 130,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Kaal-Pandhu-Sanda-MassTamilan.io.jpg"
@@ -46019,7 +46019,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5803,
     "title": "Kaalis Love",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 87,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Kaalis-Love-MassTamilan.io.jpg"
@@ -46115,7 +46115,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5815,
     "title": "Kadhal Tholvi",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 61,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Kadhal-Tholvi-MassTamilan.io.jpg"
@@ -46163,7 +46163,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5821,
     "title": "Kalayarasi",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 19,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_37@main/covers/Kalayarasi-MassTamilan.io.jpg"
@@ -46443,7 +46443,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5858,
     "title": "Kavidhai",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 39,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Kavidhai-MassTamilan.io.jpg"
@@ -46995,7 +46995,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5928,
     "title": "Mudivu",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 117,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Mudivu-MassTamilan.io.jpg"
@@ -47107,7 +47107,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 5942,
     "title": "Naan Nee",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 37,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_38@main/covers/Naan-Nee-MassTamilan.io.jpg"
@@ -47995,7 +47995,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6055,
     "title": "Pazhikku Pazhi",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 76,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/covers/Pazhikku-Pazhi-MassTamilan.io.jpg"
@@ -48219,7 +48219,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6083,
     "title": "Prechana",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 100,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_39@main/covers/Prechana-MassTamilan.io.jpg"
@@ -48611,7 +48611,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6132,
     "title": "Sengan Sethurukkan",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 117,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Sengan-Sethurukkan-MassTamilan.io.jpg"
@@ -48619,7 +48619,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6133,
     "title": "Setta",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 66,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Setta-MassTamilan.io.jpg"
@@ -48651,7 +48651,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6137,
     "title": "Sikkal",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 137,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Sikkal-MassTamilan.io.jpg"
@@ -49203,7 +49203,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6209,
     "title": "Ul Kuthu",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 90,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_40@main/covers/Ul-Kuthu-MassTamilan.io.jpg"
@@ -49819,7 +49819,7 @@ const RAW_SONGS: RawSong[] = [
   {
     "id": 6286,
     "title": "Vyasarpadi",
-    "artist": "",
+    "artist": "Santhosh Narayanan",
     "album": "Madras BGM Original Background Score",
     "duration": 288,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_41@main/covers/Vyasarpadi-MassTamilan.io.jpg"
@@ -54839,6 +54839,3470 @@ const RAW_SONGS: RawSong[] = [
     "album": "OM Chapter 1: Udhiram The Blood Wood",
     "duration": 238,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Veezha%20Veera.jpg"
+  },
+  {
+    "id": 6932,
+    "title": "A New Kinda Hero",
+    "artist": "Pranav Giridharan, SATYAH",
+    "album": "Cold Call",
+    "duration": 88,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/A%20New%20Kinda%20Hero.jpg"
+  },
+  {
+    "id": 6933,
+    "title": "Aari Raaro",
+    "artist": "Anjali Nair",
+    "album": "Don'T Trouble the Trouble (DTTT)",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aari%20Raaro.jpg"
+  },
+  {
+    "id": 6934,
+    "title": "Aariraro Aariro",
+    "artist": "G V Prakash Kumar, Mithran, R P Krishaang",
+    "album": "Vishwanath & Sons",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aariraro%20Aariro.jpg"
+  },
+  {
+    "id": 6935,
+    "title": "Aasai Varame (Reprise)",
+    "artist": "Govind Vasantha, Madrashe",
+    "album": "Anbil Avan",
+    "duration": 99,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aasai%20Varame%20(Reprise).jpg"
+  },
+  {
+    "id": 6936,
+    "title": "Aasai Varame Rock Version",
+    "artist": "Govind Vasantha, Sid Sriram, Chinmayi Sripada, Madrashe",
+    "album": "Anbil Avan",
+    "duration": 133,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aasai%20Varame%20-%20Rock%20Version.jpg"
+  },
+  {
+    "id": 6937,
+    "title": "Aasai Varame",
+    "artist": "Govind Vasantha, Chinmayi Sripada",
+    "album": "Anbil Avan",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aasai%20Varame.jpg"
+  },
+  {
+    "id": 6938,
+    "title": "Aathi Iva Yarraa",
+    "artist": "Sushin Shyam, Rajpriyan",
+    "album": "Scene",
+    "duration": 187,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aathi%20Iva%20Yarraa.jpg"
+  },
+  {
+    "id": 6939,
+    "title": "Aathiram",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 118,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aathiram.jpg"
+  },
+  {
+    "id": 6940,
+    "title": "Adiye En Poonthene",
+    "artist": "Anirudh Ravichander, Ravi G",
+    "album": "Jana Nayagan",
+    "duration": 121,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Adiye%20En%20Poonthene.jpg"
+  },
+  {
+    "id": 6941,
+    "title": "Aeroplane",
+    "artist": "Sushin Shyam, Gana Bala, Rajpriyan",
+    "album": "Scene",
+    "duration": 147,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aeroplane%20(2).jpg"
+  },
+  {
+    "id": 6942,
+    "title": "Aeroplane (Aeroplane (Indie))",
+    "artist": "Paal Dabba",
+    "album": "Aeroplane (Indie)",
+    "duration": 168,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Aeroplane.jpg"
+  },
+  {
+    "id": 6943,
+    "title": "Agam Niraya",
+    "artist": "Bharath Sankar, Padmapriya Raghavan",
+    "album": "Anbe Diana",
+    "duration": 89,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Agam%20Niraya.jpg"
+  },
+  {
+    "id": 6944,
+    "title": "Ain't Nobody (DC)",
+    "artist": "Anirudh Ravichander, Heisenberg, Ram Kumar",
+    "album": "DC",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ain't%20Nobody.jpg"
+  },
+  {
+    "id": 6945,
+    "title": "Ala Bolelo",
+    "artist": "Anirudh Ravichander",
+    "album": "Jailer 2",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ala%20Bolelo.jpg"
+  },
+  {
+    "id": 6946,
+    "title": "Alexa",
+    "artist": "Jen Martin, Ananya Chakraborty",
+    "album": "Hi",
+    "duration": 149,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Alexa.jpg"
+  },
+  {
+    "id": 6947,
+    "title": "All Passu All Passu",
+    "artist": "James Vasanthan, Gaana Shiva, Mukhil Mayuri",
+    "album": "All Pass",
+    "duration": 236,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/All%20Passu%20All%20Passu.jpg"
+  },
+  {
+    "id": 6948,
+    "title": "All will be Fine",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 68,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/All%20will%20be%20Fine.jpg"
+  },
+  {
+    "id": 6949,
+    "title": "Allipoove",
+    "artist": "G V Prakash Kumar",
+    "album": "Arulvaan",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Allipoove.jpg"
+  },
+  {
+    "id": 6950,
+    "title": "Amman Song (Mookuthi Amman 2 Mahasakthi)",
+    "artist": "Hiphop Tamizha, Aruna Ravindran, Chinnaponnu, Kaushik Krish, Muthamil",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 211,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Amman%20Song.jpg"
+  },
+  {
+    "id": 6951,
+    "title": "Anbe En Anbe (Magudam)",
+    "artist": "G V Prakash Kumar, Rajaganapathy",
+    "album": "Magudam",
+    "duration": 99,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Anbe%20En%20Anbe.jpg"
+  },
+  {
+    "id": 6952,
+    "title": "Anbil Avan Title Theme",
+    "artist": "Govind Vasantha, Pragathi Guruprasad",
+    "album": "Anbil Avan",
+    "duration": 77,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Anbil%20Avan%20-%20Title%20Theme.jpg"
+  },
+  {
+    "id": 6953,
+    "title": "Anchor",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Anchor.jpg"
+  },
+  {
+    "id": 6954,
+    "title": "Andhi Nilavu",
+    "artist": "Hesham Abdul Wahab, Vignesh Srikanth",
+    "album": "Once More",
+    "duration": 148,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Andhi%20Nilavu.jpg"
+  },
+  {
+    "id": 6955,
+    "title": "Angel Rakkamma",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 26,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Angel%20Rakkamma.jpg"
+  },
+  {
+    "id": 6956,
+    "title": "Angel's Confession",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 70,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Angel's%20Confession.jpg"
+  },
+  {
+    "id": 6957,
+    "title": "Annakili",
+    "artist": "Vaaheesan Rasaiya",
+    "album": "Tamizh Kirukkan (Indie)",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Annakili.jpg"
+  },
+  {
+    "id": 6958,
+    "title": "Annakiliye",
+    "artist": "Smith Asher, Dheekshitha",
+    "album": "Annakiliye (Indie)",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Annakiliye.jpg"
+  },
+  {
+    "id": 6959,
+    "title": "Anname (Once More)",
+    "artist": "Hesham Abdul Wahab, Arjun KC, Vignesh Srikanth",
+    "album": "Once More",
+    "duration": 124,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Anname.jpg"
+  },
+  {
+    "id": 6960,
+    "title": "Appava Pola",
+    "artist": "Vijay Antony, Meenakshi Elayaraja",
+    "album": "Appa Kutti",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Appava%20Pola.jpg"
+  },
+  {
+    "id": 6961,
+    "title": "Arugey Arugey",
+    "artist": "Jakes Bejoy, Armaan Malik",
+    "album": "I'M Game",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Arugey%20Arugey.jpg"
+  },
+  {
+    "id": 6962,
+    "title": "Asku Macha",
+    "artist": "Hari S R, Thamizh Aadhavan",
+    "album": "Drones",
+    "duration": 186,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Asku%20Macha.jpg"
+  },
+  {
+    "id": 6963,
+    "title": "Atrocity",
+    "artist": "Yuvan Shankar Raja, Mathichiyam Bala, Sinduri Vishal",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 178,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Atrocity.jpg"
+  },
+  {
+    "id": 6964,
+    "title": "Attakathi",
+    "artist": "Bharath Sankar, Vijay Narain",
+    "album": "Anbe Diana",
+    "duration": 189,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Attakathi.jpg"
+  },
+  {
+    "id": 6965,
+    "title": "Ayali",
+    "artist": "Ankit Menon",
+    "album": "Ram and Leela",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ayali.jpg"
+  },
+  {
+    "id": 6966,
+    "title": "Ayya Scene",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 65,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ayya%20Scene.jpg"
+  },
+  {
+    "id": 6967,
+    "title": "Ayyayo Ammaadi",
+    "artist": "Thaman S, Yuvan Shankar Raja, Sanjana Kalmanje",
+    "album": "Sigma",
+    "duration": 211,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ayyayo%20Ammaadi.jpg"
+  },
+  {
+    "id": 6968,
+    "title": "Baasha Da",
+    "artist": "Govind Vasantha, Yogi B, Sanjeev T, Driya Pandian, R Kaarthikeyan, Syan Saheer",
+    "album": "Anbil Avan",
+    "duration": 207,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Baasha%20Da.jpg"
+  },
+  {
+    "id": 6969,
+    "title": "Baby Kannan Looses Cool",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 32,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Baby%20Kannan%20Looses%20Cool.jpg"
+  },
+  {
+    "id": 6970,
+    "title": "Badhil Sol",
+    "artist": "Hesham Abdul Wahab, Arjun Das, Anila Rajeev, Vignesh Srikanth",
+    "album": "Once More",
+    "duration": 86,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Badhil%20Sol.jpg"
+  },
+  {
+    "id": 6971,
+    "title": "Baile Baby",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 30,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Baile%20Baby.jpg"
+  },
+  {
+    "id": 6972,
+    "title": "Basavanna",
+    "artist": "Anup Rubens, V M Mahalingam, L Keerthana",
+    "album": "Seetha Payanam",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Basavanna.jpg"
+  },
+  {
+    "id": 6973,
+    "title": "Baththa Avatharam",
+    "artist": "Sai Abhyankkar",
+    "album": "Baththa",
+    "duration": 28,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Baththa%20Avatharam.jpg"
+  },
+  {
+    "id": 6974,
+    "title": "Baththa Lacrimosa",
+    "artist": "Sai Abhyankkar, The Indian Choral Ensemble",
+    "album": "Baththa",
+    "duration": 147,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Baththa%20Lacrimosa.jpg"
+  },
+  {
+    "id": 6975,
+    "title": "Better Call Baby Kannan",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 21,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Better%20Call%20Baby%20Kannan.jpg"
+  },
+  {
+    "id": 6976,
+    "title": "Bhairaa's Rebirth",
+    "artist": "Kharesma Ravichandran, Kaushik Krish",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 128,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Bhairaa's%20Rebirth.jpg"
+  },
+  {
+    "id": 6977,
+    "title": "Bindaas",
+    "artist": "Deepthi Suresh, Anirudh Ravichander, Super Subu",
+    "album": "Jailer 2",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Bindaas.jpg"
+  },
+  {
+    "id": 6978,
+    "title": "Bloody Band",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 156,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Bloody%20Band.jpg"
+  },
+  {
+    "id": 6979,
+    "title": "Bloody Valentine (Instrumental)",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 101,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Bloody%20Valentine%20(Instrumental).jpg"
+  },
+  {
+    "id": 6980,
+    "title": "Breakfree En Minmini",
+    "artist": "Sean Roldan, Adithya RK",
+    "album": "#Love (Web Series)",
+    "duration": 189,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Breakfree%20En%20Minmini.jpg"
+  },
+  {
+    "id": 6981,
+    "title": "Bum Baa Diga Diga",
+    "artist": "Anirudh Ravichander, Vedan, Heisenberg",
+    "album": "DC",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Bum%20Baa%20Diga%20Diga.jpg"
+  },
+  {
+    "id": 6982,
+    "title": "Business Idea",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 41,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Business%20Idea.jpg"
+  },
+  {
+    "id": 6983,
+    "title": "Cake U Walk U",
+    "artist": "Kaala Bhairava, Vaasi",
+    "album": "Don'T Trouble the Trouble (DTTT)",
+    "duration": 169,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Cake%20U%20-%20Walk%20U.jpg"
+  },
+  {
+    "id": 6984,
+    "title": "Cha Cha Chi Chi Choo",
+    "artist": "Vishnu Vijay, Suhail Koya, Vagu Mazan",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 225,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Cha%20Cha%20Chi%20Chi%20Choo.jpg"
+  },
+  {
+    "id": 6985,
+    "title": "Chandira Suriyan",
+    "artist": "Vaikom Vijayalakshmi, Sindhuri Vishal, Harshini Nethra",
+    "album": "Arulvaan",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Chandira%20Suriyan.jpg"
+  },
+  {
+    "id": 6986,
+    "title": "Cheen Dapak Dum Dum",
+    "artist": "Sai Abhyankkar, Anumita Basu, Tiwari",
+    "album": "Baththa",
+    "duration": 150,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Cheen%20Dapak%20Dum%20Dum.jpg"
+  },
+  {
+    "id": 6987,
+    "title": "Chella Magale (Jana Nayagan)",
+    "artist": "Anirudh Ravichander, Vijay",
+    "album": "Jana Nayagan",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Chella%20Magale.jpg"
+  },
+  {
+    "id": 6988,
+    "title": "Chellame Magale (Mohan Kannan Version)",
+    "artist": "Sai Abhyankkar, Mohan Kannan, Harini",
+    "album": "Baththa",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Chellame%20Magale%20(Mohan%20Kannan%20Version).jpg"
+  },
+  {
+    "id": 6989,
+    "title": "Chill Kill",
+    "artist": "Manu Ravichandran, Kavitha Gopi",
+    "album": "Renigunta 2",
+    "duration": 151,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Chill%20Kill.jpg"
+  },
+  {
+    "id": 6990,
+    "title": "Clash at Dargah",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 112,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Clash%20at%20Dargah.jpg"
+  },
+  {
+    "id": 6991,
+    "title": "Cold Dance",
+    "artist": "Pranav Giridharan",
+    "album": "Cold Call",
+    "duration": 78,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Cold%20Dance.jpg"
+  },
+  {
+    "id": 6992,
+    "title": "Cold Hunt",
+    "artist": "Sam C S , Sharanya Gopinath",
+    "album": "Immortal",
+    "duration": 199,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Cold%20Hunt.jpg"
+  },
+  {
+    "id": 6993,
+    "title": "Comeback from the Whirlpool",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 64,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Comeback%20from%20the%20Whirlpool.jpg"
+  },
+  {
+    "id": 6994,
+    "title": "Confession of the Victim",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 36,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Confession%20of%20the%20Victim.jpg"
+  },
+  {
+    "id": 6995,
+    "title": "Crazy Love",
+    "artist": "Yuvan Shankar Raja, Armaan Malik, Snigdha Chandra",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Crazy%20Love.jpg"
+  },
+  {
+    "id": 6996,
+    "title": "Dai Dakka",
+    "artist": "Bharath Sankar, Yugabharathi",
+    "album": "Modha Rathri",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dai%20Dakka.jpg"
+  },
+  {
+    "id": 6997,
+    "title": "Daiva Coatingu",
+    "artist": "Simon K King, Yashwanth",
+    "album": "Vadhandhi Season 2",
+    "duration": 196,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Daiva%20Coatingu.jpg"
+  },
+  {
+    "id": 6998,
+    "title": "Das and Parvathy (Instrumental)",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 181,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Das%20and%20Parvathy%20(Instrumental).jpg"
+  },
+  {
+    "id": 6999,
+    "title": "Dayangaram Swag",
+    "artist": "Siddhu Kumar",
+    "album": "Dayangaram",
+    "duration": 80,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dayangaram%20Swag.jpg"
+  },
+  {
+    "id": 7000,
+    "title": "Dheeram Dheeram",
+    "artist": "Ajay Atul, V M Mahalingam",
+    "album": "Ranabaali",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dheeram%20Dheeram.jpg"
+  },
+  {
+    "id": 7001,
+    "title": "Dheivam Ilaiyo",
+    "artist": "Aalaap Raju, Nivas K Prasanna",
+    "album": "Kenatha Kanom",
+    "duration": 219,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dheivam%20Ilaiyo.jpg"
+  },
+  {
+    "id": 7002,
+    "title": "Dhure Dhure",
+    "artist": "Siddhu Kumar, Ramya C",
+    "album": "Haiku",
+    "duration": 153,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dhure%20Dhure.jpg"
+  },
+  {
+    "id": 7003,
+    "title": "Dil Haareya",
+    "artist": "Anirudh Ravichander, Ritesh G Rao",
+    "album": "Jailer 2",
+    "duration": 178,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dil%20Haareya.jpg"
+  },
+  {
+    "id": 7004,
+    "title": "Dileep Theme (Instrumental)",
+    "artist": "Anirudh Ravichander",
+    "album": "Jailer 2",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Dileep%20Theme%20(Instrumental).jpg"
+  },
+  {
+    "id": 7005,
+    "title": "Don't Give A Damn",
+    "artist": "Anirudh Ravichander, Heisenberg",
+    "album": "DC",
+    "duration": 185,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Don't%20Give%20A%20Damn.jpg"
+  },
+  {
+    "id": 7006,
+    "title": "Drama Queen",
+    "artist": "Yuvan Shankar Raja, Velu, Aravind Annest",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 169,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Drama%20Queen.jpg"
+  },
+  {
+    "id": 7007,
+    "title": "Echoes of DC (Instrumental)",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 170,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Echoes%20of%20DC%20(Instrumental).jpg"
+  },
+  {
+    "id": 7008,
+    "title": "Edhedho Ennangal",
+    "artist": "Ilaiyaraaja, Vibhavari Apte Joshi, Arivu",
+    "album": "Mylanji",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Edhedho%20Ennangal.jpg"
+  },
+  {
+    "id": 7009,
+    "title": "Edhira? Pudhira? (Once More)",
+    "artist": "Hesham Abdul Wahab, Sathyaprakash",
+    "album": "Once More",
+    "duration": 140,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Edhira%20Pudhira.jpg"
+  },
+  {
+    "id": 7010,
+    "title": "Ekavali",
+    "artist": "Sid Sriram, Manu Ravichandran",
+    "album": "Renigunta 2",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ekavali.jpg"
+  },
+  {
+    "id": 7011,
+    "title": "Emergency for Team Mugavai Maindhans",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 108,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Emergency%20for%20Team%20Mugavai%20Maindhans.jpg"
+  },
+  {
+    "id": 7012,
+    "title": "En Appa",
+    "artist": "Sai Prashob",
+    "album": "Meesaya Murukku 2",
+    "duration": 92,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/En%20Appa.jpg"
+  },
+  {
+    "id": 7013,
+    "title": "En Kanne Unpola (Female Version)",
+    "artist": "Saindhavi",
+    "album": "Arulvaan",
+    "duration": 288,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/En%20Kanne%20Unpola%20(Female%20Version).jpg"
+  },
+  {
+    "id": 7014,
+    "title": "En Kanne Unpola (Male Version)",
+    "artist": "Kapil Kapilan",
+    "album": "Arulvaan",
+    "duration": 288,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/En%20Kanne%20Unpola%20(Male%20Version).jpg"
+  },
+  {
+    "id": 7015,
+    "title": "En Kanne Vannappoove",
+    "artist": "Kapil Kapilan",
+    "album": "Arulvaan",
+    "duration": 343,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/En%20Kanne%20Vannappoove.jpg"
+  },
+  {
+    "id": 7016,
+    "title": "End Rolling Credits",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 170,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/End%20Rolling%20Credits.jpg"
+  },
+  {
+    "id": 7017,
+    "title": "Enna Seiven Anbe",
+    "artist": "Priya Jerson",
+    "album": "Mylanji",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Enna%20Seiven%20Anbe.jpg"
+  },
+  {
+    "id": 7018,
+    "title": "Ennamo Sonneenga Perusa",
+    "artist": "James Vasanthan, Gaana Shiva, Mohan Rajan",
+    "album": "All Pass",
+    "duration": 171,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ennamo%20Sonneenga%20Perusa.jpg"
+  },
+  {
+    "id": 7019,
+    "title": "Ennennavo",
+    "artist": "James Vasanthan, Vijayalakshmi Bhaskar, Aajeedh Khalique, Mohan Rajan",
+    "album": "All Pass",
+    "duration": 194,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ennennavo.jpg"
+  },
+  {
+    "id": 7020,
+    "title": "Eru Pooti Jorukkaatti",
+    "artist": "Ilaiyaraaja, S A Vijayakumar, Haricharan, Srisha",
+    "album": "Arisi",
+    "duration": 303,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Eru%20Pooti%20Jorukkaatti.jpg"
+  },
+  {
+    "id": 7021,
+    "title": "Escaping Theme Park",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 84,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Escaping%20Theme%20Park.jpg"
+  },
+  {
+    "id": 7022,
+    "title": "Etta Nadandha",
+    "artist": "Ilaiyaraaja, Jithin Raj, Ananya Bhat, Karthik Netha",
+    "album": "Lenin Pandiyan",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Etta%20Nadandha.jpg"
+  },
+  {
+    "id": 7023,
+    "title": "Fibre Boat Business Inauguration",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 78,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Fibre%20Boat%20Business%20Inauguration.jpg"
+  },
+  {
+    "id": 7024,
+    "title": "Fibre Boat",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 50,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Fibre%20Boat.jpg"
+  },
+  {
+    "id": 7025,
+    "title": "Fight in the Boat",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Fight%20in%20the%20Boat.jpg"
+  },
+  {
+    "id": 7026,
+    "title": "Filthy Judge",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 22,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Filthy%20Judge.jpg"
+  },
+  {
+    "id": 7027,
+    "title": "Flashback Match",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 88,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Flashback%20Match.jpg"
+  },
+  {
+    "id": 7028,
+    "title": "Four Friends Instrumental",
+    "artist": "Pranav Giridharan",
+    "album": "Cold Call",
+    "duration": 80,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Four%20Friends%20-%20Instrumental.jpg"
+  },
+  {
+    "id": 7029,
+    "title": "Gabru Gujili",
+    "artist": "Ankit Menon, Mathichiyam Bala",
+    "album": "Ram and Leela",
+    "duration": 167,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Gabru%20Gujili.jpg"
+  },
+  {
+    "id": 7030,
+    "title": "Gadi Mela Dheko",
+    "artist": "Tenma, Yasin Sherif",
+    "album": "Kabhi Kabhi",
+    "duration": 173,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Gadi%20Mela%20Dheko.jpg"
+  },
+  {
+    "id": 7031,
+    "title": "God Feels for the Innocent Souls",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/God%20Feels%20for%20the%20Innocent%20Souls.jpg"
+  },
+  {
+    "id": 7032,
+    "title": "God Mode Hyper Pop",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 76,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/God%20Mode%20-%20Hyper%20Pop.jpg"
+  },
+  {
+    "id": 7033,
+    "title": "Guilt Triggered",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 64,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Guilt%20Triggered.jpg"
+  },
+  {
+    "id": 7034,
+    "title": "Habibi (Pyaar Prema Kalyanam)",
+    "artist": "Yuvan Shankar Raja, Adithya RK",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 134,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Habibi%20(2).jpg"
+  },
+  {
+    "id": 7035,
+    "title": "Habibi (Anbil Avan)",
+    "artist": "Govind Vasantha, Benny Dayal, Vignesh Ramakrishna",
+    "album": "Anbil Avan",
+    "duration": 200,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Habibi.jpg"
+  },
+  {
+    "id": 7036,
+    "title": "Hello",
+    "artist": "Sushin Shyam, Yung Raja",
+    "album": "Scene",
+    "duration": 92,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Hello.jpg"
+  },
+  {
+    "id": 7037,
+    "title": "Hide and Seek",
+    "artist": "Vishnu Vijay, Suhail Koya",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 63,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Hide%20and%20Seek.jpg"
+  },
+  {
+    "id": 7038,
+    "title": "High Court",
+    "artist": "Rockzane",
+    "album": "High Court (Indie)",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/High%20Court.jpg"
+  },
+  {
+    "id": 7039,
+    "title": "High On Kaadhal",
+    "artist": "Yuvan Shankar Raja, Sanjith Hegde",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 297,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/High%20On%20Kaadhal.jpg"
+  },
+  {
+    "id": 7040,
+    "title": "Higher",
+    "artist": "Keneeshaa Francis, Yung Raja, Ranjith",
+    "album": "An Ordinary Man",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Higher.jpg"
+  },
+  {
+    "id": 7041,
+    "title": "Hola Hola Mistah",
+    "artist": "Pranav Giridharan, Armious",
+    "album": "Cold Call",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Hola%20Hola%20Mistah.jpg"
+  },
+  {
+    "id": 7042,
+    "title": "Idhu En Team Da",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 107,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Idhu%20En%20Team%20Da....jpg"
+  },
+  {
+    "id": 7043,
+    "title": "Idhu Enga Territory",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 42,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Idhu%20Enga%20Territory.jpg"
+  },
+  {
+    "id": 7044,
+    "title": "Idiyappam Life",
+    "artist": "Yuvan Shankar Raja, Gana Bala, Chinna Ponnu",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 154,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Idiyappam%20Life.jpg"
+  },
+  {
+    "id": 7045,
+    "title": "Ille Illa",
+    "artist": "Vishnu Vijay, Vishnu Edavan, Kapil Kapilan",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ille%20Illa.jpg"
+  },
+  {
+    "id": 7046,
+    "title": "Imaginoromancophilia",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 175,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Imaginoromancophilia.jpg"
+  },
+  {
+    "id": 7047,
+    "title": "Ini Ellamey",
+    "artist": "Dishathana V, Kaushik Krish",
+    "album": "Meesaya Murukku 2",
+    "duration": 153,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ini%20Ellamey.jpg"
+  },
+  {
+    "id": 7048,
+    "title": "Innocent Dad (Athutalore Sad)",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 39,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Innocent%20Dad%20(Athutalore%20Sad).jpg"
+  },
+  {
+    "id": 7049,
+    "title": "Irumudi Kattu",
+    "artist": "G V Prakash Kumar, Ananthu",
+    "album": "Irumudi Kattu",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Irumudi%20Kattu.jpg"
+  },
+  {
+    "id": 7050,
+    "title": "Iruvar",
+    "artist": "Nivas K Prasanna, Sooraj Santhosh, Aditi Shankar",
+    "album": "Iruvar (Indie)",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Iruvar.jpg"
+  },
+  {
+    "id": 7051,
+    "title": "Ithu Enna",
+    "artist": "Sireesha Bhagavatula",
+    "album": "Lingam (Web Series)",
+    "duration": 186,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ithu%20Enna.jpg"
+  },
+  {
+    "id": 7052,
+    "title": "Jai Jai Ram (Orchestral)",
+    "artist": "Hans Zimmer, A R Rahman",
+    "album": "Ramayana",
+    "duration": 182,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jai%20Jai%20Ram%20(Orchestral).jpg"
+  },
+  {
+    "id": 7053,
+    "title": "Jai Jai Rama",
+    "artist": "A R Rahman, Chinmayi Sripada, Haricharan, Karthik Netha",
+    "album": "Ramayana",
+    "duration": 320,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jai%20Jai%20Rama.jpg"
+  },
+  {
+    "id": 7054,
+    "title": "Jailer 2 Theme",
+    "artist": "Anirudh Ravichander, M S Krsna, Super Subu",
+    "album": "Jailer 2",
+    "duration": 107,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jailer%202%20Theme.jpg"
+  },
+  {
+    "id": 7055,
+    "title": "Jaya Jaya Shankara",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jaya%20Jaya%20Shankara.jpg"
+  },
+  {
+    "id": 7056,
+    "title": "Jigala Jillelo",
+    "artist": "Siddhu Kumar, Shibi Srinivasan",
+    "album": "Haiku",
+    "duration": 236,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jigala%20Jillelo.jpg"
+  },
+  {
+    "id": 7057,
+    "title": "Jiguchikkan",
+    "artist": "Sai Abhyankkar, Thamizh Aadhavan",
+    "album": "Baththa",
+    "duration": 107,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jiguchikkan.jpg"
+  },
+  {
+    "id": 7058,
+    "title": "Jio Jiyale",
+    "artist": "Yuvan Shankar Raja, Amrish, Velu",
+    "album": "Jolliya Iruntha Oruthan (JIO)",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Jio%20Jiyale.jpg"
+  },
+  {
+    "id": 7059,
+    "title": "Judge Refuses Gods Request",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 32,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Judge%20Refuses%20Gods%20Request.jpg"
+  },
+  {
+    "id": 7060,
+    "title": "Justice Delayed",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 39,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Justice%20Delayed.jpg"
+  },
+  {
+    "id": 7061,
+    "title": "Kaadhal Kasakuthu",
+    "artist": "Yuvan Shankar Raja, Adithya RK, Velu",
+    "album": "Jolliya Iruntha Oruthan (JIO)",
+    "duration": 196,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaadhal%20Kasakuthu.jpg"
+  },
+  {
+    "id": 7062,
+    "title": "Kaalangaalama",
+    "artist": "Ajay Atul, Vishal Dadlani, Parvathi Meenakshi, Madhurakavi",
+    "album": "Ranabaali",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaalangaalama.jpg"
+  },
+  {
+    "id": 7063,
+    "title": "Kaali & Singaram's Bond",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 66,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali%20-%20Singaram's%20Bond.jpg"
+  },
+  {
+    "id": 7064,
+    "title": "Kaali Becomes the 6th Player",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 56,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali%20Becomes%20the%206th%20Player.jpg"
+  },
+  {
+    "id": 7065,
+    "title": "Kaali Faces Betrayal",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 28,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali%20Faces%20Betrayal.jpg"
+  },
+  {
+    "id": 7066,
+    "title": "Kaali Opens Up to Angel",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 153,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali%20Opens%20Up%20to%20Angel.jpg"
+  },
+  {
+    "id": 7067,
+    "title": "Kaali's Guilt",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali's%20Guilt.jpg"
+  },
+  {
+    "id": 7068,
+    "title": "Kaali's Personal Fear",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 33,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali's%20Personal%20Fear.jpg"
+  },
+  {
+    "id": 7069,
+    "title": "Kaali's Presence at Dargah",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 65,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaali's%20Presence%20at%20Dargah.jpg"
+  },
+  {
+    "id": 7070,
+    "title": "Kaara Saara Kalayanam",
+    "artist": "Yadu Krishnan K",
+    "album": "Oh Sukumari",
+    "duration": 208,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaara%20Saara%20Kalayanam.jpg"
+  },
+  {
+    "id": 7071,
+    "title": "Kaathaaga Vaazhaporom",
+    "artist": "G V Prakash Kumar, Haricharan",
+    "album": "Magudam",
+    "duration": 121,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaathaaga%20Vaazhaporom.jpg"
+  },
+  {
+    "id": 7072,
+    "title": "Kaathu Veesum Desam",
+    "artist": "Sushin Shyam, Sean Roldan, Arun Srinivasan",
+    "album": "Scene",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaathu%20Veesum%20Desam.jpg"
+  },
+  {
+    "id": 7073,
+    "title": "Kaattu Kuyile",
+    "artist": "Jithin Raj, Srinisha Jayaseelan",
+    "album": "Mylanji",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kaattu%20Kuyile.jpg"
+  },
+  {
+    "id": 7074,
+    "title": "Kai Valavi Kulunga",
+    "artist": "G V Prakash Kumar, Satyan Mahalingam, Suganthi",
+    "album": "Mandaadi",
+    "duration": 224,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kai%20Valavi%20Kulunga.jpg"
+  },
+  {
+    "id": 7075,
+    "title": "Kalaivaniye",
+    "artist": "Sathyaprakash, Kaushik Krish",
+    "album": "Meesaya Murukku 2",
+    "duration": 199,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalaivaniye.jpg"
+  },
+  {
+    "id": 7076,
+    "title": "Kalangaadhey",
+    "artist": "G V Prakash Kumar",
+    "album": "Magudam",
+    "duration": 192,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalangaadhey.jpg"
+  },
+  {
+    "id": 7077,
+    "title": "Kalavaadum Kanna",
+    "artist": "Pradeep Kumar, Padmalatha",
+    "album": "Address",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalavaadum%20Kanna.jpg"
+  },
+  {
+    "id": 7078,
+    "title": "Kalla Nikkiriye",
+    "artist": "Govind Vasantha, Sid Sriram",
+    "album": "Anbil Avan",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalla%20Nikkiriye.jpg"
+  },
+  {
+    "id": 7079,
+    "title": "Kalyana Kanavoda",
+    "artist": "Yadu Krishnan K",
+    "album": "Oh Sukumari",
+    "duration": 193,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalyana%20Kanavoda.jpg"
+  },
+  {
+    "id": 7080,
+    "title": "Kalyana Virundhu",
+    "artist": "Ilaiyaraaja, Yugendran Vasudevan, Anthony Daasan, Priya Jerson",
+    "album": "Dorothy",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kalyana%20Virundhu.jpg"
+  },
+  {
+    "id": 7081,
+    "title": "Kanagamani",
+    "artist": "Ilaiyaraaja",
+    "album": "Dorothy",
+    "duration": 193,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kanagamani.jpg"
+  },
+  {
+    "id": 7082,
+    "title": "Kanmaniye",
+    "artist": "Hiphop Tamizha",
+    "album": "Meesaya Murukku 2",
+    "duration": 134,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kanmaniye%20(2).jpg"
+  },
+  {
+    "id": 7083,
+    "title": "Kanmaniye (Bethlehem Kudumba Unit)",
+    "artist": "Vishnu Vijay, Madrashe, Sarath Santhosh",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kanmaniye.jpg"
+  },
+  {
+    "id": 7084,
+    "title": "Kannaadi Goli",
+    "artist": "Bharath Sankar, MS Krsna, Aarthi MN Ashwin",
+    "album": "Anbe Diana",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kannaadi%20Goli.jpg"
+  },
+  {
+    "id": 7085,
+    "title": "Kannaatti (Nooru Kodi Vaanavil)",
+    "artist": "Siddhu Kumar, Anand Aravindakshan",
+    "album": "Nooru Kodi Vaanavil",
+    "duration": 201,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kannaatti.jpg"
+  },
+  {
+    "id": 7086,
+    "title": "Kannakuzhiya (Hi)",
+    "artist": "Jen Martin, G V Prakash Kumar",
+    "album": "Hi",
+    "duration": 189,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kannakuzhiya.jpg"
+  },
+  {
+    "id": 7087,
+    "title": "Kanne Kanne (Once More)",
+    "artist": "Hesham Abdul Wahab, Aditi Shankar, Vignesh Srikanth",
+    "album": "Once More",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kanne%20Kanne.jpg"
+  },
+  {
+    "id": 7088,
+    "title": "Kannum Kannum (Hello Kadhal)",
+    "artist": "G V Prakash Kumar, Kapil Kapilan, Sivaangi Krishnakumar",
+    "album": "Hello Kadhal",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kannum%20Kannum.jpg"
+  },
+  {
+    "id": 7089,
+    "title": "Karthiga Maasam",
+    "artist": "G V Prakash Kumar, Haricharan",
+    "album": "Irumudi Kattu",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karthiga%20Maasam.jpg"
+  },
+  {
+    "id": 7090,
+    "title": "Karuppane Vaarumayya",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 94,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppane%20Vaarumayya.jpg"
+  },
+  {
+    "id": 7091,
+    "title": "Karuppu Title Theme",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 41,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu%20-%20Title%20Theme.jpg"
+  },
+  {
+    "id": 7092,
+    "title": "Karuppu Aadu",
+    "artist": "Rajkumar Amal, Mark Antony Thomas, Sai Zakaz",
+    "album": "Maaruvesham",
+    "duration": 181,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu%20Aadu.jpg"
+  },
+  {
+    "id": 7093,
+    "title": "Karuppu Blasts Baby Kannan",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 34,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu%20Blasts%20Baby%20Kannan.jpg"
+  },
+  {
+    "id": 7094,
+    "title": "Karuppu Game Begins",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 31,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu%20Game%20Begins.jpg"
+  },
+  {
+    "id": 7095,
+    "title": "Karuppu vs Vellai",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 86,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu%20vs%20Vellai.jpg"
+  },
+  {
+    "id": 7096,
+    "title": "Karuppu",
+    "artist": "Simon K King",
+    "album": "Vadhandhi Season 2",
+    "duration": 209,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuppu.jpg"
+  },
+  {
+    "id": 7097,
+    "title": "Karuvizhi",
+    "artist": "Siddhu Kumar, Armaan Malik",
+    "album": "Haiku",
+    "duration": 208,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Karuvizhi.jpg"
+  },
+  {
+    "id": 7098,
+    "title": "Kathakali Kattappa",
+    "artist": "Jen Martin, Sathya Narayanan",
+    "album": "Hi",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kathakali%20Kattappa.jpg"
+  },
+  {
+    "id": 7099,
+    "title": "Kattam Katti Vaaraapla",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 66,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kattam%20Katti%20Vaaraapla.jpg"
+  },
+  {
+    "id": 7100,
+    "title": "Kenjuren",
+    "artist": "Santhosh Dhayanidhi, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kenjuren.jpg"
+  },
+  {
+    "id": 7101,
+    "title": "Killin' 'em",
+    "artist": "Sushin Shyam, Yung Raja",
+    "album": "Scene",
+    "duration": 94,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Killin'%20'em.jpg"
+  },
+  {
+    "id": 7102,
+    "title": "Kittaan Cuts The Rope",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 69,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kittaan%20Cuts%20The%20Rope.jpg"
+  },
+  {
+    "id": 7103,
+    "title": "Kolaar Max",
+    "artist": "Hiphop Tamizha, Shreya Ghoshal, Kaushik Krish, Yuki Praveen",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 170,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kolaar%20Max.jpg"
+  },
+  {
+    "id": 7104,
+    "title": "Kombendhi",
+    "artist": "Sushin Shyam, Kaber Vasuki",
+    "album": "Scene",
+    "duration": 191,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kombendhi.jpg"
+  },
+  {
+    "id": 7105,
+    "title": "Kon Varuvaan",
+    "artist": "Sam C S , Alexandra Joy, Sublahshini",
+    "album": "Sardar 2",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kon%20Varuvaan.jpg"
+  },
+  {
+    "id": 7106,
+    "title": "Kongu Kummi",
+    "artist": "Govind Vasantha, V M Mahalingam, Meenakshi Elayaraja",
+    "album": "G D N",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kongu%20Kummi.jpg"
+  },
+  {
+    "id": 7107,
+    "title": "Konji Konji Flare Mix",
+    "artist": "Yuvan Shankar Raja, Vignesh Srikanth",
+    "album": "Raja's Playlist",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Konji%20Konji%20-%20Flare%20Mix.jpg"
+  },
+  {
+    "id": 7108,
+    "title": "Konji Konji (Raja's Playlist)",
+    "artist": "Yuvan Shankar Raja, Vignesh Srikanth",
+    "album": "Raja's Playlist",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Konji%20Konji.jpg"
+  },
+  {
+    "id": 7109,
+    "title": "Kudikara Nenju",
+    "artist": "Jen Martin, Dhruv Vikram",
+    "album": "Hi",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kudikara%20Nenju.jpg"
+  },
+  {
+    "id": 7110,
+    "title": "Kurunji Malargal",
+    "artist": "Santhosh Dhayanidhi, Satyan Mahalingam, Charumathi Muralidharan, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 145,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Kurunji%20Malargal.jpg"
+  },
+  {
+    "id": 7111,
+    "title": "Kuruthi (Lingam (Web Series))",
+    "artist": "Senthil Das",
+    "album": "Lingam (Web Series)",
+    "duration": 204,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kuruthi.jpg"
+  },
+  {
+    "id": 7112,
+    "title": "Liar Liar",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 112,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Liar%20Liar.jpg"
+  },
+  {
+    "id": 7113,
+    "title": "Life Guard Muthu Kaali",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Life%20Guard%20Muthu%20Kaali.jpg"
+  },
+  {
+    "id": 7114,
+    "title": "Lojak Mojak",
+    "artist": "Harshath Khan, Kaushik Krish",
+    "album": "Meesaya Murukku 2",
+    "duration": 141,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Lojak%20Mojak.jpg"
+  },
+  {
+    "id": 7115,
+    "title": "Loser Song",
+    "artist": "Jakes Bejoy, Benny Dayal",
+    "album": "I'M Game",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Loser%20Song.jpg"
+  },
+  {
+    "id": 7116,
+    "title": "Love is Beautiful",
+    "artist": "Yuvan Shankar Raja, G V Prakash Kumar",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 212,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Love%20is%20Beautiful.jpg"
+  },
+  {
+    "id": 7117,
+    "title": "Maari is with Muthu Kaali",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 85,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maari%20is%20with%20Muthu%20Kaali.jpg"
+  },
+  {
+    "id": 7118,
+    "title": "Maari's Discomfort",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 49,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maari's%20Discomfort.jpg"
+  },
+  {
+    "id": 7119,
+    "title": "Maari's Furious Decision",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 88,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maari's%20Furious%20Decision.jpg"
+  },
+  {
+    "id": 7120,
+    "title": "Maari's Revenge",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 80,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maari's%20Revenge.jpg"
+  },
+  {
+    "id": 7121,
+    "title": "Maatikichu",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 103,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maatikichu.jpg"
+  },
+  {
+    "id": 7122,
+    "title": "Maayangal Saathiyam",
+    "artist": "Sushin Shyam, Rockzane, Kaber Vasuki",
+    "album": "Scene",
+    "duration": 231,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maayangal%20Saathiyam.jpg"
+  },
+  {
+    "id": 7123,
+    "title": "Maayapoove",
+    "artist": "Vishnu Vijay, Madrashe, Aparna Harikumar, K S Harisankar",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 201,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Maayapoove.jpg"
+  },
+  {
+    "id": 7124,
+    "title": "Machakalli",
+    "artist": "R Guru Ayyadurai, Kavitha Gopi, Manu Ravichandran",
+    "album": "Renigunta 2",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Machakalli.jpg"
+  },
+  {
+    "id": 7125,
+    "title": "Machan Maatikittan",
+    "artist": "Bharath Sankar, Sivam",
+    "album": "Anbe Diana",
+    "duration": 158,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Machan%20Maatikittan.jpg"
+  },
+  {
+    "id": 7126,
+    "title": "Magale (Baththa)",
+    "artist": "Sai Abhyankkar, Harini",
+    "album": "Baththa",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Magale.jpg"
+  },
+  {
+    "id": 7127,
+    "title": "Mahasakthi Trance",
+    "artist": "Aruna Ravindran, Kaushik Krish",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 176,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mahasakthi%20Trance.jpg"
+  },
+  {
+    "id": 7128,
+    "title": "Malayla",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 137,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Malayla.jpg"
+  },
+  {
+    "id": 7129,
+    "title": "Mama Variya",
+    "artist": "Mangli, D Imman",
+    "album": "Niram",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mama%20Variya.jpg"
+  },
+  {
+    "id": 7130,
+    "title": "Manasa Parichaye",
+    "artist": "Govind Vasantha, Sathyaprakash, Sanjana Kalmanje",
+    "album": "G D N",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Manasa%20Parichaye.jpg"
+  },
+  {
+    "id": 7131,
+    "title": "Manasu Thannala",
+    "artist": "G V Prakash Kumar, Hesham Abdul Wahab, Sadhika K R",
+    "album": "Irumudi Kattu",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Manasu%20Thannala.jpg"
+  },
+  {
+    "id": 7132,
+    "title": "Manasukku Pudicha Ok",
+    "artist": "K, Yuki Praveen, Saraj Seelan",
+    "album": "Paris Cafe",
+    "duration": 218,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Manasukku%20Pudicha%20Ok.jpg"
+  },
+  {
+    "id": 7133,
+    "title": "Mandaadi Mandaadi",
+    "artist": "G V Prakash Kumar, Vaaheesan Rasaiya, V M Mahalingam",
+    "album": "Mandaadi",
+    "duration": 219,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mandaadi%20Mandaadi.jpg"
+  },
+  {
+    "id": 7134,
+    "title": "Mandaadi",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 38,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mandaadi.jpg"
+  },
+  {
+    "id": 7135,
+    "title": "Mangala Vanname",
+    "artist": "A R Rahman, Abhay Jodhpurkar, Saindhavi",
+    "album": "Ramayana",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mangala%20Vanname.jpg"
+  },
+  {
+    "id": 7136,
+    "title": "Manjal Aavaro",
+    "artist": "Ankit Menon, Armaan Malik",
+    "album": "Ram and Leela",
+    "duration": 209,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Manjal%20Aavaro.jpg"
+  },
+  {
+    "id": 7137,
+    "title": "Mannaru",
+    "artist": "Santhosh Narayanan, Gana Muthu",
+    "album": "Mannaru (Indie)",
+    "duration": 201,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mannaru.jpg"
+  },
+  {
+    "id": 7138,
+    "title": "Mannea En Makkalea",
+    "artist": "Ilaiyaraaja, Vedan, Arivu",
+    "album": "Arisi",
+    "duration": 220,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mannea%20En%20Makkalea.jpg"
+  },
+  {
+    "id": 7139,
+    "title": "Mappillai Singam",
+    "artist": "Yuvan Shankar Raja, R Ramya, Lakshmi Jai, Madurai Saroja",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mappillai%20Singam.jpg"
+  },
+  {
+    "id": 7140,
+    "title": "Mayil Veera",
+    "artist": "OfRO, Vaaheesan Rasaiya, Mukesh, Kaadi",
+    "album": "Sardar 2",
+    "duration": 225,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mayil%20Veera.jpg"
+  },
+  {
+    "id": 7141,
+    "title": "Mella Vandhu",
+    "artist": "James Vasanthan, Shibi Srinivasan, DarSha, Nilavai Parthiban",
+    "album": "All Pass",
+    "duration": 204,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mella%20Vandhu.jpg"
+  },
+  {
+    "id": 7142,
+    "title": "Metro Fight",
+    "artist": "Sai Abhyankkar, Paal Dabba",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 65,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Metro%20Fight.jpg"
+  },
+  {
+    "id": 7143,
+    "title": "Middle Class (Meesaya Murukku 2)",
+    "artist": "Sathyaprakash, Hiphop Tamizha",
+    "album": "Meesaya Murukku 2",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Middle%20Class.jpg"
+  },
+  {
+    "id": 7144,
+    "title": "Miss Oruthi (Once More)",
+    "artist": "Hesham Abdul Wahab, Naresh Iyer",
+    "album": "Once More",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Miss%20Oruthi.jpg"
+  },
+  {
+    "id": 7145,
+    "title": "Mittai Mazhai",
+    "artist": "G V Prakash Kumar, Ramya Behara",
+    "album": "Aot",
+    "duration": 308,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mittai%20Mazhai.jpg"
+  },
+  {
+    "id": 7146,
+    "title": "Modha Rathri Title Track",
+    "artist": "Bharath Sankar, Sublahshini, Yugabharathi",
+    "album": "Modha Rathri",
+    "duration": 182,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Modha%20Rathri%20Title%20Track.jpg"
+  },
+  {
+    "id": 7147,
+    "title": "Molaga",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 45,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Molaga.jpg"
+  },
+  {
+    "id": 7148,
+    "title": "Mozhiye",
+    "artist": "Sai Abhyankkar, Sid Sriram",
+    "album": "Baththa",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mozhiye.jpg"
+  },
+  {
+    "id": 7149,
+    "title": "Mudhala Mudiva",
+    "artist": "Bharath Sankar, Saindhavi, Abhay Jodhpurkar, Yugabharathi",
+    "album": "Modha Rathri",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Mudhala%20Mudiva.jpg"
+  },
+  {
+    "id": 7150,
+    "title": "Muni Fights for Kaali",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 113,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muni%20Fights%20for%20Kaali.jpg"
+  },
+  {
+    "id": 7151,
+    "title": "Muni Forgives Kaali",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 56,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muni%20Forgives%20Kaali.jpg"
+  },
+  {
+    "id": 7152,
+    "title": "Muni Intro",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 24,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muni%20Intro.jpg"
+  },
+  {
+    "id": 7153,
+    "title": "Muni Theme",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 79,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muni%20Theme.jpg"
+  },
+  {
+    "id": 7154,
+    "title": "Muthu Kaali Village Entry",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 38,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muthu%20Kaali%20Village%20Entry.jpg"
+  },
+  {
+    "id": 7155,
+    "title": "Muthumani Mani Mani",
+    "artist": "Ilaiyaraaja, Mitran, Krishaang, Prarthana, Keerthana, Ahana",
+    "album": "Arisi",
+    "duration": 329,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muthumani%20Mani%20Mani.jpg"
+  },
+  {
+    "id": 7156,
+    "title": "Muthumani",
+    "artist": "Shweta Mohan",
+    "album": "Dorothy",
+    "duration": 299,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muthumani.jpg"
+  },
+  {
+    "id": 7157,
+    "title": "Muttayi Vandi",
+    "artist": "Vishnu Vijay, Vishnu Edavan, Kapil Kapilan",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Muttayi%20Vandi.jpg"
+  },
+  {
+    "id": 7158,
+    "title": "Naan Meendum Pirandhene",
+    "artist": "Anirudh Ravichander, Inno Genga, Sublahshini",
+    "album": "The Paradise",
+    "duration": 231,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Naan%20Meendum%20Pirandhene.jpg"
+  },
+  {
+    "id": 7159,
+    "title": "Naan Parakka Vaanam Nee",
+    "artist": "Govind Vasantha, Haricharan",
+    "album": "G D N",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Naan%20Parakka%20Vaanam%20Nee.jpg"
+  },
+  {
+    "id": 7160,
+    "title": "Naan Yaaro (Don'T Trouble the Trouble (DTTT))",
+    "artist": "Anirudh Suswaram",
+    "album": "Don'T Trouble the Trouble (DTTT)",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Naan%20Yaaro.jpg"
+  },
+  {
+    "id": 7161,
+    "title": "Naatthu Onnu Nattu Vacha",
+    "artist": "Ilaiyaraaja, Srisha, Rajaganapathy",
+    "album": "Arisi",
+    "duration": 307,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Naatthu%20Onnu%20Nattu%20Vacha.jpg"
+  },
+  {
+    "id": 7162,
+    "title": "Naaye Niyayama",
+    "artist": "Sam Vishal",
+    "album": "Naaye Niyayama (Indie)",
+    "duration": 82,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Naaye%20Niyayama.jpg"
+  },
+  {
+    "id": 7163,
+    "title": "Namaste",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 150,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Namaste.jpg"
+  },
+  {
+    "id": 7164,
+    "title": "Nandhini",
+    "artist": "Paal Dabba",
+    "album": "Gods and Soldiers",
+    "duration": 129,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Nandhini.jpg"
+  },
+  {
+    "id": 7165,
+    "title": "Nee Dhan",
+    "artist": "Sean Roldan, MS Krsna",
+    "album": "#Love (Web Series)",
+    "duration": 32,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Nee%20Dhan.jpg"
+  },
+  {
+    "id": 7166,
+    "title": "Nee Enadhu Maarbodu",
+    "artist": "Govind Vasantha, Charulatha Mani",
+    "album": "G D N",
+    "duration": 103,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Nee%20Enadhu%20Maarbodu.jpg"
+  },
+  {
+    "id": 7167,
+    "title": "Nee Piriyaathe",
+    "artist": "Indu Sanath, Sugandh Sekhar",
+    "album": "Oh Sukumari",
+    "duration": 230,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Nee%20Piriyaathe.jpg"
+  },
+  {
+    "id": 7168,
+    "title": "Nee Sel",
+    "artist": "Mangesh Dhakde, Kalpana",
+    "album": "The India Story",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Nee%20Sel.jpg"
+  },
+  {
+    "id": 7169,
+    "title": "Neeli Neeli",
+    "artist": "Venky GG, Balaji Sri",
+    "album": "418",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Neeli%20Neeli.jpg"
+  },
+  {
+    "id": 7170,
+    "title": "Neer Porkalam",
+    "artist": "G V Prakash Kumar, Yogi Sekar",
+    "album": "Mandaadi",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Neer%20Porkalam.jpg"
+  },
+  {
+    "id": 7171,
+    "title": "Netru Ponavai",
+    "artist": "Anirudh Ravichander, Shankar Mahadevan, Vignesh Shivan",
+    "album": "Jailer 2",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Netru%20Ponavai.jpg"
+  },
+  {
+    "id": 7172,
+    "title": "Niram Niram Title Track",
+    "artist": "Pravasthi, D Imman",
+    "album": "Niram",
+    "duration": 218,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Niram%20Niram%20Title%20Track.jpg"
+  },
+  {
+    "id": 7173,
+    "title": "No Fears No Tears",
+    "artist": "James Vasanthan",
+    "album": "All Pass",
+    "duration": 136,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/No%20Fears%20No%20Tears.jpg"
+  },
+  {
+    "id": 7174,
+    "title": "Noodhana Noodhana",
+    "artist": "D Imman, Kapil Kapilan, Srinisha Jayaseelan",
+    "album": "Niram",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Noodhana%20Noodhana.jpg"
+  },
+  {
+    "id": 7175,
+    "title": "O Mysaa Re",
+    "artist": "Jakes Bejoy, Kumara Vagdevi",
+    "album": "Mysaa",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/O%20Mysaa%20Re.jpg"
+  },
+  {
+    "id": 7176,
+    "title": "Odi Elay",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 106,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Odi-Elay.jpg"
+  },
+  {
+    "id": 7177,
+    "title": "Oli Vattam",
+    "artist": "G V Prakash Kumar, Vedan",
+    "album": "Mandaadi",
+    "duration": 130,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Oli%20Vattam.jpg"
+  },
+  {
+    "id": 7178,
+    "title": "On Kanna Vachi",
+    "artist": "Saurav Srisan",
+    "album": "On Kanna Vachi (Indie)",
+    "duration": 208,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/On%20Kanna%20Vachi.jpg"
+  },
+  {
+    "id": 7179,
+    "title": "On the Way to Burn",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 47,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/On%20the%20Way%20to%20Burn.jpg"
+  },
+  {
+    "id": 7180,
+    "title": "One Name (Short Theme)",
+    "artist": "Anirudh Ravichander",
+    "album": "Jailer 2",
+    "duration": 60,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/One%20Name%20(Short%20Theme).jpg"
+  },
+  {
+    "id": 7181,
+    "title": "One Sun One Moon",
+    "artist": "Anirudh Ravichander, Super Subu, M S Krsna, Heisenberg",
+    "album": "Jailer 2",
+    "duration": 217,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/One%20Sun%20One%20Moon.jpg"
+  },
+  {
+    "id": 7182,
+    "title": "Onna Thottu",
+    "artist": "Priya Jerson",
+    "album": "Dorothy",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Onna%20Thottu.jpg"
+  },
+  {
+    "id": 7183,
+    "title": "Ooroda Oththa Don",
+    "artist": "Sai Abhyankkar, Vangal Pulla Vicky, Thamizh Aadhavan",
+    "album": "Baththa",
+    "duration": 211,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Ooroda%20Oththa%20Don.jpg"
+  },
+  {
+    "id": 7184,
+    "title": "Ora Kannu Instrumental",
+    "artist": "Pranav Giridharan",
+    "album": "Cold Call",
+    "duration": 66,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Ora%20Kannu%20-%20Instrumental.jpg"
+  },
+  {
+    "id": 7185,
+    "title": "Ora Kannu",
+    "artist": "Pranav Giridharan, Padmaja Srinivasan, Pa Aravindhan",
+    "album": "Cold Call",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Ora%20Kannu.jpg"
+  },
+  {
+    "id": 7186,
+    "title": "Oru Chinna Panithuli",
+    "artist": "Vishnu Vijay, Madrashe, Kapil Kapilan",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Oru%20Chinna%20Panithuli.jpg"
+  },
+  {
+    "id": 7187,
+    "title": "Oru Kadhaley",
+    "artist": "Sean Roldan",
+    "album": "#Love (Web Series)",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Oru%20Kadhaley.jpg"
+  },
+  {
+    "id": 7188,
+    "title": "Oru Pere Varalaaru (Jana Nayagan)",
+    "artist": "Anirudh Ravichander, Vishal Mishra",
+    "album": "Jana Nayagan",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Oru%20Pere%20Varalaaru.jpg"
+  },
+  {
+    "id": 7189,
+    "title": "Oru Poomugam",
+    "artist": "Hesham Abdul Wahab, Aditya Ravindran",
+    "album": "Once More",
+    "duration": 112,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Oru%20Poomugam.jpg"
+  },
+  {
+    "id": 7190,
+    "title": "Othayila Naanu",
+    "artist": "Sam C S , G V Prakash, Sathyan Ilanko",
+    "album": "Immortal",
+    "duration": 196,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Othayila%20Naanu.jpg"
+  },
+  {
+    "id": 7191,
+    "title": "Ottam (Ottam (Indie))",
+    "artist": "Asal Kolaar",
+    "album": "Ottam (Indie)",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ottam.jpg"
+  },
+  {
+    "id": 7192,
+    "title": "Ottarathiye",
+    "artist": "Haricharan, Mickey J Meyer",
+    "album": "Amaram",
+    "duration": 215,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Ottarathiye.jpg"
+  },
+  {
+    "id": 7193,
+    "title": "Paalmazhai",
+    "artist": "G V Prakash Kumar, Vidya Kalyanaraman",
+    "album": "Vishwanath & Sons",
+    "duration": 224,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Paalmazhai.jpg"
+  },
+  {
+    "id": 7194,
+    "title": "Paar Paar Paar",
+    "artist": "G V Prakash Kumar, A R Reihana",
+    "album": "Magudam",
+    "duration": 230,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Paar%20Paar%20Paar.jpg"
+  },
+  {
+    "id": 7195,
+    "title": "Pacha Pulla",
+    "artist": "Jen Martin, Sathya Narayanan",
+    "album": "Hi",
+    "duration": 220,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pacha%20Pulla.jpg"
+  },
+  {
+    "id": 7196,
+    "title": "Pandi Muni Kekkudhu",
+    "artist": "Ilaiyaraaja",
+    "album": "Lenin Pandiyan",
+    "duration": 144,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pandi%20Muni%20Kekkudhu.jpg"
+  },
+  {
+    "id": 7197,
+    "title": "Pani Kaatrin",
+    "artist": "Pranav Giridharan, Sai Vignesh, Pa Aravindhan",
+    "album": "Cold Call",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pani%20Kaatrin.jpg"
+  },
+  {
+    "id": 7198,
+    "title": "Pani Kaatru An Ode",
+    "artist": "Pranav Giridharan, Pa Aravindhan",
+    "album": "Cold Call",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pani%20Kaatru%20-%20An%20Ode.jpg"
+  },
+  {
+    "id": 7199,
+    "title": "Payaname (Seetha Payanam)",
+    "artist": "Anup Rubens, S P Charan",
+    "album": "Seetha Payanam",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Payaname.jpg"
+  },
+  {
+    "id": 7200,
+    "title": "Pei Theme",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 49,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pei%20Theme.jpg"
+  },
+  {
+    "id": 7201,
+    "title": "Perambur Gaana (Anbe Diana)",
+    "artist": "Bharath Sankar, Jassie Gift",
+    "album": "Anbe Diana",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Perambur%20Gaana.jpg"
+  },
+  {
+    "id": 7202,
+    "title": "Pesa Mozhiye",
+    "artist": "Sathyaprakash, Dhanyashree",
+    "album": "Lingam (Web Series)",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pesa%20Mozhiye.jpg"
+  },
+  {
+    "id": 7203,
+    "title": "Pimbilikka Pilaappi",
+    "artist": "Sam C S , Gana Guna, Na Idhaya",
+    "album": "Immortal",
+    "duration": 168,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pimbilikka%20Pilaappi.jpg"
+  },
+  {
+    "id": 7204,
+    "title": "Pinacle of Patience",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 58,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pinacle%20of%20Patience.jpg"
+  },
+  {
+    "id": 7205,
+    "title": "Pizhaiyaaga",
+    "artist": "Siddhu Kumar, Abrahaam Nithya Pandian, Padmaja Srinivasan",
+    "album": "Haiku",
+    "duration": 176,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pizhaiyaaga.jpg"
+  },
+  {
+    "id": 7206,
+    "title": "Po Podhum Po",
+    "artist": "Siddhu Kumar, Sid Sriram",
+    "album": "Nooru Kodi Vaanavil",
+    "duration": 212,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Po%20Podhum%20Po.jpg"
+  },
+  {
+    "id": 7207,
+    "title": "Poda Padichiruken",
+    "artist": "Gana Bala, VM Mahalingam",
+    "album": "Meesaya Murukku 2",
+    "duration": 147,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Poda%20Padichiruken.jpg"
+  },
+  {
+    "id": 7208,
+    "title": "Pogadha",
+    "artist": "Bharath Sankar",
+    "album": "Anbe Diana",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pogadha.jpg"
+  },
+  {
+    "id": 7209,
+    "title": "Pookie Ponnamma",
+    "artist": "AJ, G V Prakash Kumar, Sneha",
+    "album": "Pookie Ponnamma (Indie)",
+    "duration": 203,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pookie%20Ponnamma.jpg"
+  },
+  {
+    "id": 7210,
+    "title": "Poraali",
+    "artist": "Govind Vasantha",
+    "album": "G D N",
+    "duration": 172,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Poraali.jpg"
+  },
+  {
+    "id": 7211,
+    "title": "Pori Parakutha",
+    "artist": "Tony Britto",
+    "album": "Lingam (Web Series)",
+    "duration": 173,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pori%20Parakutha.jpg"
+  },
+  {
+    "id": 7212,
+    "title": "Practice Match",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 116,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Practice%20Match.jpg"
+  },
+  {
+    "id": 7213,
+    "title": "Pralayam Aagudhe",
+    "artist": "Sam C S , Benny Dayal",
+    "album": "Sardar 2",
+    "duration": 213,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Pralayam%20Aagudhe.jpg"
+  },
+  {
+    "id": 7214,
+    "title": "Preparing For The Race",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 48,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Preparing%20For%20The%20Race.jpg"
+  },
+  {
+    "id": 7215,
+    "title": "Putaapu Gang",
+    "artist": "Anirudh Ravichander, Thamizh Aadhavan",
+    "album": "Jailer 2",
+    "duration": 160,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Putaapu%20Gang.jpg"
+  },
+  {
+    "id": 7216,
+    "title": "Puthirai Naan Irunthen",
+    "artist": "Karthik, Charulatha Mani",
+    "album": "Amaram",
+    "duration": 206,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Puthirai%20Naan%20Irunthen.jpg"
+  },
+  {
+    "id": 7217,
+    "title": "Raasaadhi Raasan (Scene)",
+    "artist": "Sushin Shyam, Santhosh Narayanan, Rajpriyan",
+    "album": "Scene",
+    "duration": 154,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Raasaadhi%20Raasan.jpg"
+  },
+  {
+    "id": 7218,
+    "title": "Raatchasa Raja",
+    "artist": "Hiphop Tamizha, Kaushik Krish",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 68,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Raatchasa%20Raja.jpg"
+  },
+  {
+    "id": 7219,
+    "title": "Raathu Raasan (Orchestral Version)",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 46,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Raathu%20Raasan%20(Orchestral%20Version).jpg"
+  },
+  {
+    "id": 7220,
+    "title": "Race Begins",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Race%20Begins.jpg"
+  },
+  {
+    "id": 7221,
+    "title": "Radhe Radhe (Aot)",
+    "artist": "G V Prakash Kumar, Lipsika Bhashyam",
+    "album": "Aot",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Radhe%20Radhe.jpg"
+  },
+  {
+    "id": 7222,
+    "title": "Radhimaa",
+    "artist": "Sai Abhyankkar, Nargis, Ashna",
+    "album": "Radhimaa (Indie)",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Radhimaa.jpg"
+  },
+  {
+    "id": 7223,
+    "title": "Raga of Madness",
+    "artist": "Anirudh Ravichander, Vishal Mishra",
+    "album": "DC",
+    "duration": 198,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Raga%20of%20Madness.jpg"
+  },
+  {
+    "id": 7224,
+    "title": "Rage Of Sigma",
+    "artist": "Thaman S, Sean Roldan",
+    "album": "Sigma",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rage%20Of%20Sigma.jpg"
+  },
+  {
+    "id": 7225,
+    "title": "Rama Theme",
+    "artist": "Hans Zimmer, A R Rahman",
+    "album": "Ramayana",
+    "duration": 147,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rama%20Theme.jpg"
+  },
+  {
+    "id": 7226,
+    "title": "Rani Maharani",
+    "artist": "Monisha Surendran",
+    "album": "Rani Maharani (Indie)",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rani%20Maharani.jpg"
+  },
+  {
+    "id": 7227,
+    "title": "Rasagulla",
+    "artist": "Jen Martin, Anirudh Ravichander",
+    "album": "Hi",
+    "duration": 226,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rasagulla.jpg"
+  },
+  {
+    "id": 7228,
+    "title": "Rathinamo (Female Version)",
+    "artist": "Tanisha Gnanavel, Saurav Srisan",
+    "album": "Rathinamo (Indie)",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rathinamo%20(Female%20Version).jpg"
+  },
+  {
+    "id": 7229,
+    "title": "Rathinamo",
+    "artist": "Saurav Srisan",
+    "album": "Rathinamo (Indie)",
+    "duration": 189,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rathinamo.jpg"
+  },
+  {
+    "id": 7230,
+    "title": "Ravana Tandavam",
+    "artist": "A R Rahman, G V Prakash Kumar, Anirudh Ravichander, Ilango Krishnan",
+    "album": "Ramayana",
+    "duration": 194,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Ravana%20Tandavam.jpg"
+  },
+  {
+    "id": 7231,
+    "title": "Red Bandana",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Red%20Bandana.jpg"
+  },
+  {
+    "id": 7232,
+    "title": "Repeat",
+    "artist": "Sushin Shyam, V M Mahalingam, Vaasi",
+    "album": "Scene",
+    "duration": 94,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Repeat.jpg"
+  },
+  {
+    "id": 7233,
+    "title": "Reprise of Ayyayo Ammaadi",
+    "artist": "M M Monissha",
+    "album": "Sigma",
+    "duration": 67,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Reprise%20of%20Ayyayo%20Ammaadi.jpg"
+  },
+  {
+    "id": 7234,
+    "title": "Respectaa",
+    "artist": "Sushin Shyam, Arivu, Vaasi",
+    "album": "Scene",
+    "duration": 125,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Respectaa.jpg"
+  },
+  {
+    "id": 7235,
+    "title": "Richie Rich",
+    "artist": "Yuvan Shankar Raja, Gana Vinoth",
+    "album": "Pyaar Prema Kalyanam",
+    "duration": 130,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Richie%20Rich.jpg"
+  },
+  {
+    "id": 7236,
+    "title": "Rise of a Guardian",
+    "artist": "Nivas K Prasanna",
+    "album": "Makkal Kaavalan",
+    "duration": 63,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rise%20of%20a%20Guardian.jpg"
+  },
+  {
+    "id": 7237,
+    "title": "Rise of Linga (Magudam)",
+    "artist": "G V Prakash Kumar, V7h",
+    "album": "Magudam",
+    "duration": 204,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Rise%20of%20Linga.jpg"
+  },
+  {
+    "id": 7238,
+    "title": "Rise of Mahasakthi",
+    "artist": "Hiphop Tamizha",
+    "album": "Mookuthi Amman 2 Mahasakthi",
+    "duration": 41,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rise%20of%20Mahasakthi.jpg"
+  },
+  {
+    "id": 7239,
+    "title": "Roddy Theme",
+    "artist": "Anirudh Ravichander",
+    "album": "Jailer 2",
+    "duration": 111,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Roddy%20Theme.jpg"
+  },
+  {
+    "id": 7240,
+    "title": "Rojavin Raaja",
+    "artist": "A Neo Nathan Louis",
+    "album": "Vadhandhi Season 2",
+    "duration": 74,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rojavin%20Raaja.jpg"
+  },
+  {
+    "id": 7241,
+    "title": "Rope Fight",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 114,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Rope%20Fight.jpg"
+  },
+  {
+    "id": 7242,
+    "title": "Saama Iruttu",
+    "artist": "Ajay Atul, Parvathi Meenakshi, Madhurakavi",
+    "album": "Ranabaali",
+    "duration": 295,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saama%20Iruttu.jpg"
+  },
+  {
+    "id": 7243,
+    "title": "Saattapuli Intro",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 32,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saattapuli%20Intro.jpg"
+  },
+  {
+    "id": 7244,
+    "title": "Saattapuli Kills Muni",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 40,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saattapuli%20Kills%20Muni.jpg"
+  },
+  {
+    "id": 7245,
+    "title": "Saattapuli's Lock",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 48,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saattapuli's%20Lock.jpg"
+  },
+  {
+    "id": 7246,
+    "title": "Saattapuli's Refusal to Zaynamma",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 46,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saattapuli's%20Refusal%20to%20Zaynamma.jpg"
+  },
+  {
+    "id": 7247,
+    "title": "Saattapuli's Setting Failed",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 77,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saattapuli's%20Setting%20Failed.jpg"
+  },
+  {
+    "id": 7248,
+    "title": "Saki",
+    "artist": "Hesham Abdul Wahab, Ananthu, Vignesh Srikanth",
+    "album": "Once More",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Saki.jpg"
+  },
+  {
+    "id": 7249,
+    "title": "Sakkarai Penne",
+    "artist": "Sam C S , Deepthi Suresh",
+    "album": "Sathyavan Savithiri",
+    "duration": 200,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sakkarai%20Penne.jpg"
+  },
+  {
+    "id": 7250,
+    "title": "Sakkaraiye",
+    "artist": "Jen Martin, Deepthi Suresh",
+    "album": "Hi",
+    "duration": 164,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sakkaraiye.jpg"
+  },
+  {
+    "id": 7251,
+    "title": "Sandhipom",
+    "artist": "Sreerag Suresh, Vijayanand",
+    "album": "Sandhipom (Indie)",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sandhipom.jpg"
+  },
+  {
+    "id": 7252,
+    "title": "Sarkarey Solliruchu (Lenin Pandiyan)",
+    "artist": "S P Charan, Mukesh Mohamed",
+    "album": "Lenin Pandiyan",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sarkarey%20Solliruchu.jpg"
+  },
+  {
+    "id": 7253,
+    "title": "Scenuke Scene",
+    "artist": "Sushin Shyam, Vaasi",
+    "album": "Scene",
+    "duration": 68,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Scenuke%20Scene.jpg"
+  },
+  {
+    "id": 7254,
+    "title": "Sengathiye",
+    "artist": "Sundaramurthy KS, VishnuRam",
+    "album": "Delivery Boy",
+    "duration": 206,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sengathiye.jpg"
+  },
+  {
+    "id": 7255,
+    "title": "Seppu Sela",
+    "artist": "Ankit Menon, V M Mahalingam",
+    "album": "Ram and Leela",
+    "duration": 141,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Seppu%20Sela.jpg"
+  },
+  {
+    "id": 7256,
+    "title": "Set Aaguma",
+    "artist": "Sean Roldan",
+    "album": "#Love (Web Series)",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Set%20Aaguma.jpg"
+  },
+  {
+    "id": 7257,
+    "title": "Shaitaan",
+    "artist": "Anirudh Ravichander, Romy, Vivek, Super Subu",
+    "album": "Jailer 2",
+    "duration": 175,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Shaitaan.jpg"
+  },
+  {
+    "id": 7258,
+    "title": "She is My Chellakutty",
+    "artist": "Adithya RK, Thamizh Aadhavan",
+    "album": "Immortal",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/She%20is%20My%20Chellakutty.jpg"
+  },
+  {
+    "id": 7259,
+    "title": "She Passed Away",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 87,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/She%20Passed%20Away.jpg"
+  },
+  {
+    "id": 7260,
+    "title": "Sillaga Sillaga",
+    "artist": "Siddhu Kumar, A K Prriyan",
+    "album": "Haiku",
+    "duration": 107,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sillaga%20Sillaga.jpg"
+  },
+  {
+    "id": 7261,
+    "title": "Sindhippaayo ?",
+    "artist": "Hesham Abdul Wahab, Anila Rajeev",
+    "album": "Once More",
+    "duration": 77,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sindhippaayo%20.jpg"
+  },
+  {
+    "id": 7262,
+    "title": "Siruparavai",
+    "artist": "Govind Vasantha, Madrashe, Karthik Netha",
+    "album": "Anbil Avan",
+    "duration": 180,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Siruparavai.jpg"
+  },
+  {
+    "id": 7263,
+    "title": "Sita's Aspiration",
+    "artist": "A R Rahman, A R Ameen, Vaishali Samant, Rakshita Suresh, Antra Nandy, Kumar Vishwas",
+    "album": "Ramayana",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sita's%20Aspiration.jpg"
+  },
+  {
+    "id": 7264,
+    "title": "Smahoo Karuppu Instincts",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 13,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Smahoo%20Karuppu%20Instincts.jpg"
+  },
+  {
+    "id": 7265,
+    "title": "Sonna Kaelu",
+    "artist": "Anthony Daasan, Shantra Brown, Ren Zeroo",
+    "album": "Sonna Kaelu (Indie)",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sonna%20Kaelu.jpg"
+  },
+  {
+    "id": 7266,
+    "title": "Sothappi",
+    "artist": "Pranav Giridharan, Armious",
+    "album": "Cold Call",
+    "duration": 108,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sothappi.jpg"
+  },
+  {
+    "id": 7267,
+    "title": "Straight Outta Sarpetta",
+    "artist": "Govind Vasantha, Rockzane",
+    "album": "Anbil Avan",
+    "duration": 220,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Straight%20Outta%20Sarpetta.jpg"
+  },
+  {
+    "id": 7268,
+    "title": "Strange Dream",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 68,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Strange%20Dream.jpg"
+  },
+  {
+    "id": 7269,
+    "title": "Sulochana",
+    "artist": "Sanvi Sudeep",
+    "album": "Sigma",
+    "duration": 165,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sulochana.jpg"
+  },
+  {
+    "id": 7270,
+    "title": "Sundara Malli",
+    "artist": "Srinisha Jayaseelan, Sai Vignesh, Manoj Kumar Maddie",
+    "album": "Sundara Malli (Indie)",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Sundara%20Malli.jpg"
+  },
+  {
+    "id": 7271,
+    "title": "Suzhal (Suzhal (Indie))",
+    "artist": "Prithvi Prakash",
+    "album": "Suzhal (Indie)",
+    "duration": 163,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Suzhal.jpg"
+  },
+  {
+    "id": 7272,
+    "title": "Terror Error",
+    "artist": "Hari S R, Iykki Berry, Kelithee, Gana Gowtham",
+    "album": "Drones",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Terror%20Error.jpg"
+  },
+  {
+    "id": 7273,
+    "title": "Thaakurom Thookurom (Cold Call)",
+    "artist": "Pranav Giridharan, Armious, El Fe' Choir",
+    "album": "Cold Call",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thaakurom%20Thookurom.jpg"
+  },
+  {
+    "id": 7274,
+    "title": "Thaalam Trip (Instrumental)",
+    "artist": "Anirudh Ravichander, Shivapriya",
+    "album": "DC",
+    "duration": 140,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thaalam%20Trip%20(Instrumental).jpg"
+  },
+  {
+    "id": 7275,
+    "title": "Thaen Pozhudhugale",
+    "artist": "K, Sathyaprakash, Fathima Henna",
+    "album": "Paris Cafe",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thaen%20Pozhudhugale.jpg"
+  },
+  {
+    "id": 7276,
+    "title": "Thala Suthudhey",
+    "artist": "Hari S R, Kapil Kapilan, Sanjana Kalmanje",
+    "album": "Drones",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thala%20Suthudhey.jpg"
+  },
+  {
+    "id": 7277,
+    "title": "Thalapathy Kacheri",
+    "artist": "Anirudh Ravichander, Vijay",
+    "album": "Jana Nayagan",
+    "duration": 197,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thalapathy%20Kacheri.jpg"
+  },
+  {
+    "id": 7278,
+    "title": "Thalapathy Vetri Kondan",
+    "artist": "Anirudh Ravichander",
+    "album": "Jana Nayagan",
+    "duration": 102,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thalapathy%20Vetri%20Kondan.jpg"
+  },
+  {
+    "id": 7279,
+    "title": "Thanga Sela (Thanga Sela (Indie))",
+    "artist": "Alexandra Joy",
+    "album": "Thanga Sela (Indie)",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thanga%20Sela.jpg"
+  },
+  {
+    "id": 7280,
+    "title": "Thanganda Ivan Thanganda",
+    "artist": "Mukesh Munusamy",
+    "album": "Vadamanjuviratu",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thanganda%20Ivan%20Thanganda.jpg"
+  },
+  {
+    "id": 7281,
+    "title": "Thangapulla",
+    "artist": "Marshall Robinson, Murugavel",
+    "album": "Thagappan",
+    "duration": 217,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thangapulla.jpg"
+  },
+  {
+    "id": 7282,
+    "title": "Thatak Junak Arrival Dream",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 39,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thatak%20Junak%20Arrival%20Dream.jpg"
+  },
+  {
+    "id": 7283,
+    "title": "Thatti Utta",
+    "artist": "Sachu Madrasi",
+    "album": "Thatti Utta (Indie)",
+    "duration": 189,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thatti%20Utta.jpg"
+  },
+  {
+    "id": 7284,
+    "title": "The Accident",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 82,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Accident.jpg"
+  },
+  {
+    "id": 7285,
+    "title": "The Dead Court",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 35,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Dead%20Court.jpg"
+  },
+  {
+    "id": 7286,
+    "title": "The Feel of Baththa",
+    "artist": "Sai Abhyankkar, Harini",
+    "album": "Baththa",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Feel%20of%20Baththa.jpg"
+  },
+  {
+    "id": 7287,
+    "title": "The Lullaby",
+    "artist": "Venky GG, Chaithra J Achar",
+    "album": "418",
+    "duration": 203,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Lullaby.jpg"
+  },
+  {
+    "id": 7288,
+    "title": "The Magic Freeze",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 106,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Magic%20Freeze.jpg"
+  },
+  {
+    "id": 7289,
+    "title": "The One Rule",
+    "artist": "G V Prakash Kumar, Gana Kadhar",
+    "album": "Vishwanath & Sons",
+    "duration": 168,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20One%20Rule.jpg"
+  },
+  {
+    "id": 7290,
+    "title": "The One (Karuppu Side B BGM (God Mode Begins) (Original Background Score))",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 24,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/The%20One.jpg"
+  },
+  {
+    "id": 7291,
+    "title": "The Promise",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 56,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Promise.jpg"
+  },
+  {
+    "id": 7292,
+    "title": "The Radar Switch",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 120,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Radar%20Switch.jpg"
+  },
+  {
+    "id": 7293,
+    "title": "The Rise of GDN (G D N)",
+    "artist": "Govind Vasantha, Maalavika Sundar, Jaxk",
+    "album": "G D N",
+    "duration": 215,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/The%20Rise%20of%20GDN.jpg"
+  },
+  {
+    "id": 7294,
+    "title": "The Rise of Karuppu",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 68,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Rise%20of%20Karuppu.jpg"
+  },
+  {
+    "id": 7295,
+    "title": "The Rose (Instrumental)",
+    "artist": "Anirudh Ravichander",
+    "album": "DC",
+    "duration": 134,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Rose%20(Instrumental).jpg"
+  },
+  {
+    "id": 7296,
+    "title": "The Secret Revealed",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side A (Original Background Score)",
+    "duration": 77,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Secret%20Revealed.jpg"
+  },
+  {
+    "id": 7297,
+    "title": "The Snatch",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 66,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Snatch.jpg"
+  },
+  {
+    "id": 7298,
+    "title": "The True Leader",
+    "artist": "Anirudh Ravichander, Amogh Balaji",
+    "album": "Jana Nayagan",
+    "duration": 110,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20True%20Leader.jpg"
+  },
+  {
+    "id": 7299,
+    "title": "The Wedding Song",
+    "artist": "G V Prakash Kumar, Suriya",
+    "album": "Vishwanath & Sons",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/The%20Wedding%20Song.jpg"
+  },
+  {
+    "id": 7300,
+    "title": "Theliva Kolamburen (Acoustic Version)",
+    "artist": "Sean Roldan, Alexandra Joy",
+    "album": "#Love (Web Series)",
+    "duration": 83,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Theliva%20Kolamburen%20(Acoustic%20Version).jpg"
+  },
+  {
+    "id": 7301,
+    "title": "Theliva Kolamburen",
+    "artist": "Sean Roldan, Alexandra Joy",
+    "album": "#Love (Web Series)",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Theliva%20Kolamburen.jpg"
+  },
+  {
+    "id": 7302,
+    "title": "Theme of Dad",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 28,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Theme%20of%20Dad.jpg"
+  },
+  {
+    "id": 7303,
+    "title": "Theme of Hi",
+    "artist": "Jen Martin",
+    "album": "Hi",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Theme%20of%20Hi.jpg"
+  },
+  {
+    "id": 7304,
+    "title": "Thieves",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 22,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thieves.jpg"
+  },
+  {
+    "id": 7305,
+    "title": "Thiru Entry",
+    "artist": "Sanjith Roy",
+    "album": "Lingam (Web Series)",
+    "duration": 115,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thiru%20Entry.jpg"
+  },
+  {
+    "id": 7306,
+    "title": "Thithikiriye",
+    "artist": "Siddhu Kumar, Sanjana Kalmanje, Adithya RK",
+    "album": "Haiku",
+    "duration": 166,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Thithikiriye.jpg"
+  },
+  {
+    "id": 7307,
+    "title": "Tiger Muthuvel Pandian",
+    "artist": "Anirudh Ravichander, M S Krsna",
+    "album": "Jailer 2",
+    "duration": 197,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Tiger%20Muthuvel%20Pandian.jpg"
+  },
+  {
+    "id": 7308,
+    "title": "Tiger Siva",
+    "artist": "Hiphop Tamizha",
+    "album": "Meesaya Murukku 2",
+    "duration": 137,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Tiger%20Siva.jpg"
+  },
+  {
+    "id": 7309,
+    "title": "Tigerians Roar",
+    "artist": "Osho Venkat, Kelithee, Thamizh Aadhavan, A Pa Raja",
+    "album": "Texas Tiger",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Tigerians%20Roar.jpg"
+  },
+  {
+    "id": 7310,
+    "title": "Title Song",
+    "artist": "Aditya Iyengar",
+    "album": "Don'T Trouble the Trouble (DTTT)",
+    "duration": 199,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Title%20Song.jpg"
+  },
+  {
+    "id": 7311,
+    "title": "Title Teaser",
+    "artist": "A R Rahman",
+    "album": "Inji Vellam",
+    "duration": 38,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Title%20Teaser.jpg"
+  },
+  {
+    "id": 7312,
+    "title": "Triggered Lawyers",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 64,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_48@main/covers/Triggered%20Lawyers.jpg"
+  },
+  {
+    "id": 7313,
+    "title": "Trophy",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 117,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Trophy.jpg"
+  },
+  {
+    "id": 7314,
+    "title": "Ulagam Ariga",
+    "artist": "Santhosh Dhayanidhi, Charumathi Muralidharan, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 181,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ulagam%20Ariga.jpg"
+  },
+  {
+    "id": 7315,
+    "title": "Ulla Olicha Uyire",
+    "artist": "Anirudh Ravichander",
+    "album": "Jana Nayagan",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ulla%20Olicha%20Uyire.jpg"
+  },
+  {
+    "id": 7316,
+    "title": "Unakke Nizhalaanen",
+    "artist": "Sushin Shyam, Vijaynarain, Sublahshini, Kaber Vasuki",
+    "album": "Scene",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Unakke%20Nizhalaanen.jpg"
+  },
+  {
+    "id": 7317,
+    "title": "Underdog Anthem",
+    "artist": "J P Chandrababu, Santhosh Narayanan",
+    "album": "Sigma",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Underdog%20Anthem.jpg"
+  },
+  {
+    "id": 7318,
+    "title": "Unnai Naan Virumpinen",
+    "artist": "Priya Jerson",
+    "album": "Mylanji",
+    "duration": 223,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Unnai%20Naan%20Virumpinen.jpg"
+  },
+  {
+    "id": 7319,
+    "title": "Unnai Nambi (Ver 2)",
+    "artist": "Vibhavari Apte Joshi",
+    "album": "Lenin Pandiyan",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Unnai%20Nambi%20(Ver%202).jpg"
+  },
+  {
+    "id": 7320,
+    "title": "Uravu (Jana Nayagan)",
+    "artist": "Anirudh Ravichander, Madhushree",
+    "album": "Jana Nayagan",
+    "duration": 182,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uravu.jpg"
+  },
+  {
+    "id": 7321,
+    "title": "Usure Needhan Pulla",
+    "artist": "G V Prakash Kumar, Kapil Kapilan, Sanjana Kalmanje",
+    "album": "Mandaadi",
+    "duration": 225,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Usure%20Needhan%20Pulla.jpg"
+  },
+  {
+    "id": 7322,
+    "title": "Uyire Uyire (Vishwanath & Sons)",
+    "artist": "G V Prakash Kumar, Aditi Bhavaraju",
+    "album": "Vishwanath & Sons",
+    "duration": 206,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uyire%20Uyire.jpg"
+  },
+  {
+    "id": 7323,
+    "title": "Vaaikka Vayalum Veeda",
+    "artist": "Ilaiyaraaja, Anthony Daasan, S A Vijayakumar",
+    "album": "Arisi",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaaikka%20Vayalum%20Veeda.jpg"
+  },
+  {
+    "id": 7324,
+    "title": "Vaama Vaama Airport Version",
+    "artist": "Thaman S, Dhanush",
+    "album": "Idhayam Murali",
+    "duration": 175,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaama%20Vaama%20-%20Airport%20Version.jpg"
+  },
+  {
+    "id": 7325,
+    "title": "Vaane Vaane (Sri Sri)",
+    "artist": "G V Prakash Kumar, Nakul Abhyankar",
+    "album": "Sri Sri",
+    "duration": 203,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaane%20Vaane.jpg"
+  },
+  {
+    "id": 7326,
+    "title": "Vaazhanum Baththa",
+    "artist": "Sai Abhyankkar",
+    "album": "Baththa",
+    "duration": 211,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaazhanum%20Baththa.jpg"
+  },
+  {
+    "id": 7327,
+    "title": "Vaazhkaye",
+    "artist": "Govind Vasantha, M S Krsna, Pratika, Solar Sai, R Kaarthikeyan",
+    "album": "Anbil Avan",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaazhkaye.jpg"
+  },
+  {
+    "id": 7328,
+    "title": "Vaazhum Kaalam",
+    "artist": "K, Ananthakrishnan E, Elsa Sneha, Yuki Praveen",
+    "album": "Paris Cafe",
+    "duration": 220,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaazhum%20Kaalam.jpg"
+  },
+  {
+    "id": 7329,
+    "title": "Vadhandhi Title Track",
+    "artist": "Simon K King",
+    "album": "Vadhandhi Season 2",
+    "duration": 147,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vadhandhi%20Title%20Track.jpg"
+  },
+  {
+    "id": 7330,
+    "title": "Vaiyathin",
+    "artist": "Santhosh Dhayanidhi, Jithin Raj, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 67,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vaiyathin.jpg"
+  },
+  {
+    "id": 7331,
+    "title": "Vanna Vanna Kanavu",
+    "artist": "Priya Jerson",
+    "album": "Mylanji",
+    "duration": 182,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vanna%20Vanna%20Kanavu.jpg"
+  },
+  {
+    "id": 7332,
+    "title": "Varnajaalam",
+    "artist": "Vishnu Vijay, Vishnu Edavan, K S Harisankar, Poornima Kannan",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Varnajaalam.jpg"
+  },
+  {
+    "id": 7333,
+    "title": "Vazhimuzhudhum Varuvayaa??",
+    "artist": "Arun Gautham, Siri Xander",
+    "album": "Vazhimuzhudhum Varuvayaa (Indie)",
+    "duration": 150,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vazhimuzhudhum%20Varuvayaa.jpg"
+  },
+  {
+    "id": 7334,
+    "title": "Vel Sevvel",
+    "artist": "Madhu Balakrishnan, Aswin Sathya",
+    "album": "Arulvaan",
+    "duration": 381,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vel%20Sevvel.jpg"
+  },
+  {
+    "id": 7335,
+    "title": "Veramaari",
+    "artist": "Anirudh Ravichander, Thamizh Aadhavan",
+    "album": "Jailer 2",
+    "duration": 152,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Veramaari.jpg"
+  },
+  {
+    "id": 7336,
+    "title": "Verappa (Punjabi Version)",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 136,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Verappa%20(Punjabi%20Version).jpg"
+  },
+  {
+    "id": 7337,
+    "title": "Verappa (Urumum Venga) Female Version",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 91,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Verappa%20(Urumum%20Venga)%20-%20Female%20Version.jpg"
+  },
+  {
+    "id": 7338,
+    "title": "Verappa Thandavam Interval",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 186,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Verappa%20Thandavam%20Interval.jpg"
+  },
+  {
+    "id": 7339,
+    "title": "Vetta Karuppu Game Begins",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 157,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vetta%20Karuppu%20Game%20Begins.jpg"
+  },
+  {
+    "id": 7340,
+    "title": "Vibe Venuma",
+    "artist": "VM Mahalingam, VJ Siddhu",
+    "album": "Meesaya Murukku 2",
+    "duration": 154,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vibe%20Venuma.jpg"
+  },
+  {
+    "id": 7341,
+    "title": "Victory of Mandaadi",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 114,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Victory%20of%20Mandaadi.jpg"
+  },
+  {
+    "id": 7342,
+    "title": "Vidhi",
+    "artist": "Santhosh Narayanan",
+    "album": "Lingam (Web Series)",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vidhi.jpg"
+  },
+  {
+    "id": 7343,
+    "title": "Villali Veerane",
+    "artist": "G V Prakash Kumar, Sunkara Anjaneyulu, Velmurugan",
+    "album": "Irumudi Kattu",
+    "duration": 180,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Villali%20Veerane.jpg"
+  },
+  {
+    "id": 7344,
+    "title": "Virundhu",
+    "artist": "G V Prakash Kumar",
+    "album": "Mandaadi BGM Side B (Original Background Score)",
+    "duration": 42,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Virundhu.jpg"
+  },
+  {
+    "id": 7345,
+    "title": "Vishwanath & Sons Teaser Theme (Vishwanath & Sons)",
+    "artist": "G V Prakash Kumar, Ajai S Khashyap, Aavani Malhar",
+    "album": "Vishwanath & Sons",
+    "duration": 77,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vishwanath%20-%20Sons%20Teaser%20Theme.jpg"
+  },
+  {
+    "id": 7346,
+    "title": "Vizhigale",
+    "artist": "Anirudh Ravichander, Heisenberg",
+    "album": "DC",
+    "duration": 116,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Vizhigale.jpg"
+  },
+  {
+    "id": 7347,
+    "title": "Wacky Baby Kannan",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 31,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Wacky%20Baby%20Kannan.jpg"
+  },
+  {
+    "id": 7348,
+    "title": "Walk of the King (Verappa Orchestral)",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side B BGM (God Mode Begins) (Original Background Score)",
+    "duration": 94,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Walk%20of%20the%20King%20(Verappa%20Orchestral).jpg"
+  },
+  {
+    "id": 7349,
+    "title": "Wattaratha Ketu Paru Nanga Yarunu",
+    "artist": "Gana Badri, Reni Lamb",
+    "album": "Wattaratha Ketu Paru Nanga Yarunu (Indie)",
+    "duration": 222,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Wattaratha%20Ketu%20Paru%20Nanga%20Yarunu.jpg"
+  },
+  {
+    "id": 7350,
+    "title": "Wedding Bells (Anbe Diana)",
+    "artist": "Bharath Sankar, Meera Karthik Kumar",
+    "album": "Anbe Diana",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Wedding%20Bells.jpg"
+  },
+  {
+    "id": 7351,
+    "title": "YaaLi Theme",
+    "artist": "Sam C S , Anthony Daasan",
+    "album": "Sardar 2",
+    "duration": 117,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/YaaLi%20Theme.jpg"
+  },
+  {
+    "id": 7352,
+    "title": "Yaar Yaarival (Ram and Leela)",
+    "artist": "Ankit Menon, Sid Sriram",
+    "album": "Ram and Leela",
+    "duration": 199,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaar%20Yaarival.jpg"
+  },
+  {
+    "id": 7353,
+    "title": "Yaar Yaarivan",
+    "artist": "Ankit Menon, Isai",
+    "album": "Ram and Leela",
+    "duration": 156,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yaar%20Yaarivan.jpg"
+  },
+  {
+    "id": 7354,
+    "title": "Yaaridho",
+    "artist": "Vishnu Vijay, Madrashe, Sarath Santhosh",
+    "album": "Bethlehem Kudumba Unit",
+    "duration": 199,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yaaridho.jpg"
+  },
+  {
+    "id": 7355,
+    "title": "Yaaro Neeyo",
+    "artist": "Santhosh Dhayanidhi, Jithin Raj, Satyan Mahalingam, Vallinan, Charumathi Muralidharan, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 316,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yaaro%20Neeyo.jpg"
+  },
+  {
+    "id": 7356,
+    "title": "Yaayum Illai",
+    "artist": "Santhosh Dhayanidhi, Mathi Pugazhendhi",
+    "album": "Yezhu Kadal Yezhu Malai Side B",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yaayum%20Illai.jpg"
+  },
+  {
+    "id": 7357,
+    "title": "Yeale Makka",
+    "artist": "Sathyan, Senthil Das",
+    "album": "Lingam (Web Series)",
+    "duration": 192,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yeale%20Makka.jpg"
+  },
+  {
+    "id": 7358,
+    "title": "Yean Indha Pennukku",
+    "artist": "Vijay Antony, Rukhsar Bandhukia",
+    "album": "Appa Kutti",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yean%20Indha%20Pennukku.jpg"
+  },
+  {
+    "id": 7359,
+    "title": "Yegandham",
+    "artist": "Zenem, Shakthisree Gopalan, Vaaheesan Rasaiya",
+    "album": "See U",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yegandham.jpg"
+  },
+  {
+    "id": 7360,
+    "title": "Yen Magaley",
+    "artist": "Balram, D Imman",
+    "album": "Niram",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yen%20Magaley.jpg"
+  },
+  {
+    "id": 7361,
+    "title": "Yenge Nee Yenge",
+    "artist": "G V Prakash Kumar, Rajaganapathy",
+    "album": "Magudam",
+    "duration": 97,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yenge%20Nee%20Yenge.jpg"
+  },
+  {
+    "id": 7362,
+    "title": "Yeppa Yesapppa",
+    "artist": "Siddhu Kumar, Anthony Daasan",
+    "album": "Haiku",
+    "duration": 165,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yeppa%20Yesapppa.jpg"
+  },
+  {
+    "id": 7363,
+    "title": "Yethum Illai",
+    "artist": "Priya Jerson",
+    "album": "Dorothy",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Yethum%20Illai.jpg"
+  },
+  {
+    "id": 7364,
+    "title": "You have no Power",
+    "artist": "Sai Abhyankkar",
+    "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
+    "duration": 31,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/You%20have%20no%20Power.jpg"
   }
 ]
 
