@@ -44600,7 +44600,7 @@ const RAW_SONGS: RawSong[] = [
     "duration": 186,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_36@main/covers/Arali-Vedayil.jpg"
   },
-  { 
+  {
     "id": 5626,
     "title": "Arasiyal Balam",
     "artist": "Santhosh Narayanan",
@@ -58303,6 +58303,5766 @@ const RAW_SONGS: RawSong[] = [
     "album": "Karuppu Side A BGM (Just God Things) (Original Background Score)",
     "duration": 31,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/You%20have%20no%20Power.jpg"
+  },
+  {
+    "id": 7365,
+    "title": "A Late Night Walk With Veena",
+    "artist": "Punya Srinivas",
+    "album": "Seemaraja",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/A-Late-Night-Walk-With-Veena-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7366,
+    "title": "Aadra Raama",
+    "artist": "D Imman",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aadra%20Raama.jpg"
+  },
+  {
+    "id": 7367,
+    "title": "Aahaa Kathal Vandhu Karaoke",
+    "artist": "D Imman",
+    "album": "Valiyavan",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aahaa-Kathal-Vandhu---Karaoke.jpg"
+  },
+  {
+    "id": 7368,
+    "title": "Aahaa Kathal Vandhu",
+    "artist": "KG Ranjith",
+    "album": "Valiyavan",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aahaa-Kathal-Vandhu.jpg"
+  },
+  {
+    "id": 7369,
+    "title": "Aanazhagu",
+    "artist": "Shreya Ghoshal",
+    "album": "Thenali Raman",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanazhagu%20(2).jpg"
+  },
+  {
+    "id": 7370,
+    "title": "Aanazhagu (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Tenaliraman",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanazhagu%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7371,
+    "title": "Aanazhagu (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Thenali Raman",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanazhagu-Karaoke.jpg"
+  },
+  {
+    "id": 7372,
+    "title": "Aanazhagu (Tenaliraman)",
+    "artist": "D Imman, Shreya Ghoshal",
+    "album": "Tenaliraman",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanazhagu.jpg"
+  },
+  {
+    "id": 7373,
+    "title": "Aaniyae Pudunga Venandaa",
+    "artist": "Shenbagaraj",
+    "album": "Wagah",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aaniyae-Pudunga-Venandaa.jpg"
+  },
+  {
+    "id": 7374,
+    "title": "Aasai Kadhal Aaruyirae (Karaoke)",
+    "artist": "Karaoke By D Imman",
+    "album": "Wagah",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aasai-Kadhal-Aaruyirae-Karaoke.jpg"
+  },
+  {
+    "id": 7375,
+    "title": "Aasai Kadhal Aaruyirae",
+    "artist": "Vandana Srinivasan",
+    "album": "Wagah",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aasai-Kadhal-Aaruyirae.jpg"
+  },
+  {
+    "id": 7376,
+    "title": "Aattam Pottu",
+    "artist": "Sai Charan",
+    "album": "Vetrivel",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aattam-Pottu.jpg"
+  },
+  {
+    "id": 7377,
+    "title": "Aavi Parakkum Teakadai (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Rajini Murugan",
+    "duration": 295,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aavi%20Parakkum%20Teakadai%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7378,
+    "title": "Aavi Parakkum Teakadai",
+    "artist": "D Imman, V M Mahalingam, Badava Gopi",
+    "album": "Rajini Murugan",
+    "duration": 295,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aavi%20Parakkum%20Teakadai.jpg"
+  },
+  {
+    "id": 7379,
+    "title": "Adada Onnum (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adada-Onnum-Karaoke.jpg"
+  },
+  {
+    "id": 7380,
+    "title": "Adada Onnum",
+    "artist": "Benny Dayal, Shakthisri Gopalan",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adada-Onnum.jpg"
+  },
+  {
+    "id": 7381,
+    "title": "Adadaa Ithuyenna (Instrumental Version)",
+    "artist": "D Imman",
+    "album": "Thodari",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adadaa-Ithuyenna-Instrumental-Version.jpg"
+  },
+  {
+    "id": 7382,
+    "title": "Adadaa Ithuyenna",
+    "artist": "Haricharan & Vandana Srinivasan",
+    "album": "Thodari",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adadaa-Ithuyenna.jpg"
+  },
+  {
+    "id": 7383,
+    "title": "Adchithooku Karaoke",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adchithooku---Karaoke-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7384,
+    "title": "Adchithooku",
+    "artist": "D Imman",
+    "album": "Viswasam",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adchithooku-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7385,
+    "title": "Adhuva Idhuva",
+    "artist": "Aalap Raju",
+    "album": "Vetrivel",
+    "duration": 114,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adhuva-Idhuva.jpg"
+  },
+  {
+    "id": 7386,
+    "title": "Adi Yennadi Raakkamma Remix",
+    "artist": "Benny Dayal",
+    "album": "Vaadaa",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adi%20Yennadi%20Raakkamma%20-%20Remix.jpg"
+  },
+  {
+    "id": 7387,
+    "title": "Adi Aathi (Karaoke)",
+    "artist": "D Imman",
+    "album": "Naan Thaan Siva",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adi-Aathi-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7388,
+    "title": "Adi Aathi (Naan Thaan Siva)",
+    "artist": "Aalaap Raju, Santhosh Hariharan",
+    "album": "Naan Thaan Siva",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adi-Aathi-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7389,
+    "title": "Adi Raangi (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Saattai",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adi-Raangi-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7390,
+    "title": "Adi Raangi",
+    "artist": "Santosh Hariharan, Anitha",
+    "album": "Saattai",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adi-Raangi.jpg"
+  },
+  {
+    "id": 7391,
+    "title": "Ading Ading",
+    "artist": "D Imman, Rita",
+    "album": "Odipolama",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ading%20Ading.jpg"
+  },
+  {
+    "id": 7392,
+    "title": "Adiyae Enna Raagam (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Rummy",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiyae-Enna-Raagam-Karaoke.jpg"
+  },
+  {
+    "id": 7393,
+    "title": "Adiyae Enna Raagam",
+    "artist": "Abhay Jodhpurkar, Poornima Satish",
+    "album": "Rummy",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiyae-Enna-Raagam.jpg"
+  },
+  {
+    "id": 7394,
+    "title": "Adiye Ivale (Arakki)",
+    "artist": "Anthony Dasan",
+    "album": "Romeo Juliet",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiye-Ivale-Arakki.jpg"
+  },
+  {
+    "id": 7395,
+    "title": "Adiye Ivale (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Romeo Juliet",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiye-Ivale-Karaoke.jpg"
+  },
+  {
+    "id": 7396,
+    "title": "Adiye Unna (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vetrivel",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiye-Unna-Karaoke.jpg"
+  },
+  {
+    "id": 7397,
+    "title": "Adiye Unna",
+    "artist": "Sathya Prakash, Vandhana Srinivasan",
+    "album": "Vetrivel",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adiye-Unna.jpg"
+  },
+  {
+    "id": 7398,
+    "title": "Aey Vaayaadi",
+    "artist": "D Imman, Krishnaraj",
+    "album": "Tenaliraman",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aey%20Vaayaadi.jpg"
+  },
+  {
+    "id": 7399,
+    "title": "Agginikunjondru",
+    "artist": "M L R Karthikeyan",
+    "album": "Vaadaa",
+    "duration": 209,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Agginikunjondru.jpg"
+  },
+  {
+    "id": 7400,
+    "title": "Alapparai Theme",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Alapparai---Theme-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7401,
+    "title": "Ammadi Un Azhagu (Karaoke)",
+    "artist": "Intrumental",
+    "album": "Vellakara Durai",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammadi-Un-Azhagu-Karaoke.jpg"
+  },
+  {
+    "id": 7402,
+    "title": "Ammadi Un Azhagu",
+    "artist": "Sathya Prakash",
+    "album": "Vellakara Durai",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammadi-Un-Azhagu.jpg"
+  },
+  {
+    "id": 7403,
+    "title": "Ammani (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammani-(Karaoke-Version)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7404,
+    "title": "Ammani Nee",
+    "artist": "Diluckshan Jeyaratnam, Shashaa Tirupati",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammani-Nee-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7405,
+    "title": "Anbulla Appa (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Sigaram Thodu",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anbulla-Appa-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7406,
+    "title": "Anbulla Appa",
+    "artist": "K J Yesudas",
+    "album": "Sigaram Thodu",
+    "duration": 237,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anbulla-Appa.jpg"
+  },
+  {
+    "id": 7407,
+    "title": "Andhurundai Kannazhagi",
+    "artist": "Chitty, Thanjai Radhika, Srik",
+    "album": "Saattai",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Andhurundai-Kannazhagi.jpg"
+  },
+  {
+    "id": 7408,
+    "title": "Anney Yaaranney (Karaoke)",
+    "artist": "D Imman",
+    "album": "Udanpirappe",
+    "duration": 207,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anney-Yaaranney-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7409,
+    "title": "Anney Yaaranney (Reprise)",
+    "artist": "D Imman, Shreya Ghoshal, Yugabharathi",
+    "album": "Udanpirappe",
+    "duration": 228,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anney-Yaaranney-(Reprise)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7410,
+    "title": "Anney Yaaranney",
+    "artist": "D Imman, Shreya Ghoshal, Yugabharathi",
+    "album": "Udanpirappe",
+    "duration": 207,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anney-Yaaranney-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7411,
+    "title": "Arukkaani Arukkaani",
+    "artist": "D Imman",
+    "album": "Vilai",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Arukkaani%20Arukkaani.jpg"
+  },
+  {
+    "id": 7412,
+    "title": "Aruvi Pola",
+    "artist": "D Imman, Krish",
+    "album": "Odipolama",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aruvi%20Pola.jpg"
+  },
+  {
+    "id": 7413,
+    "title": "Asathuthe (Karaoke)",
+    "artist": "D Imman",
+    "album": "Rubaai",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Asathuthe-Karaoke.jpg"
+  },
+  {
+    "id": 7414,
+    "title": "Asathuthe",
+    "artist": "D Imman",
+    "album": "Rubaai",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Asathuthe.jpg"
+  },
+  {
+    "id": 7415,
+    "title": "Athuvutta (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Pokkiri Raja",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athuvutta-Karaoke.jpg"
+  },
+  {
+    "id": 7416,
+    "title": "Athuvutta (Reprise)",
+    "artist": "Vishal Dadlani, MC Rude",
+    "album": "Pokkiri Raja",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athuvutta-Reprise.jpg"
+  },
+  {
+    "id": 7417,
+    "title": "Athuvutta",
+    "artist": "D Imman",
+    "album": "Pokkiri Raja",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athuvutta.jpg"
+  },
+  {
+    "id": 7418,
+    "title": "Ayyayoo Yenna Solla",
+    "artist": "K G Ranjith, Vandana Srinivasan",
+    "album": "Naan Thaan Siva",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Ayyayoo-Yenna-Solla-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7419,
+    "title": "Azhagiya Asura",
+    "artist": "Anitha Chandrasekar",
+    "album": "Whistle",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Azhagiya-Asura-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7420,
+    "title": "Bongu Bongu (Karaoke)",
+    "artist": "D Imman",
+    "album": "Pon Manickavel",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Bongu-Bongu-(Karaoke)-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7421,
+    "title": "Bongu Bongu",
+    "artist": "Thiagaraja Subramaniam",
+    "album": "Pon Manickavel",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Bongu-Bongu-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7422,
+    "title": "Brass Band Maxwell (Trumpet)",
+    "artist": "Intrumental",
+    "album": "Vellakara Durai",
+    "duration": 157,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Brass-Band---Maxwell-Trumpet.jpg"
+  },
+  {
+    "id": 7423,
+    "title": "Bubbly Bubbly",
+    "artist": "Papon, Maria Roe Vincent",
+    "album": "Pokkiri Raja",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Bubbly-Bubbly.jpg"
+  },
+  {
+    "id": 7424,
+    "title": "Carnivore's Behaviour",
+    "artist": "D Imman",
+    "album": "Nenjil Jil Jil",
+    "duration": 104,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Carnivore's%20Behaviour.jpg"
+  },
+  {
+    "id": 7425,
+    "title": "Chattu Puttu",
+    "artist": "Rahul Nambiar",
+    "album": "Nenjil Jil Jil",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Chattu%20Puttu.jpg"
+  },
+  {
+    "id": 7426,
+    "title": "Chinnapoove",
+    "artist": "Balram, Anuradha Shekher",
+    "album": "Ninaivil Nindraval",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Chinnapoove.jpg"
+  },
+  {
+    "id": 7427,
+    "title": "Chutti Pennae",
+    "artist": "Durga Viswanath, SuVi, Shekkinath Shawn J, Baby Harini",
+    "album": "Uchithanai Mukarnthal",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Chutti-Pennae-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7428,
+    "title": "Colouru Colouru",
+    "artist": "Jayamoorthy, Kalyan",
+    "album": "Panju Mittai",
+    "duration": 145,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Colouru-Colouru.jpg"
+  },
+  {
+    "id": 7429,
+    "title": "Daiyare Daiyare",
+    "artist": "Pavan, Nataraj Anthnythasan, Pazhaniyammal",
+    "album": "Pandiyanaadu",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Daiyare-Daiyare.jpg"
+  },
+  {
+    "id": 7430,
+    "title": "Dandanakka (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Romeo Juliet",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Dandanakka-Karaoke.jpg"
+  },
+  {
+    "id": 7431,
+    "title": "Dandanakka",
+    "artist": "Anirudh",
+    "album": "Romeo Juliet",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Dandanakka.jpg"
+  },
+  {
+    "id": 7432,
+    "title": "Danga Danga",
+    "artist": "Senthil Ganesh",
+    "album": "Viswasam",
+    "duration": 163,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Danga-Danga-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7433,
+    "title": "Darrunu",
+    "artist": "Priya Subramanian, Shenbagaraj",
+    "album": "Naan Thaan Siva",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Darrunu-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7434,
+    "title": "Dayas Insight",
+    "artist": "Elisabeth Mani",
+    "album": "Saattai",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Dayas-Insight.jpg"
+  },
+  {
+    "id": 7435,
+    "title": "Deivam Neethaaney (Karaoke)",
+    "artist": "D Imman",
+    "album": "Udanpirappe",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Deivam-Neethaaney-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7436,
+    "title": "Deivam Neethaaney",
+    "artist": "D Imman, Pavithra Chari, Yugabharathi",
+    "album": "Udanpirappe",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Deivam-Neethaaney-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7437,
+    "title": "Don't Worry",
+    "artist": "D Imman, Srilekha Parthasarathy",
+    "album": "Whistle",
+    "duration": 182,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Don't-Worry-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7438,
+    "title": "Dukkum Dukkum",
+    "artist": "Anita Venkat",
+    "album": "Rubaai",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Dukkum-Dukkum.jpg"
+  },
+  {
+    "id": 7439,
+    "title": "En Iniya Thanimaye Karaoke",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/En-Iniya-Thanimaye-Karaoke-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7440,
+    "title": "En Iniya Thanimaye",
+    "artist": "D Imman, Sid Sriram",
+    "album": "Teddy",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/En-Iniya-Thanimaye-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7441,
+    "title": "Engirunthu (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Therodum Veedhiyile",
+    "duration": 323,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Engirunthu-(Karaoke-Track)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7442,
+    "title": "Engirunthu",
+    "artist": "Hariharan, Shreya Ghoshal",
+    "album": "Therodum Veedhiyile",
+    "duration": 323,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Engirunthu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7443,
+    "title": "Engo Paarthirukkiren",
+    "artist": "D Imman",
+    "album": "Vathiyar",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Engo-Paarthirukkiren-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7444,
+    "title": "Ennadi Muniyamma",
+    "artist": "Blaaze, Karthik",
+    "album": "Vathiyar",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Ennadi-Muniyamma-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7445,
+    "title": "Ennamma Kannu",
+    "artist": "Karthik, Ranjith",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Ennamma%20Kannu.jpg"
+  },
+  {
+    "id": 7446,
+    "title": "Ennodu Vantha",
+    "artist": "D Imman, Srinivas",
+    "album": "Sena",
+    "duration": 113,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Ennodu%20Vantha.jpg"
+  },
+  {
+    "id": 7447,
+    "title": "Etha Oothi Senjeno",
+    "artist": "D Imman, Anuradha Sriram",
+    "album": "Thaka Thimi Tha",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Etha-Oothi-Senjeno-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7448,
+    "title": "Eyes on you",
+    "artist": "D Imman",
+    "album": "Valiyavan",
+    "duration": 165,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Eyes-on-you.jpg"
+  },
+  {
+    "id": 7449,
+    "title": "Far Beyond Earth",
+    "artist": "Instrumental",
+    "album": "Tik Tik Tik",
+    "duration": 196,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Far-Beyond-Earth-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7450,
+    "title": "Flame Of Victory",
+    "artist": "Mathangi, D Imman (Theme Music)",
+    "album": "Thalai Nagaram",
+    "duration": 118,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Flame-Of-Victory-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7451,
+    "title": "Fragrance of Money (Theme)",
+    "artist": "D Imman",
+    "album": "Rubaai",
+    "duration": 132,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Fragrance-of-Money-Theme.jpg"
+  },
+  {
+    "id": 7452,
+    "title": "Furious Wings (Theme)",
+    "artist": "D Imman, Vijay Sethupathi, Harish Uthaman",
+    "album": "Rekka",
+    "duration": 156,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Furious-Wings-Theme.jpg"
+  },
+  {
+    "id": 7453,
+    "title": "Fy Fy Fy Kalaachify",
+    "artist": "Ramya Nambesan",
+    "album": "Pandiyanaadu",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Fy-Fy-Fy-Kalaachify.jpg"
+  },
+  {
+    "id": 7454,
+    "title": "Fy Fy Fy Kalachify (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Pandiyanaadu",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Fy-Fy-Fy-Kalachify-Karaoke.jpg"
+  },
+  {
+    "id": 7455,
+    "title": "Gala Gala Gala Gaaley",
+    "artist": "D Imman, Jassie Gift, Roshini",
+    "album": "Vandae Maatharam",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Gala%20Gala%20Gala%20Gaaley.jpg"
+  },
+  {
+    "id": 7456,
+    "title": "Harmonica Sizzles",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 140,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Harmonica-Sizzles-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7457,
+    "title": "Hello Hello",
+    "artist": "Papon",
+    "album": "Valiyavan",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Hello-Hello.jpg"
+  },
+  {
+    "id": 7458,
+    "title": "Hey Vaayadi",
+    "artist": "Krishnaraj",
+    "album": "Thenali Raman",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Hey-Vaayadi.jpg"
+  },
+  {
+    "id": 7459,
+    "title": "Hoodibaba (Thaka Thimi Tha)",
+    "artist": "Franco, Premgi Amaren",
+    "album": "Thaka Thimi Tha",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Hoodibaba-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7460,
+    "title": "Hot Party Hot Party",
+    "artist": "Tippu, Mathangi",
+    "album": "Thamizhan",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Hot-Party-Hot-Party-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7461,
+    "title": "Idarkuthaane Aasaipattai (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Romeo Juliet",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Idarkuthaane-Aasaipattai-Karaoke.jpg"
+  },
+  {
+    "id": 7462,
+    "title": "Idarkuthaane Aasaipattai",
+    "artist": "Vaikom Vijayalakshmi",
+    "album": "Romeo Juliet",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Idarkuthaane-Aasaipattai.jpg"
+  },
+  {
+    "id": 7463,
+    "title": "Idhu Kalloori Alle",
+    "artist": "Harish Raghavendra",
+    "album": "Thaka Thimi Tha",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Idhu-Kalloori-Alle-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7464,
+    "title": "Ignite The Fire (Theme)",
+    "artist": "D Imman",
+    "album": "Seeru",
+    "duration": 155,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Ignite-The-Fire-(Theme)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7465,
+    "title": "Imsaiye Unakku Innoru",
+    "artist": "Srinivas",
+    "album": "Thaka Thimi Tha",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Imsaiye-Unakku-Innoru-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7466,
+    "title": "Indha Ponnungalae (Karaoke)",
+    "artist": "Instrumental D Imman",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Indha-Ponnungalae-Karaoke.jpg"
+  },
+  {
+    "id": 7467,
+    "title": "Indha Ponnungalae",
+    "artist": "Jayamoorthy",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Indha-Ponnungalae.jpg"
+  },
+  {
+    "id": 7468,
+    "title": "Indha Ponnungale (Dubstep Mix)",
+    "artist": "Jayamoorthy, Tha Prophecy",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 221,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Indha-Ponnungale-Dubstep-Mix.jpg"
+  },
+  {
+    "id": 7469,
+    "title": "Intelligence is the Keyword (Instrumental)",
+    "artist": "D Imman",
+    "album": "Vandae Maatharam",
+    "duration": 126,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Intelligence%20is%20the%20Keyword%20(Instrumental).jpg"
+  },
+  {
+    "id": 7470,
+    "title": "Iruppai Thamizha Neruppai",
+    "artist": "D Imman",
+    "album": "Uchithanai Mukarnthal",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Iruppai-Thamizha-Neruppai-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7471,
+    "title": "Jada Jada Jaada",
+    "artist": "Ramesh Vinayagam, Kids Chorus Sai Venkat, Haripriya",
+    "album": "Saattai",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Jada-Jada-Jaada.jpg"
+  },
+  {
+    "id": 7472,
+    "title": "Jigiru Jigiru",
+    "artist": "D Imman, Diwakar, Kalpana",
+    "album": "Rajini Murugan",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Jigiru%20Jigiru.jpg"
+  },
+  {
+    "id": 7473,
+    "title": "Jittaan Jittaan Jinukku",
+    "artist": "Sukumar, D Imman, Shika Prabhakaran",
+    "album": "Pon Manickavel",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Jittaan-Jittaan-Jinukku-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7474,
+    "title": "Kaadhal Thaana",
+    "artist": "Chitra Sivaraman, KK",
+    "album": "Nenjil Jil Jil",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kaadhal%20Thaana.jpg"
+  },
+  {
+    "id": 7475,
+    "title": "Kaanchanaye",
+    "artist": "Adarsh",
+    "album": "Nenjil Jil Jil",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kaanchanaye.jpg"
+  },
+  {
+    "id": 7476,
+    "title": "Kaattu Karuvamulla",
+    "artist": "T L Maharajan, Nithyasree Mahadevan",
+    "album": "Panju Mittai",
+    "duration": 194,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kaattu-Karuvamulla.jpg"
+  },
+  {
+    "id": 7477,
+    "title": "Kadhal Kirukka",
+    "artist": "Srinivas, Chinmayi",
+    "album": "Whistle",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kadhal-Kirukka-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7478,
+    "title": "Kai Veesamma",
+    "artist": "D Imman, Josna",
+    "album": "Vathiyar",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kai-Veesamma-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7479,
+    "title": "Kakka Muttai",
+    "artist": "Vaikom Vijayalakshmi",
+    "album": "Vellakara Durai",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kakka-Muttai.jpg"
+  },
+  {
+    "id": 7480,
+    "title": "Kalavaney Yen Kalvaney",
+    "artist": "Bombay Jayashri, Sricharan",
+    "album": "Ninaivil Nindraval",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kalavaney%20Yen%20Kalvaney.jpg"
+  },
+  {
+    "id": 7481,
+    "title": "Kanna Kaattu Podhum (Karaoke)",
+    "artist": "D Imman",
+    "album": "Rekka",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kanna-Kaattu-Podhum-Karaoke.jpg"
+  },
+  {
+    "id": 7482,
+    "title": "Kanna Kaattu Podhum",
+    "artist": "Shreya Ghoshal",
+    "album": "Rekka",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kanna-Kaattu-Podhum.jpg"
+  },
+  {
+    "id": 7483,
+    "title": "Kannaala Poduraaley",
+    "artist": "Nakash Aziz, RJ Vijay",
+    "album": "Seeru",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannaala-Poduraaley-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7484,
+    "title": "Kannaana Kanney Instrumental",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannaana-Kanney---Instrumental-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7485,
+    "title": "Kannaana Kanney Karaoke",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannaana-Kanney---Karaoke-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7486,
+    "title": "Kannaana Kanney",
+    "artist": "Sid Sriram",
+    "album": "Viswasam",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannaana-Kanney-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7487,
+    "title": "Kannadasa",
+    "artist": "Mahalakshmi Iyer",
+    "album": "Thavam",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannadasa-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7488,
+    "title": "Kannamma (Karaoke)",
+    "artist": "D Imman",
+    "album": "Rekka",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannamma-Karaoke.jpg"
+  },
+  {
+    "id": 7489,
+    "title": "Kannamma (Rekka)",
+    "artist": "Nandini Srikar",
+    "album": "Rekka",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kannamma.jpg"
+  },
+  {
+    "id": 7490,
+    "title": "Kannukkul Yedho",
+    "artist": "Vijay Yesudas, Rita Thyagarajan",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannukkul%20Yedho.jpg"
+  },
+  {
+    "id": 7491,
+    "title": "Kannukul Kalavaram",
+    "artist": "KK",
+    "album": "Nenjil Jil Jil",
+    "duration": 74,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kannukul%20Kalavaram.jpg"
+  },
+  {
+    "id": 7492,
+    "title": "Karambakudi Kanaga",
+    "artist": "D Imman, Nithyasree Mahadevan, Jeyamoorthi, Snehan",
+    "album": "Udanpirappe",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Karambakudi-Kanaga-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7493,
+    "title": "Kathal Nallavana",
+    "artist": "Snigdha Chandra,Elfe Choir",
+    "album": "Valiyavan",
+    "duration": 183,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kathal-Nallavana.jpg"
+  },
+  {
+    "id": 7494,
+    "title": "Kathalai Yaradi Mudhalil",
+    "artist": "Hariharan, Mathangi",
+    "album": "Thaka Thimi Tha",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kathalai-Yaradi-Mudhalil-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7495,
+    "title": "Kinguda Kinguda",
+    "artist": "Karthik",
+    "album": "Vaadaa",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kinguda%20Kinguda.jpg"
+  },
+  {
+    "id": 7496,
+    "title": "Koodamela Koodavechi (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Rummy",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Koodamela-Koodavechi-Karaoke.jpg"
+  },
+  {
+    "id": 7497,
+    "title": "Koodamela Koodavechi",
+    "artist": "VV Prasanna, Vandhana Srinivasan",
+    "album": "Rummy",
+    "duration": 302,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Koodamela-Koodavechi.jpg"
+  },
+  {
+    "id": 7498,
+    "title": "Koodha Kathu (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vellakara Durai",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Koodha-Kathu-Karaoke.jpg"
+  },
+  {
+    "id": 7499,
+    "title": "Koodha Kathu",
+    "artist": "Haricharan, Shreya Ghoshal",
+    "album": "Vellakara Durai",
+    "duration": 294,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Koodha-Kathu.jpg"
+  },
+  {
+    "id": 7500,
+    "title": "Kukkuru Kukkuru (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kukkuru-Kukkuru-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7501,
+    "title": "Kukkuru Kukkuru",
+    "artist": "Lakshmi Menon, Sathyan",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kukkuru-Kukkuru-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7502,
+    "title": "Kurai Onrumillai",
+    "artist": "Adharsh, Jey",
+    "album": "Rendu",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kurai%20Onrumillai.jpg"
+  },
+  {
+    "id": 7503,
+    "title": "Kurumba (Fathers Love)",
+    "artist": "Sid Sriram",
+    "album": "Tik Tik Tik",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kurumba-(Fathers-Love)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7504,
+    "title": "Kurumba (Karaoke)",
+    "artist": "Karaoke Version",
+    "album": "Tik Tik Tik",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kurumba-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7505,
+    "title": "Kurumba Reprise (Mothers Love)",
+    "artist": "Mirthula Siva",
+    "album": "Tik Tik Tik",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Kurumba-Reprise-(Mothers-Love)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7506,
+    "title": "La La La Law Mudichom",
+    "artist": "Shankar Mahadevan, G K Lavanya",
+    "album": "Thamizhan",
+    "duration": 307,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/La-La-La-Law-Mudichom-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7507,
+    "title": "Lala Kadai Santhi (Karaoke)",
+    "artist": "D Imman",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Lala-Kadai-Santhi-Karaoke.jpg"
+  },
+  {
+    "id": 7508,
+    "title": "Lala Kadai Santhi",
+    "artist": "D Imman, Sunidhi Chauhan, Benny Dayal",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Lala-Kadai-Santhi.jpg"
+  },
+  {
+    "id": 7509,
+    "title": "Langu Langu",
+    "artist": "D Imman, Pranithi",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 208,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Langu-Langu.jpg"
+  },
+  {
+    "id": 7510,
+    "title": "Love For Our Nation Wagah Theme",
+    "artist": "D Imman",
+    "album": "Wagah",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Love-For-Our-Nation---Wagah-Theme.jpg"
+  },
+  {
+    "id": 7511,
+    "title": "Love In Wheels",
+    "artist": "Chinnaponnu, Nathan & Woodwinds",
+    "album": "Thodari",
+    "duration": 183,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Love-In-Wheels.jpg"
+  },
+  {
+    "id": 7512,
+    "title": "Lucka Mattikkichi (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Lucka-Mattikkichi-Karaoke.jpg"
+  },
+  {
+    "id": 7513,
+    "title": "Lucka Mattikkichi",
+    "artist": "Dholak Gana Jagan, Senthildas, Pazhani Ammal",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Lucka-Mattikkichi.jpg"
+  },
+  {
+    "id": 7514,
+    "title": "Machakkanni Karaoke",
+    "artist": "D Imman",
+    "album": "Seemaraja",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Machakkanni-Karaoke-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7515,
+    "title": "Machakkanni",
+    "artist": "D Imman",
+    "album": "Seemaraja",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Machakkanni-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7516,
+    "title": "Madura Jilla",
+    "artist": "Karthik, Kalpana",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Madura%20Jilla.jpg"
+  },
+  {
+    "id": 7517,
+    "title": "Magaraaniye (Karaoke)",
+    "artist": "D Imman",
+    "album": "Pon Manickavel",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Magaraaniye-(Karaoke)-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7518,
+    "title": "Magaraaniye",
+    "artist": "Srinivas",
+    "album": "Pon Manickavel",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Magaraaniye-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7519,
+    "title": "Magaraasaney",
+    "artist": "Varsha Renjith, D Imman",
+    "album": "Pon Manickavel",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Magaraasaney-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7520,
+    "title": "Makkupayya",
+    "artist": "Ananthu, Priya Subramaniam",
+    "album": "Thavam",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Makkupayya-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7521,
+    "title": "Manasula Irukkudhu Aasai (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Panju Mittai",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Manasula-Irukkudhu-Aasai-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7522,
+    "title": "Manasula Irukkudhu Aasai",
+    "artist": "Sarath Santhosh, Chinmayi",
+    "album": "Panju Mittai",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Manasula-Irukkudhu-Aasai.jpg"
+  },
+  {
+    "id": 7523,
+    "title": "Manmada Kaadu",
+    "artist": "D Imman",
+    "album": "Vilai",
+    "duration": 278,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Manmada%20Kaadu.jpg"
+  },
+  {
+    "id": 7524,
+    "title": "Manusanum Manusanum",
+    "artist": "Gana Bala",
+    "album": "Thodari",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Manusanum-Manusanum.jpg"
+  },
+  {
+    "id": 7525,
+    "title": "Marandaaye (Unplugged Version)",
+    "artist": "D Imman, Pradeep Kumar",
+    "album": "Teddy",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marandaaye-(Unplugged-Version)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7526,
+    "title": "Marandaaye Karaoke",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 299,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marandaaye-Karaoke-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7527,
+    "title": "Marandhaye",
+    "artist": "D Imman, Pradeep Kumar, Jonita Gandhi",
+    "album": "Teddy",
+    "duration": 299,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marandhaye-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7528,
+    "title": "Maranthuvidu (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Therodum Veedhiyile",
+    "duration": 313,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Maranthuvidu-(Karaoke-Track)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7529,
+    "title": "Maranthuvidu",
+    "artist": "Sriram Parthsarathy, Chinmayi Sripada",
+    "album": "Therodum Veedhiyile",
+    "duration": 315,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Maranthuvidu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7530,
+    "title": "Marhaba Aavona (Karaoke)",
+    "artist": "D Imman",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marhaba-Aavona-Karaoke.jpg"
+  },
+  {
+    "id": 7531,
+    "title": "Marhaba Aavona",
+    "artist": "D Imman, Aditya Gadhvi, Shreya Ghoshal",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marhaba-Aavona.jpg"
+  },
+  {
+    "id": 7532,
+    "title": "Marudakkaari (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Paayum Puli",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marudakkaari-Karaoke-Track.jpg"
+  },
+  {
+    "id": 7533,
+    "title": "Marudakkaari",
+    "artist": "Diwakar",
+    "album": "Paayum Puli",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Marudakkaari.jpg"
+  },
+  {
+    "id": 7534,
+    "title": "Maruthamali",
+    "artist": "D Jmman, Anitha Venkatnarasimhan",
+    "album": "Thavam",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Maruthamali-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7535,
+    "title": "Mathematical Expression (Kanakku)",
+    "artist": "Manikka Vinayagam",
+    "album": "Veerappu",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mathematical-Expression-(Kanakku)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7536,
+    "title": "Mathi Mathi",
+    "artist": "Srilekha Parthasarathy, Balram",
+    "album": "Thalai Nagaram",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mathi-Mathi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7537,
+    "title": "Mattu Mattu Nee",
+    "artist": "D Imman, Anuradha Sriram",
+    "album": "Thamizhan",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mattu-Mattu-Nee-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7538,
+    "title": "Mazhakatha",
+    "artist": "Haricharan, Vandhana Srinivasan, Maria Roe Vincent",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mazhakatha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7539,
+    "title": "Meenumeenukutty",
+    "artist": "Harini, Adarsh",
+    "album": "Thavam",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Meenumeenukutty-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7540,
+    "title": "Melancholic Ride",
+    "artist": "D Imman",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 151,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Melancholic-Ride.jpg"
+  },
+  {
+    "id": 7541,
+    "title": "Mesmerism Seyyum",
+    "artist": "Naresh Iyer, Shweta Pandit",
+    "album": "Vaadaa",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mesmerism%20Seyyum.jpg"
+  },
+  {
+    "id": 7542,
+    "title": "Mobila Mobila",
+    "artist": "D Imman, Maya Iyer",
+    "album": "Rendu",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mobila%20Mobila.jpg"
+  },
+  {
+    "id": 7543,
+    "title": "Mosale Mosale",
+    "artist": "Deepak, A V Pooja",
+    "album": "Yennamo Yedho",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Mosale-Mosale.jpg"
+  },
+  {
+    "id": 7544,
+    "title": "Muttalai Muttalai (Instrumental)",
+    "artist": "Karthik Iyer",
+    "album": "Yennamo Yedho",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Muttalai-Muttalai-Instrumental.jpg"
+  },
+  {
+    "id": 7545,
+    "title": "Muttalai Muttalai",
+    "artist": "D Imman, Maria Roe Vincent",
+    "album": "Yennamo Yedho",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/Muttalai-Muttalai.jpg"
+  },
+  {
+    "id": 7546,
+    "title": "My Wifeu Romba Beautifulu (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Panju Mittai",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/My-Wifeu-Romba-Beautifulu-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7547,
+    "title": "My Wifeu Romba Beautifulu",
+    "artist": "Diwakar",
+    "album": "Panju Mittai",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_50@main/covers/My-Wifeu-Romba-Beautifulu.jpg"
+  },
+  {
+    "id": 7548,
+    "title": "Na Romba Busy",
+    "artist": "Santhosh Hariharan, Neeti Mohan, Sharanya Gopinath",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Na-Romba-Busy.jpg"
+  },
+  {
+    "id": 7549,
+    "title": "Naa Soodana Mogini",
+    "artist": "Jyoti Nooran",
+    "album": "Paayum Puli",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Naa-Soodana-Mogini.jpg"
+  },
+  {
+    "id": 7550,
+    "title": "Naan Valargirena",
+    "artist": "Anuradha Sriram",
+    "album": "Thalai Nagaram",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Naan-Valargirena-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7551,
+    "title": "Nadigar Thilagam",
+    "artist": "Krishnamoorthy",
+    "album": "Vellakara Durai",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nadigar-Thilagam.jpg"
+  },
+  {
+    "id": 7552,
+    "title": "Nanbaa Vaa Nanbaa",
+    "artist": "Saisharan",
+    "album": "Saattai",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nanbaa-Vaa-Nanbaa.jpg"
+  },
+  {
+    "id": 7553,
+    "title": "Nanbiye Karaoke",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nanbiye-Karaoke-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7554,
+    "title": "Nanbiye",
+    "artist": "D Imman, Anirudh Ravichander",
+    "album": "Teddy",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nanbiye-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7555,
+    "title": "Natpe Natpe",
+    "artist": "T R Silambarasan, Aishwarya Rajnikanth, D Imman, Uma Magesh, Ruba Venkat",
+    "album": "Whistle",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Natpe-Natpe-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7556,
+    "title": "Nattu Kozhi Kozhambu",
+    "artist": "D Imman, Mathangi Jagdish",
+    "album": "Sena",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nattu%20Kozhi%20Kozhambu.jpg"
+  },
+  {
+    "id": 7557,
+    "title": "Nattu Saalaiyile",
+    "artist": "Jayamoorthy, V M Mahalingam, Anitha Venkat, Kovilpatti Amali",
+    "album": "Vetrivel",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nattu-Saalaiyile.jpg"
+  },
+  {
+    "id": 7558,
+    "title": "Nee En Thozhiya",
+    "artist": "Naresh Iyer, Sujatha Mohan",
+    "album": "Rendu",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nee%20En%20Thozhiya.jpg"
+  },
+  {
+    "id": 7559,
+    "title": "Neeyenna Periya Appatakkara",
+    "artist": "Anirudh, Harshitha Krishnan",
+    "album": "Yennamo Yedho",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Neeyenna-Periya-Appatakkara.jpg"
+  },
+  {
+    "id": 7560,
+    "title": "Neeyenna Periya (Karaoke)",
+    "artist": "D Imman",
+    "album": "Yennamo Yedho",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Neeyenna-Periya-Karaoke.jpg"
+  },
+  {
+    "id": 7561,
+    "title": "Nenje Nenje (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Tenaliraman",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nenje%20Nenje%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7562,
+    "title": "Nenje Nenje (Tenaliraman)",
+    "artist": "D Imman, Hariharasudhan",
+    "album": "Tenaliraman",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nenje%20Nenje.jpg"
+  },
+  {
+    "id": 7563,
+    "title": "Nenje Nenje (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Thenali Raman",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nenje-Nenje-Karaoke.jpg"
+  },
+  {
+    "id": 7564,
+    "title": "Nenje Nenje (Thenali Raman)",
+    "artist": "Hariharasudhan",
+    "album": "Thenali Raman",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nenje-Nenje.jpg"
+  },
+  {
+    "id": 7565,
+    "title": "Nenjil Jil Jil",
+    "artist": "D Imman",
+    "album": "Nenjil Jil Jil",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nenjil%20Jil%20Jil.jpg"
+  },
+  {
+    "id": 7566,
+    "title": "Nila Aadhu",
+    "artist": "Dr Sirkali G Siva Chidambaram, Anuradha Shekher",
+    "album": "Ninaivil Nindraval",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Nila%20Aadhu.jpg"
+  },
+  {
+    "id": 7567,
+    "title": "Noorandu Vazhga",
+    "artist": "Narsh Ilyer",
+    "album": "Thambikottai",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Noorandu%20Vazhga.jpg"
+  },
+  {
+    "id": 7568,
+    "title": "O Baby Come With me",
+    "artist": "D Imman, MLR Karthikeyan",
+    "album": "Valiyavan",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/O-Baby-Come-With-me.jpg"
+  },
+  {
+    "id": 7569,
+    "title": "Odipolama",
+    "artist": "D Imman, Arati Ankalikar Tikekar, Dinesh Kanagaratnam",
+    "album": "Odipolama",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Odipolama.jpg"
+  },
+  {
+    "id": 7570,
+    "title": "Odum Rayilai (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Odum-Rayilai-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7571,
+    "title": "Odum Rayilai",
+    "artist": "Abhay Jodhpurkar",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Odum-Rayilai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7572,
+    "title": "One Two Three",
+    "artist": "D Imman, Ramya NSK, Farazuddin",
+    "album": "Vandae Maatharam",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/One%20Two%20Three.jpg"
+  },
+  {
+    "id": 7573,
+    "title": "Onna Pola Oruthana (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vetrivel",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Onna-Pola-Oruthana-Karaoke.jpg"
+  },
+  {
+    "id": 7574,
+    "title": "Onna Pola Oruthana",
+    "artist": "Shreya Ghoshal",
+    "album": "Vetrivel",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Onna-Pola-Oruthana.jpg"
+  },
+  {
+    "id": 7575,
+    "title": "Onnavitta Yaarum Yenakilla Karaoke",
+    "artist": "D Imman",
+    "album": "Seemaraja",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Onnavitta-Yaarum-Yenakilla-Karaoke-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7576,
+    "title": "Onnavitta Yaarum Yenakilla",
+    "artist": "Sean Roldan, Shreya Ghoshal",
+    "album": "Seemaraja",
+    "duration": 278,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Onnavitta-Yaarum-Yenakilla-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7577,
+    "title": "Onnavitta Yaarum Yenakilla V2",
+    "artist": "D Sathyaprakash, Shreya Ghoshal",
+    "album": "Seemaraja",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Onnavitta-Yaarum-Yenakilla-V2-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7578,
+    "title": "Oodha Color Ribbon",
+    "artist": "Hariharasudan",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oodha-Color-Ribbon.jpg"
+  },
+  {
+    "id": 7579,
+    "title": "Oodhaa Kalaru (Karaoke)",
+    "artist": "Instrumental D Imman",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oodhaa-Kalaru-Karaoke.jpg"
+  },
+  {
+    "id": 7580,
+    "title": "Oorellam Kekkude",
+    "artist": "Shreya Ghoshal & Maria Roe",
+    "album": "Thodari",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oorellam-Kekkude.jpg"
+  },
+  {
+    "id": 7581,
+    "title": "Oru Nodi (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Rummy",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oru-Nodi-Karaoke.jpg"
+  },
+  {
+    "id": 7582,
+    "title": "Oru Nodi (Rummy)",
+    "artist": "D Imman, Divya Ramani",
+    "album": "Rummy",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oru-Nodi.jpg"
+  },
+  {
+    "id": 7583,
+    "title": "Oru Oorula Rendu Raja",
+    "artist": "Jayamoorthy, M K Balaji",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Oru-Oorula-Rendu-Raja-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7584,
+    "title": "Othakada Othakada",
+    "artist": "Hariharasudhan, Sooraj Santhosh",
+    "album": "Pandiyanaadu",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Othakada-Othakada.jpg"
+  },
+  {
+    "id": 7585,
+    "title": "Othapana Kaatteri (Karaoke)",
+    "artist": "D Imman",
+    "album": "Udanpirappe",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Othapana-Kaatteri-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7586,
+    "title": "Othapana Kaatteri",
+    "artist": "D Imman, Sid Sriram, Yugabharathi",
+    "album": "Udanpirappe",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Othapana-Kaatteri-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7587,
+    "title": "Paakaadhae Paakaadhae (Karaoke)",
+    "artist": "Instrumental D Imman",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Paakaadhae-Paakaadhae-Karaoke.jpg"
+  },
+  {
+    "id": 7588,
+    "title": "Paakathey Paakathey",
+    "artist": "Vijay Yesudas, Pooja Vaidyanath",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Paakathey-Paakathey.jpg"
+  },
+  {
+    "id": 7589,
+    "title": "Paathukkuren",
+    "artist": "D Sathyaprakash",
+    "album": "Rubaai",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Paathukkuren.jpg"
+  },
+  {
+    "id": 7590,
+    "title": "Pachi Paranthiruchi",
+    "artist": "Mannargudi Ramesh",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pachi-Paranthiruchi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7591,
+    "title": "Pappala Pappa",
+    "artist": "Anuradha Sriram",
+    "album": "Vathiyar",
+    "duration": 292,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pappala-Pappa-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7592,
+    "title": "Paraak Paraak",
+    "artist": "Senthil Ganesh",
+    "album": "Seemaraja",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Paraak-Paraak-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7593,
+    "title": "Pattaasa Antha Ponnu (Karaoke)",
+    "artist": "D Imman",
+    "album": "Naan Thaan Siva",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pattaasa-Antha-Ponnu-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7594,
+    "title": "Pattaasa Antha Ponnu",
+    "artist": "Deepak Blue",
+    "album": "Naan Thaan Siva",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pattaasa-Antha-Ponnu-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7595,
+    "title": "Photographic Memory",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 99,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Photographic-Memory-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7596,
+    "title": "Pidikkudhae (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Sigaram Thodu",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pidikkudhae-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7597,
+    "title": "Pidikkudhae",
+    "artist": "Jithin Raj & Shreya Ghoshal",
+    "album": "Sigaram Thodu",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pidikkudhae.jpg"
+  },
+  {
+    "id": 7598,
+    "title": "Pollapaiyya",
+    "artist": "Haricharan, Shweta Mohan",
+    "album": "Rekka",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pollapaiyya.jpg"
+  },
+  {
+    "id": 7599,
+    "title": "Pon Manickavel (Theme)",
+    "artist": "D Imman",
+    "album": "Pon Manickavel",
+    "duration": 144,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pon-Manickavel-(Theme)-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7600,
+    "title": "Pona Usuru Vanthurichu (Instrumental Version)",
+    "artist": "D Imman",
+    "album": "Thodari",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pona-Usuru-Vanthurichu-Instrumental-Version.jpg"
+  },
+  {
+    "id": 7601,
+    "title": "Pona Usuru Vanthurichu",
+    "artist": "Haricharan & Shreya Ghoshal",
+    "album": "Thodari",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pona-Usuru-Vanthurichu.jpg"
+  },
+  {
+    "id": 7602,
+    "title": "Poona Varuveero Remix",
+    "artist": "D Imman, Jey (Remix)",
+    "album": "Veerappu",
+    "duration": 327,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Poona-Varuveero---Remix-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7603,
+    "title": "Poona Varuveero",
+    "artist": "Jey",
+    "album": "Veerappu",
+    "duration": 339,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Poona-Varuveero-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7604,
+    "title": "Poonkothai",
+    "artist": "Sangeetha Rajeshwaran, Velmurugan",
+    "album": "Therodum Veedhiyile",
+    "duration": 310,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Poonkothai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7605,
+    "title": "Puchandi Puchandi",
+    "artist": "D Imman, Arati Ankalikar Tikekar",
+    "album": "Odipolama",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Puchandi%20Puchandi.jpg"
+  },
+  {
+    "id": 7606,
+    "title": "Pudhiya Ulagai (Karaoke)",
+    "artist": "D Imman",
+    "album": "Yennamo Yedho",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pudhiya-Ulagai-Karaoke.jpg"
+  },
+  {
+    "id": 7607,
+    "title": "Pudhiya Ulagai",
+    "artist": "Vaikom Vijayalakshmi",
+    "album": "Yennamo Yedho",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Pudhiya-Ulagai.jpg"
+  },
+  {
+    "id": 7608,
+    "title": "Puli Puli Paayumpuli",
+    "artist": "Malgudi Shuba",
+    "album": "Paayum Puli",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Puli-Puli-Paayumpuli.jpg"
+  },
+  {
+    "id": 7609,
+    "title": "Puliya Kili Jeyicha",
+    "artist": "Harish Raghavendra, Madhushree",
+    "album": "Veerappu",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Puliya-Kili-Jeyicha-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7610,
+    "title": "Punagayal Yennai",
+    "artist": "Ravi",
+    "album": "Vaadaa",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Punagayal%20Yennai.jpg"
+  },
+  {
+    "id": 7611,
+    "title": "Punnagaiye (Nenjil Jil Jil)",
+    "artist": "Ranjith",
+    "album": "Nenjil Jil Jil",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Punnagaiye.jpg"
+  },
+  {
+    "id": 7612,
+    "title": "Race Against Time",
+    "artist": "Instrumental",
+    "album": "Tik Tik Tik",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Race-Against-Time-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7613,
+    "title": "Ragala Kaara Maaman",
+    "artist": "D Imman",
+    "album": "Odipolama",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Ragala%20Kaara%20Maaman.jpg"
+  },
+  {
+    "id": 7614,
+    "title": "Rain Rain Go Go (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Pokkiri Raja",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rain-Rain-Go-Go-Karaoke.jpg"
+  },
+  {
+    "id": 7615,
+    "title": "Rain Rain Go Go",
+    "artist": "Neeti Mohan, Varun Parandhaman",
+    "album": "Pokkiri Raja",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rain-Rain-Go-Go.jpg"
+  },
+  {
+    "id": 7616,
+    "title": "Rajini Murugan (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Rajini Murugan",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rajini%20Murugan%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7617,
+    "title": "Rajini Murugan",
+    "artist": "Sivakarthikeyan, D Imman",
+    "album": "Rajini Murugan",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rajini%20Murugan.jpg"
+  },
+  {
+    "id": 7618,
+    "title": "Rama Ippo",
+    "artist": "Vasu, Solar Sai, Prasanna Rao, T S Ranganathan",
+    "album": "Thaka Thimi Tha",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rama-Ippo-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7619,
+    "title": "Rampapa Rampapa",
+    "artist": "D Imman, Mukesh",
+    "album": "Tenaliraman",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rampapa%20Rampapa.jpg"
+  },
+  {
+    "id": 7620,
+    "title": "Rampappa Rampappa",
+    "artist": "Mukesh",
+    "album": "Thenali Raman",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rampappa-Rampappa.jpg"
+  },
+  {
+    "id": 7621,
+    "title": "Rayalaseema Rani",
+    "artist": "Karthik, Anitha Udeep",
+    "album": "Thaka Thimi Tha",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rayalaseema-Rani-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7622,
+    "title": "Ready Steady Teddy",
+    "artist": "D Imman, Mark Thomas",
+    "album": "Teddy",
+    "duration": 159,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Ready-Steady-Teddy-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7623,
+    "title": "Rise Up Theme",
+    "artist": "Jithin Raj",
+    "album": "Viswasam",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Rise-Up---Theme-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7624,
+    "title": "Romeo Romeo",
+    "artist": "Vishal Dadlani, Hyde Karty",
+    "album": "Romeo Juliet",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Romeo-Romeo.jpg"
+  },
+  {
+    "id": 7625,
+    "title": "Roundukatti Adi",
+    "artist": "Bhargavi",
+    "album": "Veerappu",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Roundukatti-Adi-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7626,
+    "title": "Sahaayane (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Saattai",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sahaayane-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7627,
+    "title": "Sahaayane",
+    "artist": "Shreya Ghoshal",
+    "album": "Saattai",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sahaayane.jpg"
+  },
+  {
+    "id": 7628,
+    "title": "Sai Saiya Asaiya",
+    "artist": "D Imman, Anuradha Sriram",
+    "album": "Sena",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sai%20Saiya%20Asaiya.jpg"
+  },
+  {
+    "id": 7629,
+    "title": "Sandakozhi Neethanda",
+    "artist": "Jyotsna Radhakrishnan, Naveen",
+    "album": "Thavam",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sandakozhi-Neethanda-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7630,
+    "title": "Sanjeevana",
+    "artist": "D Imman, Kalyani Menon",
+    "album": "Vandae Maatharam",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sanjeevana.jpg"
+  },
+  {
+    "id": 7631,
+    "title": "Scenu Scenu",
+    "artist": "Aranarai Natraj & Tha Prophecy",
+    "album": "Sigaram Thodu",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Scenu-Scenu.jpg"
+  },
+  {
+    "id": 7632,
+    "title": "Seemaraja Swag",
+    "artist": "Shenbagaraj, Vignesh Narayanan, Santosh Hariharan, Deepak, Swetha Suresh",
+    "album": "Seemaraja",
+    "duration": 90,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Seemaraja-Swag-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7633,
+    "title": "Semma Joru",
+    "artist": "D Imman, Maria Kavitha Thomas, Vishal Dadlani",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Semma-Joru.jpg"
+  },
+  {
+    "id": 7634,
+    "title": "Senthamizhe Senthamizhe",
+    "artist": "Bombay Jayashri, Sricharan",
+    "album": "Ninaivil Nindraval",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Senthamizhe%20Senthamizhe.jpg"
+  },
+  {
+    "id": 7635,
+    "title": "Serene Grace",
+    "artist": "Priya Hemesh",
+    "album": "Saattai",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Serene-Grace.jpg"
+  },
+  {
+    "id": 7636,
+    "title": "Sevvanthiye (Female Version)",
+    "artist": "Vaikom Vijayalakshmi",
+    "album": "Seeru",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sevvanthiye-(Female-Version)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7637,
+    "title": "Sevvanthiye (Karaoke)",
+    "artist": "D Imman",
+    "album": "Seeru",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sevvanthiye-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7638,
+    "title": "Sevvanthiye",
+    "artist": "Nochipatti Thirumoorthy, D Imman",
+    "album": "Seeru",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sevvanthiye-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7639,
+    "title": "Shut Up Your Mouth",
+    "artist": "Deepak, Shruti Haasan",
+    "album": "Yennamo Yedho",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Shut-Up-Your-Mouth.jpg"
+  },
+  {
+    "id": 7640,
+    "title": "Sigaram Thodu",
+    "artist": "Benny Dayal, Snigdha Chandra & Santosh Hariharan",
+    "album": "Sigaram Thodu",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sigaram-Thodu.jpg"
+  },
+  {
+    "id": 7641,
+    "title": "Silukku Marame (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Paayum Puli",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Silukku-Marame-Karaoke-Track.jpg"
+  },
+  {
+    "id": 7642,
+    "title": "Silukku Marame",
+    "artist": "Divyakumar, Shashaa Tirupati, Sharanya Gopinath",
+    "album": "Paayum Puli",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Silukku-Marame.jpg"
+  },
+  {
+    "id": 7643,
+    "title": "Singakutty (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Singakutty-(Karaoke-Version)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7644,
+    "title": "Singakutty Naanthandi",
+    "artist": "Rajaganapathy, Niranjana",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Singakutty-Naanthandi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7645,
+    "title": "Solla Solla (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Therodum Veedhiyile",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Solla-Solla-(Karaoke-Track)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7646,
+    "title": "Solla Solla",
+    "artist": "D Imman, Ranina Reddy",
+    "album": "Therodum Veedhiyile",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Solla-Solla-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7647,
+    "title": "Sollathaan Nenaikiraen (Karaoke)",
+    "artist": "Karaoke By D Imman",
+    "album": "Wagah",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sollathaan-Nenaikiraen-Karaoke.jpg"
+  },
+  {
+    "id": 7648,
+    "title": "Sollathaan Nenaikiraen",
+    "artist": "Divya Kumar",
+    "album": "Wagah",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sollathaan-Nenaikiraen.jpg"
+  },
+  {
+    "id": 7649,
+    "title": "Sollitar Thalaivar",
+    "artist": "Naresh Iyer, Sheeba Trueman, Ashwin Shekhar",
+    "album": "Ninaivil Nindraval",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sollitar%20Thalaivar.jpg"
+  },
+  {
+    "id": 7650,
+    "title": "Sona Sona (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sona-Sona-Karaoke.jpg"
+  },
+  {
+    "id": 7651,
+    "title": "Sona Sona",
+    "artist": "Armaan Malik, Varun Parandhaman, Maria Roe Vincent",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sona-Sona.jpg"
+  },
+  {
+    "id": 7652,
+    "title": "Soo Manthrakaali",
+    "artist": "Sugeetha Menon, Funky Shankar, Sangeetha Sajith",
+    "album": "Thalai Nagaram",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Soo-Manthrakaali-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7653,
+    "title": "Soppanasundari",
+    "artist": "Vaikom Vijayalakshmi",
+    "album": "Veera Sivaji",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Soppanasundari.jpg"
+  },
+  {
+    "id": 7654,
+    "title": "Sulukki Sulukkedukkum",
+    "artist": "Devan Ekambaram, Malathi",
+    "album": "Thaka Thimi Tha",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sulukki-Sulukkedukkum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7655,
+    "title": "Summa Irukkuruthu Easy",
+    "artist": "Deepak",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Summa-Irukkuruthu-Easy-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7656,
+    "title": "Sundari Penne",
+    "artist": "Shreya Ghoshal",
+    "album": "Oru Oorula Rendu Raja",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sundari-Penne-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7657,
+    "title": "Suthi Suthi Varuven",
+    "artist": "D Imman, Tippu, Srilekha Parthasarathy",
+    "album": "Sena",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Suthi%20Suthi%20Varuven.jpg"
+  },
+  {
+    "id": 7658,
+    "title": "Sweet Memories",
+    "artist": "Blues Harp By Kabuli",
+    "album": "Uchithanai Mukarnthal",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Sweet-Memories-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7659,
+    "title": "Takku Takku",
+    "artist": "Varun Parandhaman & Anthony Daasan",
+    "album": "Sigaram Thodu",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Takku-Takku.jpg"
+  },
+  {
+    "id": 7660,
+    "title": "Tamizha Tamizha",
+    "artist": "Karthik",
+    "album": "Thamizhan",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Tamizha-Tamizha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7661,
+    "title": "Teddy Bear Rhyme",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 86,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Teddy-Bear-Rhyme-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7662,
+    "title": "Thaalelo",
+    "artist": "Shankar Mahadevan",
+    "album": "Therodum Veedhiyile",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thaalelo-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7663,
+    "title": "Thaaru Thaara",
+    "artist": "Divya Kumar",
+    "album": "Pokkiri Raja",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thaaru-Thaara.jpg"
+  },
+  {
+    "id": 7664,
+    "title": "Thaarumaaru Thakkaalisoru",
+    "artist": "Silambarasan, Maria Roe Vincent",
+    "album": "Veera Sivaji",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thaarumaaru-Thakkaalisoru.jpg"
+  },
+  {
+    "id": 7665,
+    "title": "Thaka Thimi Tha",
+    "artist": "Suchitra, Mahesh Vinayakram",
+    "album": "Thaka Thimi Tha",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thaka-Thimi-Tha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7666,
+    "title": "Thala Thala Vethala",
+    "artist": "Manicka Vinayagam, Swarnalatha, J K Lavanya",
+    "album": "Whistle",
+    "duration": 294,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thala-Thala-Vethala-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7667,
+    "title": "Thalainagaram City Of Sins",
+    "artist": "Vasu, Naveen, Vijay, Rahul Nambiar",
+    "album": "Thalai Nagaram",
+    "duration": 213,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thalainagaram-City-Of-Sins-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7668,
+    "title": "Thalle Thillaley",
+    "artist": "Anthony Daasan",
+    "album": "Viswasam",
+    "duration": 104,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thalle-Thillaley-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7669,
+    "title": "Thambikkottai Kanaga",
+    "artist": "Jasi Kift",
+    "album": "Thambikottai",
+    "duration": 306,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thambikkottai%20Kanaga.jpg"
+  },
+  {
+    "id": 7670,
+    "title": "Thanjavooru Gopuramey",
+    "artist": "Karthik, Kalyani",
+    "album": "Vathiyar",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thanjavooru-Gopuramey-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7671,
+    "title": "Thavazhnthidum Thangapoove",
+    "artist": "Bombay Jayashri",
+    "album": "Veera Sivaji",
+    "duration": 318,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Thavazhnthidum-Thangapoove.jpg"
+  },
+  {
+    "id": 7672,
+    "title": "The Plan (Poikkal Kuthirai)",
+    "artist": "D Imman",
+    "album": "Poikkal Kuthirai",
+    "duration": 55,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/The-Plan-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7673,
+    "title": "The Tale Of Nagammal",
+    "artist": "Pushpavanam Kuppuswamy, Mathangi",
+    "album": "Whistle",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/The-Tale-Of-Nagammal-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7674,
+    "title": "Theerathathu Kathal",
+    "artist": "D Imman, Unni Menon, Nithyasree Mahadevan",
+    "album": "Sena",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Theerathathu%20Kathal.jpg"
+  },
+  {
+    "id": 7675,
+    "title": "Theme Of Pandiyanaadu",
+    "artist": "Instrumental",
+    "album": "Pandiyanaadu",
+    "duration": 320,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Theme-Of-Pandiyanaadu.jpg"
+  },
+  {
+    "id": 7676,
+    "title": "Theriyaama Parthuputen",
+    "artist": "Ranjith, Sujatha Mohan",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Theriyaama%20Parthuputen.jpg"
+  },
+  {
+    "id": 7677,
+    "title": "Therupuzhidi",
+    "artist": "Shankar Ganesh, G K Lavanya",
+    "album": "Vaadaa",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_51@main/covers/Therupuzhidi.jpg"
+  },
+  {
+    "id": 7678,
+    "title": "Thirumbi Thirumbi",
+    "artist": "D Imman, Suchith Suresan",
+    "album": "Vandae Maatharam",
+    "duration": 302,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Thirumbi%20Thirumbi.jpg"
+  },
+  {
+    "id": 7679,
+    "title": "Thookkudurai Theme",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 71,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Thookkudurai---Theme-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7680,
+    "title": "Thoovaanam (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Romeo Juliet",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Thoovaanam-Karaoke.jpg"
+  },
+  {
+    "id": 7681,
+    "title": "Thoovaanam (Reprise)",
+    "artist": "Sunitha Sarathy",
+    "album": "Romeo Juliet",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Thoovaanam-Reprise.jpg"
+  },
+  {
+    "id": 7682,
+    "title": "Thoovaanam",
+    "artist": "Vishal Dadlani, Sunitha Sarathy",
+    "album": "Romeo Juliet",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Thoovaanam.jpg"
+  },
+  {
+    "id": 7683,
+    "title": "Tickle My Funny Bone",
+    "artist": "D Imman",
+    "album": "Teddy",
+    "duration": 96,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Tickle-My-Funny-Bone-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7684,
+    "title": "Tik Tik Tik (Karaoke)",
+    "artist": "Karaoke Version",
+    "album": "Tik Tik Tik",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Tik-Tik-Tik-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7685,
+    "title": "Tik Tik Tik (Title Track)",
+    "artist": "Yuvan Shankar Raja, Sunitha Sarathy, Yogi B",
+    "album": "Tik Tik Tik",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Tik-Tik-Tik-(Title-Track)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7686,
+    "title": "Uchithanai Mukarnthal",
+    "artist": "Balram, Mathangi, Baby Priyanka",
+    "album": "Uchithanai Mukarnthal",
+    "duration": 309,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Uchithanai-Mukarnthal-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7687,
+    "title": "Udal Vaangalayo Udal (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Tenaliraman",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Udal%20Vaangalayo%20Udal%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7688,
+    "title": "Udal Vaangalayo Udal",
+    "artist": "D Imman, Andrea Jeremiah",
+    "album": "Tenaliraman",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Udal%20Vaangalayo%20Udal.jpg"
+  },
+  {
+    "id": 7689,
+    "title": "Udal Vangalaiyo (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Thenali Raman",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Udal-Vangalaiyo-Karaoke.jpg"
+  },
+  {
+    "id": 7690,
+    "title": "Udal Vangalaiyo",
+    "artist": "Andrea Jeremiah",
+    "album": "Thenali Raman",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Udal-Vangalaiyo.jpg"
+  },
+  {
+    "id": 7691,
+    "title": "Ullathai Killathe",
+    "artist": "Vijay, Priyanka Chopra",
+    "album": "Thamizhan",
+    "duration": 301,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Ullathai-Killathe-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7692,
+    "title": "Un Mela Oru Kannu (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Rajini Murugan",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Un%20Mela%20Oru%20Kannu%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7693,
+    "title": "Un Mela Oru Kannu",
+    "artist": "D Imman, Jithin Raj, Mahalakshmi Iyer",
+    "album": "Rajini Murugan",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Un%20Mela%20Oru%20Kannu.jpg"
+  },
+  {
+    "id": 7694,
+    "title": "Unakkagathaane",
+    "artist": "Solar Sai, Sujatha, P Unnikrishnan",
+    "album": "Nenjil Jil Jil",
+    "duration": 333,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Unakkagathaane.jpg"
+  },
+  {
+    "id": 7695,
+    "title": "Unakkaka Uireyvaithen (Sad)",
+    "artist": "Sri Ram Parthasarathy",
+    "album": "Thambikottai",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Unakkaka%20Uireyvaithen%20(Sad).jpg"
+  },
+  {
+    "id": 7696,
+    "title": "Unakkaka Uireyvaithen",
+    "artist": "Sri Ram Parthasarathy",
+    "album": "Thambikottai",
+    "duration": 326,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Unakkaka%20Uireyvaithen.jpg"
+  },
+  {
+    "id": 7697,
+    "title": "Unkooda Pesathaane (Karaoke)",
+    "artist": "D Imman",
+    "album": "Rubaai",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Unkooda-Pesathaane-Karaoke.jpg"
+  },
+  {
+    "id": 7698,
+    "title": "Unkooda Pesathaane",
+    "artist": "Shreya Ghoshal",
+    "album": "Rubaai",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Unkooda-Pesathaane.jpg"
+  },
+  {
+    "id": 7699,
+    "title": "Uthira Uthira (Karaoke)",
+    "artist": "D Imman",
+    "album": "Pon Manickavel",
+    "duration": 230,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Uthira-Uthira-(Karaoke)-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7700,
+    "title": "Uthira Uthira",
+    "artist": "Shreya Ghoshal, Maria Roe Vincent, D Imman, Sreekanth Hariharan",
+    "album": "Pon Manickavel",
+    "duration": 230,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Uthira-Uthira-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7701,
+    "title": "Uyir Pirinthalum",
+    "artist": "D Imman, Roshan, Chinmayi, Prathap Chandran",
+    "album": "Sena",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Uyir%20Pirinthalum.jpg"
+  },
+  {
+    "id": 7702,
+    "title": "Vaa Pulla",
+    "artist": "Mugesh",
+    "album": "Thambikottai",
+    "duration": 319,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaa%20Pulla.jpg"
+  },
+  {
+    "id": 7703,
+    "title": "Vaa Vasuki (Karaoke)",
+    "artist": "D Imman",
+    "album": "Seeru",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaa-Vasuki-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7704,
+    "title": "Vaa Vasuki",
+    "artist": "Shivam Mahadevan",
+    "album": "Seeru",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaa-Vasuki-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7705,
+    "title": "Vaalu Payyane",
+    "artist": "D Imman, Anitha Karthikeyan, Ranjith",
+    "album": "Odipolama",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaalu%20Payyane.jpg"
+  },
+  {
+    "id": 7706,
+    "title": "Vaaney Vaaney Karaoke",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaaney-Vaaney---Karaoke-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7707,
+    "title": "Vaaney Vaaney",
+    "artist": "Hariharan",
+    "album": "Viswasam",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaaney-Vaaney-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7708,
+    "title": "Vaaren Vaaren Seemaraja Karaoke",
+    "artist": "D Imman",
+    "album": "Seemaraja",
+    "duration": 313,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaaren-Vaaren-Seemaraja-Karaoke-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7709,
+    "title": "Vaaren Vaaren Seemaraja",
+    "artist": "Diwakar, Kavitha Gopi",
+    "album": "Seemaraja",
+    "duration": 313,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaaren-Vaaren-Seemaraja-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7710,
+    "title": "Vaasana Poochenda",
+    "artist": "Rajaganapathy",
+    "album": "Seeru",
+    "duration": 89,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaasana-Poochenda-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7711,
+    "title": "Vaazhve Un Vilayenna",
+    "artist": "D Imman",
+    "album": "Vilai",
+    "duration": 141,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vaazhve%20Un%20Vilayenna.jpg"
+  },
+  {
+    "id": 7712,
+    "title": "Vandae Maatharam",
+    "artist": "D Imman, Harish Raghavendra, Vijay Yesudas, Haricharan, Naresh Iyer, Krish, Mathangi Jagdish, Pop Shalini, Srilekha Parthasarathy, Chinmayi",
+    "album": "Vandae Maatharam",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vandae%20Maatharam.jpg"
+  },
+  {
+    "id": 7713,
+    "title": "Vanthathu Kaadhalena",
+    "artist": "Jithin Raj",
+    "album": "Naan Thaan Siva",
+    "duration": 105,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vanthathu-Kaadhalena-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7714,
+    "title": "Varta Varta Varta",
+    "artist": "Adharsh, G K Lavanya",
+    "album": "Rendu",
+    "duration": 288,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Varta%20Varta%20Varta.jpg"
+  },
+  {
+    "id": 7715,
+    "title": "Varum Aana Varaathu Karaoke",
+    "artist": "D Imman",
+    "album": "Seemaraja",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Varum-Aana-Varaathu-Karaoke-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7716,
+    "title": "Varum Aana Varaathu",
+    "artist": "Vandana Srinivasan",
+    "album": "Seemaraja",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Varum-Aana-Varaathu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7717,
+    "title": "Varuthapadatha Vaalibar Sangam",
+    "artist": "Sivakarthikeyan, Anthonydasan, \"Kovil Patti\" Amali",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Varuthapadatha-Vaalibar-Sangam.jpg"
+  },
+  {
+    "id": 7718,
+    "title": "Vasuvum Saravananum",
+    "artist": "Sooraj Santhosh, Kailash Kher",
+    "album": "Vasuvum Saravananum Onna Padichavanga",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vasuvum-Saravananum.jpg"
+  },
+  {
+    "id": 7719,
+    "title": "Vazhgai Enbathau",
+    "artist": "D Imman",
+    "album": "Vilai",
+    "duration": 44,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vazhgai%20Enbathau.jpg"
+  },
+  {
+    "id": 7720,
+    "title": "Veera Thamizhan (Madras Gig)",
+    "artist": "D Imman, Nithyasree Mahadevan, Aaryan Dinesh Kanagaratnam (ADK)",
+    "album": "Veera Thamizhan (Madras Gig)",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Veera-Thamizhan-(Madras-Gig)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7721,
+    "title": "Veri Konda Puli Ondru",
+    "artist": "Anantha A, Nivas",
+    "album": "Pandiyanaadu",
+    "duration": 321,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Veri-Konda-Puli-Ondru.jpg"
+  },
+  {
+    "id": 7722,
+    "title": "Vettikattu Karaoke",
+    "artist": "Instrumental",
+    "album": "Viswasam",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vettikattu---Karaoke-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7723,
+    "title": "Vettikattu",
+    "artist": "Shankar Mahadevan",
+    "album": "Viswasam",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vettikattu-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7724,
+    "title": "Vilaye Un Vilayenna",
+    "artist": "D Imman",
+    "album": "Vilai",
+    "duration": 303,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vilaye%20Un%20Vilayenna.jpg"
+  },
+  {
+    "id": 7725,
+    "title": "Vinveera Vinveera Idhu",
+    "artist": "Ranjith, Sri Rascol",
+    "album": "Tik Tik Tik",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vinveera-Vinveera-Idhu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7726,
+    "title": "Virru Virru",
+    "artist": "Jithin Raj, D Imman",
+    "album": "Rekka",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Virru-Virru.jpg"
+  },
+  {
+    "id": 7727,
+    "title": "Vizhigalil Vizhigalil",
+    "artist": "Harish Raghavendra",
+    "album": "Thiruvilaiyaadal Aarambam",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vizhigalil%20Vizhigalil.jpg"
+  },
+  {
+    "id": 7728,
+    "title": "Vizhuvathum Ezhuvathum",
+    "artist": "Ashwin Sharma",
+    "album": "Pon Manickavel",
+    "duration": 160,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Vizhuvathum-Ezhuvathum-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7729,
+    "title": "Waltzing Whistle",
+    "artist": "Instrumental",
+    "album": "Pokkiri Raja",
+    "duration": 111,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Waltzing-Whistle.jpg"
+  },
+  {
+    "id": 7730,
+    "title": "Whistle Adikkum",
+    "artist": "Harish Ragavendra, Anuradha Sriram, Ganga",
+    "album": "Whistle",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Whistle-Adikkum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7731,
+    "title": "Yaar Inda Muyalkutty (Karaoke Track)",
+    "artist": "D Imman",
+    "album": "Paayum Puli",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yaar-Inda-Muyalkutty-Karaoke-Track.jpg"
+  },
+  {
+    "id": 7732,
+    "title": "Yaar Inda Muyalkutty",
+    "artist": "Armaan Malik",
+    "album": "Paayum Puli",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yaar-Inda-Muyalkutty.jpg"
+  },
+  {
+    "id": 7733,
+    "title": "Yaeley Yaaley Maruthu (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Pandiyanaadu",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yaeley-Yaaley-Maruthu-Karaoke.jpg"
+  },
+  {
+    "id": 7734,
+    "title": "Yaeley Yaelay",
+    "artist": "Sooraj Santhosh",
+    "album": "Pandiyanaadu",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yaeley-Yaelay.jpg"
+  },
+  {
+    "id": 7735,
+    "title": "Yaro Yevalo",
+    "artist": "K G Ranjith",
+    "album": "Rendu",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yaro%20Yevalo.jpg"
+  },
+  {
+    "id": 7736,
+    "title": "Yedho Maayam Saeigirai",
+    "artist": "Jithin Raj & Vikram Prabhu",
+    "album": "Wagah",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yedho-Maayam-Saeigirai.jpg"
+  },
+  {
+    "id": 7737,
+    "title": "Yedho Ninaikiren",
+    "artist": "Manjari, Devan Ekambaram",
+    "album": "Thalai Nagaram",
+    "duration": 317,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yedho-Ninaikiren-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7738,
+    "title": "Yedho Yedho Aasai (Karaoke)",
+    "artist": "D Imman",
+    "album": "Naan Thaan Siva",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yedho-Yedho-Aasai-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7739,
+    "title": "Yedho Yedho Aasai",
+    "artist": "Shreya Ghoshal",
+    "album": "Naan Thaan Siva",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yedho-Yedho-Aasai-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7740,
+    "title": "Yelomia Karaoke",
+    "artist": "D Imman",
+    "album": "Valiyavan",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yelomia---Karaoke.jpg"
+  },
+  {
+    "id": 7741,
+    "title": "Yelomia",
+    "artist": "Sunidhi Chauhan",
+    "album": "Valiyavan",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yelomia.jpg"
+  },
+  {
+    "id": 7742,
+    "title": "Yembuttu Irukkuthu Aasai (Karaoke)",
+    "artist": "D Imman",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yembuttu-Irukkuthu-Aasai-Karaoke.jpg"
+  },
+  {
+    "id": 7743,
+    "title": "Yembuttu Irukkuthu Aasai",
+    "artist": "D Imman, Kalyani Nair, Sean Roldan",
+    "album": "Saravanan Irukka Bayamaen",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yembuttu-Irukkuthu-Aasai.jpg"
+  },
+  {
+    "id": 7744,
+    "title": "Yena Velay",
+    "artist": "Jyotsna Radhakrishnan, D Jmman",
+    "album": "Thavam",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yena-Velay-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7745,
+    "title": "Yenakku Mattum Yaen",
+    "artist": "Chinna, Badava Gopi",
+    "album": "Panju Mittai",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yenakku-Mattum-Yaen.jpg"
+  },
+  {
+    "id": 7746,
+    "title": "Yenge Yen Ponmaalai",
+    "artist": "D Imman, Arya Dhayal, Yugabharathi",
+    "album": "Udanpirappe",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yenge-Yen-Ponmaalai-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7747,
+    "title": "Yenjottu Payalae Unna",
+    "artist": "Diwakar",
+    "album": "Panju Mittai",
+    "duration": 168,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yenjottu-Payalae-Unna.jpg"
+  },
+  {
+    "id": 7748,
+    "title": "Yennaannu Solveno",
+    "artist": "D Sathyaprakash, Vandana Srinivasan",
+    "album": "Podhuvaga En Manasu Thangam",
+    "duration": 163,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennaannu-Solveno-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7749,
+    "title": "Yennada Yennada",
+    "artist": "Shreya Ghoshal, Suraj Santhosh, Shweta Suresh",
+    "album": "Varuthapadatha Valibar Sangam",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennada-Yennada.jpg"
+  },
+  {
+    "id": 7750,
+    "title": "Yennamma Ippadi Panreengalaema (Club Mix)",
+    "artist": "D Imman, Aaryan Dinesh Kanagaratnam (ADK)",
+    "album": "Rajini Murugan",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennamma%20Ippadi%20Panreengalaema%20(Club%20Mix).jpg"
+  },
+  {
+    "id": 7751,
+    "title": "Yennamma Ippadi Panreengalaema (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Rajini Murugan",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennamma%20Ippadi%20Panreengalaema%20(Karaoke%20Version).jpg"
+  },
+  {
+    "id": 7752,
+    "title": "Yennamma Ippadi Panreengalaema",
+    "artist": "D Imman",
+    "album": "Rajini Murugan",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennamma%20Ippadi%20Panreengalaema.jpg"
+  },
+  {
+    "id": 7753,
+    "title": "Yennavaley",
+    "artist": "Vijay Yesudas",
+    "album": "Ninaivil Nindraval",
+    "duration": 177,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yennavaley.jpg"
+  },
+  {
+    "id": 7754,
+    "title": "Yeno Yeno",
+    "artist": "Sirkazhi G Sivachidambaram",
+    "album": "Uchithanai Mukarnthal",
+    "duration": 148,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yeno-Yeno-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7755,
+    "title": "Yethukkaaga Enna Neeyum (Instrumental)",
+    "artist": "Karthik Iyer (Violin)",
+    "album": "Rummy",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yethukkaaga-Enna-Neeyum-Instrumental.jpg"
+  },
+  {
+    "id": 7756,
+    "title": "Yethukkaaga Enna Neeyum",
+    "artist": "Santhosh Hariharan, A V Pooja",
+    "album": "Rummy",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_52@main/covers/Yethukkaaga-Enna-Neeyum.jpg"
+  },
+  {
+    "id": 7757,
+    "title": "A Lady & The Vionlin",
+    "artist": "Aditi Paul & Karthik (Violin)",
+    "album": "Kumki",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/A-Lady-%26-The-Vionlin.jpg"
+  },
+  {
+    "id": 7758,
+    "title": "Aahaa Aahaa (Karaoke)",
+    "artist": "D Imman",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aahaa-Aahaa-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7759,
+    "title": "Aahaa Aahaa",
+    "artist": "Haricharan, Shreya Ghoshal",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aahaa-Aahaa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7760,
+    "title": "Aanaalum Indha Mayakkam (Karaoke)",
+    "artist": "D Imman",
+    "album": "10 Endrathukulla",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanaalum%20Indha%20Mayakkam%20(Karaoke).jpg"
+  },
+  {
+    "id": 7761,
+    "title": "Aanaalum Indha Mayakkam",
+    "artist": "D Imman, Sathyaprakash D",
+    "album": "10 Endrathukulla",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanaalum%20Indha%20Mayakkam.jpg"
+  },
+  {
+    "id": 7762,
+    "title": "Aanai (English)",
+    "artist": "D Imman",
+    "album": "Aanai",
+    "duration": 198,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aanai-(English)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7763,
+    "title": "Aaradi Rachasano",
+    "artist": "D Imman, Kumar Sanu, Sheil Hatha, Shreya Ghoshal",
+    "album": "Ainthaam Padai",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aaradi%20Rachasano.jpg"
+  },
+  {
+    "id": 7764,
+    "title": "Aayiram Aayiram",
+    "artist": "D Imman, S P Balasubrahmanyam",
+    "album": "Durai",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aayiram%20Aayiram.jpg"
+  },
+  {
+    "id": 7765,
+    "title": "Achamillai Achamillai",
+    "artist": "D Imman, Jithin Raj, Shenbagaraj, Narayanan, Deepak, Soundarya Nandakumar, Abinaya Shenbagaraj, Sowmya Mahadevan, Veena Murali",
+    "album": "Bhoomi",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Achamillai-Achamillai-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7766,
+    "title": "Ada Nan Orumaathirida",
+    "artist": "Sayanora Philip",
+    "album": "Lee",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ada-Nan-Orumaathirida-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7767,
+    "title": "Adada Adada (Kovai Brothers)",
+    "artist": "Kalani",
+    "album": "Kovai Brothers",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adada%20Adada.jpg"
+  },
+  {
+    "id": 7768,
+    "title": "Adada Adada Idhuthan",
+    "artist": "Aalap Raju",
+    "album": "Ennathan Pesuvatho",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adada-Adada-Idhuthan-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7769,
+    "title": "Adho Andha Paravai (Remix)",
+    "artist": "D Imman, Sunitha Sarathy",
+    "album": "Madarasi",
+    "duration": 278,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adho%20Andha%20Paravai%20(Remix).jpg"
+  },
+  {
+    "id": 7770,
+    "title": "Adi Aathi (Durai)",
+    "artist": "D Imman, Jassie Gift, Ramya, Timmy",
+    "album": "Durai",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Adi%20Aathi.jpg"
+  },
+  {
+    "id": 7771,
+    "title": "Adida Dammaaram",
+    "artist": "D Imman & Roshini",
+    "album": "Maharaja",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adida-Dammaaram-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7772,
+    "title": "Adivellakkaara Velaayi",
+    "artist": "Anthony Daasan",
+    "album": "Kadaikutty Singam",
+    "duration": 172,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adivellakkaara-Velaayi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7773,
+    "title": "Adra Sakkai",
+    "artist": "Karthik, Shalini Singh",
+    "album": "Giri",
+    "duration": 248,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Adra-Sakkai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7774,
+    "title": "Aei Arakka (Thathathatha Thadai)",
+    "artist": "Benny Dayal",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aei-Arakka-(Thathathatha-Thadai)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7775,
+    "title": "Aiy Idupattum",
+    "artist": "D Imman, Srileaka Parthasrathy",
+    "album": "Aanai",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aiy-Idupattum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7776,
+    "title": "Aiythaaney",
+    "artist": "D Imman & Chinmayi",
+    "album": "Muthal Idam",
+    "duration": 299,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aiythaaney-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7777,
+    "title": "Akka Petha Jakkavandi (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Maruthu",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Akka-Petha-Jakkavandi-Karaoke.jpg"
+  },
+  {
+    "id": 7778,
+    "title": "Akka Petha Jakkavandi",
+    "artist": "Anirudh Ravichander, Niranjana Ramanan",
+    "album": "Maruthu",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Akka-Petha-Jakkavandi.jpg"
+  },
+  {
+    "id": 7779,
+    "title": "Alek Alek",
+    "artist": "D Imman, Suchitra",
+    "album": "Anbe Vaa",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Alek%20Alek.jpg"
+  },
+  {
+    "id": 7780,
+    "title": "Ammadi Ammadi Karaoke",
+    "artist": "Karaoke Version",
+    "album": "Desingu Raja",
+    "duration": 300,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammadi-Ammadi-Karaoke.jpg"
+  },
+  {
+    "id": 7781,
+    "title": "Ammadi Ammadi",
+    "artist": "Shreya Ghosal",
+    "album": "Desingu Raja",
+    "duration": 303,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammadi-Ammadi.jpg"
+  },
+  {
+    "id": 7782,
+    "title": "Ammukuttiye (Karaoke)",
+    "artist": "D Imman",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammukuttiye-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7783,
+    "title": "Ammukuttiye",
+    "artist": "Pradeep Kumar",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ammukuttiye-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7784,
+    "title": "Anandin Arimugam",
+    "artist": "D Imman",
+    "album": "ABCD",
+    "duration": 73,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Anandin%20Arimugam.jpg"
+  },
+  {
+    "id": 7785,
+    "title": "Andha Pulla Manasa (Karaoke)",
+    "artist": "Instrumental (Karaoke)",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Andha-Pulla-Manasa-Karaoke.jpg"
+  },
+  {
+    "id": 7786,
+    "title": "Andha Pulla Manasa",
+    "artist": "Haricharan",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Andha-Pulla-Manasa.jpg"
+  },
+  {
+    "id": 7787,
+    "title": "Aram Seiya Virumbu",
+    "artist": "Hariharan",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Aram-Seiya-Virumbu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7788,
+    "title": "Are Dhammare",
+    "artist": "Neha Bhasin & Ananthu",
+    "album": "Maharaja",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Are-Dhammare-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7789,
+    "title": "Athamagalayam",
+    "artist": "M L R Kathikeyan, Chinnaponnu, Madurai Saroja & Velmurugan",
+    "album": "Amara",
+    "duration": 296,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athamagalayam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7790,
+    "title": "Athey Nila (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athey-Nila-Karaoke.jpg"
+  },
+  {
+    "id": 7791,
+    "title": "Athey Nila",
+    "artist": "Sathya Prakash, Shasha Tirupati, Elfe Choir",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Athey-Nila.jpg"
+  },
+  {
+    "id": 7792,
+    "title": "Ayayayo Aananthamey II",
+    "artist": "Haricharan",
+    "album": "Kumki",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ayayayo-Aananthamey-II.jpg"
+  },
+  {
+    "id": 7793,
+    "title": "Ayayayo Aananthamey",
+    "artist": "Karaoke Track",
+    "album": "Kumki",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_49@main/covers/Ayayayo-Aananthamey.jpg"
+  },
+  {
+    "id": 7794,
+    "title": "Azhagazhaga (Karaoke)",
+    "artist": "D Imman",
+    "album": "Karuppan",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Azhagazhaga-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7795,
+    "title": "Azhagazhaga Thodukirathe",
+    "artist": "Pradeep Kumar",
+    "album": "Karuppan",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Azhagazhaga-Thodukirathe-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7796,
+    "title": "Azhagiya Darisanam",
+    "artist": "Madubalakrishnan, Benny Krishnakumar",
+    "album": "Aanai",
+    "duration": 316,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Azhagiya-Darisanam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7797,
+    "title": "Azhagu Azhagu",
+    "artist": "Bela Shende",
+    "album": "Kacheri Arambam",
+    "duration": 129,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Azhagu-Azhagu.jpg"
+  },
+  {
+    "id": 7798,
+    "title": "Baaga Unnara",
+    "artist": "Udit Narayan & Suvi",
+    "album": "Naan Avanillai 2",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Baaga-Unnara-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7799,
+    "title": "Badass (Theme Music)",
+    "artist": "D Imman",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 54,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Badass-(Theme-Music)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7800,
+    "title": "Bharathin Arimugam",
+    "artist": "D Imman",
+    "album": "ABCD",
+    "duration": 74,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Bharathin%20Arimugam.jpg"
+  },
+  {
+    "id": 7801,
+    "title": "Bitten by Insanity (Theme)",
+    "artist": "D Imman",
+    "album": "Miruthan",
+    "duration": 184,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Bitten-by-Insanity-Theme.jpg"
+  },
+  {
+    "id": 7802,
+    "title": "Celebration Horn (Bomb)",
+    "artist": "D Imman",
+    "album": "Bomb",
+    "duration": 191,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Celebration%20Horn.jpg"
+  },
+  {
+    "id": 7803,
+    "title": "Chandravin Arimugam",
+    "artist": "D Imman",
+    "album": "ABCD",
+    "duration": 72,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Chandravin%20Arimugam.jpg"
+  },
+  {
+    "id": 7804,
+    "title": "Chiku Chiku Boom",
+    "artist": "Keerthi Sagathia, Harini Ravi, Feji",
+    "album": "Maasilamani",
+    "duration": 283,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Chiku-Chiku-Boom.jpg"
+  },
+  {
+    "id": 7805,
+    "title": "Chinna Kozhunthanarey",
+    "artist": "D Imman, Sadhana Sargam",
+    "album": "Ainthaam Padai",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Chinna%20Kozhunthanarey.jpg"
+  },
+  {
+    "id": 7806,
+    "title": "Chinnajiru Kilye",
+    "artist": "Aanath",
+    "album": "Aanai",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Chinnajiru-Kilye-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7807,
+    "title": "Clara My Name Is Clara (Karaoke)",
+    "artist": "D Imman",
+    "album": "Laabam",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Clara-My-Name-Is-Clara-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7808,
+    "title": "Clara My Name Is Clara",
+    "artist": "Sunidhi Chauhan, Kpy Naveen",
+    "album": "Laabam",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Clara-My-Name-Is-Clara-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7809,
+    "title": "Crucial Beats (Theme Music)",
+    "artist": "D Imman",
+    "album": "Bhoomi",
+    "duration": 103,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Crucial-Beats-(Theme-Music)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7810,
+    "title": "Dai Kaiya Vachikittu",
+    "artist": "Devan, Anuradha Sriram",
+    "album": "Giri",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dai-Kaiya-Vachikittu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7811,
+    "title": "Damaalu Dumeelu (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bogan",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Damaalu-Dumeelu-Karaoke.jpg"
+  },
+  {
+    "id": 7812,
+    "title": "Damaalu Dumeelu",
+    "artist": "Anirudh Ravichander",
+    "album": "Bogan",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Damaalu-Dumeelu.jpg"
+  },
+  {
+    "id": 7813,
+    "title": "Dang Dang (Karaoke)",
+    "artist": "D Imman",
+    "album": "Manam Kothi Paravai",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dang-Dang-Karaoke.jpg"
+  },
+  {
+    "id": 7814,
+    "title": "Dang Dang",
+    "artist": "Saisharan, S Malavika",
+    "album": "Manam Kothi Paravai",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dang-Dang.jpg"
+  },
+  {
+    "id": 7815,
+    "title": "Dark Rooster (Theme Music)",
+    "artist": "D Imman",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 113,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dark-Rooster-(Theme-Music)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7816,
+    "title": "Daylight Robbery (Theme Music)",
+    "artist": "D Imman",
+    "album": "Laabam",
+    "duration": 187,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Daylight-Robbery-(Theme-Music)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7817,
+    "title": "Deeyaalo Deeyalo (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Kayal",
+    "duration": 214,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Deeyaalo-Deeyalo-Karaoke.jpg"
+  },
+  {
+    "id": 7818,
+    "title": "Deeyaalo Deeyalo",
+    "artist": "Oranthanadu Gopu",
+    "album": "Kayal",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Deeyaalo-Deeyalo.jpg"
+  },
+  {
+    "id": 7819,
+    "title": "Dhavam Ondru",
+    "artist": "Balram, Nithyasree Mahadevan",
+    "album": "ABCD",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dhavam%20Ondru.jpg"
+  },
+  {
+    "id": 7820,
+    "title": "Dhool Machi",
+    "artist": "D Imman",
+    "album": "Kalinga",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dhool%20Machi.jpg"
+  },
+  {
+    "id": 7821,
+    "title": "Divyavin Arimugam",
+    "artist": "D Imman",
+    "album": "ABCD",
+    "duration": 73,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Divyavin%20Arimugam.jpg"
+  },
+  {
+    "id": 7822,
+    "title": "Dora Dora",
+    "artist": "Balram, Kalyani Nair",
+    "album": "Maasilamani",
+    "duration": 298,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dora-Dora.jpg"
+  },
+  {
+    "id": 7823,
+    "title": "Doube Okay",
+    "artist": "Rahul Pandey",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Doube-Okay.jpg"
+  },
+  {
+    "id": 7824,
+    "title": "Dubukku Dubukku",
+    "artist": "D Imman, Anuradha Sriram",
+    "album": "Giri",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Dubukku-Dubukku-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7825,
+    "title": "Elanthaari (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Maaveeran Kittu",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Elanthaari-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7826,
+    "title": "Elanthaari (Reprise Version)",
+    "artist": "Sniti Mishra",
+    "album": "Maaveeran Kittu",
+    "duration": 212,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Elanthaari-Reprise-Version.jpg"
+  },
+  {
+    "id": 7827,
+    "title": "Elanthaari",
+    "artist": "Pooja Vaidyanath",
+    "album": "Maaveeran Kittu",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Elanthaari.jpg"
+  },
+  {
+    "id": 7828,
+    "title": "Engae Ponaai",
+    "artist": "D Imman, S P Balasubrahmanyam",
+    "album": "Jeeva",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Engae-Ponaai-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7829,
+    "title": "Ennamo Nadakkude (Karoke)",
+    "artist": "Instrumental",
+    "album": "Amara",
+    "duration": 308,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ennamo-Nadakkude-(Karoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7830,
+    "title": "Ennanmo Nadakkudue",
+    "artist": "Haricharan & Ramya",
+    "album": "Amara",
+    "duration": 310,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ennanmo-Nadakkudue-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7831,
+    "title": "Essaalaama",
+    "artist": "Vijay Prakash",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Essaalaama.jpg"
+  },
+  {
+    "id": 7832,
+    "title": "Figurudan Oru Naal",
+    "artist": "Karthik, Sainthavi",
+    "album": "Aanai",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Figurudan-Oru-Naal-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7833,
+    "title": "Fun Motto (Theme Music)",
+    "artist": "Chorus",
+    "album": "Kacheri Arambam",
+    "duration": 74,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Fun-Motto-Theme-Music.jpg"
+  },
+  {
+    "id": 7834,
+    "title": "Gaana Gaana",
+    "artist": "D Imman, Shreya Ghoshal, Anand Aravindakshan, Madhan Karky",
+    "album": "10 Endrathukulla",
+    "duration": 383,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Gaana%20Gaana.jpg"
+  },
+  {
+    "id": 7835,
+    "title": "Gaandakannazhagi (Karaoke)",
+    "artist": "Unknown",
+    "album": "Namma Veettu Pillai",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Gaandakannazhagi-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7836,
+    "title": "Gaandakannazhagi",
+    "artist": "Anirudh Ravichander, Neeti Mohan",
+    "album": "Namma Veettu Pillai",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Gaandakannazhagi-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7837,
+    "title": "Godfather Kanmaniye (Karaoke)",
+    "artist": "D Imman",
+    "album": "Ippadai Vellum",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Godfather-Kanmaniye-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7838,
+    "title": "Godfather Kanmaniye",
+    "artist": "Aadharaa",
+    "album": "Ippadai Vellum",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Godfather-Kanmaniye-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7839,
+    "title": "Gopamavaney",
+    "artist": "Manikka Vinayagam, Naveen",
+    "album": "Kovai Brothers",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Gopamavaney.jpg"
+  },
+  {
+    "id": 7840,
+    "title": "Hello Mister",
+    "artist": "Neeti Mohan & Snigdha Chandra",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Hello-Mister.jpg"
+  },
+  {
+    "id": 7841,
+    "title": "Hello Nanbaa",
+    "artist": "Vijay Yesudas",
+    "album": "Maharaja",
+    "duration": 306,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Hello-Nanbaa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7842,
+    "title": "Hey Puthrajaya Poove",
+    "artist": "Jithin Raj, Sunitha Sarathy",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Hey-Puthrajaya-Poove.jpg"
+  },
+  {
+    "id": 7843,
+    "title": "Hey Yennana",
+    "artist": "Karthik, Suchitra & Megha",
+    "album": "Marudhamalai",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Hey-Yennana-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7844,
+    "title": "Horrifying Zombies (Theme)",
+    "artist": "D Imman",
+    "album": "Miruthan",
+    "duration": 111,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Horrifying-Zombies-Theme.jpg"
+  },
+  {
+    "id": 7845,
+    "title": "Human Ethics (Theme Music)",
+    "artist": "D Imman",
+    "album": "Maaveeran Kittu",
+    "duration": 150,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Human-Ethics-Theme-Music.jpg"
+  },
+  {
+    "id": 7846,
+    "title": "Idharkkuthane",
+    "artist": "Shankar Mahadevan, Vandhana Srinivasan",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Idharkkuthane.jpg"
+  },
+  {
+    "id": 7847,
+    "title": "Inaivom (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Maaveeran Kittu",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Inaivom-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7848,
+    "title": "Inaivom Uyirellam Ondre",
+    "artist": "Pradeep Vijay",
+    "album": "Maaveeran Kittu",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Inaivom-Uyirellam-Ondre.jpg"
+  },
+  {
+    "id": 7849,
+    "title": "Inga Vaanthey",
+    "artist": "Haricharan & Surmukhi",
+    "album": "Muthal Idam",
+    "duration": 307,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Inga-Vaanthey-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7850,
+    "title": "Ippadai Vellum Nichayame",
+    "artist": "Shreya Ghoshal",
+    "album": "Ippadai Vellum",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ippadai-Vellum-Nichayame-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7851,
+    "title": "Ippadai Vellum Theme",
+    "artist": "D Imman, Chennai Choir",
+    "album": "Ippadai Vellum",
+    "duration": 67,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ippadai-Vellum-Theme-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7852,
+    "title": "Jal Jal Jal Oosai (Karaoke)",
+    "artist": "D Imman",
+    "album": "Manam Kothi Paravai",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jal-Jal-Jal-Oosai-Karaoke.jpg"
+  },
+  {
+    "id": 7853,
+    "title": "Jal Jal Jal Oosai",
+    "artist": "Aalaap Raju, Surmukhi",
+    "album": "Manam Kothi Paravai",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jal-Jal-Jal-Oosai.jpg"
+  },
+  {
+    "id": 7854,
+    "title": "Jelina O Jelina",
+    "artist": "K K,Shalini Singh (Pop)",
+    "album": "Lee",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jelina-O-Jelina-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7855,
+    "title": "Jigiri Dosthu",
+    "artist": "Jayamoorthy, Anthakudi Ilayaraja",
+    "album": "Namma Veettu Pillai",
+    "duration": 329,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jigiri-Dosthu-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7856,
+    "title": "Jilla (Theme)",
+    "artist": "Santhosh Hariharan, Deepak, Anand, Shenbagaraj",
+    "album": "Jilla",
+    "duration": 187,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jilla-Theme.jpg"
+  },
+  {
+    "id": 7857,
+    "title": "Jingu Chikku",
+    "artist": "Solar Sai & Kalpana",
+    "album": "Mynaa",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jingu-Chikku.jpg"
+  },
+  {
+    "id": 7858,
+    "title": "Jingunamani",
+    "artist": "K G Ranjith, Sunidhi Chauhan",
+    "album": "Jilla",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Jingunamani.jpg"
+  },
+  {
+    "id": 7859,
+    "title": "Kaal Koluse",
+    "artist": "Balaram",
+    "album": "Anbe Vaa",
+    "duration": 271,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kaal%20Koluse.jpg"
+  },
+  {
+    "id": 7860,
+    "title": "Kaalai Theme",
+    "artist": "Nivas, Sai Vignesh, T S Sarath Santhosh, Narayanan Ravishankar, Jithin Raj, Vignesh Narayanan",
+    "album": "Kadaikutty Singam",
+    "duration": 232,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kaalai-Theme-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7861,
+    "title": "Kaapathungo",
+    "artist": "Karthik",
+    "album": "Kalinga",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kaapathungo.jpg"
+  },
+  {
+    "id": 7862,
+    "title": "Kabaddi Kabaddi Male",
+    "artist": "Deepak",
+    "album": "Kennedy Club",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kabaddi-Kabaddi---Male-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7863,
+    "title": "Kabaddi Kabaddi",
+    "artist": "Resmi Sateesh, Srinidhi, Suriya Badrinath",
+    "album": "Kennedy Club",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kabaddi-Kabaddi-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7864,
+    "title": "Kacheri Kacheri",
+    "artist": "Mukesh, Madhushree",
+    "album": "Kacheri Arambam",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kacheri-Kacheri.jpg"
+  },
+  {
+    "id": 7865,
+    "title": "Kadai Kannaaley (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bhoomi",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadai-Kannaaley-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7866,
+    "title": "Kadai Kannaaley",
+    "artist": "D Imman, Shreya Ghoshal, Varun Parandhaman",
+    "album": "Bhoomi",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadai-Kannaaley-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7867,
+    "title": "Kadavule A Rock Star",
+    "artist": "Maria Roe Vincent",
+    "album": "Kacheri Arambam",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadavule-A-Rock-Star.jpg"
+  },
+  {
+    "id": 7868,
+    "title": "Kadavule Kadavule",
+    "artist": "Palash Sen",
+    "album": "Kacheri Arambam",
+    "duration": 304,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadavule-Kadavule.jpg"
+  },
+  {
+    "id": 7869,
+    "title": "Kadhal Illai Sadhal",
+    "artist": "D Imman",
+    "album": "ABCD",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadhal%20Illai%20Sadhal.jpg"
+  },
+  {
+    "id": 7870,
+    "title": "Kadhal Vaaram Kondata",
+    "artist": "Tippu, Ranjith, Suchitra",
+    "album": "Madarasi",
+    "duration": 212,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadhal%20Vaaram%20Kondata.jpg"
+  },
+  {
+    "id": 7871,
+    "title": "Kadhalae Kadhalae",
+    "artist": "Prasanna",
+    "album": "Kalinga",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kadhalae%20Kadhalae.jpg"
+  },
+  {
+    "id": 7872,
+    "title": "Kaiya Pudi",
+    "artist": "Naresh Iyer & Sadhan Sargam",
+    "album": "Mynaa",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kaiya-Pudi.jpg"
+  },
+  {
+    "id": 7873,
+    "title": "Kalavani Kalavanipayale",
+    "artist": "Anuradha Sriram, D Imman, Raj Kapoor",
+    "album": "Kusthi",
+    "duration": 237,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kalavani%20Kalavanipayale.jpg"
+  },
+  {
+    "id": 7874,
+    "title": "Kandangi Kandangi (Karaoke)",
+    "artist": "Karaoke Instrumental",
+    "album": "Jilla",
+    "duration": 295,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kandangi-Kandangi-Karaoke.jpg"
+  },
+  {
+    "id": 7875,
+    "title": "Kandangi Kandangi",
+    "artist": "Vijay, Shreya Ghoshal",
+    "album": "Jilla",
+    "duration": 296,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kandangi-Kandangi.jpg"
+  },
+  {
+    "id": 7876,
+    "title": "Kanmani (Karaoke)",
+    "artist": "D Imman",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kanmani-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7877,
+    "title": "Kanmani",
+    "artist": "Abhay Jodhpurkar",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kanmani-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7878,
+    "title": "Kannadikkala",
+    "artist": "Jithin Raj, Pooja Vaidyanath",
+    "album": "Maaveeran Kittu",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kannadikkala.jpg"
+  },
+  {
+    "id": 7879,
+    "title": "Karuva Karuva Payale (Karaoke)",
+    "artist": "D Imman",
+    "album": "Karuppan",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Karuva-Karuva-Payale-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7880,
+    "title": "Karuva Karuva Payale",
+    "artist": "Shankar Mahadevan, Shashaa Tirupati",
+    "album": "Karuppan",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Karuva-Karuva-Payale-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7881,
+    "title": "Karuvakkattu Karuvaya (Karoake)",
+    "artist": "Instrumental",
+    "album": "Maruthu",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Karuvakkattu-Karuvaya-Karoake.jpg"
+  },
+  {
+    "id": 7882,
+    "title": "Karuvakkattu Karuvaya",
+    "artist": "Vandhana Srinivasan, Jithin Raj, Jayamoorthy",
+    "album": "Maruthu",
+    "duration": 290,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Karuvakkattu-Karuvaya.jpg"
+  },
+  {
+    "id": 7883,
+    "title": "Kichu Kichu Thambulam",
+    "artist": "Baby Harini, Sriranjani, S Srimathi, G Aathreya, hman Aravind & Solar Sai",
+    "album": "Mynaa",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kichu-Kichu-Thambulam.jpg"
+  },
+  {
+    "id": 7884,
+    "title": "Kisu Kisu Manusha",
+    "artist": "Harish Raghavendra, Mathangi",
+    "album": "Giri",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kisu-Kisu-Manusha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7885,
+    "title": "Kokkarakko",
+    "artist": "D Imman, Karthik",
+    "album": "Kusthi",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kokkarakko.jpg"
+  },
+  {
+    "id": 7886,
+    "title": "Koodave Varamaadhiri",
+    "artist": "Alphons Joseph",
+    "album": "Kayal",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Koodave-Varamaadhiri.jpg"
+  },
+  {
+    "id": 7887,
+    "title": "Kooduvittu Koodu (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bogan",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kooduvittu-Koodu-Karaoke.jpg"
+  },
+  {
+    "id": 7888,
+    "title": "Kooduvittu Koodu",
+    "artist": "Jyoti Nooran, Arvind Swami",
+    "album": "Bogan",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kooduvittu-Koodu.jpg"
+  },
+  {
+    "id": 7889,
+    "title": "Kooppiduda",
+    "artist": "Manikka Vinayagam, Grace",
+    "album": "Kalinga",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kooppiduda.jpg"
+  },
+  {
+    "id": 7890,
+    "title": "Koorapodava Katti",
+    "artist": "Priya Hemesh & Jeyaraj",
+    "album": "Amara",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Koorapodava-Katti-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7891,
+    "title": "Kulebaa Vaa (Karaoke)",
+    "artist": "D Imman",
+    "album": "Ippadai Vellum",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kulebaa-Vaa-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7892,
+    "title": "Kulebaa Vaa",
+    "artist": "Kumaresh Kamalakannan, Nalini Krishnan",
+    "album": "Ippadai Vellum",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kulebaa-Vaa-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7893,
+    "title": "Kumru Kumru",
+    "artist": "Siva Chitambaram, Anubama",
+    "album": "Aanai",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Kumru-Kumru-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7894,
+    "title": "Laama Laama Karaoke",
+    "artist": "D Imaan",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Laama-Laama-Karaoke.jpg"
+  },
+  {
+    "id": 7895,
+    "title": "Laama Laama",
+    "artist": "Jithinraj & Shashaa Tirupathi",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Laama-Laama.jpg"
+  },
+  {
+    "id": 7896,
+    "title": "Loyola",
+    "artist": "Balaraman",
+    "album": "Anbe Vaa",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Loyola.jpg"
+  },
+  {
+    "id": 7897,
+    "title": "Mailaanji (Karaoke)",
+    "artist": "Unknown",
+    "album": "Namma Veettu Pillai",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mailaanji-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7898,
+    "title": "Mailaanji",
+    "artist": "Pradeep Kumar, Shreya Ghoshal",
+    "album": "Namma Veettu Pillai",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mailaanji-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7899,
+    "title": "Manjal Mugame",
+    "artist": "Saindhavi",
+    "album": "ABCD",
+    "duration": 311,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Manjal%20Mugame.jpg"
+  },
+  {
+    "id": 7900,
+    "title": "Manmadha Leelai",
+    "artist": "Shail Hada, Nithyasree Mahadevan & Ben",
+    "album": "Naan Avanillai 2",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Manmadha-Leelai-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7901,
+    "title": "Marudhu (Theme)",
+    "artist": "Instrumental",
+    "album": "Maruthu",
+    "duration": 203,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Marudhu-Theme.jpg"
+  },
+  {
+    "id": 7902,
+    "title": "Maruthamalai II",
+    "artist": "Madhubalakrishnan & Anitha Venkatanarasinhan",
+    "album": "Marudhamalai",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Maruthamalai-II-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7903,
+    "title": "Maruthamalai",
+    "artist": "D Imman & Anitha Venkatanarasimhan",
+    "album": "Marudhamalai",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Maruthamalai-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7904,
+    "title": "Masala Maharani",
+    "artist": "D Imman, Priyadarshini, Ranjith",
+    "album": "Kusthi",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Masala%20Maharani.jpg"
+  },
+  {
+    "id": 7905,
+    "title": "Mattakku Mattakku",
+    "artist": "Keerthi Sagathia",
+    "album": "Kennedy Club",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mattakku-Mattakku-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7906,
+    "title": "Mazhai Charalai",
+    "artist": "P Unnikrishnan",
+    "album": "Kalinga",
+    "duration": 286,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mazhai%20Charalai.jpg"
+  },
+  {
+    "id": 7907,
+    "title": "Mexi Mexican Lady",
+    "artist": "Hariharan",
+    "album": "Maharaja",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mexi-Mexican-Lady-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7908,
+    "title": "Midukkanavaney",
+    "artist": "Balram, Mathagi",
+    "album": "Aanai",
+    "duration": 276,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Midukkanavaney-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7909,
+    "title": "Mirutha Mirutha (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Miruthan",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mirutha-Mirutha-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7910,
+    "title": "Mirutha Mirutha",
+    "artist": "Shreya Ghoshal, Vijay Yesudas",
+    "album": "Miruthan",
+    "duration": 247,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mirutha-Mirutha.jpg"
+  },
+  {
+    "id": 7911,
+    "title": "Munnal Kadhali (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Miruthan",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Munnal-Kadhali-Karaoke-Version.jpg"
+  },
+  {
+    "id": 7912,
+    "title": "Munnal Kadhali (Reprise)",
+    "artist": "Haricharan",
+    "album": "Miruthan",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Munnal-Kadhali-Reprise.jpg"
+  },
+  {
+    "id": 7913,
+    "title": "Munnal Kadhali",
+    "artist": "Vishal Dadlani, Sharanya Gopinath",
+    "album": "Miruthan",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Munnal-Kadhali.jpg"
+  },
+  {
+    "id": 7914,
+    "title": "Murukkumeesa Maama",
+    "artist": "Diwakar, Anita Venkat",
+    "album": "Karuppan",
+    "duration": 314,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Murukkumeesa-Maama-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7915,
+    "title": "Muthal Idam",
+    "artist": "Vasudevan, Senthildas, Sam Keerthan, Feji, Krithika & Ranina Reddy",
+    "album": "Muthal Idam",
+    "duration": 190,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Muthal-Idam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7916,
+    "title": "My Name Is Raju Baby",
+    "artist": "Benny Dayal & Sricharan & Nazar",
+    "album": "Maharaja",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/My-Name-Is-Raju-Baby-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7917,
+    "title": "Mynaa Mynaa",
+    "artist": "Shaan",
+    "album": "Mynaa",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mynaa-Mynaa.jpg"
+  },
+  {
+    "id": 7918,
+    "title": "Mysterious Travel",
+    "artist": "D Imman",
+    "album": "10 Endrathukulla",
+    "duration": 209,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Mysterious%20Travel.jpg"
+  },
+  {
+    "id": 7919,
+    "title": "Naan Unnai",
+    "artist": "D Imman",
+    "album": "Anbe Vaa",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Naan%20Unnai.jpg"
+  },
+  {
+    "id": 7920,
+    "title": "Naangu Kangal",
+    "artist": "Javed Ali & Shreya Ghoshal",
+    "album": "Naan Avanillai 2",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Naangu-Kangal-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7921,
+    "title": "Nacka Romba Nacka",
+    "artist": "Benny Dayal, Rita",
+    "album": "Maasilamani",
+    "duration": 242,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nacka-Romba-Nacka.jpg"
+  },
+  {
+    "id": 7922,
+    "title": "Naetru Naan",
+    "artist": "D Imman, Sathyaprakash D",
+    "album": "Jeeva",
+    "duration": 101,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Naetru-Naan-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7923,
+    "title": "Namma Veettu Pillai (Theme)",
+    "artist": "Unknown",
+    "album": "Namma Veettu Pillai",
+    "duration": 174,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Namma-Veettu-Pillai-(Theme)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7924,
+    "title": "Nee Yeppo Pulla",
+    "artist": "Alphons Joseph",
+    "album": "Kumki",
+    "duration": 240,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nee-Yeppo-Pulla.jpg"
+  },
+  {
+    "id": 7925,
+    "title": "Neeyum Naanum (Kovai Brothers)",
+    "artist": "Karthik",
+    "album": "Kovai Brothers",
+    "duration": 79,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Neeyum%20Naanum.jpg"
+  },
+  {
+    "id": 7926,
+    "title": "Neeyum Naanum (Mynaa)",
+    "artist": "Benny Dayal & Shreya Goshal",
+    "album": "Mynaa",
+    "duration": 297,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Neeyum-Naanum.jpg"
+  },
+  {
+    "id": 7927,
+    "title": "Nelaavattam Karaoke",
+    "artist": "Karaoke Version",
+    "album": "Desingu Raja",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nelaavattam-Karaoke.jpg"
+  },
+  {
+    "id": 7928,
+    "title": "Nelaavattam",
+    "artist": "P Unnikrishnan & Harini",
+    "album": "Desingu Raja",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nelaavattam.jpg"
+  },
+  {
+    "id": 7929,
+    "title": "Nenje Nenje (II)",
+    "artist": "Harshdeep Kaur, Dhilip Varman",
+    "album": "Ennathan Pesuvatho",
+    "duration": 265,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nenje-Nenje-(II)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7930,
+    "title": "Nenje Nenje (Karaoke) (Ennathan Pesuvatho)",
+    "artist": "Instrumental",
+    "album": "Ennathan Pesuvatho",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nenje-Nenje-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7931,
+    "title": "Nenje Nenje (Ennathan Pesuvatho)",
+    "artist": "Harshdeep Kaur",
+    "album": "Ennathan Pesuvatho",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Nenje-Nenje-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7932,
+    "title": "O Divya O Divya",
+    "artist": "Shaan",
+    "album": "Maasilamani",
+    "duration": 302,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/O-Divya-O-Divya.jpg"
+  },
+  {
+    "id": 7933,
+    "title": "O Mariya",
+    "artist": "D Imman & Jyotsna Radhakrishnan",
+    "album": "Naan Avanillai 2",
+    "duration": 296,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/O-Mariya-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7934,
+    "title": "Odi Odi Vilayadu",
+    "artist": "Mukesh, Suvi, Emcee Jesz",
+    "album": "Maasilamani",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Odi-Odi-Vilayadu.jpg"
+  },
+  {
+    "id": 7935,
+    "title": "Olaga Vaayaadi",
+    "artist": "Benny Dayal",
+    "album": "Karuppan",
+    "duration": 272,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Olaga-Vaayaadi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7936,
+    "title": "Olib Laila",
+    "artist": "Timmy, Kalpana",
+    "album": "Anbe Vaa",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Olib%20Laila.jpg"
+  },
+  {
+    "id": 7937,
+    "title": "Onna Onna",
+    "artist": "D Imman",
+    "album": "Maaveeran Kittu",
+    "duration": 197,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Onna-Onna.jpg"
+  },
+  {
+    "id": 7938,
+    "title": "Onnum Puriyala II",
+    "artist": "D Imman",
+    "album": "Kumki",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Onnum-Puriyala-II.jpg"
+  },
+  {
+    "id": 7939,
+    "title": "Onnum Puriyala",
+    "artist": "Karaoke Track",
+    "album": "Kumki",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Onnum-Puriyala.jpg"
+  },
+  {
+    "id": 7940,
+    "title": "Oonjaliley Oru Angeley",
+    "artist": "Karthik & Dr G K Lavanya",
+    "album": "Marudhamalai",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oonjaliley-Oru-Angeley-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7941,
+    "title": "Ooraana Oorukkulla",
+    "artist": "Santhosh Hariharan",
+    "album": "Manam Kothi Paravai",
+    "duration": 254,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ooraana-Oorukkulla.jpg"
+  },
+  {
+    "id": 7942,
+    "title": "Oppanakara Veedhiyile",
+    "artist": "Karthik, Chinmayi",
+    "album": "Giri",
+    "duration": 294,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oppanakara-Veedhiyile-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7943,
+    "title": "Orampo Orampo",
+    "artist": "Arjith, D Imman, Karthikeyan, Ranjith",
+    "album": "Ainthaam Padai",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Orampo%20Orampo.jpg"
+  },
+  {
+    "id": 7944,
+    "title": "Oru Unmai Sollava",
+    "artist": "Karthik, Harini",
+    "album": "Madarasi",
+    "duration": 277,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru%20Unmai%20Sollava.jpg"
+  },
+  {
+    "id": 7945,
+    "title": "Oru Kalavani Payala",
+    "artist": "Naresh Iyer, Madhusri",
+    "album": "Lee",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru-Kalavani-Payala-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7946,
+    "title": "Oru Naal (Angelina)",
+    "artist": "Sid Sriram",
+    "album": "Angelina",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru-Naal-MassTamilan.org.jpg"
+  },
+  {
+    "id": 7947,
+    "title": "Oru Ora Ora Parvai Karaoke",
+    "artist": "Karaoke Version",
+    "album": "Desingu Raja",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru-Ora-Ora-Parvai-Karaoke.jpg"
+  },
+  {
+    "id": 7948,
+    "title": "Oru Ora Ora Parvai",
+    "artist": "Balram",
+    "album": "Desingu Raja",
+    "duration": 289,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru-Ora-Ora-Parvai.jpg"
+  },
+  {
+    "id": 7949,
+    "title": "Oru Rosa",
+    "artist": "D Imman, Anthony Daasan, A V Pooja",
+    "album": "Jeeva",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oru-Rosa-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7950,
+    "title": "Oruthi Maelae (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Jeeva",
+    "duration": 261,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oruthi-Maelae-(Karaoke-Version)-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7951,
+    "title": "Oruthi Maelae",
+    "artist": "D Imman, Abhay Jodhpurkar, El Fé Choir",
+    "album": "Jeeva",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oruthi-Maelae-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7952,
+    "title": "Oruthi (Kalinga)",
+    "artist": "Madhu Balakrishnan",
+    "album": "Kalinga",
+    "duration": 297,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Oruthi.jpg"
+  },
+  {
+    "id": 7953,
+    "title": "Othasada Rosa",
+    "artist": "Sai Charan, A V Pooja",
+    "album": "Maruthu",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Othasada-Rosa.jpg"
+  },
+  {
+    "id": 7954,
+    "title": "Ovvundraai Thirudugiraai (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Jeeva",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ovvundraai-Thirudugiraai-(Karaoke-Version)-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7955,
+    "title": "Ovvundraai Thirudugiraai",
+    "artist": "D Imman, Karthik, Bhavya Pandit",
+    "album": "Jeeva",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ovvundraai-Thirudugiraai-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7957,
+    "title": "Paravayaa Parakkurom",
+    "artist": "Haricharan",
+    "album": "Kayal",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Paravayaa-Parakkurom.jpg"
+  },
+  {
+    "id": 7958,
+    "title": "Pathu Endrathukulla (Female)",
+    "artist": "D Imman, Vaikom Vijayalakshmi",
+    "album": "10 Endrathukulla",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pathu%20Endrathukulla%20(Female).jpg"
+  },
+  {
+    "id": 7959,
+    "title": "Pathu Endrathukulla (Male)",
+    "artist": "D Imman, Vishal Dadlani, Emcee Jesz",
+    "album": "10 Endrathukulla",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pathu%20Endrathukulla%20(Male).jpg"
+  },
+  {
+    "id": 7960,
+    "title": "Pattu Onnu",
+    "artist": "S P Balasubramanyam, Shankar Mahadevan",
+    "album": "Jilla",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pattu-Onnu.jpg"
+  },
+  {
+    "id": 7961,
+    "title": "Pidikavilaida",
+    "artist": "Karthik, Srilekha Parthasarathy",
+    "album": "Anbe Vaa",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pidikavilaida.jpg"
+  },
+  {
+    "id": 7962,
+    "title": "Ping Pong (Inga Naan Thaan Kingu)",
+    "artist": "D Imman",
+    "album": "Inga Naan Thaan Kingu",
+    "duration": 53,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ping%20Pong.jpg"
+  },
+  {
+    "id": 7963,
+    "title": "Po Po Po (Karaoke)",
+    "artist": "D Imman",
+    "album": "Manam Kothi Paravai",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Po-Po-Po-Karaoke.jpg"
+  },
+  {
+    "id": 7964,
+    "title": "Po Po Po",
+    "artist": "Javed Ali",
+    "album": "Manam Kothi Paravai",
+    "duration": 285,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Po-Po-Po.jpg"
+  },
+  {
+    "id": 7965,
+    "title": "Pom Pom Pom Karaoke",
+    "artist": "Karaoke Version",
+    "album": "Desingu Raja",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pom-Pom-Pom-Karaoke.jpg"
+  },
+  {
+    "id": 7966,
+    "title": "Pom Pom Pom",
+    "artist": "Vijay Prakash",
+    "album": "Desingu Raja",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pom-Pom-Pom.jpg"
+  },
+  {
+    "id": 7967,
+    "title": "Pothavillaye Karaoke",
+    "artist": "D Imaan",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pothavillaye-Karaoke.jpg"
+  },
+  {
+    "id": 7968,
+    "title": "Pothavillaye",
+    "artist": "Shreya Ghoshal & Sakthi Amaran",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 250,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Pothavillaye.jpg"
+  },
+  {
+    "id": 7969,
+    "title": "Raaja Raaja Mahaaraaja",
+    "artist": "Karthik, Solar Sai & M L R Karthikeyan",
+    "album": "Maharaja",
+    "duration": 291,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Raaja-Raaja-Mahaaraaja-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7970,
+    "title": "Rail Aaraaroo",
+    "artist": "Pradeep Kumar, Shreya Ghoshal",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 297,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Rail-Aaraaroo-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7971,
+    "title": "Raja Rajadhi Raja",
+    "artist": "D Imman, Karthik",
+    "album": "Durai",
+    "duration": 255,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Raja%20Rajadhi%20Raja.jpg"
+  },
+  {
+    "id": 7972,
+    "title": "Rendu Kaalu Singamda",
+    "artist": "Manicka Vinayagam, D Imman",
+    "album": "Giri",
+    "duration": 221,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Rendu-Kaalu-Singamda-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7973,
+    "title": "Rock ''N'' Roll",
+    "artist": "Bhargavai",
+    "album": "Lee",
+    "duration": 258,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Rock-''N''-Roll-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7974,
+    "title": "Roottu Pudichom",
+    "artist": "D Imman, Srinivas, Tippu",
+    "album": "Kusthi",
+    "duration": 252,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Roottu%20Pudichom.jpg"
+  },
+  {
+    "id": 7975,
+    "title": "Sabke Vinathi Sunaichi (Female)",
+    "artist": "Vandhana Srinivasan",
+    "album": "Ennathan Pesuvatho",
+    "duration": 104,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sabke-Vinathi-Sunaichi-(Female)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7976,
+    "title": "Sabke Vinathi Sunaichi (Male)",
+    "artist": "Nivas",
+    "album": "Ennathan Pesuvatho",
+    "duration": 104,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sabke-Vinathi-Sunaichi-(Male)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7977,
+    "title": "Sandakkaari (Karaoke)",
+    "artist": "D Imman",
+    "album": "Kadaikutty Singam",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sandakkaari-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7978,
+    "title": "Sandakkaari (Male Version)",
+    "artist": "D Imman",
+    "album": "Kadaikutty Singam",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sandakkaari-(Male-Version)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7979,
+    "title": "Sandakkaari",
+    "artist": "D Imman, Vandana Srinivasan",
+    "album": "Kadaikutty Singam",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sandakkaari-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7980,
+    "title": "Sangimangi",
+    "artist": "D Imman, Nivas, Malavika, Tha Mystro",
+    "album": "Jeeva",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sangimangi-MassTamilan.dev.jpg"
+  },
+  {
+    "id": 7981,
+    "title": "Sare Jahan Se Acha",
+    "artist": "Srinivas",
+    "album": "Aanai",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sare-Jahan-Se-Acha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7982,
+    "title": "Sengathire",
+    "artist": "Pradeep Kumar",
+    "album": "Kadaikutty Singam",
+    "duration": 241,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sengathire-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7983,
+    "title": "Senthoora (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bogan",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Senthoora-Karaoke.jpg"
+  },
+  {
+    "id": 7984,
+    "title": "Senthoora",
+    "artist": "Luksimi Sivaneswaralingam",
+    "album": "Bogan",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Senthoora.jpg"
+  },
+  {
+    "id": 7985,
+    "title": "Senthooran (Reprise)",
+    "artist": "Inno Genga",
+    "album": "Bogan",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Senthooran-Reprise.jpg"
+  },
+  {
+    "id": 7986,
+    "title": "Seruvom Seruvom",
+    "artist": "CLEO VII, Srinisha Jayaseelan",
+    "album": "Laabam",
+    "duration": 211,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Seruvom-Seruvom-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 7987,
+    "title": "Shokku Sundar (Version 2)",
+    "artist": "Anitha Karthikeyan, D Imman, SuVi",
+    "album": "Ainthaam Padai",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Shokku%20Sundar%20(Version%202).jpg"
+  },
+  {
+    "id": 7988,
+    "title": "Shokku Sundar",
+    "artist": "Anitha Karthikeyan, D Imman",
+    "album": "Ainthaam Padai",
+    "duration": 269,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Shokku%20Sundar.jpg"
+  },
+  {
+    "id": 7989,
+    "title": "Simmakallu Simran (Karoke)",
+    "artist": "Instrumental",
+    "album": "Amara",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Simmakallu-Simran-(Karoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7990,
+    "title": "Simmakallu Simran",
+    "artist": "Chinmayi & Sirkazhi Sivachidambaram",
+    "album": "Amara",
+    "duration": 287,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Simmakallu-Simran-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7991,
+    "title": "Sithiramaasam Veyyila",
+    "artist": "Mahalingam",
+    "album": "Kadaikutty Singam",
+    "duration": 98,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sithiramaasam-Veyyila-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7992,
+    "title": "Soi Soi",
+    "artist": "Magizhini Manimaaran",
+    "album": "Kumki",
+    "duration": 222,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Soi-Soi.jpg"
+  },
+  {
+    "id": 7993,
+    "title": "Sollamaley",
+    "artist": "Sadhana Sargam",
+    "album": "Naan Avanillai 2",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sollamaley-MassTamilan.io.jpg"
+  },
+  {
+    "id": 7994,
+    "title": "Sollitaley Ava Kaadhala II",
+    "artist": "K J Ranjith & Shreya Ghoshal",
+    "album": "Kumki",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sollitaley-Ava-Kaadhala-II.jpg"
+  },
+  {
+    "id": 7995,
+    "title": "Sollitaley Ava Kaadhala",
+    "artist": "Karaoke Track",
+    "album": "Kumki",
+    "duration": 273,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sollitaley-Ava-Kaadhala.jpg"
+  },
+  {
+    "id": 7996,
+    "title": "Sooravalida",
+    "artist": "Jinesh Prabhu",
+    "album": "Maruthu",
+    "duration": 305,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sooravalida.jpg"
+  },
+  {
+    "id": 7997,
+    "title": "Soota Kilapi",
+    "artist": "T L Maharajan, Sreelekha Parthasarathi",
+    "album": "Kovai Brothers",
+    "duration": 293,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Soota%20Kilapi.jpg"
+  },
+  {
+    "id": 7998,
+    "title": "Sophia Sophia Kadhalil",
+    "artist": "Aditya Rao, Sharanya Gopinath",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 244,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Sophia-Sophia-Kadhalil-MassTamilan.com.jpg"
+  },
+  {
+    "id": 7999,
+    "title": "Southern Aroma",
+    "artist": "Andrea Jeremiah",
+    "album": "Naan Avanillai 2",
+    "duration": 86,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Southern-Aroma-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8000,
+    "title": "Spooky Bogan (Theme)",
+    "artist": "D Imman",
+    "album": "Bogan",
+    "duration": 132,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Spooky-Bogan-Theme.jpg"
+  },
+  {
+    "id": 8001,
+    "title": "Tamizhan Endru Sollada (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bhoomi",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Tamizhan-Endru-Sollada-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8002,
+    "title": "Tamizhan Endru Sollada",
+    "artist": "D Imman, Anirudh Ravichander, Lavanya Sundararaman",
+    "album": "Bhoomi",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Tamizhan-Endru-Sollada-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8003,
+    "title": "Thakadheem",
+    "artist": "D Imman, Harish Raghavendra, Lavanya",
+    "album": "Kusthi",
+    "duration": 274,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thakadheem.jpg"
+  },
+  {
+    "id": 8004,
+    "title": "Thambi Cuttingu",
+    "artist": "Anthony Daasan, Vijay Yesudas",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 280,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thambi-Cuttingu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8005,
+    "title": "Thandora Kannaala (Karaoke)",
+    "artist": "D Imman",
+    "album": "Kadaikutty Singam",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thandora-Kannaala-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8006,
+    "title": "Thandora Kannaala (Reprise)",
+    "artist": "V V Prassanna",
+    "album": "Kadaikutty Singam",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thandora-Kannaala-(Reprise)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8007,
+    "title": "Thandora Kannaala",
+    "artist": "V V Prassanna",
+    "album": "Kadaikutty Singam",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thandora-Kannaala-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8008,
+    "title": "The Khakhee Story",
+    "artist": "Vasu, Naveen & Karthikeyan",
+    "album": "Marudhamalai",
+    "duration": 197,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/The-Khakhee-Story-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8009,
+    "title": "Theeyum Theeyum (Karoke)",
+    "artist": "Instrumental",
+    "album": "Amara",
+    "duration": 297,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Theeyum-Theeyum-(Karoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8010,
+    "title": "Theeyum Theeyum",
+    "artist": "Naresh Iyer",
+    "album": "Amara",
+    "duration": 298,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Theeyum-Theeyum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8011,
+    "title": "Theme Music (Meenkuzhambum Manpaanayum)",
+    "artist": "Instrumental",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 125,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Theme-Music.jpg"
+  },
+  {
+    "id": 8012,
+    "title": "Theme (Kovai Brothers)",
+    "artist": "Karthik, Timmy, D Imman, Ganapathy",
+    "album": "Kovai Brothers",
+    "duration": 132,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Theme.jpg"
+  },
+  {
+    "id": 8013,
+    "title": "Thenmozhi (Inga Naan Thaan Kingu)",
+    "artist": "D Imman",
+    "album": "Inga Naan Thaan Kingu",
+    "duration": 57,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thenmozhi.jpg"
+  },
+  {
+    "id": 8014,
+    "title": "Thinadaduren Naan",
+    "artist": "Vijay Yesudoss",
+    "album": "Muthal Idam",
+    "duration": 313,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thinadaduren-Naan-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8015,
+    "title": "Thodra Paakkalaam",
+    "artist": "D Imman",
+    "album": "Ippadai Vellum",
+    "duration": 157,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thodra-Paakkalaam-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8016,
+    "title": "Tholaivil Irukkum (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Ennathan Pesuvatho",
+    "duration": 304,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Tholaivil-Irukkum-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8017,
+    "title": "Tholaivil Irukkum",
+    "artist": "Sriram Parthasarathy",
+    "album": "Ennathan Pesuvatho",
+    "duration": 295,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Tholaivil-Irukkum-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8018,
+    "title": "Thooyavaney",
+    "artist": "Neha Bhasin",
+    "album": "Naan Avanillai 2",
+    "duration": 263,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Thooyavaney-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8019,
+    "title": "Ulagathula",
+    "artist": "Imman",
+    "album": "Kovai Brothers",
+    "duration": 278,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Ulagathula.jpg"
+  },
+  {
+    "id": 8020,
+    "title": "Unakkulley Kadavul Undu (Bomb)",
+    "artist": "K S Chithra, Sarasruthi, Nasreen, Gayathri, Aadya",
+    "album": "Bomb",
+    "duration": 304,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unakkulley%20Kadavul%20Undu.jpg"
+  },
+  {
+    "id": 8021,
+    "title": "Unkooda Thunaiyaga (Karaoke Version)",
+    "artist": "D Imman",
+    "album": "Maaveeran Kittu",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkooda-Thunaiyaga-Karaoke-Version.jpg"
+  },
+  {
+    "id": 8022,
+    "title": "Unkooda Thunaiyaga",
+    "artist": "Kalyani Nair",
+    "album": "Maaveeran Kittu",
+    "duration": 239,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkooda-Thunaiyaga.jpg"
+  },
+  {
+    "id": 8023,
+    "title": "Unkoodave Porakkanum (Brother’s Version)",
+    "artist": "Sid Sriram",
+    "album": "Namma Veettu Pillai",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkoodave-Porakkanum-(Brother%E2%80%99s-Version)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8024,
+    "title": "Unkoodave Porakkanum (Karaoke)",
+    "artist": "Unknown",
+    "album": "Namma Veettu Pillai",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkoodave-Porakkanum-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8025,
+    "title": "Unkoodave Porakkanum (Sister’s Version)",
+    "artist": "Shashaa Tirupati",
+    "album": "Namma Veettu Pillai",
+    "duration": 227,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkoodave-Porakkanum-(Sister%E2%80%99s-Version)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8026,
+    "title": "Unkoodave Porakkanum Instrumental (Violin)",
+    "artist": "Sruthi Balamurali",
+    "album": "Namma Veettu Pillai",
+    "duration": 260,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unkoodave-Porakkanum---Instrumental-(Violin)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8027,
+    "title": "Unna Ippo Paakkanum (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Kayal",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unna-Ippo-Paakkanum-Karaoke.jpg"
+  },
+  {
+    "id": 8028,
+    "title": "Unna Ippo Paakkanum",
+    "artist": "Haricharan, Vandana Srinivasan",
+    "album": "Kayal",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unna-Ippo-Paakkanum.jpg"
+  },
+  {
+    "id": 8029,
+    "title": "Unnaaley Unnaaley Mudiyathendraal",
+    "artist": "Vijay Yesudas",
+    "album": "Kennedy Club",
+    "duration": 251,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unnaaley-Unnaaley-Mudiyathendraal-MassTamilan.org.jpg"
+  },
+  {
+    "id": 8030,
+    "title": "Unnai Maathiri",
+    "artist": "D Imman, Shreya Ghoshal, Udit Narayan",
+    "album": "Durai",
+    "duration": 309,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Unnai%20Maathiri.jpg"
+  },
+  {
+    "id": 8031,
+    "title": "Usure Usure (Karaoke)",
+    "artist": "D Imman",
+    "album": "Karuppan",
+    "duration": 278,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Usure-Usure-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8032,
+    "title": "Usure Usure",
+    "artist": "Ananya Bhat",
+    "album": "Karuppan",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Usure-Usure-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8033,
+    "title": "Uyya Uyya",
+    "artist": "Veeramanidasan & 'Thindukallu' Poovitha",
+    "album": "Muthal Idam",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uyya-Uyya-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8034,
+    "title": "Uzhaippom Thozha",
+    "artist": "Srinidhi, Narayanan Ravishankar",
+    "album": "Laabam",
+    "duration": 351,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uzhaippom-Thozha-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8035,
+    "title": "Uzhavaa (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bhoomi",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uzhavaa-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8036,
+    "title": "Uzhavaa",
+    "artist": "D Imman, Sid Sriram, Yogi B",
+    "album": "Bhoomi",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Uzhavaa-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8037,
+    "title": "Vaa Jikki (Karaoke)",
+    "artist": "D Imman",
+    "album": "Kadaikutty Singam",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaa-Jikki-(Karaoke)-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8038,
+    "title": "Vaa Jikki",
+    "artist": "D Imman",
+    "album": "Kadaikutty Singam",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaa-Jikki-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8039,
+    "title": "Vaada Vaada",
+    "artist": "M L R Karthikeyan, Anitha, Wattabottles",
+    "album": "Kacheri Arambam",
+    "duration": 314,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaada-Vaada.jpg"
+  },
+  {
+    "id": 8040,
+    "title": "Vaadi En Vaasapadi",
+    "artist": "D Imman, Devan Ekambaram",
+    "album": "Ainthaam Padai",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaadi%20En%20Vaasapadi.jpg"
+  },
+  {
+    "id": 8041,
+    "title": "Vaalakola Mela",
+    "artist": "Madurai Lakshmi Amma",
+    "album": "Kadaikutty Singam",
+    "duration": 127,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaalakola-Mela-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8042,
+    "title": "Vaarai Vaarai",
+    "artist": "Shankar Mahadevan, Shreya Ghoshal",
+    "album": "Bogan",
+    "duration": 266,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaarai-Vaarai.jpg"
+  },
+  {
+    "id": 8043,
+    "title": "Vaaran Unna Vechiseyya Poraan",
+    "artist": "Santosh Hariharan, Shenbagaraj, Vignesh Narayanan, Deepak",
+    "album": "Kennedy Club",
+    "duration": 115,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vaaran-Unna-Vechiseyya-Poraan-MassTamilan.org.jpg"
+  },
+  {
+    "id": 8044,
+    "title": "Vali Thaangidum Vaazhkai",
+    "artist": "Keerthi Sagathia",
+    "album": "Kennedy Club",
+    "duration": 79,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vali-Thaangidum-Vaazhkai-MassTamilan.org.jpg"
+  },
+  {
+    "id": 8045,
+    "title": "Vande Mataram (Karaoke)",
+    "artist": "D Imman",
+    "album": "Bhoomi",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vande-Mataram-(Karaoke)-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8046,
+    "title": "Vande Mataram",
+    "artist": "D Imman, Ananya Bhat, Sabesh Manmathan",
+    "album": "Bhoomi",
+    "duration": 233,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vande-Mataram-MassTamilan.io.jpg"
+  },
+  {
+    "id": 8047,
+    "title": "Varungala Veetukaraney",
+    "artist": "Susi Reeta",
+    "album": "Aanai",
+    "duration": 154,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Varungala-Veetukaraney-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8048,
+    "title": "Veddaikkum Sonthakkaran",
+    "artist": "D Imman, Karthik, Saloni",
+    "album": "Durai",
+    "duration": 279,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Veddaikkum%20Sonthakkaran.jpg"
+  },
+  {
+    "id": 8049,
+    "title": "Vennila Thangachi",
+    "artist": "Nakash Aziz, Ramya NSK",
+    "album": "Gemini Ganeshanum Suruli Raajanum",
+    "duration": 259,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vennila-Thangachi-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8050,
+    "title": "Verasa Pogaiyile",
+    "artist": "Instrumental",
+    "album": "Jilla",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Verasa-Pogaiyile.jpg"
+  },
+  {
+    "id": 8051,
+    "title": "Verasa Pogayile",
+    "artist": "D Imman",
+    "album": "Jilla",
+    "duration": 257,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Verasa-Pogayile-.jpg"
+  },
+  {
+    "id": 8052,
+    "title": "Veri Veri Veri",
+    "artist": "Suraj Jagan, Maria Kavita Thomas",
+    "album": "Miruthan",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Veri-Veri-Veri.jpg"
+  },
+  {
+    "id": 8053,
+    "title": "Vidamatten Vidamatten",
+    "artist": "Karthik, Mahalakshmi Iyer",
+    "album": "Madarasi",
+    "duration": 299,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vidamatten%20Vidamatten.jpg"
+  },
+  {
+    "id": 8054,
+    "title": "Vithai Vithai Kadhal",
+    "artist": "Shaan",
+    "album": "Kacheri Arambam",
+    "duration": 288,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vithai-Vithai-Kadhal.jpg"
+  },
+  {
+    "id": 8055,
+    "title": "Vroom Vroom (Karaoke)",
+    "artist": "D Imman",
+    "album": "10 Endrathukulla",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vroom%20Vroom%20(Karaoke).jpg"
+  },
+  {
+    "id": 8056,
+    "title": "Vroom Vroom",
+    "artist": "D Imman, Santosh Hariharan, Madhan Karky",
+    "album": "10 Endrathukulla",
+    "duration": 281,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Vroom%20Vroom.jpg"
+  },
+  {
+    "id": 8057,
+    "title": "Wako Wowra",
+    "artist": "Neha Bhasin, Varun Parandhaman",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 245,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Wako-Wowra.jpg"
+  },
+  {
+    "id": 8058,
+    "title": "Yaamili Yaamiliya",
+    "artist": "Divya Kumar",
+    "album": "Laabam",
+    "duration": 262,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaamili-Yaamiliya-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8059,
+    "title": "Yaar Potta Kolam",
+    "artist": "Karthik",
+    "album": "ABCD",
+    "duration": 294,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaar%20Potta%20Kolam.jpg"
+  },
+  {
+    "id": 8060,
+    "title": "Yaaro Yaaro (Ennathan Pesuvatho)",
+    "artist": "Vijay Prakash",
+    "album": "Ennathan Pesuvatho",
+    "duration": 270,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaaro-Yaaro-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8061,
+    "title": "Yaaru Yaaru Netru Saathichathu",
+    "artist": "Kailash Kher",
+    "album": "Lee",
+    "duration": 243,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaaru-Yaaru-Netru-Saathichathu-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8062,
+    "title": "Yaarume Kekkave Illa Karaoke",
+    "artist": "Karaoke Version",
+    "album": "Desingu Raja",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaarume-Kekkave-Illa-Karaoke.jpg"
+  },
+  {
+    "id": 8063,
+    "title": "Yaarume Kekkave Illa",
+    "artist": "S P Bala",
+    "album": "Desingu Raja",
+    "duration": 282,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaarume-Kekkave-Illa.jpg"
+  },
+  {
+    "id": 8064,
+    "title": "Yaavum Neethane",
+    "artist": "Sathyaprakash",
+    "album": "Mudinja Ivana Pudi",
+    "duration": 249,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaavum-Neethane.jpg"
+  },
+  {
+    "id": 8065,
+    "title": "Yaazha Yaazha (Karaoke)",
+    "artist": "D Imman",
+    "album": "Laabam",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaazha-Yaazha-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8066,
+    "title": "Yaazha Yaazha",
+    "artist": "Shruti Haasan",
+    "album": "Laabam",
+    "duration": 234,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaazha-Yaazha-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8067,
+    "title": "Yaro Yaro Avan",
+    "artist": "Vijay Prakash",
+    "album": "Bogan",
+    "duration": 235,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yaro-Yaro-Avan.jpg"
+  },
+  {
+    "id": 8068,
+    "title": "Yechacha Yechacha",
+    "artist": "Jithin Raj",
+    "album": "Nenjil Thunivirundhal",
+    "duration": 275,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yechacha-Yechacha-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8069,
+    "title": "Yella Oorum",
+    "artist": "Benny Dayal & D Imman",
+    "album": "Kumki",
+    "duration": 162,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yella-Oorum.jpg"
+  },
+  {
+    "id": 8070,
+    "title": "Yellam Naadagam (Karaoke)",
+    "artist": "Instrumental",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yellam-Naadagam-Karaoke.jpg"
+  },
+  {
+    "id": 8071,
+    "title": "Yellam Naadagam",
+    "artist": "Shankar Mahadevan",
+    "album": "Meenkuzhambum Manpaanayum",
+    "duration": 246,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yellam-Naadagam.jpg"
+  },
+  {
+    "id": 8072,
+    "title": "Yen Aala Paakkaporaen (Karaoke)",
+    "artist": "Karaoke",
+    "album": "Kayal",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yen-Aala-Paakkaporaen-Karaoke.jpg"
+  },
+  {
+    "id": 8073,
+    "title": "Yen Aala Paakkaporaen",
+    "artist": "Ranjith, Shreya Ghoshal",
+    "album": "Kayal",
+    "duration": 216,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yen-Aala-Paakkaporaen.jpg"
+  },
+  {
+    "id": 8074,
+    "title": "Yena Velay (Marudhamalai)",
+    "artist": "D Imman & Jyotsna",
+    "album": "Marudhamalai",
+    "duration": 256,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yena-Velay-MassTamilan.com.jpg"
+  },
+  {
+    "id": 8075,
+    "title": "Yenada (Reprise)",
+    "artist": "Shreya Ghoshal",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 174,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenada-Reprise.jpg"
+  },
+  {
+    "id": 8076,
+    "title": "Yenadi (Karaoke)",
+    "artist": "Instrumental (Karaoke)",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenadi-Karaoke.jpg"
+  },
+  {
+    "id": 8077,
+    "title": "Yenadi",
+    "artist": "Karthik, Shreya Ghoshal",
+    "album": "Adhagappattathu Magajanangalay",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenadi.jpg"
+  },
+  {
+    "id": 8078,
+    "title": "Yenakkaagave Poranthavaley",
+    "artist": "Sathyaprakash D",
+    "album": "Namma Veettu Pillai",
+    "duration": 121,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenakkaagave-Poranthavaley-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8079,
+    "title": "Yenga Annan (Karaoke)",
+    "artist": "Unknown",
+    "album": "Namma Veettu Pillai",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenga-Annan-(Karaoke)-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8080,
+    "title": "Yenga Annan",
+    "artist": "Nakash Aziz, Sunidhi Chauhan",
+    "album": "Namma Veettu Pillai",
+    "duration": 268,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenga-Annan-MassTamilan.fm.jpg"
+  },
+  {
+    "id": 8081,
+    "title": "Yenga Pulla Irukka",
+    "artist": "Balram",
+    "album": "Kayal",
+    "duration": 284,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenga-Pulla-Irukka.jpg"
+  },
+  {
+    "id": 8082,
+    "title": "Yengirindhu Vandhayo",
+    "artist": "Shreya Ghoshal",
+    "album": "Kayal",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yengirindhu-Vandhayo.jpg"
+  },
+  {
+    "id": 8083,
+    "title": "Yengo Yengo",
+    "artist": "Haricharan, Mahathi",
+    "album": "ABCD",
+    "duration": 296,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yengo%20Yengo.jpg"
+  },
+  {
+    "id": 8084,
+    "title": "Yenna Solla",
+    "artist": "Vijay Prakash, Chinmayi Sripada",
+    "album": "Manam Kothi Paravai",
+    "duration": 264,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yenna-Solla.jpg"
+  },
+  {
+    "id": 8085,
+    "title": "Yeppa Mama Treatu",
+    "artist": "D Imman, A V Pooja, Snigdha Chandra",
+    "album": "Jilla",
+    "duration": 267,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_1/covers/Yeppa-Mama-Treatu.jpg"
   }
 ]
 
