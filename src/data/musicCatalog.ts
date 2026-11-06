@@ -54735,6 +54735,110 @@ const RAW_SONGS: RawSong[] = [
     "album": "Kalyani (Indie)",
     "duration": 269,
     "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_46@main/covers/KALYANI_320(KoshalWorld.Com).jpg"
+  },
+  {
+    "id": 6919,
+    "title": "Pesamale",
+    "artist": "Siri Xander, Arra Aria Khayal",
+    "album": "Pesamale (Indie)",
+    "duration": 178,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Pesamale.jpg"
+  },
+  {
+    "id": 6920,
+    "title": "Address Ila Emotion",
+    "artist": "Vijaynarain, The Artist 404",
+    "album": "John Doe",
+    "duration": 195,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Address%20Ila%20Emotion.jpg"
+  },
+  {
+    "id": 6921,
+    "title": "Alaakaa Loova Unplugged",
+    "artist": "Sai Abhyankkar",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 73,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Alaakaa%20Loova%20Unplugged.jpg"
+  },
+  {
+    "id": 6922,
+    "title": "Alaakaa Loova",
+    "artist": "Sai Abhyankkar",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 210,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Alaakaa%20Loova.jpg"
+  },
+  {
+    "id": 6923,
+    "title": "Ennulae",
+    "artist": "Tanvi Shah",
+    "album": "Yaakkai",
+    "duration": 213,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Ennulae.jpg"
+  },
+  {
+    "id": 6924,
+    "title": "Naan Podhuma?",
+    "artist": "The Artist 404, Arjun Das, Malavika",
+    "album": "John Doe",
+    "duration": 253,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Naan%20Podhuma.jpg"
+  },
+  {
+    "id": 6925,
+    "title": "Naan Ini Kaatril",
+    "artist": "Chinmayi, Yuvan Shankar Raja",
+    "album": "Yaakkai",
+    "duration": 224,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Naan-Ini-Kaatril.jpg"
+  },
+  {
+    "id": 6926,
+    "title": "Neee En Kangal",
+    "artist": "Yuvan Shankar Raja",
+    "album": "Yaakkai",
+    "duration": 205,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Neee-En-Kangal.jpg"
+  },
+  {
+    "id": 6927,
+    "title": "OM Special Duty",
+    "artist": "Sai Abhyankkar",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 105,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/OM%20Special%20Duty.jpg"
+  },
+  {
+    "id": 6928,
+    "title": "Senjudare",
+    "artist": "Sai Abhyankkar, Harini",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 181,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Senjudare.jpg"
+  },
+  {
+    "id": 6929,
+    "title": "Siya Entry",
+    "artist": "Sai Abhyankkar, Daniel, Vettori",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 112,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Siya%20Entry.jpg"
+  },
+  {
+    "id": 6930,
+    "title": "Solli Tholaiyen Ma",
+    "artist": "Dhanush",
+    "album": "Yaakkai",
+    "duration": 203,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Solli-Tholaiyen-Ma.jpg"
+  },
+  {
+    "id": 6931,
+    "title": "Veezha Veera",
+    "artist": "Tippu, Sai Abhyankkar",
+    "album": "OM Chapter 1: Udhiram The Blood Wood",
+    "duration": 238,
+    "cover": "https://cdn.jsdelivr.net/gh/ritcv12345678-source/songs_list_47@main/covers/Veezha%20Veera.jpg"
   }
 ]
 
